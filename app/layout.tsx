@@ -1,15 +1,22 @@
-import "@radix-ui/themes/styles.css"
 import "./globals.css"
-import "./theme-config.css"
 import cx from "classnames"
-import { Theme } from "@radix-ui/themes"
 import { sfPro, inter } from "./fonts"
 import Nav from "@/components/layout/nav"
 import Footer from "@/components/layout/footer"
 import { Suspense } from "react"
 
 export const metadata = {
-  title: "JobFlow",
+  title: "Jobflow",
+  description:
+    "Jobflow.",
+  twitter: {
+    card: "summary_large_image",
+    title: "Jobflow",
+    description:
+      "Jobflow",
+    creator: "@guluarte",
+  },
+  metadataBase: new URL("http://localhost:3000"),
   themeColor: "#FFF",
 }
 
@@ -21,7 +28,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
-        <Theme panelBackground="solid" color="blue">
           <div className="fixed h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100" />
           <Suspense fallback="...">
             {/* @ts-expect-error Server Component */}
@@ -31,7 +37,6 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer />
-        </Theme>
       </body>
     </html>
   )
