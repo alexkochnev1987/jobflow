@@ -10,8 +10,6 @@ import { nFormatter } from "@/lib/utils"
 
 import { Progress } from "@/components/ui/progress"
 import { useEffect, useState } from "react"
-import { Slider } from "@radix-ui/react-slider"
-import { Flex, Text } from "@radix-ui/themes"
 
 export function ProgressDemo() {
   const [progress, setProgress] = useState(13)
@@ -60,6 +58,7 @@ export default async function Home() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
           style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
         >
+
           <Balancer>Building blocks for your Next project</Balancer>
         </h1>
         <p
@@ -67,17 +66,6 @@ export default async function Home() {
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           <Balancer>
-            <Flex direction="column" gap="3">
-              <Text size="9">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="8">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="7">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="6">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="5">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="4">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="3">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="2">The quick brown fox jumps over the lazy dog.</Text>
-              <Text size="1">The quick brown fox jumps over the lazy dog.</Text>
-            </Flex>
             An opinionated collection of components, hooks, and utilities for
             your Next.js project.
           </Balancer>
