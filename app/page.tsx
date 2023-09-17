@@ -10,15 +10,17 @@ import { nFormatter } from "@/lib/utils"
 
 import { Progress } from "@/components/ui/progress"
 import { useEffect, useState } from "react"
- 
+import { Slider } from "@radix-ui/react-slider"
+import { Flex, Text } from "@radix-ui/themes"
+
 export function ProgressDemo() {
   const [progress, setProgress] = useState(13)
- 
+
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500)
     return () => clearTimeout(timer)
   }, [])
- 
+
   return <Progress value={progress} className="w-[60%]" />
 }
 
@@ -49,6 +51,7 @@ export default async function Home() {
           className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
         >
           <Twitter className="h-5 w-5 text-[#1d9bf0]" />
+
           <p className="text-sm font-semibold text-[#1d9bf0]">
             Introducing Precedent
           </p>
@@ -57,7 +60,6 @@ export default async function Home() {
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
           style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
         >
-          <ProgressDemo />
           <Balancer>Building blocks for your Next project</Balancer>
         </h1>
         <p
@@ -65,6 +67,17 @@ export default async function Home() {
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           <Balancer>
+            <Flex direction="column" gap="3">
+              <Text size="9">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="8">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="7">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="6">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="5">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="4">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="3">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="2">The quick brown fox jumps over the lazy dog.</Text>
+              <Text size="1">The quick brown fox jumps over the lazy dog.</Text>
+            </Flex>
             An opinionated collection of components, hooks, and utilities for
             your Next.js project.
           </Balancer>
