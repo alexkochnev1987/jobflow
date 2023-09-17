@@ -37,7 +37,7 @@ export default function Question() {
             Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
           </Label>
           <Textarea placeholder="Deine Antwort" id="message" />
-          <Slider defaultValue={[1]} max={5} step={1} />
+          <Slider defaultValue={[2]} max={4} step={1} />
           <Skeleton className="h-[20px] w-full rounded-full" />
 
           <RadioGroup defaultValue="option-one" className="flex flex-row">
