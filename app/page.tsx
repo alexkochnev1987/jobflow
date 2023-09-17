@@ -1,11 +1,11 @@
-import Card from "@/components/home/card";
-import Balancer from "react-wrap-balancer";
-import { DEPLOY_URL } from "@/lib/constants";
-import { Github, Twitter } from "@/components/shared/icons";
-import WebVitals from "@/components/home/web-vitals";
-import ComponentGrid from "@/components/home/component-grid";
-import Image from "next/image";
-import { nFormatter } from "@/lib/utils";
+import Card from "@/components/home/card"
+import Balancer from "react-wrap-balancer"
+import { DEPLOY_URL } from "@/lib/constants"
+import { Github, Twitter } from "@/components/shared/icons"
+import WebVitals from "@/components/home/web-vitals"
+import ComponentGrid from "@/components/home/component-grid"
+import Image from "next/image"
+import { nFormatter } from "@/lib/utils"
 
 export default async function Home() {
   const { stargazers_count: stars } = await fetch(
@@ -22,7 +22,7 @@ export default async function Home() {
     },
   )
     .then((res) => res.json())
-    .catch((e) => console.log(e));
+    .catch((e) => console.log(e))
 
   return (
     <>
@@ -111,7 +111,7 @@ export default async function Home() {
         ))}
       </div>
     </>
-  );
+  )
 }
 
 const features = [
@@ -169,4 +169,4 @@ const features = [
       </div>
     ),
   },
-];
+]

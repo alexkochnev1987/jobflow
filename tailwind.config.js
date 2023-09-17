@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require("tailwindcss/plugin");
+const plugin = require("tailwindcss/plugin")
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   future: {
     hoverOnlyWhenSupported: true,
@@ -121,10 +121,13 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms"),
-  require("@tailwindcss/typography"),
-  plugin(({ addVariant }) => {
-    addVariant("radix-side-top", '&[data-side="top"]');
-    addVariant("radix-side-bottom", '&[data-side="bottom"]');
-  })],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    plugin(({ addVariant }) => {
+      addVariant("radix-side-top", '&[data-side="top"]')
+      addVariant("radix-side-bottom", '&[data-side="bottom"]')
+    }),
+  ],
 }
