@@ -1,5 +1,6 @@
 import "@radix-ui/themes/styles.css"
 import "./globals.css"
+import "./theme-config.css"
 import cx from "classnames"
 import { Theme } from "@radix-ui/themes"
 import { sfPro, inter } from "./fonts"
@@ -8,17 +9,7 @@ import Footer from "@/components/layout/footer"
 import { Suspense } from "react"
 
 export const metadata = {
-  title: "Precedent - Building blocks for your Next.js project",
-  description:
-    "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
-  twitter: {
-    card: "summary_large_image",
-    title: "Precedent - Building blocks for your Next.js project",
-    description:
-      "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
-    creator: "@steventey",
-  },
-  metadataBase: new URL("https://precedent.dev"),
+  title: "JobFlow",
   themeColor: "#FFF",
 }
 
@@ -29,9 +20,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(inter.variable)}>
-        <Theme panelBackground="solid">
-          <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
+      <body className={cx(sfPro.variable, inter.variable)}>
+        <Theme panelBackground="solid" color="blue">
+          <div className="fixed h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100" />
           <Suspense fallback="...">
             {/* @ts-expect-error Server Component */}
             <Nav />
