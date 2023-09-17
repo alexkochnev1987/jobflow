@@ -19,19 +19,20 @@ export default function Question() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle className="text-right">
+          <CardTitle>
             <Progress value={20} />
+            <br />
+            Persönliche Werte
           </CardTitle>
-          <CardDescription className="text-lg">Persönliche Werte</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          <p>
+          <CardDescription>
             Unsere Werte sind tief verwurzelte Überzeugungen und Prinzipien, die
             das Verhalten und die Entscheidungen einer Person leiten. Es ist
             wichtig, sie zu kennen, da sie als innerer Kompass dienen und
             helfen, authentische Entscheidungen zu treffen, die mit den eigenen
             Überzeugungen und Zielen in Einklang stehen.
-          </p>
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3">
           <Label htmlFor="email">
             Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
           </Label>
