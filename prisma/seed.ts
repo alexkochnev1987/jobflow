@@ -1,16 +1,6 @@
+import { QUESTION_CATEGORIES, QUESTION_TYPES } from "../lib/constants"
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
-
-const CATEGORIES = {
-  Values: "values",
-  Strengths: "strengths",
-  IdealEnvironment: "ideal_environment",
-}
-
-const TYPES = {
-  Text: "text",
-  Slider: "slider",
-}
 
 async function main() {
   let order = 1
@@ -51,14 +41,14 @@ async function main() {
     order++
   }
   const addTextInput = (question: string, category: string) => {
-    return insertQuestion({ question, category, type: TYPES.Text })
+    return insertQuestion({ question, category, type: QUESTION_TYPES.Text })
   }
 
   const addSlider = (question: string, category: string) => {
     return insertQuestion({
       question,
       category,
-      type: TYPES.Slider,
+      type: QUESTION_TYPES.Slider,
       min: 1,
       max: 5,
     })
@@ -76,7 +66,7 @@ async function main() {
   ]
 
   for (const value of values) {
-    await addTextInput(value, CATEGORIES.Values)
+    await addTextInput(value, QUESTION_CATEGORIES.Values)
   }
 
   const strengths = [
@@ -88,7 +78,7 @@ async function main() {
   ]
 
   for (const value of strengths) {
-    await addTextInput(value, CATEGORIES.Strengths)
+    await addTextInput(value, QUESTION_CATEGORIES.Strengths)
   }
 
   const idealEnvironments = [
@@ -104,7 +94,7 @@ async function main() {
   ]
 
   for (const value of idealEnvironments) {
-    await addSlider(value, CATEGORIES.IdealEnvironment)
+    await addSlider(value, QUESTION_CATEGORIES.IdealEnvironment)
   }
 }
 main()
