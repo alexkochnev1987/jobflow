@@ -2,16 +2,25 @@ import { QUESTION_CATEGORIES } from "@/lib/constants"
 import { getQuestions } from "./actions/server"
 import Form from "@/components/shared/question"
 
-export default async function Home() {
-  let step = 1
+export default async function Home({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  console.log(params)
+  console.log(searchParams)
+  const step = searchParams.step || 1
   let valuesForm: any
   let questions = null
 
   switch (step) {
-    case 2:
+    case "2":
       questions = await getQuestions(QUESTION_CATEGORIES.Strengths)
       valuesForm = () => (
         <Form
+          step={2}
           questions={questions}
           category="Stärken"
           progress={40}
@@ -19,10 +28,11 @@ export default async function Home() {
         />
       )
       break
-    case 3:
+    case "3":
       questions = await getQuestions(QUESTION_CATEGORIES.IdealEnvironment)
       valuesForm = () => (
         <Form
+        step={3}
           questions={questions}
           category="Der ideale Arbeitsrahmen"
           progress={60}
@@ -30,11 +40,12 @@ export default async function Home() {
         />
       )
       break
-    case 1:
+    case "1":
     default:
       questions = await getQuestions(QUESTION_CATEGORIES.Values)
       valuesForm = () => (
         <Form
+        step={1}
           questions={questions}
           category="Persönliche Werte"
           progress={20}

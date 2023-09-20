@@ -17,13 +17,33 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { QUESTION_TYPES } from "@/lib/constants"
 import { userStore } from "@/app/client/store"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function Form({
   category,
   description,
   questions,
   progress,
+  step,
 }): JSX.Element {
+  const store = userStore()
+  const router = useRouter()
+
+  const newStep = (newStep) => {
+    store.setStep(newStep)
+    router.push(`/?step=${newStep}`)
+  }
+
+  const prevStep = () => {
+    const prevStep = Math.max(step - 1, 1)
+    newStep(prevStep)
+  }
+
+  const nextStep = () => {
+    const nextStep = Math.max(step + 1, 1)
+    newStep(nextStep)
+  }
+
   return (
     <>
       <Card>
@@ -41,10 +61,14 @@ export default function Form({
           ))}
         </CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
-          <Button variant="outline" size="lg">
-            Zurück
+          {step > 1 && (
+            <Button variant="outline" size="lg" onClick={() => prevStep()}>
+              Zurück
+            </Button>
+          )}
+          <Button size="lg" onClick={() => nextStep()}>
+            Weiter
           </Button>
-          <Button size="lg">Weiter</Button>
         </CardFooter>
       </Card>
     </>
@@ -69,7 +93,7 @@ function TextQuestion({ question, id }) {
   useEffect(() => {
     const hasResponse = store.findResponse(id)
     if (hasResponse) {
-      setValue(hasResponse.response)
+      setValue(hasResponse.response as string)
     }
     setIsLoading(false)
   }, [store, id])
@@ -91,11 +115,31 @@ function TextQuestion({ question, id }) {
   )
 }
 
-function SliderQuestion({ question, id }) {
+function SliderQuestion({ question, id, max }) {
+  const store = userStore()
+  const [value, setValue] = useState(2)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const hasResponse = store.findResponse(id)
+    if (hasResponse) {
+      setValue(hasResponse.response as number)
+    }
+    setIsLoading(false)
+  }, [store, id])
+
+  if (isLoading) {
+    return <LoadingQuestion />
+  }
   return (
     <>
       <Label htmlFor={id}>{question}</Label>
-      <Slider defaultValue={[2]} max={4} step={1} />
+      <Slider
+        defaultValue={[value]}
+        max={max - 1}
+        step={1}
+        onValueChange={(v) => store.save(id, v[0])}
+      />
     </>
   )
 }
