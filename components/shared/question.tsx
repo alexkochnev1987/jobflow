@@ -14,7 +14,7 @@ import { Slider } from "../ui/slider"
 import { Skeleton } from "../ui/skeleton"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 
-export default function Question() {
+export default function Question({ children }): JSX.Element {
   return (
     <>
       <Card>
@@ -32,25 +32,7 @@ export default function Question() {
             Überzeugungen und Zielen in Einklang stehen.
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          <Label htmlFor="email">
-            Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
-          </Label>
-          <Textarea placeholder="Deine Antwort" id="message" />
-          <Slider defaultValue={[2]} max={4} step={1} />
-          <Skeleton className="h-[20px] w-full rounded-full" />
-
-          <RadioGroup defaultValue="option-one" className="flex flex-row">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-one" id="option-one" />
-              <Label htmlFor="option-one">Option One</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-two" id="option-two" />
-              <Label htmlFor="option-two">Option Two</Label>
-            </div>
-          </RadioGroup>
-        </CardContent>
+        <CardContent className="flex flex-col gap-3">{children}</CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
           <Button variant="outline" size="lg">
             Zurück
@@ -59,5 +41,55 @@ export default function Question() {
         </CardFooter>
       </Card>
     </>
+  )
+}
+
+export function TextQuestion() {
+  return (
+    <Question>
+      <Label htmlFor="email">
+        Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
+      </Label>
+      <Textarea placeholder="Deine Antwort" id="message" />
+    </Question>
+  )
+}
+
+export function SliderQuestion() {
+  return (
+    <Question>
+      <Label htmlFor="email">
+        Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
+      </Label>
+      <Slider defaultValue={[2]} max={4} step={1} />
+    </Question>
+  )
+}
+
+export function MultipleChoiceQuestion() {
+  return (
+    <Question>
+      <Label htmlFor="email">
+        Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
+      </Label>
+      <RadioGroup defaultValue="option-one" className="flex flex-row">
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="option-one" id="option-one" />
+          <Label htmlFor="option-one">Option One</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="option-two" id="option-two" />
+          <Label htmlFor="option-two">Option Two</Label>
+        </div>
+      </RadioGroup>
+    </Question>
+  )
+}
+
+export function LoadingQuestion() {
+  return (
+    <Question>
+      <Skeleton className="h-[20px] w-full rounded-full" />
+    </Question>
   )
 }
