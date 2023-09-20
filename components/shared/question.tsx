@@ -58,7 +58,7 @@ function RenderQuestion({ question }) {
   }
 }
 
-export function TextQuestion({ question, id }) {
+function TextQuestion({ question, id }) {
   return (
     <>
       <Label htmlFor={id}>{question}</Label>
@@ -67,7 +67,7 @@ export function TextQuestion({ question, id }) {
   )
 }
 
-export function SliderQuestion({ question, id }) {
+function SliderQuestion({ question, id }) {
   return (
     <>
       <Label htmlFor={id}>{question}</Label>
@@ -76,7 +76,7 @@ export function SliderQuestion({ question, id }) {
   )
 }
 
-export function MultipleChoiceQuestion({ question, id }) {
+function MultipleChoiceQuestion({ question, id }) {
   return (
     <>
       <Label htmlFor={id}>{question}</Label>
@@ -94,7 +94,7 @@ export function MultipleChoiceQuestion({ question, id }) {
   )
 }
 
-export function LoadingQuestion() {
+function LoadingQuestion() {
   return (
     <>
       <Skeleton className="h-[20px] w-full rounded-full" />
