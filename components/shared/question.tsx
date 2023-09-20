@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "../ui/button"
 import { Label } from "../ui/label"
 import { Textarea } from "../ui/textarea"
@@ -14,12 +15,14 @@ import { Slider } from "../ui/slider"
 import { Skeleton } from "../ui/skeleton"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { QUESTION_TYPES } from "@/lib/constants"
+import { userStore } from "@/app/client/store"
+import { useEffect, useState } from "react"
 
 export default function Form({
   category,
   description,
   questions,
-  progress
+  progress,
 }): JSX.Element {
   return (
     <>
@@ -59,10 +62,31 @@ function RenderQuestion({ question }) {
 }
 
 function TextQuestion({ question, id }) {
+  const store = userStore()
+  const [value, setValue] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const hasResponse = store.findResponse(id)
+    if (hasResponse) {
+      setValue(hasResponse.response)
+    }
+    setIsLoading(false)
+  }, [store, id])
+
+  if (isLoading) {
+    return <LoadingQuestion />
+  }
   return (
     <>
       <Label htmlFor={id}>{question}</Label>
-      <Textarea placeholder="Deine Antwort" id={id} />
+      <Textarea
+        placeholder="Deine Antwort"
+        id={id}
+        value={value}
+        onChange={(e) => setValue(e?.target?.value || "")}
+        onBlur={() => store.save(id, value)}
+      />
     </>
   )
 }
