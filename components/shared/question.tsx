@@ -13,26 +13,30 @@ import {
 import { Slider } from "../ui/slider"
 import { Skeleton } from "../ui/skeleton"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
+import { QUESTION_TYPES } from "@/lib/constants"
 
-export default function Question({ children }): JSX.Element {
+export default function Form({
+  category,
+  description,
+  questions,
+  progress
+}): JSX.Element {
   return (
     <>
       <Card>
         <CardHeader>
           <CardTitle>
-            <Progress value={20} />
+            <Progress value={progress} />
             <br />
-            Persönliche Werte
+            {category}
           </CardTitle>
-          <CardDescription>
-            Unsere Werte sind tief verwurzelte Überzeugungen und Prinzipien, die
-            das Verhalten und die Entscheidungen einer Person leiten. Es ist
-            wichtig, sie zu kennen, da sie als innerer Kompass dienen und
-            helfen, authentische Entscheidungen zu treffen, die mit den eigenen
-            Überzeugungen und Zielen in Einklang stehen.
-          </CardDescription>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-3">{children}</CardContent>
+        <CardContent className="flex flex-col gap-3">
+          {questions?.map((q) => (
+            <RenderQuestion key={q.id} question={q} />
+          ))}
+        </CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
           <Button variant="outline" size="lg">
             Zurück
@@ -44,34 +48,38 @@ export default function Question({ children }): JSX.Element {
   )
 }
 
-export function TextQuestion() {
+function RenderQuestion({ question }) {
+  switch (question.type) {
+    case QUESTION_TYPES.Slider:
+      return <SliderQuestion {...question} />
+    case QUESTION_TYPES.Text:
+    default:
+      return <TextQuestion {...question} />
+  }
+}
+
+export function TextQuestion({ question, id }) {
   return (
-    <Question>
-      <Label htmlFor="email">
-        Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
-      </Label>
-      <Textarea placeholder="Deine Antwort" id="message" />
-    </Question>
+    <>
+      <Label htmlFor={id}>{question}</Label>
+      <Textarea placeholder="Deine Antwort" id={id} />
+    </>
   )
 }
 
-export function SliderQuestion() {
+export function SliderQuestion({ question, id }) {
   return (
-    <Question>
-      <Label htmlFor="email">
-        Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
-      </Label>
+    <>
+      <Label htmlFor={id}>{question}</Label>
       <Slider defaultValue={[2]} max={4} step={1} />
-    </Question>
+    </>
   )
 }
 
-export function MultipleChoiceQuestion() {
+export function MultipleChoiceQuestion({ question, id }) {
   return (
-    <Question>
-      <Label htmlFor="email">
-        Wenn du eine Sache auf der Welt ändern könntest, was wäre das?
-      </Label>
+    <>
+      <Label htmlFor={id}>{question}</Label>
       <RadioGroup defaultValue="option-one" className="flex flex-row">
         <div className="flex items-center space-x-2">
           <RadioGroupItem value="option-one" id="option-one" />
@@ -82,14 +90,14 @@ export function MultipleChoiceQuestion() {
           <Label htmlFor="option-two">Option Two</Label>
         </div>
       </RadioGroup>
-    </Question>
+    </>
   )
 }
 
 export function LoadingQuestion() {
   return (
-    <Question>
+    <>
       <Skeleton className="h-[20px] w-full rounded-full" />
-    </Question>
+    </>
   )
 }
