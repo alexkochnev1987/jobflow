@@ -3,14 +3,11 @@ import { getQuestions } from "./actions/server"
 import Form from "@/components/shared/question"
 
 export default async function Home({
-  params,
   searchParams,
 }: {
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  console.log(params)
-  console.log(searchParams)
   const step = searchParams.step || 1
   let valuesForm: any
   let questions = null
@@ -32,7 +29,7 @@ export default async function Home({
       questions = await getQuestions(QUESTION_CATEGORIES.IdealEnvironment)
       valuesForm = () => (
         <Form
-        step={3}
+          step={3}
           questions={questions}
           category="Der ideale Arbeitsrahmen"
           progress={60}
@@ -45,7 +42,7 @@ export default async function Home({
       questions = await getQuestions(QUESTION_CATEGORIES.Values)
       valuesForm = () => (
         <Form
-        step={1}
+          step={1}
           questions={questions}
           category="Persönliche Werte"
           progress={20}
