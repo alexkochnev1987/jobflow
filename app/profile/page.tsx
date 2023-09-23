@@ -58,6 +58,13 @@ export default async function Profile({
           </p>
           <Heading size="8">Matching Careers</Heading>
           <MatchingCareerCard />
+          <div className="relative w-full">
+            <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-90"></div>
+            <div className="relative">
+              <MatchingCareerCard />
+              <MatchingCareerCard />
+            </div>
+          </div>
         </Flex>
       </div>
     </>

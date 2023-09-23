@@ -79,7 +79,7 @@ export default function MatchingCareerCard() {
                 </DropdownMenu.Root>
               </div>
             </Flex>
-            <Flex direction="row" className="w-1/6">
+            <Flex direction="row" className="w-1/6" justify="end">
               <Button variant="ghost" color="gray">
                 Beruf testen
               </Button>
