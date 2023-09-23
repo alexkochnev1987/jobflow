@@ -2,8 +2,10 @@
 import { Button, Callout } from "@radix-ui/themes"
 import { InfoIcon } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useSignInModal } from "../layout/sign-in-modal"
 
 export default function Timeout({ defaultSeconds }) {
+  const { SignInModal, setShowSignInModal } = useSignInModal()
   const [seconds, setSeconds] = useState(defaultSeconds)
 
   useEffect(() => {
@@ -27,20 +29,27 @@ export default function Timeout({ defaultSeconds }) {
     remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
   return (
     <Callout.Root size="3" variant="outline">
+      <SignInModal />
       <Callout.Icon>
         <InfoIcon />
       </Callout.Icon>
       <div className="flex flex-col gap-3">
-        <h2 className="flex text-lg font-bold">Testergebnisse gespeichert</h2>
+        <h2 className="flex text-lg font-bold">
+          Save Your Results: Register now!
+        </h2>
         <span>
-          Deine Antworten und dein Berufe sind für die nächsten 15 Minuten
-          gespeichert. Wenn du dich weder registrierst noch einen Premium-Report
-          kaufst, verfällt dein Ergebnis.
+          Your responses and career details are preserved for the next 15
+          minutes. Register now to safeguard your results from expiration.
         </span>
         <span className="flex text-2xl font-bold">
           {formattedMinutes}:{formattedSeconds}
         </span>
-        <Button size="3" variant="outline" className="w-50 self-end">
+        <Button
+          size="3"
+          variant="outline"
+          className="w-50 self-end"
+          onClick={() => setShowSignInModal(true)}
+        >
           Ergebnisse speichern
         </Button>
       </div>
