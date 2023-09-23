@@ -22,6 +22,9 @@ export async function POST(request: NextRequest) {
     },
   })
   // save QuestionResponse
-  console.log(saveResponse)
+  console.log({
+    uid,
+    saveResponse,
+  })
   return NextResponse.json({ saveResponse })
 }

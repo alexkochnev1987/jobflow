@@ -57,22 +57,19 @@ export const userStore = create<UserState>()(
   ),
 )
 
-async function sendQuestionsAndResponses(
+function sendQuestionsAndResponses(
   uid: string,
   questionId: string,
   questionResponse: string | number,
 ) {
-  const response = await fetch("/api/users", {
+  if (!uid || uid === "") return
+  if (!questionId || questionId === "") return
+  if (!questionResponse || questionResponse === "") return
+  return fetch("/api/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ uid, questionId, questionResponse }),
   })
-
-  if (response.ok) {
-    // Handle success
-  } else {
-    // Handle error
-  }
 }
