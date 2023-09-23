@@ -12,7 +12,6 @@ export default function Timeout({ defaultSeconds }) {
       setSeconds((prevSeconds) => prevSeconds - 1)
     }, 1000) // Update every 1000ms (1 second)
 
-    // This function will run when the component unmounts
     return () => {
       clearInterval(intervalId)
     }
