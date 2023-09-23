@@ -1,8 +1,8 @@
 "use client"
 import { Button, Callout } from "@radix-ui/themes"
-import { InfoIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useSignInModal } from "../layout/sign-in-modal"
+import { Info } from "lucide-react"
 
 export default function Timeout({ defaultSeconds }) {
   const { SignInModal, setShowSignInModal } = useSignInModal()
@@ -31,7 +31,7 @@ export default function Timeout({ defaultSeconds }) {
     <Callout.Root size="3" variant="outline">
       <SignInModal />
       <Callout.Icon>
-        <InfoIcon />
+        <Info />
       </Callout.Icon>
       <div className="flex flex-col gap-3">
         <h2 className="flex text-lg font-bold">

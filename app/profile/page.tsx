@@ -1,6 +1,7 @@
 import { Flex, Heading } from "@radix-ui/themes"
 
 import Timeout from "@/components/shared/timeout"
+import MatchingCareerCard from "@/components/shared/matching-career"
 export default async function Profile({
   searchParams,
 }: {
@@ -56,6 +57,7 @@ export default async function Profile({
             growth.
           </p>
           <Heading size="8">Matching Careers</Heading>
+          <MatchingCareerCard />
         </Flex>
       </div>
     </>

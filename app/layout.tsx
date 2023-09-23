@@ -1,4 +1,5 @@
 import "@radix-ui/themes/styles.css"
+import 'react-loading-skeleton/dist/skeleton.css'
 import "./globals.css"
 import cx from "classnames"
 import { sfPro, inter } from "./fonts"
