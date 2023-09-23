@@ -42,13 +42,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String          @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?         @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  UserResponses UserResponses[]
 }
 
 model VerificationToken {
@@ -59,12 +60,35 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model UserResponses {
+  id        String             @id @default(cuid())
+  userId    String?
+  user      User?              @relation(fields: [userId], references: [id])
+  uid       String             @unique
+  responses QuestionResponse[]
+
+  @@index([userId])
+}
+
+model QuestionResponse {
+  id           String        @id @default(cuid())
+  response     String
+  questionId   String
+  question     Question      @relation(fields: [questionId], references: [id])
+  responseId   String
+  userResponse UserResponses @relation(fields: [responseId], references: [id])
+
+  @@index([questionId])
+  @@index([responseId])
+}
+
 model Question {
-  id       String @id @default(cuid())
-  category String
-  order    Int
-  question String @unique
-  type     String
-  min      Int?
-  max      Int?
+  id               String             @id @default(cuid())
+  category         String
+  order            Int
+  question         String             @unique
+  type             String
+  min              Int?
+  max              Int?
+  QuestionResponse QuestionResponse[]
 }

@@ -1,3 +1,5 @@
+import { PrismaClient } from "@prisma/client"
+
 export const QUESTION_CATEGORIES = {
   Values: "Werte",
   Strengths: "Stärken",

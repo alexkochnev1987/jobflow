@@ -20,7 +20,7 @@ export const userStore = create<UserState>()(
     persist(
       (set, get) => ({
         step: 1,
-        id: Math.floor(Math.random() * 10_000_000).toString(),
+        id: Date.now().toString(),
         responses: [],
         setStep: (step: number) =>
           set((state) => ({
@@ -45,6 +45,8 @@ export const userStore = create<UserState>()(
               })
             }
 
+            sendQuestionsAndResponses(state.id, question_id, response)
+
             return newState
           }),
       }),
@@ -54,3 +56,23 @@ export const userStore = create<UserState>()(
     ),
   ),
 )
+
+async function sendQuestionsAndResponses(
+  uid: string,
+  questionId: string,
+  questionResponse: string | number,
+) {
+  const response = await fetch("/api/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ uid, questionId, questionResponse }),
+  })
+
+  if (response.ok) {
+    // Handle success
+  } else {
+    // Handle error
+  }
+}
