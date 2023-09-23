@@ -1,8 +1,31 @@
 "use client"
 import { Button, Callout } from "@radix-ui/themes"
 import { InfoIcon } from "lucide-react"
+import { useEffect, useState } from "react"
 
-export default function Timeout() {
+export default function Timeout({ defaultSeconds }) {
+  const [seconds, setSeconds] = useState(defaultSeconds)
+
+  useEffect(() => {
+    // This function will run when the component mounts
+    const intervalId = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1)
+    }, 1000) // Update every 1000ms (1 second)
+
+    // This function will run when the component unmounts
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [])
+
+  // Format the seconds into minutes and seconds
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = seconds % 60
+
+  // Add leading zeros to minutes and seconds if needed
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
+  const formattedSeconds =
+    remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
   return (
     <Callout.Root size="3" variant="outline">
       <Callout.Icon>
@@ -15,7 +38,9 @@ export default function Timeout() {
           gespeichert. Wenn du dich weder registrierst noch einen Premium-Report
           kaufst, verfällt dein Ergebnis.
         </span>
-        <span className="flex text-2xl font-bold">14 : 55 : 55</span>
+        <span className="flex text-2xl font-bold">
+          {formattedMinutes}:{formattedSeconds}
+        </span>
         <Button size="3" variant="outline" className="w-50 self-end">
           Ergebnisse speichern
         </Button>
