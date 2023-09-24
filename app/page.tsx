@@ -39,7 +39,7 @@ export default async function Home({
       )
       break
     case "4":
-      redirect("/results")
+      return redirect("/results")
     case "1":
     default:
       questions = await getQuestions(QUESTION_CATEGORIES.Values)
