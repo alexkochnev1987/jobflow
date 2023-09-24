@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: Request) {}
 export async function POST(request: NextRequest) {
   const { uid, questionResponse, questionId } = await request.json()
+
+  console.log(uid)
   // save response
   // get default UserResponses or create it
   const userResponse = await prisma?.userResponses.upsert({
