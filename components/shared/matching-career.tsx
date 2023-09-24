@@ -13,13 +13,16 @@ import {
 import { ChevronDown, Info } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 
-export default function MatchingCareerCard({ id }) {
+export default function MatchingCareerCard({ id, career }) {
+  const raitingColor =
+    career.rating < 40 ? "ruby" : career.rating < 80 ? "yellow" : "green"
   return (
     <Card
       variant="surface"
       style={{
         minWidth: "100%",
         minHeight: 300,
+        margin: 10,
       }}
     >
       <Flex direction="row" justify="center" align="start">
@@ -32,14 +35,17 @@ export default function MatchingCareerCard({ id }) {
               <Skeleton width="100%" height="100%" borderRadius={20} />
             </div>
             <div>
-              <Badge color="green" radius="full">
-                90% <Info className="w-4" />
+              <Badge color={raitingColor} radius="full">
+                {career.rating}% <Info className="w-4" />
               </Badge>
             </div>
           </Flex>
           <Flex direction="row" justify="between" align="center">
             <p>
-              Gehalt: <strong>37.000 - 65000 &euro;</strong>
+              Gehalt:{" "}
+              <strong>
+                {career.data.salaryMin} - {career.data.salaryMax} &euro;
+              </strong>
             </p>
             <Badge color="gray" radius="full" size="2">
               Beruf mit Zukunft <Info className="w-4" />
@@ -47,7 +53,7 @@ export default function MatchingCareerCard({ id }) {
           </Flex>
           <Flex direction="row" justify="between" align="center">
             <p>
-              Umschuling: <strong>12 Wochen</strong>
+              Umschuling: <strong>{career.data.retrainingWeeks} Wochen</strong>
             </p>
             <Badge color="blue" radius="full" size="2">
               100% Forderbar <Info className="w-4" />

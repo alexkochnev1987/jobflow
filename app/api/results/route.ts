@@ -9,12 +9,18 @@ async function mapCareers(res: any) {
   console.log(jsonRes)
   const careers = await getCareers()
 
-  return jsonRes.careers
+  const sorted = jsonRes.careers
     .map((r) => ({
       ...r,
       data: careers.find((c) => c.id === r.uid),
     }))
-    .sort((a, b) => a.rating - b.rating)
+    .sort((a, b) => b.rating - a.rating)
+
+  return {
+    youAtWork: (jsonRes.youAtWork || "").split("\n").filter((t) => t !== ""),
+    strengths: (jsonRes.strengths || "").split("\n").filter((t) => t !== ""),
+    careers: sorted,
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -91,8 +97,28 @@ export async function POST(request: NextRequest) {
   the following ideal working environment: {environment}
   
   Rank the following professions according to which one suits this person best and give a percentage rating. Arrange them in descending order. Don't comment on the result.
+  ${careers}
+  Also output 5 lines about the user strenghs, and user at Work
+  Examples:
+  """You at Work
+  In your professional life, you thrive when your work aligns with your deeply held beliefs and values.
+
+  You shine in roles that allow for creative expression and independence, where you can contribute your unique perspective.
+
+As a colleague, your approachability and supportiveness make you an essential team member, often providing emotional stability.
+
+You may find routine tasks less engaging, but when you can infuse your creativity and passion into your work, you become a catalyst for positive change in your workplace.
+
+Strengths
+You excel at fostering positive working relationships due to your innate empathy and understanding of others.
+
+Your creativity shines through in problem-solving, offering innovative perspectives that can lead to breakthroughs.
+
+Dedication and passion drive you to give your best to projects aligned with your values, making you a source of inspiration for your team.
+
+Your adaptability and open-mindedness enable you to thrive in diverse work environments, embracing change as an opportunity for growth."""
   
-  ${careers}`
+    `
     .replace("{values}", valueQuestions)
     .replace("{strengths}", strengthQuestions)
     .replace("{environment}", idealEnvQuestions)

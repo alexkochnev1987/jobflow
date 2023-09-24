@@ -5,9 +5,12 @@ import { Flex, Heading } from "@radix-ui/themes"
 import Timeout from "@/components/shared/timeout"
 import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
-import { userStore } from "@/app/client/store"
-export default function Results({ careers }) {
+export default function Results() {
   const { isLoading, results } = useResults()
+  const youArWork = results?.youAtWork || []
+  const strengths = results?.strengths || []
+  const careers = results?.careers || []
+
   console.log(results)
   const seconds = 15 * 60
   return (
@@ -31,49 +34,20 @@ export default function Results({ careers }) {
                 career coaches around the world.
               </p>
               <Heading size="7">You at Work</Heading>
-              <p>
-                In your professional life, you thrive when your work aligns with
-                your deeply held beliefs and values.
-              </p>
-              <p>
-                You shine in roles that allow for creative expression and
-                independence, where you can contribute your unique perspective.
-              </p>
-              <p>
-                As a colleague, your approachability and supportiveness make you
-                an essential team member, often providing emotional stability.
-              </p>
-              <p>
-                You may find routine tasks less engaging, but when you can
-                infuse your creativity and passion into your work, you become a
-                catalyst for positive change in your workplace.
-              </p>
+              {youArWork.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
               <Heading size="7">Strengths</Heading>
-              <p>
-                You excel at fostering positive working relationships due to
-                your innate empathy and understanding of others.
-              </p>
-              <p>
-                Your creativity shines through in problem-solving, offering
-                innovative perspectives that can lead to breakthroughs.
-              </p>
-              <p>
-                Dedication and passion drive you to give your best to projects
-                aligned with your values, making you a source of inspiration for
-                your team.
-              </p>
-              <p>
-                Your adaptability and open-mindedness enable you to thrive in
-                diverse work environments, embracing change as an opportunity
-                for growth.
-              </p>
+              {strengths.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
               <Heading size="8">Matching Careers</Heading>
-              <MatchingCareerCard id="1" />
               <div className="relative w-full">
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-90"></div>
                 <div className="relative">
-                  <MatchingCareerCard id="2" />
-                  <MatchingCareerCard id="3" />
+                  {careers.map((c, index) => (
+                    <MatchingCareerCard key={c.uid} id={index + 1} career={c} />
+                  ))}
                 </div>
               </div>
             </Flex>
