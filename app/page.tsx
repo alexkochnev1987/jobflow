@@ -1,8 +1,6 @@
 import { QUESTION_CATEGORIES } from "@/lib/constants"
 import { getQuestions } from "./actions/server"
 import Form from "@/components/shared/question"
-import Loading from "@/components/shared/loading"
-import { LoadingSpinner } from "@/components/shared/icons"
 
 export default async function Home({
   searchParams,
@@ -56,7 +54,6 @@ export default async function Home({
 
   return (
     <>
-      <Loading />
       <div className="z-10 w-full max-w-5xl px-5 xl:px-0">{valuesForm()}</div>
     </>
   )

@@ -11,7 +11,6 @@ export default function Results() {
   const strengths = results?.strengths || []
   const careers = results?.careers || []
 
-  console.log(results)
   const seconds = 15 * 60
   return (
     <>
@@ -43,7 +42,7 @@ export default function Results() {
               ))}
               <Heading size="8">Matching Careers</Heading>
               <div className="relative w-full">
-                <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-90"></div>
+                <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
                 <div className="relative">
                   {careers.map((c, index) => (
                     <MatchingCareerCard key={c.uid} id={index + 1} career={c} />
