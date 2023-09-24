@@ -1,6 +1,7 @@
 import { QUESTION_CATEGORIES } from "@/lib/constants"
 import { getQuestions } from "./actions/server"
 import Form from "@/components/shared/question"
+import { redirect, useRouter } from "next/navigation"
 
 export default async function Home({
   searchParams,
@@ -37,6 +38,8 @@ export default async function Home({
         />
       )
       break
+    case "4":
+      redirect("/results")
     case "1":
     default:
       questions = await getQuestions(QUESTION_CATEGORIES.Values)

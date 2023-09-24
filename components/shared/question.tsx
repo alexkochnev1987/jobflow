@@ -40,7 +40,7 @@ export default function Form({
   }
 
   const nextStep = () => {
-    const nextStep = Math.min(step + 1, 3)
+    const nextStep = Math.min(step + 1, 4)
     newStep(nextStep)
   }
 
