@@ -13,7 +13,7 @@ import {
 import { ChevronDown, Info } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 
-export default function MatchingCareerCard() {
+export default function MatchingCareerCard({ id }) {
   return (
     <Card
       variant="surface"
@@ -24,7 +24,7 @@ export default function MatchingCareerCard() {
     >
       <Flex direction="row" justify="center" align="start">
         <Heading size="7" className="w-1/6 pt-2 text-center">
-          1
+          {id}
         </Heading>
         <Flex direction="column" className="w-5/6 px-2" gap="2">
           <Flex direction="row">

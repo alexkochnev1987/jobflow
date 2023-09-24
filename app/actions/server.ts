@@ -9,3 +9,9 @@ export async function getQuestions(category: string) {
 
   return res
 }
+
+export async function getCareers() {
+  const res = await prisma?.careers.findMany({})
+
+  return res
+}
