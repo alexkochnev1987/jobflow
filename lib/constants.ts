@@ -4,6 +4,7 @@ export const QUESTION_CATEGORIES = {
   Values: "Werte",
   Strengths: "Stärken",
   IdealEnvironment: "Ideale Arbeitsrahmen",
+  FinancingOptions: "Finanzierungsmöglichkeiten",
 }
 
 export const QUESTION_TYPES = {

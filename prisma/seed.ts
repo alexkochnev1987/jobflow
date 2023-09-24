@@ -2,7 +2,70 @@ import { QUESTION_CATEGORIES, QUESTION_TYPES } from "../lib/constants"
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-async function main() {
+async function seedCareers() {
+  const careers = [
+    {
+      name: "Web-Entwickler",
+      description: "Entwickelt und gestaltet Webanwendungen und Websites.",
+      salaryMin: 40000,
+      salaryMax: 90000,
+      retrainingWeeks: 12
+    },
+    {
+      name: "UX-Designer",
+      description: "Gestaltet die Benutzererfahrung von Produkten und Dienstleistungen.",
+      salaryMin: 45000,
+      salaryMax: 100000,
+      retrainingWeeks: 16
+    },
+    {
+      name: "Product Manager",
+      description: "Verantwortlich für die Entwicklung und Vermarktung von Produkten.",
+      salaryMin: 60000,
+      salaryMax: 120000,
+      retrainingWeeks: 20
+    },
+    {
+      name: "Flugbegleiter",
+      description: "Sorgt für die Sicherheit und den Komfort von Flugpassagieren.",
+      salaryMin: 30000,
+      salaryMax: 50000,
+      retrainingWeeks: 8
+    },
+    {
+      name: "Rettungssanitäter",
+      description: "Bietet medizinische Versorgung und Erste Hilfe in Notfällen.",
+      salaryMin: 35000,
+      salaryMax: 55000,
+      retrainingWeeks: 10
+    },
+    {
+      name: "Sales Manager",
+      description: "Leitet und koordiniert Verkaufsaktivitäten und Teams.",
+      salaryMin: 50000,
+      salaryMax: 120000,
+      retrainingWeeks: 16
+    }
+  ];
+
+  for (const career of careers) {
+    await prisma?.careers?.upsert({
+      where: {
+        name: career.name
+      },
+      create: {
+        ...career
+      },
+      update: {
+        ...career
+      }
+    })
+  }
+  
+}
+
+async function main(): Promise<void> {
+  await seedCareers()
   let order = 1
   const insertQuestion = async ({
     question,
@@ -79,6 +142,16 @@ async function main() {
 
   for (const value of strengths) {
     await addTextInput(value, QUESTION_CATEGORIES.Strengths)
+  }
+
+  const financingOptions = [
+    "Beziehst du aktuell Arbeitslosengeld?",
+    "Bist du aktuell in Kurzarbeit?",
+    "Hast du einen befristeten Arbeitsvertrag?",
+  ]
+
+  for (const value of financingOptions) {
+    await addTextInput(value, QUESTION_CATEGORIES.FinancingOptions)
   }
 
   const idealEnvironments = [

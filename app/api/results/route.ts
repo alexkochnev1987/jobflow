@@ -5,6 +5,20 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: Request) {}
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
+
+  let res = await prisma?.modelQuestionResponseResult?.findFirst({
+    where: {
+      questionResponseId: uid
+    }
+  })
+
+  if(res?.result) {
+    console.log('returning saved value in db')
+    return NextResponse.json(JSON.parse(res.result.toString()))
+  }
+
+  console.log('calculating careers')
+
   const userResponse = await prisma?.userResponses.findFirst({
     where: {
       uid,
@@ -52,6 +66,9 @@ export async function POST(request: NextRequest) {
     .map((r) => r.text)
     .join("\n")
 
+  
+  const careers = (await prisma.careers.findMany()).map(c => `uid: ${c.id} - name: ${c.name}`).join('\n')
+
   const prompt = `A person has:
   the following strengths: {strengths} 
   the following personal values: {values} 
@@ -59,20 +76,29 @@ export async function POST(request: NextRequest) {
   
   Rank the following professions according to which one suits this person best and give a percentage rating. Arrange them in descending order. Don't comment on the result.
   
-  1. Web-Entwickler, id=1
-  2. UX-Designer, id=2
-  3. Product Manager, id=3
-  4. Flugbegleiter, id=4
-  5. Rettungssanitäter, id=5
-  6. Sales Manager, id=6`
+  ${careers}`
     .replace("{values}", valueQuestions)
     .replace("{strengths}", strengthQuestions)
     .replace("{environment}", idealEnvQuestions)
 
   const modelResponse = await completition(prompt)
 
-  return NextResponse.json({
-    prompt,
-    modelResponse,
+  const choices = modelResponse.choices?.[0]?.message?.function_call?.arguments || ""
+
+  res = await prisma.modelQuestionResponseResult.upsert({
+    where: {
+      questionResponseId: userResponse.uid
+    },
+    create: {
+      response: JSON.stringify(modelResponse),
+      result: choices,
+      questionResponseId: uid
+    },
+    update: {
+      response: JSON.stringify(modelResponse),
+      result: choices,
+    }
   })
+
+  return NextResponse.json(JSON.parse(res.result.toString()))
 }

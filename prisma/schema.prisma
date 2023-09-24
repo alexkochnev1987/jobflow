@@ -61,25 +61,38 @@ model VerificationToken {
 }
 
 model UserResponses {
-  id        String             @id @default(cuid())
-  userId    String?
-  user      User?              @relation(fields: [userId], references: [id])
-  uid       String             @unique
-  responses QuestionResponse[]
+  id         String             @id @default(cuid())
+  userId     String?
+  user       User?              @relation(fields: [userId], references: [id])
+  uid        String             @unique
+  responses  QuestionResponse[]
+  created_at DateTime           @default(now())
 
   @@index([userId])
 }
 
 model QuestionResponse {
-  id           String        @id @default(cuid())
-  response     String
-  questionId   String
-  question     Question      @relation(fields: [questionId], references: [id])
-  responseId   String
-  userResponse UserResponses @relation(fields: [responseId], references: [id])
+  id            String                        @id @default(cuid())
+  response      String
+  questionId    String
+  question      Question                      @relation(fields: [questionId], references: [id])
+  responseId    String
+  userResponse  UserResponses                 @relation(fields: [responseId], references: [id])
+  ModelResponse ModelQuestionResponseResult[]
 
   @@index([questionId])
   @@index([responseId])
+}
+
+model ModelQuestionResponseResult {
+  id                 String           @id @default(cuid())
+  questionResponseId String           @unique
+  created_at         DateTime         @default(now())
+  QuestionResponse   QuestionResponse @relation(fields: [questionResponseId], references: [id])
+  response           Json
+  result             Json
+
+  @@index([questionResponseId])
 }
 
 model Question {
@@ -91,4 +104,13 @@ model Question {
   min              Int?
   max              Int?
   QuestionResponse QuestionResponse[]
+}
+
+model Careers {
+  id              String @id @default(cuid())
+  name            String @unique
+  description     String
+  salaryMin       Int
+  salaryMax       Int
+  retrainingWeeks Int
 }

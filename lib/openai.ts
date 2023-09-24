@@ -34,8 +34,8 @@ export async function completition(prompt: string) {
                   rating: {
                     type: "number",
                   },
-                  id: {
-                    type: "number",
+                  uid: {
+                    type: "string",
                   },
                 },
               },
