@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
-        <Theme>
+        <Theme accentColor="blue">
           <Suspense fallback="...">
             {/* @ts-expect-error Server Component */}
             <Nav />

@@ -1,11 +1,13 @@
 "use client"
 
+import { Google, LoadingDots } from "@/components/shared/icons"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChangeEvent, useState } from "react"
 
 export const LoginForm = () => {
   const router = useRouter()
+  const [signInClicked, setSignInClicked] = useState(false)
   const [loading, setLoading] = useState(false)
   const [formValues, setFormValues] = useState({
     email: "",
@@ -84,41 +86,36 @@ export const LoginForm = () => {
         className="inline-block w-full rounded bg-blue-600 px-7 py-4 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
         disabled={loading}
       >
-        {loading ? "loading..." : "Sign In"}
+        {loading ? "loading..." : "Anmelden"}
       </button>
 
       <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
         <p className="mx-4 mb-0 text-center font-semibold">OR</p>
       </div>
 
-      <a
-        className="mb-3 flex w-full items-center justify-center rounded px-7 py-2 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-        style={{ backgroundColor: "#3b5998" }}
-        onClick={() => alert("Not implemented yet")}
-        role="button"
-      >
-        <img
-          className="pr-2"
-          src="/images/google.svg"
-          alt=""
-          style={{ height: "2rem" }}
-        />
-        Continue with Google
-      </a>
-      <a
-        className="flex w-full items-center justify-center rounded px-7 py-2 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-        style={{ backgroundColor: "#55acee" }}
-        onClick={() => alert("Not implemented yet")}
-        role="button"
-      >
-        <img
-          className="pr-2"
-          src="/images/github.svg"
-          alt=""
-          style={{ height: "2.2rem" }}
-        />
-        Continue with GitHub
-      </a>
+      <div className="flex flex-col space-y-4 text-white">
+        <button
+          disabled={signInClicked}
+          className={`${
+            signInClicked
+              ? "cursor-not-allowed border-gray-200 bg-gray-100"
+              : "border bg-blue-600"
+          } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
+          onClick={() => {
+            setSignInClicked(true)
+            signIn("google")
+          }}
+        >
+          {signInClicked ? (
+            <LoadingDots color="#808080" />
+          ) : (
+            <>
+              <Google className="h-5 w-5" />
+              <p>Sign In with Google</p>
+            </>
+          )}
+        </button>
+      </div>
     </form>
   )
 }

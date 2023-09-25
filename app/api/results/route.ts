@@ -24,8 +24,6 @@ async function mapCareers(res: any) {
 }
 
 export async function POST(request: NextRequest) {
-  const post = await request.json()
-  console.log(post)
   const { uid } = await request.json()
 
   let res = await prisma?.modelQuestionResponseResult?.findFirst({

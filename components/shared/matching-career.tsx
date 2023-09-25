@@ -13,7 +13,7 @@ import {
 import { ChevronDown, Info } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 
-export default function MatchingCareerCard({ id, career }) {
+export default function MatchingCareerCard({ id, career, hidden }) {
   const raitingColor =
     career.rating < 40 ? "ruby" : career.rating < 80 ? "yellow" : "green"
   return (
@@ -31,8 +31,15 @@ export default function MatchingCareerCard({ id, career }) {
         </Heading>
         <Flex direction="column" className="w-5/6 px-2" gap="2">
           <Flex direction="row">
-            <div className="h-8 w-2/3 pr-5">
-              <Skeleton width="100%" height="100%" borderRadius={20} />
+            <div className="h-8 w-2/3 pr-5 pt-2">
+              {hidden && (
+                <Skeleton width="100%" height="100%" borderRadius={20} />
+              )}
+              {!hidden && (
+                <Heading size="5" className="">
+                  {career.data.name}
+                </Heading>
+              )}
             </div>
             <div>
               <Badge color={raitingColor} radius="full">
@@ -60,7 +67,12 @@ export default function MatchingCareerCard({ id, career }) {
             </Badge>
           </Flex>
           <div>
-            <Skeleton width="100%" borderRadius={20} count={4} />
+            {hidden && <Skeleton width="100%" borderRadius={20} count={4} />}
+            {!hidden && (
+              <Text as="p" className="py-5">
+                {career.data.description}
+              </Text>
+            )}
           </div>
           <Flex direction="row">
             <Flex direction="row" className="w-5/6" gap="5">

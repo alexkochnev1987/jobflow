@@ -1,11 +1,10 @@
 "use client"
 import { Button, Callout } from "@radix-ui/themes"
 import { useEffect, useState } from "react"
-import { useSignInModal } from "../layout/sign-in-modal"
 import { Info } from "lucide-react"
+import Link from "next/link"
 
 export default function Timeout({ defaultSeconds }) {
-  const { SignInModal, setShowSignInModal } = useSignInModal()
   const [seconds, setSeconds] = useState(defaultSeconds)
 
   useEffect(() => {
@@ -29,7 +28,6 @@ export default function Timeout({ defaultSeconds }) {
     remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
   return (
     <Callout.Root size="3" variant="outline">
-      <SignInModal />
       <Callout.Icon>
         <Info />
       </Callout.Icon>
@@ -44,14 +42,11 @@ export default function Timeout({ defaultSeconds }) {
         <span className="flex text-2xl font-bold">
           {formattedMinutes}:{formattedSeconds}
         </span>
-        <Button
-          size="3"
-          variant="outline"
-          className="w-50 self-end"
-          onClick={() => setShowSignInModal(true)}
-        >
-          Ergebnisse speichern
-        </Button>
+        <Link href="/register" className="w-50 self-end">
+          <Button size="3" variant="outline">
+            Ergebnisse speichern
+          </Button>
+        </Link>
       </div>
     </Callout.Root>
   )

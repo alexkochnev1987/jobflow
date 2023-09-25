@@ -45,7 +45,12 @@ export default function Results() {
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
                 <div className="relative">
                   {careers.map((c, index) => (
-                    <MatchingCareerCard key={c.uid} id={index + 1} career={c} />
+                    <MatchingCareerCard
+                      key={c.uid}
+                      id={index + 1}
+                      career={c}
+                      hidden={true}
+                    />
                   ))}
                 </div>
               </div>

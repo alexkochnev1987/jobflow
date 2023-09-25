@@ -1,10 +1,12 @@
 "use client"
 
+import { Google, LoadingDots } from "@/components/shared/icons"
 import { signIn } from "next-auth/react"
 import { ChangeEvent, useState } from "react"
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
+  const [signInClicked, setSignInClicked] = useState(false)
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -93,6 +95,34 @@ export const RegisterForm = () => {
       >
         {loading ? "loading..." : "Sign Up"}
       </button>
+
+      <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
+        <p className="mx-4 mb-0 text-center font-semibold">OR</p>
+      </div>
+
+      <div className="flex flex-col space-y-4 text-white">
+        <button
+          disabled={signInClicked}
+          className={`${
+            signInClicked
+              ? "cursor-not-allowed border-gray-200 bg-gray-100"
+              : "border bg-blue-600"
+          } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
+          onClick={() => {
+            setSignInClicked(true)
+            signIn("google")
+          }}
+        >
+          {signInClicked ? (
+            <LoadingDots color="#808080" />
+          ) : (
+            <>
+              <Google className="h-5 w-5" />
+              <p>Sign In with Google</p>
+            </>
+          )}
+        </button>
+      </div>
     </form>
   )
 }
