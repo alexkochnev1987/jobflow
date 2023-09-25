@@ -6,12 +6,6 @@ const openai = new OpenAI({
 
 // https://platform.openai.com/docs/guides/gpt/function-calling
 
-interface ICareer {
-  career: string
-  rating: number
-}
-function getMatchingCareers(careers: ICareer[]) {}
-
 export async function completition(prompt: string) {
   const completion = await openai.chat.completions.create({
     messages: [{ role: "system", content: prompt }],

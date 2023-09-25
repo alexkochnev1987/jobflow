@@ -1,5 +1,5 @@
 import "@radix-ui/themes/styles.css"
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css"
 import "./globals.css"
 import cx from "classnames"
 import { sfPro, inter } from "./fonts"
@@ -30,7 +30,6 @@ export default async function RootLayout({
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
         <Theme>
-          <div className="fixed h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100" />
           <Suspense fallback="...">
             {/* @ts-expect-error Server Component */}
             <Nav />
