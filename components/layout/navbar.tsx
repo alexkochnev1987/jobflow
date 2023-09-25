@@ -4,6 +4,7 @@ import Link from "next/link"
 import useScroll from "@/lib/hooks/use-scroll"
 import { Session } from "next-auth"
 import Logo from "@/components/shared/icons/logo.svg"
+import UserDropdown from "./user-dropdown"
 
 export default function NavBar({ session }: { session: Session | null }) {
   const scrolled = useScroll(50)
@@ -21,6 +22,7 @@ export default function NavBar({ session }: { session: Session | null }) {
           <Link href="/" className="flex items-center font-display text-2xl">
             <Logo />
           </Link>
+          <div>{session && <UserDropdown session={session} />}</div>
         </div>
       </div>
     </>
