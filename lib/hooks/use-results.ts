@@ -6,6 +6,8 @@ export function useResults() {
     const {id} = userStore()
     const [isLoading, setIsLoading] = useState(true)
     const [results, setResults] = useState(null)
+
+    console.log(id)
     
     useEffect(() => {
         setIsLoading(true)
@@ -14,7 +16,7 @@ export function useResults() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id}),
+            body: JSON.stringify({ uid: id}),
           }).then(r => {
             r.json()
             .then(b => setResults(b))

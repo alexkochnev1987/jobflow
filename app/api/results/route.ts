@@ -2,6 +2,7 @@ import { getCareers } from "@/app/actions/server"
 import { QUESTION_CATEGORIES } from "@/lib/constants"
 import { completition } from "@/lib/openai"
 import prisma from "@/lib/prisma"
+import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
 
 async function mapCareers(res: any) {
@@ -25,20 +26,15 @@ async function mapCareers(res: any) {
 
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
+  const session = await getServerSession()
+
+  console.log(uid)
 
   let res = await prisma?.modelQuestionResponseResult?.findFirst({
     where: {
       questionResponseId: uid,
     },
   })
-
-  if (res?.result) {
-    console.log("returning saved value in db")
-    const data = await mapCareers(res)
-    return NextResponse.json(data)
-  }
-
-  console.log("calculating careers")
 
   const userResponse = await prisma?.userResponses.findFirst({
     where: {
@@ -48,6 +44,32 @@ export async function POST(request: NextRequest) {
       responses: true,
     },
   })
+
+  if (session?.user) {
+    const user = await prisma?.user.findFirst({
+      where: {
+        email: session.user.email,
+      },
+    })
+
+    console.log("associating user with responses")
+    await prisma?.userResponses.update({
+      where: {
+        uid,
+      },
+      data: {
+        userId: user.id,
+      },
+    })
+  }
+
+  if (res?.result && session?.user) {
+    console.log("returning saved value in db")
+    const data = await mapCareers(res)
+    return NextResponse.json(data)
+  }
+
+  console.log("calculating careers")
 
   // load questions
   const questions = await prisma?.question?.findMany({
