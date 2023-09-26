@@ -2,6 +2,7 @@ import { QUESTION_CATEGORIES } from "@/lib/constants"
 import { getQuestions } from "./actions/server"
 import Form from "@/components/shared/question"
 import { redirect, useRouter } from "next/navigation"
+import { getServerSession } from "next-auth"
 
 export default async function Home({
   searchParams,
@@ -9,6 +10,12 @@ export default async function Home({
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  const session = await getServerSession()
+  if (session?.user) {
+    return redirect("/profile")
+  }
+
+  // todo check uid, and if it is associated with another user set a new uid
   const step = searchParams.step || 1
   let valuesForm: any
   let questions = null
