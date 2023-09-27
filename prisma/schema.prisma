@@ -42,15 +42,16 @@ model Session {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  name          String?
-  password      String?
-  email         String?         @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  UserResponses UserResponses[]
+  id                          String                        @id @default(cuid())
+  name                        String?
+  password                    String?
+  email                       String?                       @unique
+  emailVerified               DateTime?
+  image                       String?
+  accounts                    Account[]
+  sessions                    Session[]
+  UserResponses               UserResponses[]
+  ModelQuestionResponseResult ModelQuestionResponseResult[]
 }
 
 model VerificationToken {
@@ -92,8 +93,11 @@ model ModelQuestionResponseResult {
   QuestionResponse   QuestionResponse @relation(fields: [questionResponseId], references: [id])
   response           Json
   result             Json
+  user               User?            @relation(fields: [userId], references: [id])
+  userId             String?
 
   @@index([questionResponseId])
+  @@index([userId])
 }
 
 model Question {

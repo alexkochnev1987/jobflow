@@ -45,7 +45,9 @@ export async function completition(prompt: string) {
         },
       },
     ],
-    function_call: "auto",
+    function_call: {
+      name: "getMatchingCareers"
+    },
   })
 
   return completion

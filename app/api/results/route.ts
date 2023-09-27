@@ -27,10 +27,37 @@ async function mapCareers(res: any) {
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
   const session = await getServerSession()
+  let user = null
+  let res = null
 
-  console.log(uid)
+  if (session?.user) {
+    console.log("got session", session)
+    user = await prisma?.user.findFirst({
+      where: {
+        email: session.user.email,
+      },
+    })
+  }
 
-  let res = await prisma?.modelQuestionResponseResult?.findFirst({
+  console.log("uid", { uid })
+
+  if (user) {
+    res = await prisma?.modelQuestionResponseResult?.findFirst({
+      where: {
+        userId: user.id,
+      },
+    })
+
+    console.log("got user", user)
+
+    if (res?.result) {
+      console.log("returning saved value in db")
+      const data = await mapCareers(res)
+      return NextResponse.json(data)
+    }
+  }
+
+  res = await prisma?.modelQuestionResponseResult?.findFirst({
     where: {
       questionResponseId: uid,
     },
@@ -45,13 +72,11 @@ export async function POST(request: NextRequest) {
     },
   })
 
-  if (session?.user) {
-    const user = await prisma?.user.findFirst({
-      where: {
-        email: session.user.email,
-      },
-    })
+  if (!userResponse) {
+    throw new Error(`Invalid uid ${uid}`)
+  }
 
+  if (user) {
     console.log("associating user with responses")
     await prisma?.userResponses.update({
       where: {
@@ -61,12 +86,21 @@ export async function POST(request: NextRequest) {
         userId: user.id,
       },
     })
-  }
 
-  if (res?.result && session?.user) {
-    console.log("returning saved value in db")
-    const data = await mapCareers(res)
-    return NextResponse.json(data)
+    await prisma?.modelQuestionResponseResult.update({
+      where: {
+        questionResponseId: uid,
+      },
+      data: {
+        userId: user.id,
+      },
+    })
+
+    if (res?.result) {
+      console.log("returning saved value in db")
+      const data = await mapCareers(res)
+      return NextResponse.json(data)
+    }
   }
 
   console.log("calculating careers")
@@ -123,7 +157,7 @@ export async function POST(request: NextRequest) {
   The following ideal working environment:
   {environment}
   
-  Rank the following professions according to which one suits this person best and give a percentage rating. Arrange them in descending order. Don't comment on the result.
+  Rank the following professions from 0 to 100 according to which one suits this person best and give a percentage rating. Arrange them in descending order. Don't comment on the result.
   ${careers}
   Also output 5 lines about the user strenghs, and user at Work.`
     .replace("{values}", valueQuestions)
@@ -135,6 +169,8 @@ export async function POST(request: NextRequest) {
 
   const choices =
     modelResponse.choices?.[0]?.message?.function_call?.arguments || ""
+
+  console.log(choices)
 
   res = await prisma.modelQuestionResponseResult.upsert({
     where: {
