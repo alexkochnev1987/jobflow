@@ -12,7 +12,7 @@ export default async function Home({
 }) {
   const session = await getServerSession()
   if (session?.user) {
-    return redirect("/profile")
+    return redirect("/jobflow/profile")
   }
 
   // todo check uid, and if it is associated with another user set a new uid
@@ -46,7 +46,7 @@ export default async function Home({
       )
       break
     case "4":
-      return redirect("/results")
+      return redirect("/jobflow/results")
     case "1":
     default:
       questions = await getQuestions(QUESTION_CATEGORIES.Values)

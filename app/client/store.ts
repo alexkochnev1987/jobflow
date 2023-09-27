@@ -65,7 +65,7 @@ function sendQuestionsAndResponses(
   if (!uid || uid === "") return
   if (!questionId || questionId === "") return
   if (!questionResponse || questionResponse === "") return
-  return fetch("/api/users", {
+  return fetch("/jobflow/api/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
