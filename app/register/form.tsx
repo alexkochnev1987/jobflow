@@ -20,7 +20,7 @@ export const RegisterForm = () => {
     setFormValues({ name: "", email: "", password: "" })
 
     try {
-      const res = await fetch("/jobflow/api/register", {
+      const res = await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify(formValues),
         headers: {

@@ -11,7 +11,7 @@ export function useResults() {
     
     useEffect(() => {
         setIsLoading(true)
-        fetch("/jobflow/api/results", {
+        fetch("/api/results", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
