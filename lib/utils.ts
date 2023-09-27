@@ -67,3 +67,20 @@ export const truncate = (str: string, length: number) => {
   if (!str || str.length <= length) return str
   return `${str.slice(0, length)}...`
 }
+
+export const sliderResponseToText = (response: string): string => {
+  switch (response) {
+    case "1":
+      return "Trifftnichtzu"
+    case "2":
+      return "Ehernicht"
+    case "3":
+      return "Egal"
+    case "4":
+      return "Wäregut"
+    case "5":
+      return "Trifftzu"
+    default:
+      return "Egal"
+  }
+}
