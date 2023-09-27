@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/jobflow',
+  basePath: '/',
   swcMinify: true,
   experimental: {
     serverActions: true,
