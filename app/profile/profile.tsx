@@ -100,11 +100,16 @@ export function ProfileTabs() {
                     John Doe
                   </Heading>
                   <p>Hamburg, Germany</p>
-                  <Badge color="gray" radius="large" size="1" variant="solid">
+                  <Badge
+                    color="gray"
+                    radius="large"
+                    size="1"
+                    variant="solid"
+                  >
                     Hilfsbereitschaft
                   </Badge>
                 </Flex>
-                <Flex className="mx-5 w-3/5" direction="column" gap="3">
+                <Flex className="mx-2 w-3/5" direction="column" gap="2">
                   <Card variant="surface" className="w-full p-3">
                     <Flex gap="3" align="start" direction="column">
                       <Text as="div" size="2" weight="bold">
@@ -114,7 +119,7 @@ export function ProfileTabs() {
                         {werte.map((w) => (
                           <Badge
                             color="gray"
-                            radius="none"
+                            radius="medium"
                             size="1"
                             variant="solid"
                             key={w}
@@ -134,7 +139,7 @@ export function ProfileTabs() {
                         {starken.map((w) => (
                           <Badge
                             color="gray"
-                            radius="none"
+                            radius="medium"
                             size="1"
                             variant="solid"
                             key={w}
@@ -154,7 +159,7 @@ export function ProfileTabs() {
                         {idealeArbeitsrahmen.map((w) => (
                           <Badge
                             color="gray"
-                            radius="none"
+                            radius="medium"
                             size="1"
                             variant="solid"
                             key={w}
@@ -173,7 +178,7 @@ export function ProfileTabs() {
                       <Flex direction="row" gap="1">
                         <Badge
                           color="gray"
-                          radius="none"
+                          radius="medium"
                           size="1"
                           variant="solid"
                         >
@@ -185,10 +190,10 @@ export function ProfileTabs() {
                 </Flex>
                 <Flex className="w-1/5">
                   <Button
-                    size="3"
+                    size="2"
                     variant="solid"
                     radius="full"
-                    className="w-full"
+                    className="w-full p-5"
                   >
                     Edit profile
                   </Button>
