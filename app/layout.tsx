@@ -28,7 +28,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(sfPro.variable, inter.variable)}>
+      <body className={cx(inter.variable)}>
         <Theme accentColor="blue">
           <Suspense fallback="...">
             {/* @ts-expect-error Server Component */}

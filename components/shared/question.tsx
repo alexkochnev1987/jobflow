@@ -46,10 +46,10 @@ export default function Form({
 
   return (
     <>
-      <Card>
+      <Card className="border-0">
         <CardHeader>
           <CardTitle>
-            <Progress value={progress} />
+            <Progress value={progress} className="border-0" />
             <br />
             {category}
           </CardTitle>
@@ -66,7 +66,7 @@ export default function Form({
               Zurück
             </Button>
           )}
-          <Button size="lg" onClick={() => nextStep()}>
+          <Button size="lg" onClick={() => nextStep()} variant="outline">
             Weiter
           </Button>
         </CardFooter>
@@ -102,7 +102,7 @@ function TextQuestion({ question, id }) {
     return <LoadingQuestion />
   }
   return (
-    <>
+    <div className="py-3">
       <Label htmlFor={id}>{question}</Label>
       <Textarea
         placeholder="Deine Antwort"
@@ -111,7 +111,7 @@ function TextQuestion({ question, id }) {
         onChange={(e) => setValue(e?.target?.value || "")}
         onBlur={() => store.save(id, value)}
       />
-    </>
+    </div>
   )
 }
 
