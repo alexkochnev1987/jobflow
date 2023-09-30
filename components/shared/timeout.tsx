@@ -50,7 +50,7 @@ export default function Timeout({ defaultSeconds }) {
           <Button
             size="3"
             variant="outline"
-            className="border-[#181818] text-[#181818]"
+            className="!border-[#181818] !text-[#181818]"
           >
             Ergebnisse speichern
           </Button>
