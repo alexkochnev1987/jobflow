@@ -27,9 +27,13 @@ export default function Timeout({ defaultSeconds }) {
   const formattedSeconds =
     remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
   return (
-    <Callout.Root size="3" variant="outline">
+    <Callout.Root
+      size="3"
+      variant="outline"
+      className="border-l-2 border-[#A7C5FD] bg-[#F1F6FD]"
+    >
       <Callout.Icon>
-        <Info />
+        <Info color="#0052EA" />
       </Callout.Icon>
       <div className="flex flex-col gap-3">
         <h2 className="flex text-lg font-bold">
@@ -43,7 +47,11 @@ export default function Timeout({ defaultSeconds }) {
           {formattedMinutes}:{formattedSeconds}
         </span>
         <Link href="/register" className="w-50 self-end">
-          <Button size="3" variant="outline">
+          <Button
+            size="3"
+            variant="outline"
+            className="border-[#181818] text-[#181818]"
+          >
             Ergebnisse speichern
           </Button>
         </Link>
