@@ -1,5 +1,4 @@
 "use client"
-import { Button } from "../ui/button"
 import { Label } from "../ui/label"
 import { Textarea } from "../ui/textarea"
 import { Progress } from "../ui/progress"
@@ -18,6 +17,7 @@ import { QUESTION_TYPES } from "@/lib/constants"
 import { userStore } from "@/app/client/store"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { Button } from "@radix-ui/themes"
 
 export default function Form({
   category,
@@ -62,11 +62,15 @@ export default function Form({
         </CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
           {step > 1 && (
-            <Button variant="outline" size="lg" onClick={() => prevStep()}>
+            <Button variant="outline" size="4" onClick={() => prevStep()}>
               Zurück
             </Button>
           )}
-          <Button size="lg" onClick={() => nextStep()} variant="outline">
+          <Button
+            size="4"
+            onClick={() => nextStep()}
+            radius="large"
+          >
             Weiter
           </Button>
         </CardFooter>

@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cx(inter.variable)}>
-        <Theme accentColor="blue">
+        <Theme>
           <Suspense fallback="...">
             {/* @ts-expect-error Server Component */}
             <Nav />
