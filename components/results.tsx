@@ -35,15 +35,21 @@ export default function Results() {
                 abgeschlossene Assessment wird von Unternehmen, Universitäten
                 und Karrierecoaches auf der ganzen Welt verlangt.
               </p>
-              <Heading size="7">You at Work</Heading>
+              <Heading size="7" className="font-normal leading-7">
+                Sie bei der Arbeit
+              </Heading>
               {youArWork.map((t) => (
                 <p key={t}>{t}</p>
               ))}
-              <Heading size="7">Strengths</Heading>
+              <Heading size="7" className="font-normal leading-7">
+                Stärken
+              </Heading>
               {strengths.map((t) => (
                 <p key={t}>{t}</p>
               ))}
-              <Heading size="8">Matching Careers</Heading>
+              <Heading size="8" className="font-normal leading-7">
+                Passende Karrieren
+              </Heading>
               <div className="relative w-full">
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
                 <div className="relative">

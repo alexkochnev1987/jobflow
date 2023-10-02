@@ -60,7 +60,10 @@ export function ProfileTabs() {
     <>
       {isLoading && (
         <div className="z-10 flex flex-col items-center">
-          <Heading size="5" className="w-full p-5">
+          <Heading
+            size="5"
+            className="w-full p-5 text-2xl font-normal leading-7"
+          >
             Dein Ergebnis wird berechnet
           </Heading>
           <Loading />
@@ -100,12 +103,7 @@ export function ProfileTabs() {
                     John Doe
                   </Heading>
                   <p>Hamburg, Germany</p>
-                  <Badge
-                    color="gray"
-                    radius="large"
-                    size="1"
-                    variant="solid"
-                  >
+                  <Badge color="gray" radius="large" size="1" variant="solid">
                     Hilfsbereitschaft
                   </Badge>
                 </Flex>
