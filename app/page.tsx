@@ -21,7 +21,8 @@ export default async function Home({
   let questions = null
 
   switch (step) {
-    case "2": getServerSession
+    case "2":
+      getServerSession
       questions = await getQuestions(QUESTION_CATEGORIES.Strengths)
       valuesForm = () => (
         <Form
@@ -46,6 +47,19 @@ export default async function Home({
       )
       break
     case "4":
+      questions = await getQuestions(QUESTION_CATEGORIES.FinancingOptions)
+      console.log(questions)
+      valuesForm = () => (
+        <Form
+          step={4}
+          questions={questions}
+          category="Finanzierungsmöglichkeiten"
+          progress={80}
+          description="Die Fragen zur Prüfung des Anspruchs auf einen Bildungsgutschein dienen dazu, die individuellen Bildungsbedürfnisse und beruflichen Ziele einer Person zu ermitteln. Dies ermöglicht es, festzustellen, ob sie berechtigt ist, staatliche Unterstützung für die Finanzierung ihrer Weiterbildung oder Umschulung zu erhalten."
+        />
+      )
+      break
+    case "5":
       return redirect("/results")
     case "1":
     default:

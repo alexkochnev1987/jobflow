@@ -126,6 +126,14 @@ function RenderQuestion({ question, inputRef, error }) {
   switch (question.type) {
     case QUESTION_TYPES.Slider:
       return <SliderQuestion {...question} inputRef={inputRef[question.id]} />
+    case QUESTION_TYPES.YesNoCheckbox:
+      return (
+        <YesNoQuestion
+          {...question}
+          inputRef={inputRef[question.id]}
+          error={error}
+        />
+      )
     case QUESTION_TYPES.Text:
     default:
       return (
@@ -167,6 +175,59 @@ function TextQuestion({ question, id, inputRef, error }) {
         onBlur={() => store.save(id, value)}
         ref={inputRef}
       />
+    </div>
+  )
+}
+function YesNoQuestion({ question, id, inputRef, error }) {
+  const store = userStore()
+  const [value, setValue] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const hasResponse = store.findResponse(id)
+    if (hasResponse) {
+      setValue(hasResponse.response as string)
+    }
+    inputRef.current = {
+      value: 1,
+    }
+    setIsLoading(false)
+  }, [store, id, inputRef])
+
+  if (isLoading) {
+    return <LoadingQuestion />
+  }
+  return (
+    <div className="flex flex-row py-3">
+      <Label htmlFor={id} className={cn("w-2/3", error && "text-destructive")}>
+        {question}
+      </Label>
+
+      <RadioGroup
+        className="flex w-1/3 flex-row items-center justify-start  space-x-2"
+        defaultValue={value}
+        onValueChange={(e) => {
+          setValue(e || "")
+        }}
+        onBlur={() => store.save(id, value)}
+      >
+        <div className="flex items-center justify-between space-x-2">
+          <Label htmlFor="ja">Ja</Label>
+          <RadioGroupItem
+            value="ja"
+            id="ja"
+            className="h-6 w-6 rounded-sm border-secondary"
+          />
+        </div>
+        <div className="flex items-center space-x-2">
+          <Label htmlFor="nein">Nein</Label>
+          <RadioGroupItem
+            value="nein"
+            id="nein"
+            className="h-6 w-6 rounded-sm border-secondary"
+          />
+        </div>
+      </RadioGroup>
     </div>
   )
 }

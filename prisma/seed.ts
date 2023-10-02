@@ -9,59 +9,62 @@ async function seedCareers() {
       description: "Entwickelt und gestaltet Webanwendungen und Websites.",
       salaryMin: 40000,
       salaryMax: 90000,
-      retrainingWeeks: 12
+      retrainingWeeks: 12,
     },
     {
       name: "UX-Designer",
-      description: "Gestaltet die Benutzererfahrung von Produkten und Dienstleistungen.",
+      description:
+        "Gestaltet die Benutzererfahrung von Produkten und Dienstleistungen.",
       salaryMin: 45000,
       salaryMax: 100000,
-      retrainingWeeks: 16
+      retrainingWeeks: 16,
     },
     {
       name: "Product Manager",
-      description: "Verantwortlich für die Entwicklung und Vermarktung von Produkten.",
+      description:
+        "Verantwortlich für die Entwicklung und Vermarktung von Produkten.",
       salaryMin: 60000,
       salaryMax: 120000,
-      retrainingWeeks: 20
+      retrainingWeeks: 20,
     },
     {
       name: "Flugbegleiter",
-      description: "Sorgt für die Sicherheit und den Komfort von Flugpassagieren.",
+      description:
+        "Sorgt für die Sicherheit und den Komfort von Flugpassagieren.",
       salaryMin: 30000,
       salaryMax: 50000,
-      retrainingWeeks: 8
+      retrainingWeeks: 8,
     },
     {
       name: "Rettungssanitäter",
-      description: "Bietet medizinische Versorgung und Erste Hilfe in Notfällen.",
+      description:
+        "Bietet medizinische Versorgung und Erste Hilfe in Notfällen.",
       salaryMin: 35000,
       salaryMax: 55000,
-      retrainingWeeks: 10
+      retrainingWeeks: 10,
     },
     {
       name: "Sales Manager",
       description: "Leitet und koordiniert Verkaufsaktivitäten und Teams.",
       salaryMin: 50000,
       salaryMax: 120000,
-      retrainingWeeks: 16
-    }
-  ];
+      retrainingWeeks: 16,
+    },
+  ]
 
   for (const career of careers) {
     await prisma?.careers?.upsert({
       where: {
-        name: career.name
+        name: career.name,
       },
       create: {
-        ...career
+        ...career,
       },
       update: {
-        ...career
-      }
+        ...career,
+      },
     })
   }
-  
 }
 
 async function main(): Promise<void> {
@@ -105,6 +108,14 @@ async function main(): Promise<void> {
   }
   const addTextInput = (question: string, category: string) => {
     return insertQuestion({ question, category, type: QUESTION_TYPES.Text })
+  }
+
+  const addYesNoCheckbox = (question: string, category: string) => {
+    return insertQuestion({
+      question,
+      category,
+      type: QUESTION_TYPES.YesNoCheckbox,
+    })
   }
 
   const addSlider = (question: string, category: string) => {
@@ -151,7 +162,7 @@ async function main(): Promise<void> {
   ]
 
   for (const value of financingOptions) {
-    await addTextInput(value, QUESTION_CATEGORIES.FinancingOptions)
+    await addYesNoCheckbox(value, QUESTION_CATEGORIES.FinancingOptions)
   }
 
   const idealEnvironments = [
