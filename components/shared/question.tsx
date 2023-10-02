@@ -93,11 +93,21 @@ export default function Form({
         </CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
           {step > 1 && (
-            <Button variant="outline" size="4" onClick={() => prevStep()}>
+            <Button
+              variant="outline"
+              size="4"
+              onClick={() => prevStep()}
+              className="w-48"
+            >
               Zurück
             </Button>
           )}
-          <Button size="4" onClick={() => nextStep()} radius="large">
+          <Button
+            size="4"
+            onClick={() => nextStep()}
+            radius="large"
+            className="w-48"
+          >
             Weiter
           </Button>
         </CardFooter>
@@ -176,15 +186,18 @@ function SliderQuestion({ question, id, max, inputRef }) {
     return <LoadingQuestion />
   }
   return (
-    <>
-      <Label htmlFor={id}>{question}</Label>
+    <div className="py-5">
+      <Label htmlFor={id} className="">
+        {question}
+      </Label>
       <Slider
         defaultValue={[value]}
         max={max - 1}
         step={1}
         onValueChange={(v) => store.save(id, v[0])}
+        className="py-5"
       />
-    </>
+    </div>
   )
 }
 
