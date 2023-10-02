@@ -48,7 +48,6 @@ export default function Form({
 
   const nextStep = () => {
     const localErrors = {}
-    console.log(elRefs)
     for (const key of Object.keys(elRefs)) {
       const el = elRefs[key]
       if (!el?.current?.value || el?.current?.value === "") {
