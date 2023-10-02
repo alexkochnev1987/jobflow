@@ -21,7 +21,7 @@ export default async function Home({
   let questions = null
 
   switch (step) {
-    case "2":
+    case "2": getServerSession
       questions = await getQuestions(QUESTION_CATEGORIES.Strengths)
       valuesForm = () => (
         <Form
@@ -64,7 +64,7 @@ export default async function Home({
 
   return (
     <>
-      <div className="z-10 w-full max-w-5xl px-5 xl:px-0">{valuesForm()}</div>
+      <div className="z-10 w-full max-w-3xl">{valuesForm()}</div>
     </>
   )
 }

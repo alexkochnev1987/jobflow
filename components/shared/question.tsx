@@ -70,7 +70,12 @@ export default function Form({
       <Card className="border-0">
         <CardHeader>
           <CardTitle>
-            <Progress value={progress} className="border-0" />
+            <div className="relative w-full">
+              <p className="absolute right-0 top-[-25px] z-10 text-sm font-normal">
+                <span className="text-primary">Schritt {step}</span> von 5
+              </p>
+              <Progress value={progress} className="border-0" />
+            </div>
             <br />
             {category}
           </CardTitle>
