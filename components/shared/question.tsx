@@ -28,7 +28,6 @@ export default function Form({
   step,
 }): JSX.Element {
   const [errors, setErrors] = useState({})
-  const [formFilled, setFformFilled] = useState(false)
   const store = userStore()
   const router = useRouter()
 
@@ -49,6 +48,7 @@ export default function Form({
 
   const nextStep = () => {
     const localErrors = {}
+    console.log(elRefs)
     for (const key of Object.keys(elRefs)) {
       const el = elRefs[key]
       if (!el?.current?.value || el?.current?.value === "") {
@@ -110,7 +110,7 @@ function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
   switch (question.type) {
     case QUESTION_TYPES.Slider:
-      return <SliderQuestion {...question} />
+      return <SliderQuestion {...question} inputRef={inputRef[question.id]} />
     case QUESTION_TYPES.Text:
     default:
       return (
@@ -156,7 +156,7 @@ function TextQuestion({ question, id, inputRef, error }) {
   )
 }
 
-function SliderQuestion({ question, id, max }) {
+function SliderQuestion({ question, id, max, inputRef }) {
   const store = userStore()
   const [value, setValue] = useState(2)
   const [isLoading, setIsLoading] = useState(true)
@@ -166,8 +166,11 @@ function SliderQuestion({ question, id, max }) {
     if (hasResponse) {
       setValue(hasResponse.response as number)
     }
+    inputRef.current = {
+      value: 1,
+    }
     setIsLoading(false)
-  }, [store, id])
+  }, [store, id, inputRef])
 
   if (isLoading) {
     return <LoadingQuestion />
