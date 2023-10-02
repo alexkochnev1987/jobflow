@@ -19,23 +19,31 @@ export async function completition(prompt: string) {
           properties: {
             youAtWork: {
               type: "string",
+              description: "Description of the user's work preferences",
             },
             strengths: {
               type: "string",
+              description: "Description of the user's strengths",
             },
             careers: {
               type: "array",
+              description: "List of available career options",
               items: {
                 type: "object",
                 properties: {
                   career: {
                     type: "string",
+                    description: "Name of the career option",
                   },
                   rating: {
                     type: "number",
+                    description: "Rating of the career option",
+                    minimum: 0,
+                    maximum: 100,
                   },
                   uid: {
                     type: "string",
+                    description: "Unique identifier for the career option",
                   },
                 },
               },
@@ -46,7 +54,7 @@ export async function completition(prompt: string) {
       },
     ],
     function_call: {
-      name: "getMatchingCareers"
+      name: "getMatchingCareers",
     },
   })
 
