@@ -15,9 +15,10 @@ import { Skeleton } from "../ui/skeleton"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { QUESTION_TYPES } from "@/lib/constants"
 import { userStore } from "@/app/client/store"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@radix-ui/themes"
+import { cn } from "@/lib/utils"
 
 export default function Form({
   category,
@@ -26,8 +27,15 @@ export default function Form({
   progress,
   step,
 }): JSX.Element {
+  const [errors, setErrors] = useState({})
+  const [formFilled, setFformFilled] = useState(false)
   const store = userStore()
   const router = useRouter()
+
+  const elRefs = {}
+  useEffect(() => {
+    setErrors({})
+  }, [step])
 
   const newStep = (newStep) => {
     store.setStep(newStep)
@@ -40,9 +48,22 @@ export default function Form({
   }
 
   const nextStep = () => {
+    const localErrors = {}
+    for (const key of Object.keys(elRefs)) {
+      const el = elRefs[key]
+      if (!el?.current?.value || el?.current?.value === "") {
+        localErrors[key] = "Required"
+      }
+    }
+    setErrors(localErrors)
+    if (hasErrors(localErrors)) {
+      return
+    }
     const nextStep = Math.min(step + 1, 4)
     newStep(nextStep)
   }
+
+  const hasErrors = (errors) => Object.keys(errors).length > 0
 
   return (
     <>
@@ -57,8 +78,18 @@ export default function Form({
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {questions?.map((q) => (
-            <RenderQuestion key={q.id} question={q} />
+            <RenderQuestion
+              key={q.id}
+              question={q}
+              inputRef={elRefs}
+              error={errors[q.id]}
+            />
           ))}
+          {hasErrors(errors) && (
+            <p className="w-full flex-1 text-destructive">
+              Please fix the errors
+            </p>
+          )}
         </CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
           {step > 1 && (
@@ -66,11 +97,7 @@ export default function Form({
               Zurück
             </Button>
           )}
-          <Button
-            size="4"
-            onClick={() => nextStep()}
-            radius="large"
-          >
+          <Button size="4" onClick={() => nextStep()} radius="large">
             Weiter
           </Button>
         </CardFooter>
@@ -79,17 +106,24 @@ export default function Form({
   )
 }
 
-function RenderQuestion({ question }) {
+function RenderQuestion({ question, inputRef, error }) {
+  inputRef[question.id] = useRef()
   switch (question.type) {
     case QUESTION_TYPES.Slider:
       return <SliderQuestion {...question} />
     case QUESTION_TYPES.Text:
     default:
-      return <TextQuestion {...question} />
+      return (
+        <TextQuestion
+          {...question}
+          inputRef={inputRef[question.id]}
+          error={error}
+        />
+      )
   }
 }
 
-function TextQuestion({ question, id }) {
+function TextQuestion({ question, id, inputRef, error }) {
   const store = userStore()
   const [value, setValue] = useState("")
   const [isLoading, setIsLoading] = useState(true)
@@ -107,13 +141,16 @@ function TextQuestion({ question, id }) {
   }
   return (
     <div className="py-3">
-      <Label htmlFor={id}>{question}</Label>
+      <Label htmlFor={id} className={cn(error && "text-destructive")}>
+        {question}
+      </Label>
       <Textarea
         placeholder="Deine Antwort"
         id={id}
         value={value}
         onChange={(e) => setValue(e?.target?.value || "")}
         onBlur={() => store.save(id, value)}
+        ref={inputRef}
       />
     </div>
   )
