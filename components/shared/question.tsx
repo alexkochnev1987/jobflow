@@ -59,7 +59,7 @@ export default function Form({
     if (hasErrors(localErrors)) {
       return
     }
-    const nextStep = Math.min(step + 1, 4)
+    const nextStep = Math.min(step + 1, 5)
     newStep(nextStep)
   }
 

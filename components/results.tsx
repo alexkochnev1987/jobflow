@@ -16,7 +16,10 @@ export default function Results() {
     <>
       {isLoading && (
         <div className="z-10 flex flex-col items-center">
-          <Heading size="5" className="w-full p-5">
+          <Heading
+            size="5"
+            className="w-full p-5 text-2xl font-normal leading-7"
+          >
             Dein Ergebnis wird berechnet
           </Heading>
           <Loading />
