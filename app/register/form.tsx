@@ -1,6 +1,8 @@
 "use client"
 
 import { Google, LoadingDots } from "@/components/shared/icons"
+import { cn } from "@/lib/utils"
+import { Heading, TextFieldInput } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { ChangeEvent, useState } from "react"
 
@@ -54,46 +56,45 @@ export const RegisterForm = () => {
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
-      <div className="mb-6">
-        <input
+      <Heading className="m-10 text-2xl font-normal leading-7">
+        Konto erstellen
+      </Heading>
+      <div className="mb-6 flex flex-col gap-2">
+        <TextFieldInput
           required
           type="name"
           name="name"
           value={formValues.name}
           onChange={handleChange}
           placeholder="Name"
-          className={`${input_style}`}
+          className={cn(input_style)}
         />
-      </div>
-      <div className="mb-6">
-        <input
+        <TextFieldInput
           required
           type="email"
           name="email"
           value={formValues.email}
           onChange={handleChange}
           placeholder="Email address"
-          className={`${input_style}`}
+          className={cn(input_style)}
         />
-      </div>
-      <div className="mb-6">
-        <input
+        <TextFieldInput
           required
           type="password"
           name="password"
           value={formValues.password}
           onChange={handleChange}
           placeholder="Password"
-          className={`${input_style}`}
+          className={cn(input_style)}
         />
       </div>
       <button
         type="submit"
         style={{ backgroundColor: `${loading ? "#ccc" : "#3446eb"}` }}
-        className="inline-block w-full rounded bg-blue-600 px-7 py-4 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+        className="inline-block w-full rounded-lg bg-primary px-7 py-4 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
         disabled={loading}
       >
-        {loading ? "loading..." : "Sign Up"}
+        {loading ? "loading..." : "Anmelden"}
       </button>
 
       <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
@@ -106,7 +107,7 @@ export const RegisterForm = () => {
           className={`${
             signInClicked
               ? "cursor-not-allowed border-gray-200 bg-gray-100"
-              : "border bg-blue-600"
+              : "border bg-primary"
           } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
           onClick={() => {
             setSignInClicked(true)

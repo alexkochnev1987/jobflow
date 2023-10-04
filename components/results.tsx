@@ -16,7 +16,10 @@ export default function Results() {
     <>
       {isLoading && (
         <div className="z-10 flex flex-col items-center">
-          <Heading size="5" className="w-full p-5">
+          <Heading
+            size="5"
+            className="w-full p-5 text-2xl font-normal leading-7"
+          >
             Dein Ergebnis wird berechnet
           </Heading>
           <Loading />
@@ -24,23 +27,29 @@ export default function Results() {
       )}
       {!isLoading && (
         <>
-          <div className="z-10 w-full max-w-5xl px-5 xl:px-0">
+          <div className="z-10 w-full max-w-3xl">
             <Flex direction="column" gap="5" align="start">
               <Timeout defaultSeconds={seconds} />
               <p>
-                Your answers were analyzed by an A.I. analyzed. The assessment
-                we just completed is required by companies, universities and
-                career coaches around the world.
+                Ihre Antworten wurden von einer K.I. analysiert. Das soeben
+                abgeschlossene Assessment wird von Unternehmen, Universitäten
+                und Karrierecoaches auf der ganzen Welt verlangt.
               </p>
-              <Heading size="7">You at Work</Heading>
+              <Heading size="7" className="font-normal leading-7">
+                Sie bei der Arbeit
+              </Heading>
               {youArWork.map((t) => (
                 <p key={t}>{t}</p>
               ))}
-              <Heading size="7">Strengths</Heading>
+              <Heading size="7" className="font-normal leading-7">
+                Stärken
+              </Heading>
               {strengths.map((t) => (
                 <p key={t}>{t}</p>
               ))}
-              <Heading size="8">Matching Careers</Heading>
+              <Heading size="8" className="font-normal leading-7">
+                Passende Karrieren
+              </Heading>
               <div className="relative w-full">
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
                 <div className="relative">

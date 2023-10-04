@@ -147,19 +147,36 @@ export async function POST(request: NextRequest) {
     .map((c) => `uid: ${c.id} - name: ${c.name}`)
     .join("\n")
 
-  const prompt = `A person has:
-  The following strengths:
-  {strengths}
-  
-  The following personal values:
+  const prompt = `Benutzerprofil:
+  Persönliche Werte:
   {values}
   
-  The following ideal working environment:
+  Stärken:
+  {strengths}
+  
+  Ideale Arbeitsumgebung:
   {environment}
   
-  Rank the following professions from 0 to 100 according to which one suits this person best and give a percentage rating. Arrange them in descending order. Don't comment on the result.
+  Aufgabenanweisungen:
+  
+  Stellen Sie sich vor, Sie sind ein fortschrittlicher KI-Karriereberater. Basierend auf den persönlichen Werten des Benutzers und seiner idealen Arbeitsumgebung, generieren Sie die folgenden Variablen:
+  
+  Sie bei der Arbeit (youAtWork): Beschreiben Sie den Arbeitsstil des Benutzers unter Berücksichtigung seiner Werte und Vorlieben.
+  Stärken (strengths): Zählen Sie die Stärken des Benutzers auf, basierend auf seinen Werten und wie diese Stärken mit seiner idealen Arbeitsumgebung in Einklang stehen.
+  Sobald Sie diese Variablen generiert haben, ordnen Sie das Benutzerprofil den am besten geeigneten Karrierewegen aus der bereitgestellten Liste zu. Weisen Sie jedem Beruf eine Prozentbewertung zu, die den Grad der Eignung angibt. Ordnen Sie die Berufe absteigend nach der Prozentübereinstimmung an.
+  
+  Zu vergleichende Berufe:
+  
   ${careers}
-  Also output 5 lines about the user strenghs, and user at Work.`
+  
+  Zusätzliche Richtlinien:
+  
+  Berücksichtigen Sie die generierten Variablen ('youAtWork' und 'strengths') sorgfältig bei den Zuordnungen.
+  Geben Sie für jede Zuordnung eine detaillierte Analyse ab, in der erklärt wird, warum der Beruf zum Benutzerprofil passt.
+  Gewährleisten Sie Genauigkeit und Gründlichkeit bei Ihren Bewertungen.
+  Verwenden Sie Prozentbewertungen, um die Eignung jedes Berufs zu quantifizieren.
+  Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und fundierte Zuordnungen bereitzustellen.
+  `
     .replace("{values}", valueQuestions)
     .replace("{strengths}", strengthQuestions)
     .replace("{environment}", idealEnvQuestions)
