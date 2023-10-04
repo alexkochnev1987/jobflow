@@ -18,7 +18,6 @@ export default function Timeout({ defaultSeconds }) {
     }
   }, [])
 
-
   // Format the seconds into minutes and seconds
   const minutes = Math.floor(seconds / 60)
   const remainingSeconds = seconds % 60
