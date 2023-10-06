@@ -27,7 +27,7 @@ export default function Results() {
       )}
       {!isLoading && (
         <>
-          <div className="z-10 w-full max-w-3xl">
+          <div className="z-10 w-full max-w-3xl p-5">
             <Flex direction="column" gap="5" align="start">
               <Timeout defaultSeconds={seconds} />
               <p>

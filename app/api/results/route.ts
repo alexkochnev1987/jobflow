@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma"
 import { sliderResponseToText } from "@/lib/utils"
 import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
+import { retry } from "radash"
 
 async function mapCareers(res: any) {
   const jsonRes = JSON.parse(res.result.toString())
@@ -95,12 +96,12 @@ export async function POST(request: NextRequest) {
         userId: user.id,
       },
     })
+  }
 
-    if (res?.result) {
-      console.log("returning saved value in db")
-      const data = await mapCareers(res)
-      return NextResponse.json(data)
-    }
+  if (res?.result) {
+    console.log("returning saved value in db")
+    const data = await mapCareers(res)
+    return NextResponse.json(data)
   }
 
   console.log("calculating careers")
@@ -181,28 +182,43 @@ export async function POST(request: NextRequest) {
     .replace("{strengths}", strengthQuestions)
     .replace("{environment}", idealEnvQuestions)
 
-  console.log(prompt)
-  const modelResponse = await completition(prompt)
-
-  const choices =
-    modelResponse.choices?.[0]?.message?.function_call?.arguments || ""
-
-  console.log(choices)
-
-  res = await prisma.modelQuestionResponseResult.upsert({
-    where: {
-      questionResponseId: userResponse.uid,
+  // console.log(prompt)
+  await retry(
+    {
+      times: 3,
+      delay: 1000,
     },
-    create: {
-      response: JSON.stringify(modelResponse),
-      result: choices,
-      questionResponseId: uid,
+    async () => {
+      console.log("trying to get results")
+      const modelResponse = await completition(prompt)
+
+      const choices =
+        modelResponse.choices?.[0]?.message?.function_call?.arguments || ""
+
+      const fnResponse = JSON.parse(choices)
+
+      console.log("careers", fnResponse)
+
+      if (fnResponse.careers.some((c) => c.rating <= 1)) {
+        throw new Error("Some careers don't have a rating")
+      }
+
+      res = await prisma.modelQuestionResponseResult.upsert({
+        where: {
+          questionResponseId: userResponse.uid,
+        },
+        create: {
+          response: JSON.stringify(modelResponse),
+          result: choices,
+          questionResponseId: uid,
+        },
+        update: {
+          response: JSON.stringify(modelResponse),
+          result: choices,
+        },
+      })
     },
-    update: {
-      response: JSON.stringify(modelResponse),
-      result: choices,
-    },
-  })
+  )
 
   const data = await mapCareers(res)
   return NextResponse.json(data)
