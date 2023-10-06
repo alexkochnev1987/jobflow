@@ -179,7 +179,7 @@ function TextQuestion({ question, id, inputRef, error }) {
 }
 function YesNoQuestion({ question, id, inputRef, error }) {
   const store = userStore()
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("nein")
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {

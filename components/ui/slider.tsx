@@ -57,7 +57,7 @@ const Slider = React.forwardRef<
         <Circle className="pointer-events-none absolute left-5 top-[-36px] text-lg font-bold text-primary" />
         {sliderResponseToText("4")}
       </li>
-      <li className="relative">
+      <li className="relative text-center">
         <Circle className="pointer-events-none absolute left-7 top-[-36px] text-lg font-bold text-primary" />
         {sliderResponseToText("5")}
       </li>

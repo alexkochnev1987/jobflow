@@ -71,15 +71,15 @@ export const truncate = (str: string, length: number) => {
 export const sliderResponseToText = (response: string): string => {
   switch (response) {
     case "1":
-      return "Trifftnichtzu"
+      return "Trifft nicht zu"
     case "2":
-      return "Ehernicht"
+      return "Eher nicht"
     case "3":
       return "Egal"
     case "4":
-      return "Wäregut"
+      return "Wäre gut"
     case "5":
-      return "Trifftzu"
+      return "Trifft zu"
     default:
       return "Egal"
   }
