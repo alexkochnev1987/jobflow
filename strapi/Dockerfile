@@ -28,4 +28,3 @@ RUN chown -R node:node /opt/app
 USER node
 EXPOSE 1337
 CMD ["npm", "run", "start"]
-ENTRYPOINT ["npm", "run", "start"]
