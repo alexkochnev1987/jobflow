@@ -42,18 +42,22 @@ export default function Timeout({ defaultSeconds }) {
           gespeichert. Wenn du dich weder registrierst noch einen Premium-Report
           kaufst, verfällt dein Ergebnis.
         </span>
-        <span className="flex text-2xl font-bold">
-          {formattedMinutes}:{formattedSeconds}
-        </span>
-        <Link href="/register" className="w-50 self-end">
-          <Button
-            size="3"
-            variant="outline"
-            className="!border-[#181818] !text-[#181818]"
-          >
-            Ergebnisse speichern
-          </Button>
-        </Link>
+        {remainingSeconds > 0 && (
+          <>
+            <span className="flex text-2xl font-bold">
+              {formattedMinutes}:{formattedSeconds}
+            </span>
+            <Link href="/register" className="w-50 self-end">
+              <Button
+                size="3"
+                variant="outline"
+                className="!border-[#181818] !text-[#181818]"
+              >
+                Ergebnisse speichern
+              </Button>
+            </Link>
+          </>
+        )}
       </div>
     </Callout.Root>
   )
