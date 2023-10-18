@@ -84,3 +84,10 @@ export const sliderResponseToText = (response: string): string => {
       return "Egal"
   }
 }
+
+export const salaryFormatter = (salary: number): string => {
+  const formatter = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 0,
+  })
+  return formatter.format(salary)
+}

@@ -1,4 +1,5 @@
 "use client"
+import { salaryFormatter } from "@/lib/utils"
 import {
   Badge,
   Box,
@@ -51,7 +52,8 @@ export default function MatchingCareerCard({ id, career, hidden }) {
             <p>
               Gehalt:{" "}
               <strong>
-                {career.data.salaryMin} - {career.data.salaryMax} &euro;
+                {salaryFormatter(career.data.salaryMin)} -{" "}
+                {salaryFormatter(career.data.salaryMax)} &euro;
               </strong>
             </p>
             <Badge color="gray" radius="full" size="2">
