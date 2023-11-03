@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "doppler run -- sst bind next dev",
-    "build": "doppler run -- prisma generate && prisma db push && next build",
+    "build": "doppler run -- prisma generate && doppler run -- prisma db push && doppler run -- next build",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "next lint",
-    "deploy:aws": "doppler run --  npx sst deploy -- --stage prod"
+    "deploy": "doppler run --  npx sst deploy -- --stage prod"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
