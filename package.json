@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "sst bind next dev",
-    "build": "prisma generate && prisma db push && next build",
+    "dev": "doppler run -- sst bind next dev",
+    "build": "doppler run -- prisma generate && prisma db push && next build",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "start": "next start",
+    "start": "doppler run -- next start",
     "lint": "next lint",
-    "deploy:aws": "next build && npx sst deploy -- --stage prod",
-    "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --env production"
+    "deploy:aws": "doppler run --  npx sst deploy -- --stage prod"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
