@@ -16,6 +16,44 @@ Node 18.16.1
 
 NVM
 
+## Tech Stack
+
+Programming Languages:
+  - TypeScript
+  - JavaScript
+
+Frontend Frameworks:
+  - React
+
+Backend Frameworks:
+  - Next.js
+  - Node.js
+  
+Database:
+  - MySQL
+
+Hosting and Infrastructure:
+  - Amazon Web Services (AWS)
+
+External APIs:
+  - OpenAI
+
+Performance Monitoring:
+  - AWS CloudWatch
+
+Others:
+  - Serverless framework
+  - SST
+
+Secret Managment:
+  - Doppler
+
+Content Managment System:
+  - Wordpress
+
+Design Systems:
+  - Radix
+
 
 ## Available Scripts
 
