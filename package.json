@@ -9,7 +9,9 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "next lint",
-    "deploy": "doppler run --  npx sst deploy -- --stage prod"
+    "deploy": "doppler run -- npm run deploy:ci",
+    "deploy:ci": "npx sst deploy -- --stage prod",
+    "test:ci": "act -P self-hosted=catthehacker/ubuntu:act-latest"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
