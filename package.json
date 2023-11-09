@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "doppler run -- sst bind next dev",
-    "build": "doppler run -- prisma generate && doppler run -- prisma db push && doppler run -- next build",
+    "build": "prisma generate && prisma db push && next build",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "start": "doppler run -- next start",
+    "start": "next start",
     "lint": "next lint",
     "deploy": "doppler run -- npm run deploy:ci",
     "deploy:ci": "npx sst deploy -- --stage prod",
