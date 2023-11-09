@@ -1,31 +1,25 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-
 name: Deploy CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.16.1
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.16.1
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run deploy:ci
-    env:
-       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-       GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-       GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-       OPENAI_CHAT_MODEL: ${{ secrets.OPENAI_CHAT_MODEL }}
+      - uses: actions/checkout@v3
+      - name: Install CLI
+        uses: dopplerhq/cli-action@v2
+      - name: Use Node.js 18.16.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.1
+          cache: "npm"
+      - run: npm ci
+      - run: npm run deploy
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
