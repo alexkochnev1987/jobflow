@@ -9,7 +9,7 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "next lint",
-    "deploy": "npx sst deploy -- --stage prod"
+    "deploy": "doppler run -- npx sst deploy -- --stage prod"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
