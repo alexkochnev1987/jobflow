@@ -13,6 +13,11 @@
 4. **Frontend Application:**
    - **Next.js** for the React-based frontend, which will render pages on the server for the initial load, improving performance and SEO for the desktop-only application.
    - **React** for building the user interface, utilizing server-side rendering capabilities of Next.js for a desktop-optimized experience.
+   - **React CVA** for creating components variants
+   - **Tailwind** CSS Styling
+   - **Zod** Validation
+   - **Formik** Forms
+   - **zustand** Global state
 
 5. **Version Control and Project Management:**
    - **GitHub Projects** for code repositories, version control, issue tracking, and feature requests, utilizing GitHub's project management tools.
