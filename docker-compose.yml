@@ -13,7 +13,7 @@ services:
       - ./wordpres.ini:/usr/local/etc/php/conf.d/uploads.ini
     environment:
       WORDPRESS_DEBUG: 0
-      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_HOST: "${DB_HOST}:3306"
       WORDPRESS_DB_USER: "${DB_USERNAME}"
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_DATABASE}"
@@ -33,7 +33,7 @@ services:
       ADMIN_EMAIL: "${DIRECTUS_ADMIN}"
       ADMIN_PASSWORD: "${DIRECTUS_ADMIN_PASSWORD}"
       DB_CLIENT: "mysql"
-      DB_HOST: "mysql"
+      DB_HOST: "${DB_HOST}"
       DB_PORT: 3306
       DB_DATABASE: "${DB_DATABASE}"
       DB_USER: "${DB_USERNAME}"
