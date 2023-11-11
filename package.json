@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "doppler run -- sst bind next dev",
+    "dev": "doppler run -- next dev",
     "build": "nx exec -- npm run _build -- ",
     "format:write": "nx exec -- prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "nx exec -- prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "nx exec -- next lint",
-    "deploy": "doppler run -- npx sst deploy -- --stage prod",
     "_build": "doppler run -- prisma generate && doppler run -- prisma db push && doppler run -- next build"
   },
   "prisma": {
