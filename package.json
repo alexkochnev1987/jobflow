@@ -11,8 +11,11 @@
     "lint": "next lint",
     "dbpull": "doppler run -- npx prisma db pull",
     "services": "doppler run -- docker compose up",
-    "deploy": "npm run build && tar czf next.tar.gz .next && scp next.tar.gz www@209.38.176.120:~/jobflow && npm run uncompress",
-    "uncompress": "ssh www@209.38.176.120 'cd ~/jobflow && tar xzf next.tar.gz && rm next.tar.gz' && rm next.tar.gz "
+    "deploy": "npm run build && npm run deploy:compress && npm run deploy:prepare && npm run deploy:upload && npm run deploy:install",
+    "deploy:compress": "tar czf next.tar.gz .next node_modules",
+    "deploy:prepare": "ssh www@209.38.176.120 'cd ~/site && rm .next -fr && rm node_modules -fr'",
+    "deploy:upload": "scp next.tar.gz www@209.38.176.120:~/site",
+    "deploy:install": "ssh www@209.38.176.120 'cd ~/site && tar xzf next.tar.gz && rm next.tar.gz' && rm next.tar.gz "
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
