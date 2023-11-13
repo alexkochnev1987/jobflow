@@ -784,3 +784,18 @@ model Quizzes {
   @@index([user_created], map: "quizzes_user_created_foreign")
   @@index([user_updated], map: "quizzes_user_updated_foreign")
 }
+
+model FaqItem {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  question     String?   @db.VarChar(255)
+  answer       String?   @db.Text
+
+  @@index([user_created], map: "faqitem_user_created_foreign")
+  @@index([user_updated], map: "faqitem_user_updated_foreign")
+}
