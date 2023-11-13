@@ -9,6 +9,7 @@
     "format": "nx exec -- prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "nx exec -- next lint",
+    "services": "doppler run -- docker compose up",
     "_build": "doppler run -- prisma generate && doppler run -- prisma db push && doppler run -- next build"
   },
   "prisma": {
