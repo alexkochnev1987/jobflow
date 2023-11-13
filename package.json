@@ -4,15 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "doppler run -- next dev",
-    "build": "nx exec -- npm run _build -- ",
-    "format:write": "nx exec -- prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "format": "nx exec -- prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "build": "doppler run -- npx prisma generate && doppler run -- npx prisma db push && doppler run -- npx next build",
+    "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
-    "lint": "nx exec -- next lint",
+    "lint": "next lint",
     "dbpull": "doppler run -- npx prisma db pull",
     "services": "doppler run -- docker compose up",
-    "_build": "doppler run -- prisma generate && doppler run -- prisma db push && doppler run -- next build",
-    "deploy": "npm run build && scp -r .next www@209.38.176.120:~/jobflow"
+    "deploy": "npm run build && tar czf next.tar.gz .next && scp next.tar.gz www@209.38.176.120:~/jobflow && npm run uncompress",
+    "uncompress": "ssh www@209.38.176.120 'cd ~/jobflow && tar xzf next.tar.gz && rm next.tar.gz' && rm next.tar.gz "
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -102,20 +102,10 @@
     "concurrently": "^7.6.0",
     "constructs": "10.2.69",
     "encoding": "^0.1.13",
-    "nx": "17.1.1",
     "postcss": "^8.4.21",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "prisma": "^4.13.0",
     "tailwindcss": "^3.2.4"
-  },
-  "nx": {
-    "targets": {
-      "build": {
-        "outputs": [
-          "{projectRoot}/.next"
-        ]
-      }
-    }
   }
 }
