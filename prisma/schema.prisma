@@ -56,10 +56,6 @@ model User {
   sessions                    Session[]
   UserResponses               UserResponses[]
   ModelQuestionResponseResult ModelQuestionResponseResult[]
-  UserCareers                 UserCareers[]
-  UserActionItems             UserActionItems[]
-  Analytics                   Analytics[]
-  Role                        Role?                         @relation(fields: [roleId], references: [id])
 
   @@index([roleId])
 }
@@ -127,148 +123,21 @@ model Question {
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   QuestionResponse QuestionResponse[]
-  Quiz             Quiz?              @relation(fields: [quizId], references: [id])
 
   @@index([quizId])
 }
 
 model Careers {
-  id              String        @id @default(cuid())
-  name            String        @unique
+  id              String   @id @default(cuid())
+  name            String   @unique
   description     String
   salaryMin       Int
   salaryMax       Int
   retrainingWeeks Int
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  UserCareers     UserCareers[]
-  ActionItems     ActionItems[]
-}
-
-model UserCareers {
-  id            String   @id @default(cuid())
-  userId        String
-  careerId      String
-  affinityScore Float
-  matchScore    Float
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  user          User     @relation(fields: [userId], references: [id])
-  career        Careers  @relation(fields: [careerId], references: [id])
-
-  @@index([userId])
-  @@index([careerId])
-}
-
-model ActionItems {
-  id              String            @id @default(cuid())
-  careerId        String
-  description     String
-  itemType        String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  career          Careers           @relation(fields: [careerId], references: [id])
-  UserActionItems UserActionItems[]
-
-  @@index([careerId])
-}
-
-model UserActionItems {
-  id           String      @id @default(cuid())
-  userId       String
-  actionItemId String
-  status       String
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  user         User        @relation(fields: [userId], references: [id])
-  actionItem   ActionItems @relation(fields: [actionItemId], references: [id])
-
-  @@index([userId])
-  @@index([actionItemId])
-}
-
-model Analytics {
-  id        String   @id @default(cuid())
-  userId    String?
-  eventType String
-  eventDate DateTime @default(now())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User?    @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-model Role {
-  id              String            @id @default(cuid())
-  name            String            @unique
-  description     String?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  users           User[]
-  RolePermissions RolePermissions[]
-
-  @@index([id])
-}
-
-model Permission {
-  id              String            @id @default(cuid())
-  name            String            @unique
-  description     String?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  RolePermissions RolePermissions[]
-}
-
-model RolePermissions {
-  roleId       String
-  permissionId String
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  role         Role       @relation(fields: [roleId], references: [id])
-  permission   Permission @relation(fields: [permissionId], references: [id])
-
-  @@id([roleId, permissionId])
-  @@index([roleId])
-  @@index([permissionId])
-}
-
-model Quiz {
-  id          String     @id @default(cuid())
-  title       String
-  description String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  questions   Question[]
-  resources   Resource[]
-  tasks       Task[]
-}
-
-model Task {
-  id          String    @id @default(cuid())
-  title       String
-  description String?
-  dueDate     DateTime?
-  quizId      String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  quiz        Quiz?     @relation(fields: [quizId], references: [id])
-
-  @@index([quizId])
-}
-
-model Resource {
-  id          String   @id @default(cuid())
-  title       String
-  description String?
-  type        String
-  url         String?
-  quizId      String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  quiz        Quiz?    @relation(fields: [quizId], references: [id])
-
-  @@index([quizId])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  pace            Json?
+  format          Json?
 }
 
 model directus_activity {
@@ -844,4 +713,77 @@ model wp_users {
   @@index([user_email], map: "user_email")
   @@index([user_login], map: "user_login_key")
   @@index([user_nicename], map: "user_nicename")
+}
+
+model Companies {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  name         String?   @db.VarChar(255)
+  description  String?   @db.Text
+  logo         String?   @db.Char(36)
+
+  @@index([logo], map: "companies_logo_foreign")
+  @@index([user_created], map: "companies_user_created_foreign")
+  @@index([user_updated], map: "companies_user_updated_foreign")
+}
+
+model Courses {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  name         String?   @db.VarChar(255)
+  description  String?   @db.Text
+  sponsonrship Boolean?
+  price        Decimal?  @db.Decimal(10, 5)
+  location     String?   @db.VarChar(255)
+  start_date   DateTime? @db.Date
+  course_type  Json?
+  pace         Json?
+
+  @@index([user_created], map: "courses_user_created_foreign")
+  @@index([user_updated], map: "courses_user_updated_foreign")
+}
+
+model QuizzResource {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  quiz_id      Int?      @db.UnsignedInt
+  description  String?   @db.Text
+  file         String?   @db.Char(36)
+
+  @@index([file], map: "quizzresource_file_foreign")
+  @@index([quiz_id], map: "quizzresource_quiz_id_foreign")
+  @@index([user_created], map: "quizzresource_user_created_foreign")
+  @@index([user_updated], map: "quizzresource_user_updated_foreign")
+}
+
+model Quizzes {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  description  String?   @db.Text
+  image        String?   @db.Char(36)
+  duration     DateTime? @db.Time(0)
+
+  @@index([image], map: "quizzes_image_foreign")
+  @@index([user_created], map: "quizzes_user_created_foreign")
+  @@index([user_updated], map: "quizzes_user_updated_foreign")
 }
