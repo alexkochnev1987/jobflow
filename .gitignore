@@ -46,3 +46,4 @@ database/mysql/*
 database/redis/*
 uploads/*
 wp-data/*
+next.tar.gz
