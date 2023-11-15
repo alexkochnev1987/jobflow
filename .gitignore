@@ -41,6 +41,8 @@ next-env.d.ts
 .sst/
 .open-next/
 
+*:Zone.Identifier
+
 .nx/cache
 database/mysql/*
 database/redis/*
