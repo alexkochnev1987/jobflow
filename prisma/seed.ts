@@ -2,6 +2,8 @@ import { QUESTION_CATEGORIES, QUESTION_TYPES } from "../lib/constants"
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
+var uuid = require("uuid")
+
 async function seedCareers() {
   const careers = [
     {
@@ -58,6 +60,7 @@ async function seedCareers() {
         name: career.name,
       },
       create: {
+        id: uuid.v4(),
         ...career,
       },
       update: {
@@ -70,7 +73,6 @@ async function seedCareers() {
 async function seedTags() {
   // open csv file in seed/tags.csv and parse it as an array of objects
   // for each object, create a tag in the database
-
 }
 
 async function main(): Promise<void> {
