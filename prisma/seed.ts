@@ -67,6 +67,12 @@ async function seedCareers() {
   }
 }
 
+async function seedTags() {
+  // open csv file in seed/tags.csv and parse it as an array of objects
+  // for each object, create a tag in the database
+
+}
+
 async function main(): Promise<void> {
   await seedCareers()
   let order = 1
