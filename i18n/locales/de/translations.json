@@ -15,6 +15,8 @@
   "Deine Antwort": "Deine Antwort",
   "Ja": "Ja",
   "Nein": "Nein",
-  "Schritt": "Schritt {{count}}",
-  "von": "von {{count}}"
+  "Schritt_one": "Schritt {{count}}",
+  "Schritt_other": "Schritt {{count}}",
+  "von_one": "von {{count}}",
+  "von_other": "von {{count}}"
 }
