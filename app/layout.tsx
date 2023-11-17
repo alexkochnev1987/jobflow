@@ -1,3 +1,4 @@
+import "../i18n/config"
 import "@radix-ui/themes/styles.css"
 import "react-loading-skeleton/dist/skeleton.css"
 import "./globals.css"
@@ -7,14 +8,16 @@ import Nav from "@/components/layout/nav"
 import Footer from "@/components/layout/footer"
 import { Suspense } from "react"
 import { Theme } from "@radix-ui/themes"
+import t from "../i18n/config"
+
 
 export const metadata = {
-  title: "Jobflow",
-  description: "Jobflow.",
+  title: t("SITE_TITLE"),
+  description: t("META_DESCRIPTION"),
   twitter: {
     card: "summary_large_image",
-    title: "Jobflow",
-    description: "Jobflow",
+    title: t("SITE_TITLE"),
+    description: t("META_DESCRIPTION"),
     creator: "@guluarte",
   },
   metadataBase: new URL("http://localhost:3000"),

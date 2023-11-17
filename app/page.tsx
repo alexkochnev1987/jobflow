@@ -3,6 +3,8 @@ import { getQuestions } from "./actions/server"
 import Form from "@/components/shared/question"
 import { redirect, useRouter } from "next/navigation"
 import { getServerSession } from "next-auth"
+import t from "../i18n/config"
+
 
 export default async function Home({
   searchParams,
@@ -28,9 +30,9 @@ export default async function Home({
         <Form
           step={2}
           questions={questions}
-          category="Stärken"
+          category={t("Stärken")}
           progress={40}
-          description="Die Fragen dienen dazu, die persönlichen Stärken einer Person aufgrund ihrer eigenen Selbsteinschätzung zu ermitteln und bieten Einblicke in ihre Werthaltung und Vorlieben. Ein Persönlichkeitstest wird zusätzlich verwendet, um die Stärken genauer zu analysieren und ein umfassenderes Bild der individuellen Persönlichkeit zu zeichnen."
+          description={t("STRENGTH_DESCRIPTION")}
         />
       )
       break
@@ -40,9 +42,9 @@ export default async function Home({
         <Form
           step={3}
           questions={questions}
-          category="Der ideale Arbeitsrahmen"
+          category={t("Der ideale Arbeitsrahmen")}
           progress={60}
-          description="Ein Arbeitsrahmen, der den eigenen Bedürfnissen entspricht, fördert die persönliche Zufriedenheit und das Wohlbefinden am Arbeitsplatz, da er eine angenehme und produktive Arbeitsumgebung schafft. Bei der Berufswahl ist es wichtig, diesen Rahmen zu berücksichtigen, um sicherzustellen, dass der gewählte Beruf und die Arbeitsbedingungen den individuellen Anforderungen und Vorlieben gerecht werden."
+          description={t("IDEAL_ENVIRONMENT_DESCRIPTION")}
         />
       )
       break
@@ -53,9 +55,9 @@ export default async function Home({
         <Form
           step={4}
           questions={questions}
-          category="Finanzierungsmöglichkeiten"
+          category={t("Finanzierungsmöglichkeiten")}
           progress={80}
-          description="Die Fragen zur Prüfung des Anspruchs auf einen Bildungsgutschein dienen dazu, die individuellen Bildungsbedürfnisse und beruflichen Ziele einer Person zu ermitteln. Dies ermöglicht es, festzustellen, ob sie berechtigt ist, staatliche Unterstützung für die Finanzierung ihrer Weiterbildung oder Umschulung zu erhalten."
+          description={t("FINANCING_DESCRIPTION")}
         />
       )
       break
@@ -68,9 +70,9 @@ export default async function Home({
         <Form
           step={1}
           questions={questions}
-          category="Persönliche Werte"
+          category={t("Persönliche Werte")}
           progress={20}
-          description="Unsere Werte sind tief verwurzelte Überzeugungen und Prinzipien, die das Verhalten und die Entscheidungen einer Person leiten. Es ist wichtig, sie zu kennen, da sie als innerer Kompass dienen und helfen, authentische Entscheidungen zu treffen, die mit den eigenen Überzeugungen und Zielen in Einklang stehen."
+          description={t("VALUES_DESCRIPTION")}
         />
       )
       break

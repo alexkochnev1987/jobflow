@@ -19,6 +19,8 @@ import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@radix-ui/themes"
 import { cn } from "@/lib/utils"
+import "../../i18n/config-client"
+import { useTranslation } from "react-i18next"
 
 export default function Form({
   category,
@@ -30,6 +32,7 @@ export default function Form({
   const [errors, setErrors] = useState({})
   const store = userStore()
   const router = useRouter()
+  const { t } = useTranslation()
 
   const elRefs = {}
   useEffect(() => {
@@ -71,7 +74,14 @@ export default function Form({
           <CardTitle>
             <div className="relative w-full">
               <p className="absolute right-0 top-[-25px] z-10 text-sm font-normal">
-                <span className="text-primary">Schritt {step}</span> von 5
+                <span className="text-primary">
+                  {t("Schritt", {
+                    count: step,
+                  })}
+                </span>{" "}
+                {t("von", {
+                  count: 5,
+                })}
               </p>
               <Progress value={progress} className="border-0" />
             </div>
@@ -90,9 +100,7 @@ export default function Form({
             />
           ))}
           {hasErrors(errors) && (
-            <p className="w-full flex-1 text-destructive">
-              Please fix the errors
-            </p>
+            <p className="w-full flex-1 text-destructive">{t("FORM_ERRORS")}</p>
           )}
         </CardContent>
         <CardFooter className="flex flex-row justify-center gap-3">
@@ -103,7 +111,7 @@ export default function Form({
               onClick={() => prevStep()}
               className="w-48"
             >
-              Zurück
+              {t("Zurück")}
             </Button>
           )}
           <Button
@@ -112,7 +120,7 @@ export default function Form({
             radius="large"
             className="w-48"
           >
-            Weiter
+            {t("Weiter")}
           </Button>
         </CardFooter>
       </Card>
@@ -149,6 +157,7 @@ function TextQuestion({ question, id, inputRef, error }) {
   const store = userStore()
   const [value, setValue] = useState("")
   const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const hasResponse = store.findResponse(id)
@@ -164,10 +173,10 @@ function TextQuestion({ question, id, inputRef, error }) {
   return (
     <div className="py-3">
       <Label htmlFor={id} className={cn(error && "text-destructive")}>
-        {question}
+        {t(question)}
       </Label>
       <Textarea
-        placeholder="Deine Antwort"
+        placeholder={t("Deine Antwort")}
         id={id}
         value={value}
         onChange={(e) => setValue(e?.target?.value || "")}
@@ -181,6 +190,7 @@ function YesNoQuestion({ question, id, inputRef, error }) {
   const store = userStore()
   const [value, setValue] = useState("nein")
   const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const hasResponse = store.findResponse(id)
@@ -199,7 +209,7 @@ function YesNoQuestion({ question, id, inputRef, error }) {
   return (
     <div className="flex flex-row py-3">
       <Label htmlFor={id} className={cn("w-2/3", error && "text-destructive")}>
-        {question}
+        {t(question)}
       </Label>
 
       <RadioGroup
@@ -211,17 +221,17 @@ function YesNoQuestion({ question, id, inputRef, error }) {
         onBlur={() => store.save(id, value)}
       >
         <div className="flex items-center justify-between space-x-2">
-          <Label htmlFor="ja">Ja</Label>
+          <Label htmlFor="ja">{t("Ja")}</Label>
           <RadioGroupItem
-            value="ja"
+            value={t("Ja")}
             id="ja"
             className="h-6 w-6 rounded-sm border-secondary"
           />
         </div>
         <div className="flex items-center space-x-2">
-          <Label htmlFor="nein">Nein</Label>
+          <Label htmlFor="nein">{t("Nein")}</Label>
           <RadioGroupItem
-            value="nein"
+            value={t("Ja")}
             id="nein"
             className="h-6 w-6 rounded-sm border-secondary"
           />
@@ -235,6 +245,7 @@ function SliderQuestion({ question, id, max, inputRef }) {
   const store = userStore()
   const [value, setValue] = useState(2)
   const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const hasResponse = store.findResponse(id)
@@ -253,7 +264,7 @@ function SliderQuestion({ question, id, max, inputRef }) {
   return (
     <div className="py-5">
       <Label htmlFor={id} className="">
-        {question}
+        {t(question)}
       </Label>
       <Slider
         defaultValue={[value]}
