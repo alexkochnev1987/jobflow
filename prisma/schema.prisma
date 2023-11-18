@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Account {
-  id                String   @id @default(cuid())
+  id                String   @id
   userId            String
   type              String
   provider          String
@@ -23,111 +23,14 @@ model Account {
   id_token          String?
   session_state     String?
   createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  updatedAt         DateTime
 
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model User {
-  id                          String                        @id @default(cuid())
-  name                        String?
-  password                    String?
-  email                       String?                       @unique
-  emailVerified               DateTime?
-  image                       String?
-  createdAt                   DateTime                      @default(now())
-  updatedAt                   DateTime                      @updatedAt
-  personality                 String?                       @db.Char(36)
-  profileId                   String?                       @db.Char(36)
-  accounts                    Account[]
-  sessions                    Session[]
-  UserResponses               UserResponses[]
-  ModelQuestionResponseResult ModelQuestionResponseResult[]
-  Profile                     Profile?                      @relation(fields: [profileId], references: [id])
-
-  @@index([profileId])
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-model UserResponses {
-  id        String             @id @default(cuid())
-  userId    String?
-  uid       String             @unique
-  createdAt DateTime           @default(now())
-  updatedAt DateTime           @updatedAt
-  user      User?              @relation(fields: [userId], references: [id])
-  responses QuestionResponse[]
-
-  @@index([userId])
-}
-
-model QuestionResponse {
-  id            String                        @id @default(cuid())
-  response      String
-  questionId    String
-  responseId    String
-  createdAt     DateTime                      @default(now())
-  updatedAt     DateTime                      @updatedAt
-  question      Question                      @relation(fields: [questionId], references: [id])
-  userResponse  UserResponses                 @relation(fields: [responseId], references: [id])
-  ModelResponse ModelQuestionResponseResult[]
-
-  @@index([questionId])
-  @@index([responseId])
-}
-
-model ModelQuestionResponseResult {
-  id                 String           @id @default(cuid())
-  questionResponseId String           @unique
-  created_at         DateTime         @default(now())
-  response           Json
-  result             Json
-  userId             String?
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
-  QuestionResponse   QuestionResponse @relation(fields: [questionResponseId], references: [id])
-  user               User?            @relation(fields: [userId], references: [id])
-
-  @@index([questionResponseId])
-  @@index([userId])
-}
-
-model Question {
-  id               String             @id @default(cuid())
-  category         String
-  order            Int
-  question         String             @unique
-  type             String
-  min              Int?
-  max              Int?
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  QuestionResponse QuestionResponse[]
-}
-
 model Careers {
-  id              String    @id @default(cuid()) @db.Char(36)
+  id              String    @id @db.Char(36)
   status          String    @default("draft") @db.VarChar(255)
   sort            Int?
   user_created    String?   @db.Char(36)
@@ -144,6 +47,268 @@ model Careers {
 
   @@index([user_created], map: "careers_user_created_foreign")
   @@index([user_updated], map: "careers_user_updated_foreign")
+}
+
+model Careers_Courses {
+  id         Int     @id @default(autoincrement()) @db.UnsignedInt
+  Careers_id String? @db.Char(36)
+  Courses_id Int?    @db.UnsignedInt
+
+  @@index([Careers_id], map: "careers_courses_careers_id_foreign")
+  @@index([Courses_id], map: "careers_courses_courses_id_foreign")
+}
+
+model Companies {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  name         String?   @db.VarChar(255)
+  description  String?   @db.Text
+  logo         String?   @db.Char(36)
+
+  @@index([logo], map: "companies_logo_foreign")
+  @@index([user_created], map: "companies_user_created_foreign")
+  @@index([user_updated], map: "companies_user_updated_foreign")
+}
+
+model Courses {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  name         String?   @db.VarChar(255)
+  description  String?   @db.Text
+  sponsonrship Boolean?
+  price        Decimal?  @db.Decimal(10, 5)
+  location     String?   @db.VarChar(255)
+  start_date   DateTime? @db.Date
+  course_type  Json?
+  pace         Json?
+
+  @@index([user_created], map: "courses_user_created_foreign")
+  @@index([user_updated], map: "courses_user_updated_foreign")
+}
+
+model EvaluationFormAnswer {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  value        String?   @db.VarChar(255)
+  question     Int?      @db.UnsignedInt
+
+  @@index([question], map: "evaluationformanswer_question_foreign")
+  @@index([user_created], map: "evaluationformanswer_user_created_foreign")
+  @@index([user_updated], map: "evaluationformanswer_user_updated_foreign")
+}
+
+model EvaluationFormQuestion {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  step         Int?      @db.UnsignedInt
+  question     String?   @unique(map: "evaluationformquestion_question_unique") @db.VarChar(255)
+  type         String?   @db.VarChar(255)
+
+  @@index([step], map: "evaluationformquestion_step_foreign")
+  @@index([user_created], map: "evaluationformquestion_user_created_foreign")
+  @@index([user_updated], map: "evaluationformquestion_user_updated_foreign")
+}
+
+model EvaluationFormStep {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  title        String?   @unique(map: "evaluationformstep_title_unique") @db.VarChar(255)
+  description  String?   @db.Text
+
+  @@index([user_created], map: "evaluationformstep_user_created_foreign")
+  @@index([user_updated], map: "evaluationformstep_user_updated_foreign")
+}
+
+model EvaluationFormUserResponse {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  date_created DateTime? @db.Timestamp(0)
+  date_updated DateTime? @db.Timestamp(0)
+  question     Int?      @db.UnsignedInt
+  answer       String?   @db.VarChar(255)
+  session      String?   @db.VarChar(255)
+  user         String?   @db.VarChar(255)
+
+  @@index([question], map: "evaluationformuserresponse_question_foreign")
+}
+
+model FaqItem {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  question     String?   @db.VarChar(255)
+  answer       String?   @db.Text
+
+  @@index([user_created], map: "faqitem_user_created_foreign")
+  @@index([user_updated], map: "faqitem_user_updated_foreign")
+}
+
+model PersonalityTags {
+  id           String    @id @db.Char(36)
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  name         String?   @unique(map: "personalitytags_name_unique") @db.VarChar(255)
+
+  @@index([user_created], map: "personalitytags_user_created_foreign")
+}
+
+model Profile {
+  id           String    @id @db.Char(36)
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  personality  String?   @db.Char(36)
+  user         String?   @db.VarChar(255)
+
+  @@index([personality], map: "profile_personality_foreign")
+  @@index([user_created], map: "profile_user_created_foreign")
+  @@index([user_updated], map: "profile_user_updated_foreign")
+}
+
+model QuizzResource {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  quiz_id      Int?      @db.UnsignedInt
+  description  String?   @db.Text
+  file         String?   @db.Char(36)
+
+  @@index([file], map: "quizzresource_file_foreign")
+  @@index([quiz_id], map: "quizzresource_quiz_id_foreign")
+  @@index([user_created], map: "quizzresource_user_created_foreign")
+  @@index([user_updated], map: "quizzresource_user_updated_foreign")
+}
+
+model Quizzes {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  description  String?   @db.Text
+  image        String?   @db.Char(36)
+  duration     DateTime? @db.Time(0)
+
+  @@index([image], map: "quizzes_image_foreign")
+  @@index([user_created], map: "quizzes_user_created_foreign")
+  @@index([user_updated], map: "quizzes_user_updated_foreign")
+}
+
+model Session {
+  id           String   @id
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+
+  @@index([userId])
+}
+
+model User {
+  id            String    @id
+  name          String?
+  password      String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime
+  profileId     String?   @db.Char(36)
+
+  @@index([profileId])
+}
+
+model UserPersonality {
+  id                    String    @id @db.Char(36)
+  status                String    @default("draft") @db.VarChar(255)
+  sort                  Int?
+  user_created          String?   @db.Char(36)
+  user_updated          String?   @db.Char(36)
+  date_updated          DateTime? @db.Timestamp(0)
+  you_at_work           String?   @db.Text
+  strengths_summary     String?   @db.Text
+  communications_skills String?   @db.Text
+  leadership            String?   @db.Text
+  teamwork              String?   @db.Text
+  name                  String?   @unique(map: "userpersonality_name_unique") @db.VarChar(255)
+
+  @@index([user_created], map: "userpersonality_user_created_foreign")
+  @@index([user_updated], map: "userpersonality_user_updated_foreign")
+}
+
+model UserPersonality_PersonalityTags {
+  id                 Int     @id @default(autoincrement()) @db.UnsignedInt
+  UserPersonality_id String? @db.Char(36)
+  PersonalityTags_id String? @db.Char(36)
+
+  @@index([PersonalityTags_id], map: "userpersonality_personalitytags_personalitytags_id_foreign")
+  @@index([UserPersonality_id], map: "userpersonality_personalitytags_userpersonality_id_foreign")
+}
+
+model UserPersonality_PersonalityTags_1 {
+  id                 Int     @id @default(autoincrement()) @db.UnsignedInt
+  UserPersonality_id String? @db.Char(36)
+  PersonalityTags_id String? @db.Char(36)
+
+  @@index([PersonalityTags_id], map: "userpersonality_personalitytags_1_personalitytags_id_foreign")
+  @@index([UserPersonality_id], map: "userpersonality_personalitytags_1_userpersonality_id_foreign")
+}
+
+model UserPersonality_PersonalityTags_2 {
+  id                 Int     @id @default(autoincrement()) @db.UnsignedInt
+  UserPersonality_id String? @db.Char(36)
+  PersonalityTags_id String? @db.Char(36)
+
+  @@index([PersonalityTags_id], map: "userpersonality_personalitytags_2_personalitytags_id_foreign")
+  @@index([UserPersonality_id], map: "userpersonality_personalitytags_2_userpersonality_id_foreign")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 model directus_activity {
@@ -719,174 +884,4 @@ model wp_users {
   @@index([user_email], map: "user_email")
   @@index([user_login], map: "user_login_key")
   @@index([user_nicename], map: "user_nicename")
-}
-
-model Companies {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  name         String?   @db.VarChar(255)
-  description  String?   @db.Text
-  logo         String?   @db.Char(36)
-
-  @@index([logo], map: "companies_logo_foreign")
-  @@index([user_created], map: "companies_user_created_foreign")
-  @@index([user_updated], map: "companies_user_updated_foreign")
-}
-
-model Courses {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  name         String?   @db.VarChar(255)
-  description  String?   @db.Text
-  sponsonrship Boolean?
-  price        Decimal?  @db.Decimal(10, 5)
-  location     String?   @db.VarChar(255)
-  start_date   DateTime? @db.Date
-  course_type  Json?
-  pace         Json?
-
-  @@index([user_created], map: "courses_user_created_foreign")
-  @@index([user_updated], map: "courses_user_updated_foreign")
-}
-
-model QuizzResource {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  quiz_id      Int?      @db.UnsignedInt
-  description  String?   @db.Text
-  file         String?   @db.Char(36)
-
-  @@index([file], map: "quizzresource_file_foreign")
-  @@index([quiz_id], map: "quizzresource_quiz_id_foreign")
-  @@index([user_created], map: "quizzresource_user_created_foreign")
-  @@index([user_updated], map: "quizzresource_user_updated_foreign")
-}
-
-model Quizzes {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  description  String?   @db.Text
-  image        String?   @db.Char(36)
-  duration     DateTime? @db.Time(0)
-
-  @@index([image], map: "quizzes_image_foreign")
-  @@index([user_created], map: "quizzes_user_created_foreign")
-  @@index([user_updated], map: "quizzes_user_updated_foreign")
-}
-
-model FaqItem {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  question     String?   @db.VarChar(255)
-  answer       String?   @db.Text
-
-  @@index([user_created], map: "faqitem_user_created_foreign")
-  @@index([user_updated], map: "faqitem_user_updated_foreign")
-}
-
-model PersonalityTags {
-  id           String    @id @db.Char(36)
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  name         String?   @unique(map: "personalitytags_name_unique") @db.VarChar(255)
-
-  @@index([user_created], map: "personalitytags_user_created_foreign")
-}
-
-model UserPersonality {
-  id                    String    @id @db.Char(36)
-  status                String    @default("draft") @db.VarChar(255)
-  sort                  Int?
-  user_created          String?   @db.Char(36)
-  user_updated          String?   @db.Char(36)
-  date_updated          DateTime? @db.Timestamp(0)
-  you_at_work           String?   @db.Text
-  strengths_summary     String?   @db.Text
-  communications_skills String?   @db.Text
-  leadership            String?   @db.Text
-  teamwork              String?   @db.Text
-  name                  String?   @unique(map: "userpersonality_name_unique") @db.VarChar(255)
-
-  @@index([user_created], map: "userpersonality_user_created_foreign")
-  @@index([user_updated], map: "userpersonality_user_updated_foreign")
-}
-
-model UserPersonality_PersonalityTags {
-  id                 Int     @id @default(autoincrement()) @db.UnsignedInt
-  UserPersonality_id String? @db.Char(36)
-  PersonalityTags_id String? @db.Char(36)
-
-  @@index([PersonalityTags_id], map: "userpersonality_personalitytags_personalitytags_id_foreign")
-  @@index([UserPersonality_id], map: "userpersonality_personalitytags_userpersonality_id_foreign")
-}
-
-model UserPersonality_PersonalityTags_1 {
-  id                 Int     @id @default(autoincrement()) @db.UnsignedInt
-  UserPersonality_id String? @db.Char(36)
-  PersonalityTags_id String? @db.Char(36)
-
-  @@index([PersonalityTags_id], map: "userpersonality_personalitytags_1_personalitytags_id_foreign")
-  @@index([UserPersonality_id], map: "userpersonality_personalitytags_1_userpersonality_id_foreign")
-}
-
-model UserPersonality_PersonalityTags_2 {
-  id                 Int     @id @default(autoincrement()) @db.UnsignedInt
-  UserPersonality_id String? @db.Char(36)
-  PersonalityTags_id String? @db.Char(36)
-
-  @@index([PersonalityTags_id], map: "userpersonality_personalitytags_2_personalitytags_id_foreign")
-  @@index([UserPersonality_id], map: "userpersonality_personalitytags_2_userpersonality_id_foreign")
-}
-
-model Profile {
-  id           String    @id @db.Char(36)
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  personality  String?   @db.Char(36)
-  user         String?   @db.VarChar(255)
-  User         User[]
-
-  @@index([personality], map: "profile_personality_foreign")
-  @@index([user_created], map: "profile_user_created_foreign")
-  @@index([user_updated], map: "profile_user_updated_foreign")
-}
-
-model Careers_Courses {
-  id         Int     @id @default(autoincrement()) @db.UnsignedInt
-  Careers_id String? @db.Char(36)
-  Courses_id Int?    @db.UnsignedInt
-
-  @@index([Careers_id], map: "careers_courses_careers_id_foreign")
-  @@index([Courses_id], map: "careers_courses_courses_id_foreign")
 }

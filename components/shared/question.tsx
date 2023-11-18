@@ -131,9 +131,9 @@ export default function Form({
 function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
   switch (question.type) {
-    case QUESTION_TYPES.Slider:
+    case QUESTION_TYPES.Range:
       return <SliderQuestion {...question} inputRef={inputRef[question.id]} />
-    case QUESTION_TYPES.YesNoCheckbox:
+    case QUESTION_TYPES.Checkbox:
       return (
         <YesNoQuestion
           {...question}

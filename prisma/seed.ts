@@ -75,64 +75,99 @@ async function seedTags() {
   // for each object, create a tag in the database
 }
 
+async function seedSteps() {
+  const steps = [
+    {
+      title: "Persönliche Werte",
+      description:
+        "Unsere Werte sind tief verwurzelte Überzeugungen und Prinzipien, die das Verhalten und die Entscheidungen einer Person leiten. Es ist wichtig, sie zu kennen, da sie als innerer Kompass dienen und helfen,",
+    },
+    {
+      title: "Stärken",
+      description:
+        "Die Fragen dienen dazu, die persönlichen Stärken einer Person aufgrund ihrer eigenen Selbsteinschätzung zu ermitteln und bieten Einblicke in ihre Werthaltung und Vorlieben. Ein Persönlichkeitstest wird zusätzlich verwendet, um die Stärken genauer zu analysieren und ein umfassenderes Bild der individuellen Persönlichkeit zu zeichnen.",
+    },
+    {
+      title: "Der ideale Arbeitsrahmen",
+      description:
+        "Ein Arbeitsrahmen, der den eigenen Bedürfnissen entspricht, fördert die persönliche Zufriedenheit und das Wohlbefinden am Arbeitsplatz, da er eine angenehme und produktive Arbeitsumgebung schafft. Bei der Berufswahl ist es wichtig, diesen Rahmen zu berücksichtigen, um sicherzustellen, dass der gewählte Beruf und die Arbeitsbedingungen den individuellen Anforderungen und Vorlieben gerecht werden.",
+    },
+    {
+      title: "Stärken",
+      description:
+        "Die Fragen dienen dazu, die persönlichen Stärken einer Person aufgrund ihrer eigenen Selbsteinschätzung zu ermitteln und bieten Einblicke in ihre Werthaltung und Vorlieben. Ein Persönlichkeitstest wird zusätzlich verwendet, um die Stärken genauer zu analysieren und ein umfassenderes Bild der individuellen Persönlichkeit zu zeichnen.",
+    },
+    {
+      title: "Finanzierungsmöglichkeiten",
+      description:
+        "Die Fragen zur Prüfung des Anspruchs auf einen Bildungsgutschein dienen dazu, die individuellen Bildungsbedürfnisse und beruflichen Ziele einer Person zu ermitteln. Dies ermöglicht es, festzustellen, ob sie berechtigt ist, staatliche Unterstützung für die Finanzierung ihrer Weiterbildung oder Umschulung zu erhalten.",
+    },
+  ]
+
+  for (const step of steps) {
+    await prisma?.evaluationFormStep?.upsert({
+      where: {
+        title: step.title,
+      },
+      create: {
+        ...step,
+      },
+      update: {
+        ...step,
+      },
+    })
+  }
+}
+
 async function main(): Promise<void> {
   await seedCareers()
+  await seedSteps()
   let order = 1
   const insertQuestion = async ({
     question,
-    category,
+    step,
     type,
-    min = 1,
-    max = 5,
   }: {
     question: string
-    category: string
+    step: number
     type: string
-    min?: number
-    max?: number
   }) => {
-    await prisma.question.upsert({
+    await prisma.evaluationFormQuestion.upsert({
       where: {
         question,
       },
       update: {
-        category,
-        order,
+        step,
+        sort: order,
         question,
         type,
-        max,
-        min,
       },
       create: {
-        category,
-        order,
+        step,
+        sort: order,
         question,
         type,
-        max,
-        min,
       },
     })
     order++
   }
-  const addTextInput = (question: string, category: string) => {
-    return insertQuestion({ question, category, type: QUESTION_TYPES.Text })
+  const addTextInput = (question: string, step: number) => {
+    return insertQuestion({ question, step, type: QUESTION_TYPES.Text })
   }
 
-  const addYesNoCheckbox = (question: string, category: string) => {
+  const addYesNoCheckbox = (question: string, step: number) => {
     return insertQuestion({
       question,
-      category,
-      type: QUESTION_TYPES.YesNoCheckbox,
+      step,
+      type: QUESTION_TYPES.Checkbox,
     })
   }
 
-  const addSlider = (question: string, category: string) => {
+  const addSlider = (question: string, step: number) => {
     return insertQuestion({
       question,
-      category,
-      type: QUESTION_TYPES.Slider,
-      min: 1,
-      max: 5,
+      step,
+      type: QUESTION_TYPES.Range,
     })
   }
 
@@ -147,8 +182,9 @@ async function main(): Promise<void> {
     "Wie sieht ein perfekter Tag für dich aus?",
   ]
 
+  order = 1
   for (const value of values) {
-    await addTextInput(value, QUESTION_CATEGORIES.Values)
+    await addTextInput(value, 1)
   }
 
   const strengths = [
@@ -159,8 +195,9 @@ async function main(): Promise<void> {
     "Worin war ich als Kind besonders gut, was ich heute nicht mehr von mir behaupten würde?",
   ]
 
+  order = 1
   for (const value of strengths) {
-    await addTextInput(value, QUESTION_CATEGORIES.Strengths)
+    await addTextInput(value, 2)
   }
 
   const financingOptions = [
@@ -169,8 +206,9 @@ async function main(): Promise<void> {
     "Hast du einen befristeten Arbeitsvertrag?",
   ]
 
+  order = 1
   for (const value of financingOptions) {
-    await addYesNoCheckbox(value, QUESTION_CATEGORIES.FinancingOptions)
+    await addYesNoCheckbox(value, 3)
   }
 
   const idealEnvironments = [
@@ -185,8 +223,9 @@ async function main(): Promise<void> {
     "Ich möchte bei der Arbeit anziehen was ich möchte",
   ]
 
+  order = 1
   for (const value of idealEnvironments) {
-    await addSlider(value, QUESTION_CATEGORIES.IdealEnvironment)
+    await addSlider(value, 4)
   }
 }
 main()
