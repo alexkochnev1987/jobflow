@@ -21,14 +21,23 @@ import { Button } from "@radix-ui/themes"
 import { cn } from "@/lib/utils"
 import "../../i18n/config-client"
 import { useTranslation } from "react-i18next"
+import { EvaluationFormQuestion } from "@prisma/client"
+
+type FormProps = {
+  title: string
+  description: string
+  questions: EvaluationFormQuestion[]
+  progress: number
+  step: number
+}
 
 export default function Form({
-  category,
+  title,
   description,
   questions,
   progress,
   step,
-}): JSX.Element {
+}: FormProps): JSX.Element {
   const [errors, setErrors] = useState({})
   const store = userStore()
   const router = useRouter()
@@ -86,7 +95,7 @@ export default function Form({
               <Progress value={progress} className="border-0" />
             </div>
             <br />
-            {category}
+            {title}
           </CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>

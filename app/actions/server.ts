@@ -1,14 +1,6 @@
 "use server"
 
-export async function getQuestions(category: string) {
-  const res = await prisma?.question.findMany({
-    where: {
-      category,
-    },
-  })
-
-  return res
-}
+export * from "./form-evaluation"
 
 export async function getCareers() {
   const res = await prisma?.careers.findMany({})
