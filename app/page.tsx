@@ -4,7 +4,7 @@ import {
   getEvaluationFormStep,
   getEvaluationFormSteps,
   getEvaluationFormStepsCount,
-} from "./actions/server"
+} from "./actions/form-evaluation"
 import Form from "@/components/shared/question"
 import { redirect, useRouter } from "next/navigation"
 import { getServerSession } from "next-auth"
@@ -30,6 +30,11 @@ export default async function Home({
   const step = steps.find((s) => s.id === stepId) || steps[0]
 
   const questions = await getEvaluationFormQuestions(step.id)
+
+  console.log({
+    step,
+    questions,
+  })
 
   return (
     <>
