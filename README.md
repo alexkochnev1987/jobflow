@@ -1,5 +1,7 @@
 # JobFlow
 
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+
 ## [Requeriments](./docs/requeriments.md)
 
 ## [Architecture](./docs/architecrure.drawio)
