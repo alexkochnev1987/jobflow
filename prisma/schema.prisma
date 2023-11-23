@@ -183,15 +183,16 @@ model PersonalityTags {
 }
 
 model Profile {
-  id           String    @id @db.Char(36)
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  personality  String?   @db.Char(36)
-  user         String?   @db.VarChar(255)
+  id              String           @id @db.Char(36)
+  status          String           @default("draft") @db.VarChar(255)
+  sort            Int?
+  user_created    String?          @db.Char(36)
+  date_created    DateTime?        @db.Timestamp(0)
+  user_updated    String?          @db.Char(36)
+  date_updated    DateTime?        @db.Timestamp(0)
+  personality     String?          @db.Char(36)
+  user            String?          @db.VarChar(255)
+  userPersonality UserPersonality? @relation(fields: [personality], references: [id])
 
   @@index([personality], map: "profile_personality_foreign")
   @@index([user_created], map: "profile_user_created_foreign")
@@ -271,9 +272,10 @@ model UserPersonality {
   leadership             String?                             @db.Text
   teamwork               String?                             @db.Text
   name                   String?                             @unique(map: "userpersonality_name_unique") @db.VarChar(255)
-  strengths               UserPersonality_PersonalityTags[]
+  strengths              UserPersonality_PersonalityTags[]
   ideal_work_environment UserPersonality_PersonalityTags_1[]
   weaknesses             UserPersonality_PersonalityTags_2[]
+  Profile                Profile[]
 
   @@index([user_created], map: "userpersonality_user_created_foreign")
   @@index([user_updated], map: "userpersonality_user_updated_foreign")
@@ -288,6 +290,7 @@ model UserPersonality_PersonalityTags {
 
   @@index([PersonalityTags_id], map: "userpersonality_personalitytags_personalitytags_id_foreign")
   @@index([UserPersonality_id], map: "userpersonality_personalitytags_userpersonality_id_foreign")
+  @@index([userPersonalityId])
 }
 
 model UserPersonality_PersonalityTags_1 {
@@ -299,6 +302,7 @@ model UserPersonality_PersonalityTags_1 {
 
   @@index([PersonalityTags_id], map: "userpersonality_personalitytags_1_personalitytags_id_foreign")
   @@index([UserPersonality_id], map: "userpersonality_personalitytags_1_userpersonality_id_foreign")
+  @@index([userPersonalityId])
 }
 
 model UserPersonality_PersonalityTags_2 {
@@ -310,6 +314,7 @@ model UserPersonality_PersonalityTags_2 {
 
   @@index([PersonalityTags_id], map: "userpersonality_personalitytags_2_personalitytags_id_foreign")
   @@index([UserPersonality_id], map: "userpersonality_personalitytags_2_userpersonality_id_foreign")
+  @@index([userPersonalityId])
 }
 
 model VerificationToken {

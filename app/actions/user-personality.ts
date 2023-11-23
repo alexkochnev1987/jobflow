@@ -1,6 +1,6 @@
 "use server"
 
-const select = {
+export const userPersonalitySelect = {
   name: true,
   you_at_work: true,
   strengths_summary: true,
@@ -30,7 +30,7 @@ export async function getUserPersonalityByName(name: string) {
       status: "published",
       name,
     },
-    select,
+    select: userPersonalitySelect,
   })
 }
 
@@ -40,6 +40,6 @@ export async function getUserPersonalityById(id: string) {
       status: "published",
       id,
     },
-    select,
+    select: userPersonalitySelect,
   })
 }
