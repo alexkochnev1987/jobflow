@@ -1,13 +1,23 @@
 "use server"
 
+const tagsSelect = {
+  select: {
+    tags: {
+      select: {
+        name: true,
+      },
+    },
+  },
+}
+
 export const userPersonalitySelect = {
   name: true,
   you_at_work: true,
   strengths_summary: true,
   sort: true,
-  strengths: true,
-  weaknesses: true,
-  ideal_work_environment: true,
+  strengths: tagsSelect,
+  weaknesses: tagsSelect,
+  ideal_work_environment: tagsSelect,
   communications_skills: true,
   leadership: true,
   teamwork: true,
