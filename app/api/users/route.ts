@@ -2,31 +2,46 @@ import prisma from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: Request) {}
 export async function POST(request: NextRequest) {
-  const { uid, questionResponse, questionId } = await request.json()
+  const { questionResponse, questionId, uid } = await request.json()
 
-  console.log(uid)
-  // save response
-  // get default UserResponses or create it
-  const userResponse = await prisma?.userResponses.upsert({
+  console.log({ questionResponse, questionId, uid })
+
+  const savedResponse = await prisma?.evaluationFormUserResponse.findFirst({
     where: {
-      uid,
+      AND: [
+        {
+          question: questionId,
+        },
+        {
+          uid,
+        },
+      ],
     },
-    create: {
-      uid,
-    },
-    update: {},
+    select: {
+      id: true,
+    }
   })
-  const saveResponse = await prisma?.questionResponse.create({
-    data: {
-      response: `${questionResponse}`,
-      questionId,
-      responseId: userResponse.id,
-    },
-  })
+
+  if (savedResponse) {
+    console.log("update", savedResponse.id)
+    const updateResponse = await prisma?.evaluationFormUserResponse.update({
+      where: {
+        id: savedResponse.id,
+      },
+      data: {
+        answer: questionResponse,
+      },
+    })
+    return NextResponse.json({ updateResponse })
+  }
   // save QuestionResponse
-  console.log({
-    uid,
-    saveResponse,
+  console.log("create", { uid })
+  const saveResponse = await prisma?.evaluationFormUserResponse.create({
+    data: {
+      answer: questionResponse,
+      question: questionId,
+      uid,
+    },
   })
   return NextResponse.json({ saveResponse })
 }

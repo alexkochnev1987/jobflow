@@ -1,3 +1,4 @@
+"use server";
 import { QUESTION_CATEGORIES } from "@/lib/constants"
 import {
   getEvaluationFormQuestions,
@@ -31,6 +32,8 @@ export default async function Home({
 
   const questions = await getEvaluationFormQuestions(step.id)
 
+  const progress = Math.round((step.id / steps.length) * 100)
+
   console.log({
     step,
   })
@@ -42,7 +45,7 @@ export default async function Home({
           step={step.id}
           questions={questions}
           title={t(step.title)}
-          progress={40}
+          progress={progress}
           description={t(step.description)}
         />
       </div>

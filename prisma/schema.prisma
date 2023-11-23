@@ -159,14 +159,12 @@ model EvaluationFormUserResponse {
   date_updated DateTime? @db.Timestamp(0)
   question     Int?      @db.UnsignedInt
   answer       String?   @db.VarChar(255)
-  session      String?   @db.VarChar(255)
   user         String?   @db.VarChar(255)
+  uid          String?   @db.VarChar(255)
   User         User?     @relation(fields: [user], references: [id])
-  Session      Session?  @relation(fields: [session], references: [id])
 
   @@index([question], map: "evaluationformuserresponse_question_foreign")
   @@index([user])
-  @@index([session])
 }
 
 model FaqItem {
@@ -208,9 +206,9 @@ model Profile {
   date_updated    DateTime?        @db.Timestamp(0)
   personality     String?          @db.Char(36)
   user            String?          @db.VarChar(255)
+  userId          String?
   userPersonality UserPersonality? @relation(fields: [personality], references: [id])
   User            User?            @relation(fields: [userId], references: [id])
-  userId          String?
 
   @@index([personality], map: "profile_personality_foreign")
   @@index([user_created], map: "profile_user_created_foreign")
@@ -256,14 +254,13 @@ model Quizzes {
 }
 
 model Session {
-  id                         String                       @id
-  sessionToken               String                       @unique
-  userId                     String
-  expires                    DateTime
-  createdAt                  DateTime                     @default(now())
-  updatedAt                  DateTime
-  user                       User?                        @relation(fields: [userId], references: [id])
-  EvaluationFormUserResponse EvaluationFormUserResponse[]
+  id           String   @id
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+  user         User?    @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
@@ -312,8 +309,8 @@ model UserPersonality_PersonalityTags {
   id                 Int              @id @default(autoincrement()) @db.UnsignedInt
   UserPersonality_id String?          @db.Char(36)
   PersonalityTags_id String?          @db.Char(36)
-  UserPersonality    UserPersonality? @relation(fields: [userPersonalityId], references: [id])
   userPersonalityId  String?          @db.Char(36)
+  UserPersonality    UserPersonality? @relation(fields: [userPersonalityId], references: [id])
   tags               PersonalityTags? @relation(fields: [PersonalityTags_id], references: [id])
 
   @@index([PersonalityTags_id], map: "userpersonality_personalitytags_personalitytags_id_foreign")
@@ -325,8 +322,8 @@ model UserPersonality_PersonalityTags_1 {
   id                 Int              @id @default(autoincrement()) @db.UnsignedInt
   UserPersonality_id String?          @db.Char(36)
   PersonalityTags_id String?          @db.Char(36)
-  UserPersonality    UserPersonality? @relation(fields: [userPersonalityId], references: [id])
   userPersonalityId  String?          @db.Char(36)
+  UserPersonality    UserPersonality? @relation(fields: [userPersonalityId], references: [id])
   tags               PersonalityTags? @relation(fields: [PersonalityTags_id], references: [id])
 
   @@index([PersonalityTags_id], map: "userpersonality_personalitytags_1_personalitytags_id_foreign")
@@ -338,8 +335,8 @@ model UserPersonality_PersonalityTags_2 {
   id                 Int              @id @default(autoincrement()) @db.UnsignedInt
   UserPersonality_id String?          @db.Char(36)
   PersonalityTags_id String?          @db.Char(36)
-  UserPersonality    UserPersonality? @relation(fields: [userPersonalityId], references: [id])
   userPersonalityId  String?          @db.Char(36)
+  UserPersonality    UserPersonality? @relation(fields: [userPersonalityId], references: [id])
   tags               PersonalityTags? @relation(fields: [PersonalityTags_id], references: [id])
 
   @@index([PersonalityTags_id], map: "userpersonality_personalitytags_2_personalitytags_id_foreign")
