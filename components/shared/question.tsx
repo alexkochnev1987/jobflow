@@ -26,7 +26,7 @@ import { EvaluationFormQuestion } from "@prisma/client"
 type FormProps = {
   title: string
   description: string
-  questions: EvaluationFormQuestion[]
+  questions: Partial<EvaluationFormQuestion>[]
   progress: number
   step: number
 }

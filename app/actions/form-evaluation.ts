@@ -1,6 +1,7 @@
 "use server"
 
 const evaluationFormQuestionSelect = {
+  id: true,
   sort: true,
   question: true,
   type: true,
@@ -16,6 +17,7 @@ const evaluationFormQuestionSelect = {
 }
 
 const evaluationFormStepSelect = {
+  id: true,
   sort: true,
   title: true,
   description: true,
@@ -32,7 +34,12 @@ export async function getEvaluationFormSteps() {
     where: {
       status: "published",
     },
-    select: evaluationFormStepSelect,
+    select: {
+      id: true,
+      sort: true,
+      title: true,
+      description: true,
+    },
     orderBy: {
       sort: "asc",
     },
