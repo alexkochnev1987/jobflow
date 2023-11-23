@@ -24,35 +24,39 @@ model Account {
   session_state     String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime
+  user              User?    @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
 
 model Careers {
-  id              String    @id @db.Char(36)
-  status          String    @default("draft") @db.VarChar(255)
+  id              String            @id @db.Char(36)
+  status          String            @default("draft") @db.VarChar(255)
   sort            Int?
-  user_created    String?   @db.Char(36)
-  date_created    DateTime? @db.Timestamp(0)
-  user_updated    String?   @db.Char(36)
-  date_updated    DateTime? @db.Timestamp(0)
-  name            String?   @unique(map: "careers_name_unique") @db.VarChar(255)
-  description     String?   @db.Text
+  user_created    String?           @db.Char(36)
+  date_created    DateTime?         @db.Timestamp(0)
+  user_updated    String?           @db.Char(36)
+  date_updated    DateTime?         @db.Timestamp(0)
+  name            String?           @unique(map: "careers_name_unique") @db.VarChar(255)
+  description     String?           @db.Text
   salaryMin       Int?
   salaryMax       Int?
   retrainingWeeks Int?
   pace            Json?
   format          Json?
+  Careers_Courses Careers_Courses[]
 
   @@index([user_created], map: "careers_user_created_foreign")
   @@index([user_updated], map: "careers_user_updated_foreign")
 }
 
 model Careers_Courses {
-  id         Int     @id @default(autoincrement()) @db.UnsignedInt
-  Careers_id String? @db.Char(36)
-  Courses_id Int?    @db.UnsignedInt
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  Careers_id String?  @db.Char(36)
+  Courses_id Int?     @db.UnsignedInt
+  careers    Careers? @relation(fields: [Careers_id], references: [id])
+  courses    Courses? @relation(fields: [Courses_id], references: [id])
 
   @@index([Careers_id], map: "careers_courses_careers_id_foreign")
   @@index([Courses_id], map: "careers_courses_courses_id_foreign")
@@ -76,36 +80,38 @@ model Companies {
 }
 
 model Courses {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  name         String?   @db.VarChar(255)
-  description  String?   @db.Text
-  sponsonrship Boolean?
-  price        Decimal?  @db.Decimal(10, 5)
-  location     String?   @db.VarChar(255)
-  start_date   DateTime? @db.Date
-  course_type  Json?
-  pace         Json?
+  id              Int               @id @default(autoincrement()) @db.UnsignedInt
+  status          String            @default("draft") @db.VarChar(255)
+  sort            Int?
+  user_created    String?           @db.Char(36)
+  date_created    DateTime?         @db.Timestamp(0)
+  user_updated    String?           @db.Char(36)
+  date_updated    DateTime?         @db.Timestamp(0)
+  name            String?           @db.VarChar(255)
+  description     String?           @db.Text
+  sponsonrship    Boolean?
+  price           Decimal?          @db.Decimal(10, 5)
+  location        String?           @db.VarChar(255)
+  start_date      DateTime?         @db.Date
+  course_type     Json?
+  pace            Json?
+  Careers_Courses Careers_Courses[]
 
   @@index([user_created], map: "courses_user_created_foreign")
   @@index([user_updated], map: "courses_user_updated_foreign")
 }
 
 model EvaluationFormAnswer {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  value        String?   @db.VarChar(255)
-  question     Int?      @db.UnsignedInt
+  id                     Int                     @id @default(autoincrement()) @db.UnsignedInt
+  status                 String                  @default("draft") @db.VarChar(255)
+  sort                   Int?
+  user_created           String?                 @db.Char(36)
+  date_created           DateTime?               @db.Timestamp(0)
+  user_updated           String?                 @db.Char(36)
+  date_updated           DateTime?               @db.Timestamp(0)
+  value                  String?                 @db.VarChar(255)
+  question               Int?                    @db.UnsignedInt
+  EvaluationFormQuestion EvaluationFormQuestion? @relation(fields: [question], references: [id])
 
   @@index([question], map: "evaluationformanswer_question_foreign")
   @@index([user_created], map: "evaluationformanswer_user_created_foreign")
@@ -113,16 +119,18 @@ model EvaluationFormAnswer {
 }
 
 model EvaluationFormQuestion {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  step         Int?      @db.UnsignedInt
-  question     String?   @unique(map: "evaluationformquestion_question_unique") @db.VarChar(255)
-  type         String?   @db.VarChar(255)
+  id                   Int                    @id @default(autoincrement()) @db.UnsignedInt
+  status               String                 @default("draft") @db.VarChar(255)
+  sort                 Int?
+  user_created         String?                @db.Char(36)
+  date_created         DateTime?              @db.Timestamp(0)
+  user_updated         String?                @db.Char(36)
+  date_updated         DateTime?              @db.Timestamp(0)
+  step                 Int?                   @db.UnsignedInt
+  question             String?                @unique(map: "evaluationformquestion_question_unique") @db.VarChar(255)
+  type                 String?                @db.VarChar(255)
+  EvalutionFormStep    EvaluationFormStep?    @relation(fields: [step], references: [id])
+  EvaluationFormAnswer EvaluationFormAnswer[]
 
   @@index([step], map: "evaluationformquestion_step_foreign")
   @@index([user_created], map: "evaluationformquestion_user_created_foreign")
@@ -130,15 +138,16 @@ model EvaluationFormQuestion {
 }
 
 model EvaluationFormStep {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  title        String?   @unique(map: "evaluationformstep_title_unique") @db.VarChar(255)
-  description  String?   @db.Text
+  id                     Int                      @id @default(autoincrement()) @db.UnsignedInt
+  status                 String                   @default("draft") @db.VarChar(255)
+  sort                   Int?
+  user_created           String?                  @db.Char(36)
+  date_created           DateTime?                @db.Timestamp(0)
+  user_updated           String?                  @db.Char(36)
+  date_updated           DateTime?                @db.Timestamp(0)
+  title                  String?                  @unique(map: "evaluationformstep_title_unique") @db.VarChar(255)
+  description            String?                  @db.Text
+  EvaluationFormQuestion EvaluationFormQuestion[]
 
   @@index([user_created], map: "evaluationformstep_user_created_foreign")
   @@index([user_updated], map: "evaluationformstep_user_updated_foreign")
@@ -152,8 +161,12 @@ model EvaluationFormUserResponse {
   answer       String?   @db.VarChar(255)
   session      String?   @db.VarChar(255)
   user         String?   @db.VarChar(255)
+  User         User?     @relation(fields: [user], references: [id])
+  Session      Session?  @relation(fields: [session], references: [id])
 
   @@index([question], map: "evaluationformuserresponse_question_foreign")
+  @@index([user])
+  @@index([session])
 }
 
 model FaqItem {
@@ -193,10 +206,13 @@ model Profile {
   personality     String?          @db.Char(36)
   user            String?          @db.VarChar(255)
   userPersonality UserPersonality? @relation(fields: [personality], references: [id])
+  User            User?            @relation(fields: [userId], references: [id])
+  userId          String?
 
   @@index([personality], map: "profile_personality_foreign")
   @@index([user_created], map: "profile_user_created_foreign")
   @@index([user_updated], map: "profile_user_updated_foreign")
+  @@index([userId])
 }
 
 model QuizzResource {
@@ -210,6 +226,7 @@ model QuizzResource {
   quiz_id      Int?      @db.UnsignedInt
   description  String?   @db.Text
   file         String?   @db.Char(36)
+  quizz        Quizzes?  @relation(fields: [quiz_id], references: [id])
 
   @@index([file], map: "quizzresource_file_foreign")
   @@index([quiz_id], map: "quizzresource_quiz_id_foreign")
@@ -218,16 +235,17 @@ model QuizzResource {
 }
 
 model Quizzes {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  description  String?   @db.Text
-  image        String?   @db.Char(36)
-  duration     DateTime? @db.Time(0)
+  id            Int             @id @default(autoincrement()) @db.UnsignedInt
+  status        String          @default("draft") @db.VarChar(255)
+  sort          Int?
+  user_created  String?         @db.Char(36)
+  date_created  DateTime?       @db.Timestamp(0)
+  user_updated  String?         @db.Char(36)
+  date_updated  DateTime?       @db.Timestamp(0)
+  description   String?         @db.Text
+  image         String?         @db.Char(36)
+  duration      DateTime?       @db.Time(0)
+  QuizzResource QuizzResource[]
 
   @@index([image], map: "quizzes_image_foreign")
   @@index([user_created], map: "quizzes_user_created_foreign")
@@ -235,26 +253,32 @@ model Quizzes {
 }
 
 model Session {
-  id           String   @id
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime
+  id                         String                       @id
+  sessionToken               String                       @unique
+  userId                     String
+  expires                    DateTime
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime
+  user                       User?                        @relation(fields: [userId], references: [id])
+  EvaluationFormUserResponse EvaluationFormUserResponse[]
 
   @@index([userId])
 }
 
 model User {
-  id            String    @id
-  name          String?
-  password      String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime
-  profileId     String?   @db.Char(36)
+  id                         String                       @id
+  name                       String?
+  password                   String?
+  email                      String?                      @unique
+  emailVerified              DateTime?
+  image                      String?
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime
+  profileId                  String?                      @db.Char(36)
+  Profile                    Profile[]
+  Session                    Session[]
+  Account                    Account[]
+  EvaluationFormUserResponse EvaluationFormUserResponse[]
 
   @@index([profileId])
 }
