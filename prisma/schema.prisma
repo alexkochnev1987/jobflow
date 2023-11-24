@@ -119,18 +119,19 @@ model EvaluationFormAnswer {
 }
 
 model EvaluationFormQuestion {
-  id                   Int                    @id @default(autoincrement()) @db.UnsignedInt
-  status               String                 @default("draft") @db.VarChar(255)
-  sort                 Int?
-  user_created         String?                @db.Char(36)
-  date_created         DateTime?              @db.Timestamp(0)
-  user_updated         String?                @db.Char(36)
-  date_updated         DateTime?              @db.Timestamp(0)
-  step                 Int?                   @db.UnsignedInt
-  question             String?                @unique(map: "evaluationformquestion_question_unique") @db.VarChar(255)
-  type                 String?                @db.VarChar(255)
-  EvalutionFormStep    EvaluationFormStep?    @relation(fields: [step], references: [id])
-  EvaluationFormAnswer EvaluationFormAnswer[]
+  id                         Int                          @id @default(autoincrement()) @db.UnsignedInt
+  status                     String                       @default("draft") @db.VarChar(255)
+  sort                       Int?
+  user_created               String?                      @db.Char(36)
+  date_created               DateTime?                    @db.Timestamp(0)
+  user_updated               String?                      @db.Char(36)
+  date_updated               DateTime?                    @db.Timestamp(0)
+  step                       Int?                         @db.UnsignedInt
+  question                   String?                      @unique(map: "evaluationformquestion_question_unique") @db.VarChar(255)
+  type                       String?                      @db.VarChar(255)
+  EvalutionFormStep          EvaluationFormStep?          @relation(fields: [step], references: [id])
+  EvaluationFormAnswer       EvaluationFormAnswer[]
+  EvaluationFormUserResponse EvaluationFormUserResponse[]
 
   @@index([step], map: "evaluationformquestion_step_foreign")
   @@index([user_created], map: "evaluationformquestion_user_created_foreign")
@@ -154,14 +155,15 @@ model EvaluationFormStep {
 }
 
 model EvaluationFormUserResponse {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  date_created DateTime? @db.Timestamp(0)
-  date_updated DateTime? @db.Timestamp(0)
-  question     Int?      @db.UnsignedInt
-  answer       String?   @db.VarChar(255)
-  user         String?   @db.VarChar(255)
-  uid          String?   @db.VarChar(255)
-  User         User?     @relation(fields: [user], references: [id])
+  id                     Int                     @id @default(autoincrement()) @db.UnsignedInt
+  date_created           DateTime?               @db.Timestamp(0)
+  date_updated           DateTime?               @db.Timestamp(0)
+  question               Int?                    @db.UnsignedInt
+  answer                 String?                 @db.VarChar(255)
+  user                   String?                 @db.VarChar(255)
+  uid                    String?                 @db.VarChar(255)
+  User                   User?                   @relation(fields: [user], references: [id])
+  EvaluationFormQuestion EvaluationFormQuestion? @relation(fields: [question], references: [id])
 
   @@index([question], map: "evaluationformuserresponse_question_foreign")
   @@index([user])
@@ -197,18 +199,20 @@ model PersonalityTags {
 }
 
 model Profile {
-  id              String           @id @db.Char(36)
-  status          String           @default("draft") @db.VarChar(255)
-  sort            Int?
-  user_created    String?          @db.Char(36)
-  date_created    DateTime?        @db.Timestamp(0)
-  user_updated    String?          @db.Char(36)
-  date_updated    DateTime?        @db.Timestamp(0)
-  personality     String?          @db.Char(36)
-  user            String?          @db.VarChar(255)
-  userId          String?
-  userPersonality UserPersonality? @relation(fields: [personality], references: [id])
-  User            User?            @relation(fields: [userId], references: [id])
+  id                  String           @id @db.Char(36)
+  status              String           @default("draft") @db.VarChar(255)
+  sort                Int?
+  user_created        String?          @db.Char(36)
+  date_created        DateTime?        @db.Timestamp(0)
+  user_updated        String?          @db.Char(36)
+  date_updated        DateTime?        @db.Timestamp(0)
+  personality         String?          @db.Char(36)
+  user                String?          @db.VarChar(255)
+  userId              String?
+  uid                 String?          @unique(map: "profile_uid_unique") @db.VarChar(255)
+  evaluation_response String?          @db.Text
+  userPersonality     UserPersonality? @relation(fields: [personality], references: [id])
+  User                User?            @relation(fields: [userId], references: [id])
 
   @@index([personality], map: "profile_personality_foreign")
   @@index([user_created], map: "profile_user_created_foreign")
@@ -925,4 +929,21 @@ model wp_users {
   @@index([user_email], map: "user_email")
   @@index([user_login], map: "user_login_key")
   @@index([user_nicename], map: "user_nicename")
+}
+
+model UserPersonalityQuestion {
+  id           Int       @id @default(autoincrement()) @db.UnsignedInt
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?   @db.Char(36)
+  date_created DateTime? @db.Timestamp(0)
+  user_updated String?   @db.Char(36)
+  date_updated DateTime? @db.Timestamp(0)
+  column       Int?
+  question     String?   @db.VarChar(255)
+  a            String?   @db.VarChar(255)
+  b            String?   @db.VarChar(255)
+
+  @@index([user_created], map: "userpersonalityquestion_user_created_foreign")
+  @@index([user_updated], map: "userpersonalityquestion_user_updated_foreign")
 }

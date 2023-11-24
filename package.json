@@ -9,7 +9,7 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "next lint",
-    "dbpull": "doppler run -- npx prisma db pull",
+    "dbpull": "doppler run -- npx prisma db pull && npx prisma generate",
     "dbseed": "doppler run -- npx prisma db seed",
     "services": "doppler run -- docker compose up",
     "deploy": "npm run build && npm run deploy:compress && npm run deploy:prepare && npm run deploy:upload && npm run deploy:install",

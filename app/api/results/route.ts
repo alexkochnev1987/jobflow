@@ -6,9 +6,12 @@ import { sliderResponseToText } from "@/lib/utils"
 import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
 import { retry } from "radash"
+import { authOptions } from "../auth/[...nextauth]/route"
+import { v4 as uuid } from "uuid"
+import { getUserPersonalities } from "@/app/actions/user-personality"
 
-async function mapCareers(res: any) {
-  const jsonRes = JSON.parse(res.result.toString())
+async function mapCareers(evaluationResponse: any) {
+  const jsonRes = JSON.parse(evaluationResponse.toString())
   const careers = await getCareers()
 
   const sorted = jsonRes.careers
@@ -19,152 +22,60 @@ async function mapCareers(res: any) {
     .sort((a, b) => b.rating - a.rating)
 
   return {
-    youAtWork: (jsonRes.youAtWork || "").split("\n").filter((t) => t !== ""),
-    strengths: (jsonRes.strengths || "").split("\n").filter((t) => t !== ""),
     careers: sorted,
   }
 }
 
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
-  const session = await getServerSession()
-  let user = null
-  let res = null
+  const profile = await prisma?.profile?.findFirst({
+    where: {
+      uid,
+    },
+  })
 
-  await retry(
+  if (profile?.evaluation_response) {
+    return NextResponse.json(await mapCareers(profile.evaluation_response))
+  }
+
+  const userResponses = await prisma?.evaluationFormUserResponse.findMany({
+    where: {
+      uid,
+    },
+    select: {
+      answer: true,
+      EvaluationFormQuestion: {
+        select: {
+          id: true,
+          question: true,
+        },
+      },
+    },
+  })
+
+  const userResponsesText = userResponses
+    .map((r) => `${r.EvaluationFormQuestion.question}: ${r.answer}`)
+    .join("\n")
+
+  const careers = await getCareers()
+
+  const careersText = careers
+    .map((c) => `uid: ${c.id} - name: ${c.name}`)
+    .join("\n")
+
+  const personalities = await getUserPersonalities()
+
+  const personalitiesText = personalities.map((p) => `${p.name}`).join("\n")
+
+  const res = await retry(
     {
       times: 3,
       delay: 1000,
     },
     async () => {
-      if (session?.user) {
-        console.log("got session", session)
-        user = await prisma?.user.findFirst({
-          where: {
-            email: session.user.email,
-          },
-        })
-      }
-
-      console.log("uid", { uid })
-
-      if (user) {
-        res = await prisma?.modelQuestionResponseResult?.findFirst({
-          where: {
-            userId: user.id,
-          },
-        })
-
-        console.log("got user", user)
-
-        if (res?.result) {
-          console.log("returning saved value in db")
-          const data = await mapCareers(res)
-          return NextResponse.json(data)
-        }
-      }
-
-      res = await prisma?.modelQuestionResponseResult?.findFirst({
-        where: {
-          questionResponseId: uid,
-        },
-      })
-
-      const userResponse = await prisma?.userResponses.findFirst({
-        where: {
-          uid,
-        },
-        include: {
-          responses: true,
-        },
-      })
-
-      if (!userResponse) {
-        throw new Error(`Invalid uid ${uid}`)
-      }
-
-      if (user) {
-        console.log("associating user with responses")
-        await prisma?.userResponses.update({
-          where: {
-            uid,
-          },
-          data: {
-            userId: user.id,
-          },
-        })
-
-        await prisma?.modelQuestionResponseResult.update({
-          where: {
-            questionResponseId: uid,
-          },
-          data: {
-            userId: user.id,
-          },
-        })
-      }
-
-      if (res?.result) {
-        console.log("returning saved value in db")
-        const data = await mapCareers(res)
-        return NextResponse.json(data)
-      }
-
-      console.log("calculating careers")
-
-      // load questions
-      const questions = await prisma?.question?.findMany({
-        orderBy: {
-          category: "asc",
-        },
-      })
-
-      const groupedQuestions = questions.reduce((prev, q) => {
-        const response = userResponse.responses.find(
-          (r) => r.questionId === q.id,
-        )
-
-        prev[q.category] = prev[q.category] || []
-        if (response) {
-          const item = {
-            question: q.question,
-            response: response.response,
-            text: `${q.question}\n${response.response}`,
-          }
-          prev[q.category].push(item)
-        }
-        return prev
-      }, {})
-
-      // get responses
-
-      const valueQuestions = groupedQuestions[QUESTION_CATEGORIES.Values]
-        .map((r) => r.text)
-        .join("\n")
-
-      const strengthQuestions = groupedQuestions[QUESTION_CATEGORIES.Strengths]
-        .map((r) => r.text)
-        .join("\n")
-
-      const idealEnvQuestions = groupedQuestions[
-        QUESTION_CATEGORIES.IdealEnvironment
-      ]
-        .map((r) => `${r.question}: ${sliderResponseToText(r.response)}`)
-        .join("\n")
-
-      const careers = (await prisma.careers.findMany())
-        .map((c) => `uid: ${c.id} - name: ${c.name}`)
-        .join("\n")
-
       const prompt = `Benutzerprofil:
-  Persönliche Werte:
-  {values}
   
-  Stärken:
-  {strengths}
-  
-  Ideale Arbeitsumgebung:
-  {environment}
+      ${userResponsesText}
   
   Aufgabenanweisungen:
   
@@ -176,7 +87,7 @@ export async function POST(request: NextRequest) {
   
   Zu vergleichende Berufe:
   
-  ${careers}
+  ${careersText}
   
   Zusätzliche Richtlinien:
   
@@ -186,13 +97,10 @@ export async function POST(request: NextRequest) {
   Verwenden Sie Prozentbewertungen, um die Eignung jedes Berufs zu quantifizieren.
   Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und fundierte Zuordnungen bereitzustellen.
   `
-        .replace("{values}", valueQuestions)
-        .replace("{strengths}", strengthQuestions)
-        .replace("{environment}", idealEnvQuestions)
-
-      // console.log(prompt)
+      console.log(prompt)
 
       console.log("trying to get results")
+
       const modelResponse = await completition(prompt)
 
       const choices =
@@ -206,23 +114,22 @@ export async function POST(request: NextRequest) {
         throw new Error("Some careers don't have a rating")
       }
 
-      res = await prisma.modelQuestionResponseResult.upsert({
+      return prisma.profile.upsert({
         where: {
-          questionResponseId: userResponse.uid,
+          uid,
         },
         create: {
-          response: JSON.stringify(modelResponse),
-          result: choices,
-          questionResponseId: uid,
+          id: uuid(),
+          evaluation_response: JSON.stringify(choices),
+          uid: `${uid}`,
         },
         update: {
-          response: JSON.stringify(modelResponse),
-          result: choices,
+          evaluation_response: JSON.stringify(choices),
         },
       })
     },
   )
 
-  const data = await mapCareers(res)
+  const data = await mapCareers(res.evaluation_response)
   return NextResponse.json(data)
 }
