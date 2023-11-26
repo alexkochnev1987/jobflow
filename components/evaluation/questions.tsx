@@ -25,6 +25,7 @@ export function RenderQuestion({ question, inputRef, error }) {
           error={error}
         />
       )
+    case QUESTION_TYPES.Button:
     case QUESTION_TYPES.MBTI:
       return (
         <ButtonQuestion
