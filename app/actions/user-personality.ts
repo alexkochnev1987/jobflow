@@ -111,7 +111,7 @@ function getMBTIAnswer(
       EvaluationFormAnswer: EvaluationFormAnswer[]
     }
   },
-) {
+): EvaluationFormAnswer | undefined {
   const mbtiQuestion = mbtiUserResponse.EvaluationFormQuestion
   const mbtiAnswer = mbtiQuestion.EvaluationFormAnswer.find(
     (answer) =>
