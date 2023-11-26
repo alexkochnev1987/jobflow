@@ -1,3 +1,5 @@
+START TRANSACTION;
+
 INSERT INTO
   EvaluationFormQuestion (status, sort, step, question, `type`)
 VALUES
@@ -123,7 +125,14 @@ VALUES
 INSERT INTO
   EvaluationFormAnswer (status, sort, value, question, label, letter)
 VALUES
-  ('published', 2, '2', @questionID, 'Emotions', 'F');
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'Emotions',
+    'F'
+  );
 
 INSERT INTO
   EvaluationFormQuestion (status, sort, step, question, `type`)
@@ -154,7 +163,14 @@ VALUES
 INSERT INTO
   EvaluationFormAnswer (status, sort, value, question, label, letter)
 VALUES
-  ('published', 2, '2', @questionID, 'Touching', 'F');
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'Touching',
+    'F'
+  );
 
 INSERT INTO
   EvaluationFormQuestion (status, sort, step, question, `type`)
@@ -407,7 +423,14 @@ VALUES
 INSERT INTO
   EvaluationFormAnswer (status, sort, value, question, label, letter)
 VALUES
-  ('published', 2, '2', @questionID, 'Personal', 'F');
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'Personal',
+    'F'
+  );
 
 INSERT INTO
   EvaluationFormQuestion (status, sort, step, question, `type`)
@@ -420,7 +443,14 @@ SET
 INSERT INTO
   EvaluationFormAnswer (status, sort, value, question, label, letter)
 VALUES
-  ('published', 1, '1', @questionID, 'Punctual', 'J');
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'Punctual',
+    'J'
+  );
 
 INSERT INTO
   EvaluationFormAnswer (status, sort, value, question, label, letter)
@@ -764,447 +794,1809 @@ VALUES
     'J'
   );
 
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 23, 5, 'Facts:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter) 
-    VALUES ('published', 1, '1', @questionID, '“Speak for themselves”', 'S');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'Illustrate principles', 'N');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 24, 5, 'Are visionaries:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'somewhat annoying', 'S');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'rather fascinating', 'N');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 25, 5, 'Are you more often:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'a cool-headed person', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'a warm-hearted person', 'F');
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 26, 5, 'Is it worse to be:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'unjust', 'F');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'merciless', 'T');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 27, 5, 'Should one usually let events occur:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'by careful selection and choice', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'randomly and by chance', 'P');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 28, 5, 'Do you feel better about:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'having purchased', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'having the option to buy', 'P');
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 26, 5, 'Is it worse to be:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'unjust', 'F');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'merciless', 'T');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 27, 5, 'Should one usually let events occur:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'by careful selection and choice', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'randomly and by chance', 'P');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 28, 5, 'Do you feel better about:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'having purchased', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'having the option to buy', 'P');
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 32, 5, 'In making decisions do you feel more comfortable with:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'standards', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'feelings', 'F');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 33, 5, 'Are you more:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'firm than gentle', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'gentle than firm', 'F');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 34, 5, 'Which is more admirable:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter) 
-    VALUES ('published', 1, '1', @questionID, 'the ability to organize and be methodical', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'the ability to adapt and make do', 'P');
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 35, 5, 'Do you put more value on:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'infinite', 'N');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'open-minded', 'S');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 36, 5, 'Does new and non-routine interaction with others:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'stimulate and energize you', 'E');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'tax your reserves', 'I');
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 37, 5, 'Are you more frequently:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'a practical sort of person', 'S');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'a fanciful sort of person', 'N');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 38, 5, 'Are you more likely to:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'see how others are useful', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'see how others see', 'F');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 39, 5, 'Which is more satisfying:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'to discuss an issue thoroughly', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'to arrive at agreement on an issue', 'F');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 40, 5, 'Which rules you more:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'your head', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'your heart', 'F');
-
-  INSERT INTO EvaluationFormQuestion 
-    (status, sort, step, question, `type`)
-    VALUES ('published', 40, 5, 'Which rules you more:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'your head', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'your heart', 'F');
-  
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 41, 5, 'Are you more comfortable with work that is:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'contracted', 'J');  
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter) 
-    VALUES ('published', 2, '2', @questionID, 'done on a casual basis', 'P');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 42, 5, 'Do you tend to look for:', 'mbti');
-  
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'the orderly', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)  
-    VALUES ('published', 2, '2', @questionID, 'whatever turns up', 'P');
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 42, 5, 'Do you tend to look for:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)  
-    VALUES ('published', 1, '1', @questionID, 'the orderly', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)  
-    VALUES ('published', 2, '2', @questionID, 'whatever turns up', 'P');
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 43, 5, 'Do you prefer:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'many friends with brief contact', 'E');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter) 
-    VALUES ('published', 2, '2', @questionID, 'a few friends with more lengthy contact', 'I');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 44, 5, 'Do you go more by:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'facts', 'S');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'principles', 'N');
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 45, 5, 'Are you more interested in:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'production and distribution', 'S');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'design and research', 'N');
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 46, 5, 'Which is more of a compliment:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, '“There is a very logical person.”', 'T');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, '“There is a very sentimental person.”', 'F');
-
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 47, 5, 'Do you value in yourself more that you are:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'unwavering', 'J');
-
-  INSERT INTO EvaluationFormAnswer 
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'devoted', 'P');
-
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 48, 5, 'Do you more often prefer the:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)  
-    VALUES ('published', 1, '1', @questionID, 'final and unalterable statement', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 2, '2', @questionID, 'tentative and preliminary statement', 'P');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 49, 5, 'Are you more comfortable:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'after a decision', 'J');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)  
-    VALUES ('published', 2, '2', @questionID, 'before a decision', 'P');
-
-  
-  INSERT INTO EvaluationFormQuestion
-    (status, sort, step, question, `type`)
-    VALUES ('published', 50, 5, 'Do you:', 'mbti');
-
-  SET @questionID = LAST_INSERT_ID();
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter)
-    VALUES ('published', 1, '1', @questionID, 'speak easily and at length with strangers', 'E');
-
-  INSERT INTO EvaluationFormAnswer
-    (status, sort, value, question, label, letter) 
-    VALUES ('published', 2, '2', @questionID, 'find little to say to strangers', 'I');
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 23, 5, 'Facts:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    '“Speak for themselves”',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'Illustrate principles',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 24, 5, 'Are visionaries:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'somewhat annoying',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'rather fascinating',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    25,
+    5,
+    'Are you more often:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'a cool-headed person',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'a warm-hearted person',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 26, 5, 'Is it worse to be:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  ('published', 1, '1', @questionID, 'unjust', 'F');
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'merciless',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    27,
+    5,
+    'Should one usually let events occur:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'by careful selection and choice',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'randomly and by chance',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    28,
+    5,
+    'Do you feel better about:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'having purchased',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'having the option to buy',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 26, 5, 'Is it worse to be:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  ('published', 1, '1', @questionID, 'unjust', 'F');
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'merciless',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    27,
+    5,
+    'Should one usually let events occur:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'by careful selection and choice',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'randomly and by chance',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    28,
+    5,
+    'Do you feel better about:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'having purchased',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'having the option to buy',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    32,
+    5,
+    'In making decisions do you feel more comfortable with:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'standards',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'feelings',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 33, 5, 'Are you more:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'firm than gentle',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'gentle than firm',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    34,
+    5,
+    'Which is more admirable:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'the ability to organize and be methodical',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'the ability to adapt and make do',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    35,
+    5,
+    'Do you put more value on:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'infinite',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'open-minded',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    36,
+    5,
+    'Does new and non-routine interaction with others:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'stimulate and energize you',
+    'E'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'tax your reserves',
+    'I'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    37,
+    5,
+    'Are you more frequently:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'a practical sort of person',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'a fanciful sort of person',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    38,
+    5,
+    'Are you more likely to:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'see how others are useful',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'see how others see',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    39,
+    5,
+    'Which is more satisfying:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'to discuss an issue thoroughly',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'to arrive at agreement on an issue',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    40,
+    5,
+    'Which rules you more:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'your head',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'your heart',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    40,
+    5,
+    'Which rules you more:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'your head',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'your heart',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    41,
+    5,
+    'Are you more comfortable with work that is:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'contracted',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'done on a casual basis',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    42,
+    5,
+    'Do you tend to look for:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'the orderly',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'whatever turns up',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    42,
+    5,
+    'Do you tend to look for:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'the orderly',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'whatever turns up',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 43, 5, 'Do you prefer:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'many friends with brief contact',
+    'E'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'a few friends with more lengthy contact',
+    'I'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 44, 5, 'Do you go more by:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  ('published', 1, '1', @questionID, 'facts', 'S');
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'principles',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    45,
+    5,
+    'Are you more interested in:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'production and distribution',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'design and research',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    46,
+    5,
+    'Which is more of a compliment:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    '“There is a very logical person.”',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    '“There is a very sentimental person.”',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    47,
+    5,
+    'Do you value in yourself more that you are:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'unwavering',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  ('published', 2, '2', @questionID, 'devoted', 'P');
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    48,
+    5,
+    'Do you more often prefer the:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'final and unalterable statement',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'tentative and preliminary statement',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    49,
+    5,
+    'Are you more comfortable:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'after a decision',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'before a decision',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 50, 5, 'Do you:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'speak easily and at length with strangers',
+    'E'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'find little to say to strangers',
+    'I'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    51,
+    5,
+    'Are you more likely to trust your:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'experience',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  ('published', 2, '2', @questionID, 'hunch', 'N');
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 52, 5, 'Do you feel:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'more practical than ingenious',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'more ingenious than practical',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    53,
+    5,
+    'Which person is more to be complimented – one of:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'clear reason',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'strong feeling',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    54,
+    5,
+    'Are you more inclined to be:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'fair-minded',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'sympathetic',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    55,
+    5,
+    'Is it preferable mostly to:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'make sure things are arranged',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'just let things happen',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    56,
+    5,
+    'In relationships should most things be:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    're-negotiable',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'random and circumstantial',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    57,
+    5,
+    'When the phone rings do you:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'hasten to get to it first',
+    'E'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'hope someone else will answer',
+    'I'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    58,
+    5,
+    'Do you prize more in yourself:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'a strong sense of reality',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'a vivid imagination',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    59,
+    5,
+    'Are you drawn more to:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'fundamentals',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'overtones',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    60,
+    5,
+    'Which seems the greater error:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'to be too passionate',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'to be too objective',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    61,
+    5,
+    'Do you see yourself as basically:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'hard-headed',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'soft-hearted',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    62,
+    5,
+    'Which situation appeals to you more:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'the structured and scheduled',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'the unstructured and unscheduled',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    63,
+    5,
+    'Are you a person that is more:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'routinized than whimsical',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'whimsical than routinized',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    64,
+    5,
+    'Are you more inclined to be:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'easy to approach',
+    'E'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'somewhat reserved',
+    'I'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    65,
+    5,
+    'In writings do you prefer:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'the more literal',
+    'S'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'the more figurative',
+    'N'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    66,
+    5,
+    'Is it harder for you to:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'identify with others',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'utilize others',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    67,
+    5,
+    'Which do you wish more for yourself:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'clarity of reason',
+    'T'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'strength of compassion',
+    'F'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    68,
+    5,
+    'Which is the greater fault:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'being indiscriminate',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'being critical',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  ('published', 69, 5, 'Do you prefer the:', 'mbti');
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'planned event',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'unplanned event',
+    'P'
+  );
+
+INSERT INTO
+  EvaluationFormQuestion (status, sort, step, question, `type`)
+VALUES
+  (
+    'published',
+    70,
+    5,
+    'Do you tend to be more:',
+    'mbti'
+  );
+
+SET
+  @questionID = LAST_INSERT_ID();
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    1,
+    '1',
+    @questionID,
+    'deliberate than spontaneous',
+    'J'
+  );
+
+INSERT INTO
+  EvaluationFormAnswer (status, sort, value, question, label, letter)
+VALUES
+  (
+    'published',
+    2,
+    '2',
+    @questionID,
+    'spontaneous than deliberate',
+    'P'
+  );
+
+COMMIT;
