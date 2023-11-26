@@ -9,6 +9,8 @@ const evaluationFormQuestionSelect = {
     select: {
       sort: true,
       value: true,
+      label: true,
+      letter: true,
     },
     where: {
       status: "published",
