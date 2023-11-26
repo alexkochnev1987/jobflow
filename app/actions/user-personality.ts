@@ -1,5 +1,11 @@
 "use server"
 
+import {
+  EvaluationFormAnswer,
+  EvaluationFormQuestion,
+  EvaluationFormUserResponse,
+} from "@prisma/client"
+
 const tagsSelect = {
   select: {
     tags: {
@@ -97,4 +103,19 @@ export async function getUserPersonalityResponsesByUID(uid: string) {
       },
     },
   })
+}
+
+function getMBTIAnswer(
+  mbtiUserResponse: EvaluationFormUserResponse & {
+    EvaluationFormQuestion: EvaluationFormQuestion & {
+      EvaluationFormAnswer: EvaluationFormAnswer[]
+    }
+  },
+) {
+  const mbtiQuestion = mbtiUserResponse.EvaluationFormQuestion
+  const mbtiAnswer = mbtiQuestion.EvaluationFormAnswer.find(
+    (answer) =>
+      answer.value.toLowerCase() === mbtiUserResponse.answer?.toLowerCase(),
+  )
+  return mbtiAnswer
 }
