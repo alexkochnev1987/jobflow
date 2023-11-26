@@ -105,6 +105,11 @@ export async function getUserPersonalityResponsesByUID(uid: string) {
   })
 }
 
+/**
+ * Returns the MBTI answer based on the user's response
+ * @param mbtiUserResponse 
+ * @returns 
+ */
 function getMBTIAnswer(
   mbtiUserResponse: EvaluationFormUserResponse & {
     EvaluationFormQuestion: EvaluationFormQuestion & {
@@ -118,4 +123,30 @@ function getMBTIAnswer(
       answer.value.toLowerCase() === mbtiUserResponse.answer?.toLowerCase(),
   )
   return mbtiAnswer
+}
+
+/**
+ * Calculates the MBTI based on the user's responses
+ * @param uid
+ * @returns `string` - the MBTI
+ */
+export async function calculateMBTI(uid: string) {
+  const userResponses = await getUserPersonalityResponsesByUID(uid)
+  const answers = userResponses.map(getMBTIAnswer)
+
+  // each answer has a letter, so we need to group them by letter
+  const groupedAnswers = answers.reduce((acc, answer) => {
+    if (!answer) return acc
+    const { letter } = answer
+    if (!acc[letter]) acc[letter] = 0
+    acc[letter] += 1
+    return acc
+  }, {} as Record<string, number>)
+
+  const firstLetter = groupedAnswers.E > groupedAnswers.I ? "E" : "I"
+  const secondLetter = groupedAnswers.S > groupedAnswers.N ? "S" : "N"
+  const thirdLetter = groupedAnswers.T > groupedAnswers.F ? "T" : "F"
+  const fourthLetter = groupedAnswers.J > groupedAnswers.P ? "J" : "P"
+
+  return `${firstLetter}${secondLetter}${thirdLetter}${fourthLetter}`
 }
