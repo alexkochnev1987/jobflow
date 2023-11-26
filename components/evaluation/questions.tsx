@@ -27,8 +27,9 @@ export function RenderQuestion({ question, inputRef, error }) {
       )
     case QUESTION_TYPES.MBTI:
       return (
-        <MBTIQuestion
+        <ButtonQuestion
           question={question}
+          anwsers={question.answers as EvaluationFormAnswer[]}
           inputRef={inputRef[question.id]}
           id={question.id}
           error={error}
@@ -46,7 +47,7 @@ export function RenderQuestion({ question, inputRef, error }) {
   }
 }
 
-function MBTIQuestion({ question, id, inputRef, error }) {
+function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   const store = userStore()
   const [value, setValue] = useState("")
   const [isLoading, setIsLoading] = useState(true)
@@ -77,10 +78,10 @@ function MBTIQuestion({ question, id, inputRef, error }) {
         {t(question.question)}
       </Label>
       <div className="flex flex-row justify-center  py-3">
-        {question.EvaluationFormAnswer?.map((answer: EvaluationFormAnswer) => (
+        {anwsers?.map((answer: EvaluationFormAnswer) => (
           <Button
             key={answer.label}
-            className={cn("mr-2 w-1/2 py-2 text-center")}
+            className={cn("mr-2 w-1/2 py-10 text-center normal-case")}
             size="4"
             color={
               answer.value === inputRef?.current?.value ||
