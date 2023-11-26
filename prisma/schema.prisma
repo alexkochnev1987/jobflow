@@ -111,6 +111,8 @@ model EvaluationFormAnswer {
   date_updated           DateTime?               @db.Timestamp(0)
   value                  String?                 @db.VarChar(255)
   question               Int?                    @db.UnsignedInt
+  label                  String?                 @db.VarChar(255)
+  letter                 String?                 @db.VarChar(255)
   EvaluationFormQuestion EvaluationFormQuestion? @relation(fields: [question], references: [id])
 
   @@index([question], map: "evaluationformanswer_question_foreign")
@@ -127,7 +129,7 @@ model EvaluationFormQuestion {
   user_updated               String?                      @db.Char(36)
   date_updated               DateTime?                    @db.Timestamp(0)
   step                       Int?                         @db.UnsignedInt
-  question                   String?                      @unique(map: "evaluationformquestion_question_unique") @db.VarChar(255)
+  question                   String?                      @db.VarChar(255)
   type                       String?                      @db.VarChar(255)
   EvalutionFormStep          EvaluationFormStep?          @relation(fields: [step], references: [id])
   EvaluationFormAnswer       EvaluationFormAnswer[]
@@ -929,21 +931,4 @@ model wp_users {
   @@index([user_email], map: "user_email")
   @@index([user_login], map: "user_login_key")
   @@index([user_nicename], map: "user_nicename")
-}
-
-model UserPersonalityQuestion {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  column       Int?
-  question     String?   @db.VarChar(255)
-  a            String?   @db.VarChar(255)
-  b            String?   @db.VarChar(255)
-
-  @@index([user_created], map: "userpersonalityquestion_user_created_foreign")
-  @@index([user_updated], map: "userpersonalityquestion_user_updated_foreign")
 }
