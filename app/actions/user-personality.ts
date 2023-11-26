@@ -53,3 +53,48 @@ export async function getUserPersonalityById(id: string) {
     select: userPersonalitySelect,
   })
 }
+
+export async function getUserPersonalityResponsesByUID(uid: string) {
+  return prisma?.evaluationFormUserResponse.findFirst({
+    where: {
+      AND: [
+        {
+          uid,
+        },
+        {
+          AND: [
+            {
+              EvaluationFormQuestion: {
+                type: "mbti",
+              },
+            },
+            {
+              EvaluationFormQuestion: {
+                status: "published",
+              },
+            },
+          ],
+        },
+      ],
+    },
+    select: {
+      id: true,
+      answer: true,
+      EvaluationFormQuestion: {
+        select: {
+          id: true,
+          question: true,
+          sort: true,
+          EvaluationFormAnswer: {
+            select: {
+              id: true,
+              label: true,
+              letter: true,
+              value: true,
+            },
+          },
+        },
+      },
+    },
+  })
+}
