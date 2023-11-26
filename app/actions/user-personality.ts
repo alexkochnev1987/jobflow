@@ -55,7 +55,7 @@ export async function getUserPersonalityById(id: string) {
 }
 
 export async function getUserPersonalityResponsesByUID(uid: string) {
-  return prisma?.evaluationFormUserResponse.findFirst({
+  return prisma?.evaluationFormUserResponse.findMany({
     where: {
       AND: [
         {
