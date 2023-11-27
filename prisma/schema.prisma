@@ -73,6 +73,8 @@ model Companies {
   name         String?   @db.VarChar(255)
   description  String?   @db.Text
   logo         String?   @db.Char(36)
+  Address      Address[]
+  Contact      Contact[]
 
   @@index([logo], map: "companies_logo_foreign")
   @@index([user_created], map: "companies_user_created_foreign")
@@ -213,6 +215,9 @@ model Profile {
   userId              String?
   uid                 String?          @unique(map: "profile_uid_unique") @db.VarChar(255)
   evaluation_response String?          @db.Text
+  avatar              String?          @db.Char(36)
+  country             String?          @default("DE") @db.VarChar(255)
+  state               String?          @db.VarChar(255)
   userPersonality     UserPersonality? @relation(fields: [personality], references: [id])
   User                User?            @relation(fields: [userId], references: [id])
 
@@ -220,6 +225,7 @@ model Profile {
   @@index([user_created], map: "profile_user_created_foreign")
   @@index([user_updated], map: "profile_user_updated_foreign")
   @@index([userId])
+  @@index([avatar], map: "profile_avatar_foreign")
 }
 
 model QuizzResource {
@@ -281,6 +287,8 @@ model User {
   createdAt                  DateTime                     @default(now())
   updatedAt                  DateTime                     @default(now())
   profileId                  String?                      @db.Char(36)
+  notify_career_updates      Boolean?                     @default(true)
+  notify_training_updates    Boolean?                     @default(true)
   Profile                    Profile[]
   Session                    Session[]
   Account                    Account[]
@@ -931,4 +939,48 @@ model wp_users {
   @@index([user_email], map: "user_email")
   @@index([user_login], map: "user_login_key")
   @@index([user_nicename], map: "user_nicename")
+}
+
+model Address {
+  id           Int        @id @default(autoincrement()) @db.UnsignedInt
+  status       String     @default("draft") @db.VarChar(255)
+  sort         Int?
+  user_created String?    @db.Char(36)
+  date_created DateTime?  @db.Timestamp(0)
+  user_updated String?    @db.Char(36)
+  date_updated DateTime?  @db.Timestamp(0)
+  street       String?    @db.VarChar(255)
+  street_no    String?    @db.VarChar(255)
+  zip          String?    @db.VarChar(255)
+  country      String?    @default("DE") @db.VarChar(255)
+  tax_id       String?    @db.VarChar(255)
+  company_id   Int?       @db.UnsignedInt
+  Company      Companies? @relation(fields: [company_id], references: [id])
+
+  @@index([company_id], map: "address_company_id_foreign")
+  @@index([user_created], map: "address_user_created_foreign")
+  @@index([user_updated], map: "address_user_updated_foreign")
+}
+
+model Contact {
+  id                     Int        @id @default(autoincrement()) @db.UnsignedInt
+  status                 String     @default("draft") @db.VarChar(255)
+  sort                   Int?
+  user_created           String?    @db.Char(36)
+  date_created           DateTime?  @db.Timestamp(0)
+  user_updated           String?    @db.Char(36)
+  date_updated           DateTime?  @db.Timestamp(0)
+  first_name             String?    @db.VarChar(255)
+  last_name              String?    @db.VarChar(255)
+  email                  String?    @db.VarChar(255)
+  phone                  String?    @db.VarChar(255)
+  company_id             Int?       @db.UnsignedInt
+  notify_lead_updates    Boolean?   @default(true)
+  notify_view_updates    Boolean?   @default(true)
+  notify_billing_updates Boolean?   @default(true)
+  Company                Companies? @relation(fields: [company_id], references: [id])
+
+  @@index([company_id], map: "contact_company_id_foreign")
+  @@index([user_created], map: "contact_user_created_foreign")
+  @@index([user_updated], map: "contact_user_updated_foreign")
 }
