@@ -7,8 +7,13 @@ import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
 export default function Results() {
   const { isLoading, results } = useResults()
-  const youArWork = results?.youAtWork || []
-  const strengths = results?.strengths || []
+
+  console.log('results', results)
+  const youArWork = results?.personality?.you_at_work || ""
+  const strengths = results?.personality?.strengths_summary || ""
+  const communicationSkills = results?.personality?.communications_skills || ""
+  const leadership = results?.personality?.leadership || ""
+  const teamwork = results?.personality?.teamwork || ""
   const careers = results?.careers || []
 
   const seconds = 15 * 60
@@ -38,15 +43,23 @@ export default function Results() {
               <Heading size="7" className="font-normal leading-7">
                 Sie bei der Arbeit
               </Heading>
-              {youArWork.map((t) => (
-                <p key={t}>{t}</p>
-              ))}
+              <p>{youArWork}</p>
               <Heading size="7" className="font-normal leading-7">
                 Stärken
               </Heading>
-              {strengths.map((t) => (
-                <p key={t}>{t}</p>
-              ))}
+              <p>{strengths}</p>
+              <Heading size="7" className="font-normal leading-7">
+                communicationSkills
+              </Heading>
+              <p>{communicationSkills}</p>
+              <Heading size="7" className="font-normal leading-7">
+                leadership
+              </Heading>
+              <p>{leadership}</p>
+              <Heading size="7" className="font-normal leading-7">
+                teamwork
+              </Heading>
+              <p>{teamwork}</p>
               <Heading size="8" className="font-normal leading-7">
                 Passende Karrieren
               </Heading>

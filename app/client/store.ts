@@ -70,6 +70,10 @@ function sendQuestionsAndResponses(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ uid, questionId, questionResponse }),
+    body: JSON.stringify({
+      uid,
+      questionId,
+      questionResponse: `${questionResponse}`,
+    }),
   })
 }

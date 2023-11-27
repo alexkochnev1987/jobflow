@@ -10,13 +10,20 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 import { Button } from "@radix-ui/themes"
-import { EvaluationFormAnswer } from "@prisma/client"
+import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
   switch (question.type) {
     case QUESTION_TYPES.Range:
-      return <SliderQuestion {...question} inputRef={inputRef[question.id]} />
+      return (
+        <SliderQuestion
+          question={question as EvaluationFormQuestion}
+          max={5}
+          id={question.id}
+          inputRef={inputRef[question.id]}
+        />
+      )
     case QUESTION_TYPES.Checkbox:
       return (
         <YesNoQuestion
@@ -29,8 +36,8 @@ export function RenderQuestion({ question, inputRef, error }) {
     case QUESTION_TYPES.MBTI:
       return (
         <ButtonQuestion
-          question={question}
-          anwsers={question.answers as EvaluationFormAnswer[]}
+          question={question as EvaluationFormQuestion}
+          anwsers={question.EvaluationFormAnswer as EvaluationFormAnswer[]}
           inputRef={inputRef[question.id]}
           id={question.id}
           error={error}
@@ -61,6 +68,18 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
     }
     setIsLoading(false)
   }, [store, id])
+
+  useEffect(() => {
+
+    const hasResponse = store.findResponse(id)
+    if (hasResponse) {
+      inputRef.current = {
+        value: hasResponse.response as string,
+      }
+    }
+
+
+  }, [])
 
   function handleAnswer(answer: EvaluationFormAnswer) {
     setValue(answer.value)
@@ -158,7 +177,6 @@ function YesNoQuestion({ question, id, inputRef, error }) {
       <Label htmlFor={id} className={cn("w-2/3", error && "text-destructive")}>
         {t(question)}
       </Label>
-
       <RadioGroup
         className="flex w-1/3 flex-row items-center justify-start  space-x-2"
         defaultValue={value}
@@ -178,7 +196,7 @@ function YesNoQuestion({ question, id, inputRef, error }) {
         <div className="flex items-center space-x-2">
           <Label htmlFor="nein">{t("Nein")}</Label>
           <RadioGroupItem
-            value={t("Ja")}
+            value={t("Nein")}
             id="nein"
             className="h-6 w-6 rounded-sm border-secondary"
           />
@@ -211,7 +229,7 @@ function SliderQuestion({ question, id, max, inputRef }) {
   return (
     <div className="py-5">
       <Label htmlFor={id} className="">
-        {t(question)}
+        {t(question.question)}
       </Label>
       <Slider
         defaultValue={[value]}
@@ -224,23 +242,6 @@ function SliderQuestion({ question, id, max, inputRef }) {
   )
 }
 
-function MultipleChoiceQuestion({ question, id }) {
-  return (
-    <>
-      <Label htmlFor={id}>{question}</Label>
-      <RadioGroup defaultValue="option-one" className="flex flex-row">
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="option-one" id="option-one" />
-          <Label htmlFor="option-one">Option One</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="option-two" id="option-two" />
-          <Label htmlFor="option-two">Option Two</Label>
-        </div>
-      </RadioGroup>
-    </>
-  )
-}
 
 function LoadingQuestion() {
   return (

@@ -1,6 +1,27 @@
 "use server"
 
-import { userPersonalitySelect } from "./user-personality"
+const tagsSelect = {
+  select: {
+    tags: {
+      select: {
+        name: true,
+      },
+    },
+  },
+}
+
+const userPersonalitySelect = {
+  name: true,
+  you_at_work: true,
+  strengths_summary: true,
+  sort: true,
+  strengths: tagsSelect,
+  weaknesses: tagsSelect,
+  ideal_work_environment: tagsSelect,
+  communications_skills: true,
+  leadership: true,
+  teamwork: true,
+}
 
 const profileSelect = {
   select: {

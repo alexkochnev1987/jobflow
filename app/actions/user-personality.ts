@@ -16,7 +16,8 @@ const tagsSelect = {
   },
 }
 
-export const userPersonalitySelect = {
+const userPersonalitySelect = {
+  id: true,
   name: true,
   you_at_work: true,
   strengths_summary: true,

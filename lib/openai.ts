@@ -17,14 +17,6 @@ export async function completition(prompt: string) {
         parameters: {
           type: "object",
           properties: {
-            youAtWork: {
-              type: "string",
-              description: "Description of the user's work preferences",
-            },
-            strengths: {
-              type: "string",
-              description: "Description of the user's strengths",
-            },
             careers: {
               type: "array",
               description: "List of available career options",
@@ -49,7 +41,7 @@ export async function completition(prompt: string) {
               },
             },
           },
-          required: ["careers", "youAtWork", "strengths"],
+          required: ["careers"],
         },
       },
     ],
