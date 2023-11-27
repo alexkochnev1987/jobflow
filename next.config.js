@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   experimental: {
     serverActions: true,
   },
   images: {
-    domains: ["lh3.googleusercontent.com", "jobflow.guluarte.com"],
+    domains: ["lh3.googleusercontent.com", "jobflow.guluarte.com", "test.laborflow.io", "laborflow.io"],
   },
   i18n: {
     locales: ["de"],

@@ -97,11 +97,11 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
       <Label htmlFor={id} className={cn(error && "text-destructive")}>
         {t(question.question)}
       </Label>
-      <div className="flex flex-row justify-center  py-3">
+      <div className="flex flex-row justify-center py-3">
         {anwsers?.map((answer: EvaluationFormAnswer) => (
           <Button
             key={answer.label}
-            className={cn("mr-2 w-1/2 py-10 text-center normal-case")}
+            className="mr-2 w-1/2 py-10 text-center normal-case"
             size="4"
             color={
               answer.value === inputRef?.current?.value ||

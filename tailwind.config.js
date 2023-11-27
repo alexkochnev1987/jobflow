@@ -11,6 +11,12 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  safelist: [
+    'text-center',
+    'py-10',
+    'mr-2',
+  ],
+
   theme: {
     container: {
       center: true,
