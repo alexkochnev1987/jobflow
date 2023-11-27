@@ -4,6 +4,7 @@ import Link from "next/link"
 import useScroll from "@/lib/hooks/use-scroll"
 import { Session } from "next-auth"
 import Logo from "@/components/shared/icons/logo.svg"
+import World from "@/components/shared/icons/world.svg"
 import UserDropdown from "./user-dropdown"
 
 export default function NavBar({ session }: { session: Session | null }) {
@@ -19,10 +20,28 @@ export default function NavBar({ session }: { session: Session | null }) {
         } z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 w-full max-w-screen-xl items-center justify-between">
-          <Link href="/" className="flex items-center font-display text-2xl">
+          <Link href="/" className="flex items-center font-display text-xl">
             <Logo />
           </Link>
-          <div>{session && <UserDropdown session={session} />}</div>
+          <div className="flex flex-row gap-14">
+            <Link href="/" className="flex items-center font-display text-xl">
+              About Us
+            </Link>
+            <Link href="/" className="flex items-center font-display text-xl">
+              Blog
+            </Link>
+            <Link href="/" className="flex items-center font-display text-xl">
+              FAQ
+            </Link>
+          </div>
+          <div>
+            {session && (
+              <div className="flex flex-row gap-5 align-middle justify-center">
+                <World />
+                <UserDropdown session={session} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
