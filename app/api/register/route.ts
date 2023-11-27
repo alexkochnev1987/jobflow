@@ -1,6 +1,5 @@
 import { hash } from "bcryptjs"
 import prisma from "@/lib/prisma"
-import { v4 as uuid } from "uuid"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
@@ -14,8 +13,6 @@ export async function POST(req: NextRequest) {
 
     const user = await prisma.user.create({
       data: {
-        id: uuid(),
-        updatedAt: new Date(),
         name,
         email: email.toLowerCase(),
         password: hashed_password,

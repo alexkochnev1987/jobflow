@@ -10,20 +10,20 @@ datasource db {
 }
 
 model Account {
-  id                String   @id
+  id                String   @id @default(uuid()) @db.Char(36)
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?
-  access_token      String?
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?
+  id_token          String?  @db.Text
   session_state     String?
   createdAt         DateTime @default(now())
-  updatedAt         DateTime
+  updatedAt         DateTime @default(now())
   user              User?    @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerAccountId])
@@ -31,7 +31,7 @@ model Account {
 }
 
 model Careers {
-  id              String            @id @db.Char(36)
+  id              String            @id @default(uuid()) @db.Char(36)
   status          String            @default("draft") @db.VarChar(255)
   sort            Int?
   user_created    String?           @db.Char(36)
@@ -187,7 +187,7 @@ model FaqItem {
 }
 
 model PersonalityTags {
-  id                                String                              @id @db.Char(36)
+  id                                String                              @id @default(uuid()) @db.Char(36)
   status                            String                              @default("draft") @db.VarChar(255)
   sort                              Int?
   user_created                      String?                             @db.Char(36)
@@ -201,7 +201,7 @@ model PersonalityTags {
 }
 
 model Profile {
-  id                  String           @id @db.Char(36)
+  id                  String           @id @default(uuid()) @db.Char(36)
   status              String           @default("draft") @db.VarChar(255)
   sort                Int?
   user_created        String?          @db.Char(36)
@@ -265,21 +265,21 @@ model Session {
   userId       String
   expires      DateTime
   createdAt    DateTime @default(now())
-  updatedAt    DateTime
+  updatedAt    DateTime @default(now())
   user         User?    @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
 
 model User {
-  id                         String                       @id
+  id                         String                       @id @default(uuid())
   name                       String?
   password                   String?
   email                      String?                      @unique
   emailVerified              DateTime?
   image                      String?
   createdAt                  DateTime                     @default(now())
-  updatedAt                  DateTime
+  updatedAt                  DateTime                     @default(now())
   profileId                  String?                      @db.Char(36)
   Profile                    Profile[]
   Session                    Session[]
@@ -290,7 +290,7 @@ model User {
 }
 
 model UserPersonality {
-  id                     String                              @id @db.Char(36)
+  id                     String                              @id @default(uuid()) @db.Char(36)
   status                 String                              @default("draft") @db.VarChar(255)
   sort                   Int?
   user_created           String?                             @db.Char(36)

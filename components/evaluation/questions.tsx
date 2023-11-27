@@ -79,7 +79,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
     }
 
 
-  }, [])
+  }, [id, inputRef, store])
 
   function handleAnswer(answer: EvaluationFormAnswer) {
     setValue(answer.value)
