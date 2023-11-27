@@ -72,8 +72,8 @@ export function ProfileTabs() {
       {!isLoading && (
         <>
           <div className="z-10 flex flex-col items-center">
-            <h1 className="text-4xl">Here are your Results 🎉</h1>
-            <p className="text-lg">
+            <h1 className="mb-8  text-4xl">Here are your Results 🎉</h1>
+            <p className="mb-20  text-lg">
               We found 33 suitable careers for you!
               <br />
               Next, please refine your selection drive forward your career

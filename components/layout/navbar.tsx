@@ -6,9 +6,12 @@ import { Session } from "next-auth"
 import Logo from "@/components/shared/icons/logo.svg"
 import World from "@/components/shared/icons/world.svg"
 import UserDropdown from "./user-dropdown"
+import { Button } from "@radix-ui/themes"
+import { useTranslation } from "react-i18next"
 
 export default function NavBar({ session }: { session: Session | null }) {
   const scrolled = useScroll(50)
+  const { t } = useTranslation()
 
   return (
     <>
@@ -25,21 +28,28 @@ export default function NavBar({ session }: { session: Session | null }) {
           </Link>
           <div className="flex flex-row gap-14">
             <Link href="/" className="flex items-center font-display text-xl">
-              About Us
+              {t("About Us")}
             </Link>
             <Link href="/" className="flex items-center font-display text-xl">
-              Blog
+              {t("Blog")}
             </Link>
             <Link href="/" className="flex items-center font-display text-xl">
-              FAQ
+              {t("FAQ")}
             </Link>
           </div>
-          <div>
-            {session && (
-              <div className="flex flex-row gap-5 align-middle justify-center">
-                <World />
-                <UserDropdown session={session} />
-              </div>
+          <div className="flex flex-row gap-5 align-middle">
+            <World className="m-auto" />
+            {session ? (
+              <UserDropdown session={session} />
+            ) : (
+              <Button
+                variant="outline"
+                radius="full"
+                size="4"
+                className="w-44 px-6 py-4"
+              >
+                {t("Log In")}
+              </Button>
             )}
           </div>
         </div>
