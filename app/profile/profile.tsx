@@ -7,9 +7,19 @@ import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
 export function ProfileResults({ results }) {
   const careers = results?.careers || []
+  const suitable = careers.filter((c) => c.rating >= 50)
 
   return (
     <>
+      <h1 className="mb-8  text-4xl">Here are your Results 🎉</h1>
+      <p className="mb-20  text-lg">
+        We found {suitable.length} suitable careers for you!
+        <br />
+        Next, please refine your selection drive forward your career
+        <br />
+        change. <br />
+        Please select at least five options.
+      </p>
       <div className="z-10 w-full max-w-5xl px-5 xl:px-0">
         <Flex direction="column" gap="5" align="start">
           <div className="relative w-full">
@@ -72,14 +82,6 @@ export function ProfileTabs() {
       {!isLoading && (
         <>
           <div className="z-10 flex flex-col items-center">
-            <h1 className="mb-8  text-4xl">Here are your Results 🎉</h1>
-            <p className="mb-20  text-lg">
-              We found 33 suitable careers for you!
-              <br />
-              Next, please refine your selection drive forward your career
-              <br />
-              change. Please select at least five options.
-            </p>
             <ProfileResults results={results} />
           </div>
         </>
