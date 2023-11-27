@@ -1,4 +1,4 @@
-"use server";
+"use server"
 import { QUESTION_CATEGORIES } from "@/lib/constants"
 import {
   getEvaluationFormQuestions,
@@ -28,7 +28,11 @@ export default async function Home({
 
   const steps = await getEvaluationFormSteps()
 
-  const step = steps.find((s) => s.id === stepId) || steps[0]
+  const step = stepId ? steps.find((s) => s.id === stepId) : steps[0]
+
+  if (stepId > 1 && !step) {
+    return redirect("/results")
+  }
 
   const questions = await getEvaluationFormQuestions(step.id)
 
