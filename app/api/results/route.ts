@@ -34,11 +34,16 @@ async function mapCareers(evaluationResponse: any) {
   }
 }
 
-function getProfile(uid: string) {
+function getProfile({ uid, userId }: { uid?: string; userId?: string }) {
+  const query = userId
+    ? {
+        uid,
+      }
+    : {
+        userId,
+      }
   return prisma?.profile?.findFirst({
-    where: {
-      uid,
-    },
+    where: query,
     select: {
       id: true,
       evaluation_response: true,
@@ -59,7 +64,40 @@ function getProfile(uid: string) {
 
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
-  const profile = await getProfile(uid)
+  const session = await getServerSession(authOptions)
+
+  const user = await prisma?.user.findUnique({
+    where: {
+      email: session.user.email,
+    },
+  })
+
+  // if the user already has a profile, use it
+  if (session && user) {
+    const profile = await getProfile({ userId: user.id })
+    if (profile?.evaluation_response) {
+      console.log("using cached response using user.id", profile.id)
+      return NextResponse.json({
+        ...(await mapCareers(profile.evaluation_response)),
+        personality: profile.userPersonality,
+      })
+    }
+  }
+
+  const profile = await getProfile({ uid })
+
+  if (user && profile?.evaluation_response) {
+    // link profile with user
+    console.log("linking profile with user", profile.id)
+    await prisma?.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        profileId: profile.id,
+      },
+    })
+  }
 
   if (profile?.evaluation_response) {
     console.log("using cached response", profile)
@@ -119,8 +157,6 @@ export async function POST(request: NextRequest) {
   const careersText = careers
     .map((c) => `uid: ${c.id} - name: ${c.name}`)
     .join("\n")
-
-  const personalities = await getUserPersonalities()
 
   const mbtiResult = await calculateMBTI(uid)
   console.log(mbtiResult)
