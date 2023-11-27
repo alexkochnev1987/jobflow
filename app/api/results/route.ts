@@ -34,9 +34,8 @@ async function mapCareers(evaluationResponse: any) {
   }
 }
 
-export async function POST(request: NextRequest) {
-  const { uid } = await request.json()
-  const profile = await prisma?.profile?.findFirst({
+function getProfile(uid: string) {
+  return prisma?.profile?.findFirst({
     where: {
       uid,
     },
@@ -56,6 +55,11 @@ export async function POST(request: NextRequest) {
       },
     },
   })
+}
+
+export async function POST(request: NextRequest) {
+  const { uid } = await request.json()
+  const profile = await getProfile(uid)
 
   if (profile?.evaluation_response) {
     console.log("using cached response", profile)
@@ -160,7 +164,7 @@ Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und
 
   const res = await retry(
     {
-      times: 1,
+      times: 3,
       delay: 1000,
     },
     async () => {
@@ -179,22 +183,28 @@ Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und
         throw new Error("Some careers don't have a rating")
       }
 
-      return prisma.profile.upsert({
-        where: {
-          uid,
-        },
-        create: {
-          id: uuid(),
-          status: "published",
-          evaluation_response: JSON.stringify(fnResponse),
-          uid: `${uid}`,
-          personality: personality.id,
-        },
-        update: {
-          evaluation_response: JSON.stringify(fnResponse),
-          personality: personality.id,
-        },
-      })
+      try {
+        await prisma.profile.upsert({
+          where: {
+            uid,
+          },
+          create: {
+            id: uuid(),
+            status: "published",
+            evaluation_response: JSON.stringify(fnResponse),
+            uid: `${uid}`,
+            personality: personality.id,
+          },
+          update: {
+            evaluation_response: JSON.stringify(fnResponse),
+            personality: personality.id,
+          },
+        })
+      } catch (e) {
+        console.log(e)
+      }
+
+      return getProfile(uid)
     },
   )
 

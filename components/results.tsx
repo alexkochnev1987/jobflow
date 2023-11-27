@@ -5,10 +5,12 @@ import { Flex, Heading } from "@radix-ui/themes"
 import Timeout from "@/components/shared/timeout"
 import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
+import { useTranslation } from "react-i18next"
 export default function Results() {
   const { isLoading, results } = useResults()
+  const { t } = useTranslation()
 
-  console.log('results', results)
+  console.log("results", results)
   const youArWork = results?.personality?.you_at_work || ""
   const strengths = results?.personality?.strengths_summary || ""
   const communicationSkills = results?.personality?.communications_skills || ""
@@ -49,15 +51,15 @@ export default function Results() {
               </Heading>
               <p>{strengths}</p>
               <Heading size="7" className="font-normal leading-7">
-                communicationSkills
+                {t("Kommunikationsfähigkeiten")}
               </Heading>
               <p>{communicationSkills}</p>
               <Heading size="7" className="font-normal leading-7">
-                leadership
+                {t("Führungsqualitäten")}
               </Heading>
               <p>{leadership}</p>
               <Heading size="7" className="font-normal leading-7">
-                teamwork
+                {t("Arbeit im Team")}
               </Heading>
               <p>{teamwork}</p>
               <Heading size="8" className="font-normal leading-7">
