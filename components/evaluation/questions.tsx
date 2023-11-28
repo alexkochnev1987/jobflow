@@ -70,15 +70,12 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   }, [store, id])
 
   useEffect(() => {
-
     const hasResponse = store.findResponse(id)
     if (hasResponse) {
       inputRef.current = {
         value: hasResponse.response as string,
       }
     }
-
-
   }, [id, inputRef, store])
 
   function handleAnswer(answer: EvaluationFormAnswer) {
@@ -92,28 +89,41 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   if (isLoading) {
     return <LoadingQuestion />
   }
+  const buttonClass =
+    "my-2 w-full py-10 text-center text-lg font-normal normal-case leading-7 text-black"
   return (
     <div className="py-3">
       <Label htmlFor={id} className={cn(error && "text-destructive")}>
         {t(question.question)}
       </Label>
-      <div className="flex flex-row justify-center py-3">
-        {anwsers?.map((answer: EvaluationFormAnswer) => (
-          <Button
-            key={answer.label}
-            className="mr-2 w-1/2 py-10 text-center normal-case"
-            size="4"
-            color={
-              answer.value === inputRef?.current?.value ||
-              answer.value === value
-                ? "cyan"
-                : "indigo"
-            }
-            onClick={() => handleAnswer(answer)}
-          >
-            {t(answer.label)}
-          </Button>
-        ))}
+      <div className="flex flex-col justify-center py-3">
+        {anwsers?.map((answer: EvaluationFormAnswer) =>
+          answer.value === inputRef?.current?.value ||
+          answer.value === value ? (
+            <Button
+              key={answer.label}
+              className={buttonClass}
+              size="4"
+              color="indigo"
+              radius="large"
+              onClick={() => handleAnswer(answer)}
+            >
+              {t(answer.label)}
+            </Button>
+          ) : (
+            <Button
+              key={answer.label}
+              className={buttonClass}
+              size="4"
+              color="gray"
+              variant="soft"
+              radius="large"
+              onClick={() => handleAnswer(answer)}
+            >
+              {t(answer.label)}
+            </Button>
+          ),
+        )}
       </div>
     </div>
   )
@@ -241,7 +251,6 @@ function SliderQuestion({ question, id, max, inputRef }) {
     </div>
   )
 }
-
 
 function LoadingQuestion() {
   return (

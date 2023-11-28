@@ -16,6 +16,7 @@ import "../../i18n/config-client"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormQuestion } from "@prisma/client"
 import { RenderQuestion } from "../evaluation/questions"
+import Sparckle from "@/components/shared/icons/sparckle.svg"
 
 type FormProps = {
   title: string
@@ -70,64 +71,61 @@ export default function Form({
 
   const hasErrors = (errors) => Object.keys(errors).length > 0
 
+  //  className="bg-sky-100"
   return (
-    <>
-      <Card className="border-0">
-        <CardHeader>
-          <CardTitle>
-            <div className="relative w-full">
-              <p className="absolute right-0 top-[-25px] z-10 text-sm font-normal">
-                <span className="text-primary">
-                  {t("Schritt", {
-                    count: step,
-                  })}
-                </span>{" "}
-                {t("von", {
-                  count: 5,
-                })}
-              </p>
-              <Progress value={progress} className="border-0" />
-            </div>
-            <br />
-            {title}
-          </CardTitle>
-          <CardDescription>{description}</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          {questions?.map((q) => (
-            <RenderQuestion
-              key={q.id}
-              question={q}
-              inputRef={elRefs}
-              error={errors[q.id]}
-            />
-          ))}
-          {hasErrors(errors) && (
-            <p className="w-full flex-1 text-destructive">{t("FORM_ERRORS")}</p>
-          )}
-        </CardContent>
-        <CardFooter className="flex flex-row justify-center gap-3">
-          {step > 1 && (
-            <Button
-              variant="outline"
-              size="4"
-              onClick={() => prevStep()}
-              className="w-48"
-            >
-              {t("Zurück")}
-            </Button>
-          )}
+    <div className=" w-full flex-col justify-center bg-sky-100">
+      <div className="z-10 mx-auto px-10 py-10 md:w-1/2 lg:w-1/3">
+        <div className="flex-col justify-start gap-8">
+          <div className="mb-10 flex h-8 w-full flex-row align-middle">
+            <Sparckle />
+            <h1 className="mx-3 my-auto text-sm font-medium uppercase text-sky-500">
+              {title}
+            </h1>
+          </div>
+          <div className="self-stretch text-lg font-normal leading-7 text-black">
+            {description}
+          </div>
+        </div>
+
+        <Button
+          className="my-10 w-full text-center text-lg font-normal normal-case leading-7 text-black"
+          size="4"
+          color="indigo"
+          radius="large"
+        >
+          {t("Continue")}
+        </Button>
+
+        {questions?.map((q) => (
+          <RenderQuestion
+            key={q.id}
+            question={q}
+            inputRef={elRefs}
+            error={errors[q.id]}
+          />
+        ))}
+        {hasErrors(errors) && (
+          <p className="w-full flex-1 text-destructive">{t("FORM_ERRORS")}</p>
+        )}
+        {step > 1 && (
           <Button
+            variant="outline"
             size="4"
-            onClick={() => nextStep()}
-            radius="large"
+            onClick={() => prevStep()}
             className="w-48"
           >
-            {t("Weiter")}
+            {t("Zurück")}
           </Button>
-        </CardFooter>
-      </Card>
-    </>
+        )}
+        <Button
+          size="4"
+          onClick={() => nextStep()}
+          radius="large"
+          className="w-48"
+        >
+          {t("Weiter")}
+        </Button>
+      </div>
+    </div>
   )
 }
-

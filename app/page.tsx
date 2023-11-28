@@ -6,10 +6,10 @@ import {
   getEvaluationFormSteps,
   getEvaluationFormStepsCount,
 } from "./actions/form-evaluation"
-import Form from "@/components/shared/question"
 import { redirect, useRouter } from "next/navigation"
 import { getServerSession } from "next-auth"
 import t from "../i18n/config"
+import Form from "@/components/shared/form-evaluation"
 
 export default async function Home({
   searchParams,
@@ -43,16 +43,12 @@ export default async function Home({
   })
 
   return (
-    <>
-      <div className="z-10 w-full max-w-3xl">
-        <Form
-          step={step.id}
-          questions={questions}
-          title={t(step.title)}
-          progress={progress}
-          description={t(step.description)}
-        />
-      </div>
-    </>
+    <Form
+      step={step.id}
+      questions={questions}
+      title={t(step.title)}
+      progress={progress}
+      description={t(step.description)}
+    />
   )
 }
