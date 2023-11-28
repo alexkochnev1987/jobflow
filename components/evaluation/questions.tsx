@@ -108,6 +108,9 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               color="indigo"
               radius="large"
               onClick={() => handleAnswer(answer)}
+              style={{
+                marginBottom: "1rem",
+              }}
             >
               {t(answer.label)}
             </Button>
