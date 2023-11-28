@@ -1,5 +1,7 @@
 "use server"
 
+import prisma from "lib/prisma"
+
 const evaluationFormQuestionSelect = {
   id: true,
   sort: true,

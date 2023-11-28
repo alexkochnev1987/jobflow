@@ -89,8 +89,9 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   if (isLoading) {
     return <LoadingQuestion />
   }
+
   const buttonClass =
-    "my-2 w-full py-10 text-center text-lg font-normal normal-case leading-7 text-black"
+    "my-2 w-full py-10 text-center text-lg font-normal normal-caseleading-loosetext-black"
   return (
     <div className="py-3">
       <Label htmlFor={id} className={cn(error && "text-destructive")}>

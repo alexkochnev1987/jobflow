@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { devtools, persist } from "zustand/middleware"
 
 interface Response {
-  question_id: string
+  question_id: number
   response: string | number
 }
 
@@ -11,8 +11,8 @@ interface UserState {
   responses: Response[]
   step: number
   setStep: (step: number) => void
-  findResponse: (question_id: string) => Response | undefined
-  save: (question_id: string, response: string | number) => void
+  findResponse: (question_id: number) => Response | undefined
+  save: (question_id: number, response: string | number) => void
 }
 
 export const userStore = create<UserState>()(
@@ -59,11 +59,11 @@ export const userStore = create<UserState>()(
 
 function sendQuestionsAndResponses(
   uid: string,
-  questionId: string,
+  questionId: number,
   questionResponse: string | number,
 ) {
   if (!uid || uid === "") return
-  if (!questionId || questionId === "") return
+  if (!questionId) return
   if (!questionResponse || questionResponse === "") return
   return fetch("/api/users", {
     method: "POST",

@@ -66,9 +66,9 @@ export async function POST(request: NextRequest) {
   const { uid } = await request.json()
   const session = await getServerSession(authOptions)
 
-  const user = await prisma?.user.findUnique({
+  const user = await prisma?.user.findFirst({
     where: {
-      email: session.user.email,
+      email: session?.user?.email,
     },
   })
 

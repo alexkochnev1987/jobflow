@@ -7,5 +7,9 @@ export default async function Page() {
   if (session?.user) {
     return redirect("/profile")
   }
-  return <Results />
+  return (
+    <div className="m-auto flex flex-col justify-center align-middle">
+      <Results />
+    </div>
+  )
 }

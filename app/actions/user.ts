@@ -1,5 +1,5 @@
 "use server"
-
+import prisma from "lib/prisma"
 const tagsSelect = {
   select: {
     tags: {

@@ -9,7 +9,7 @@ import Footer from "@/components/layout/footer"
 import { Suspense } from "react"
 import { Theme } from "@radix-ui/themes"
 import t from "../i18n/config"
-
+import NavBar from "@/components/layout/navbar"
 
 export const metadata = {
   title: t("SITE_TITLE"),
@@ -33,14 +33,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className={cx(inter.variable)}>
         <Theme>
-          <Suspense fallback="...">
-            {/* @ts-expect-error Server Component */}
-            <Nav />
-          </Suspense>
-          <main className="flex min-h-screen w-full flex-col items-center  py-32">
-            {children}
-          </main>
-          <Footer />
+          <div>
+            <NavBar session={null} />
+            <main className="flex min-h-screen w-full">{children}</main>
+          </div>
         </Theme>
       </body>
     </html>
