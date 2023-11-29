@@ -6,7 +6,13 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ["lh3.googleusercontent.com", "jobflow.guluarte.com", "test.laborflow.io", "laborflow.io"],
+    domains: [
+      "lh3.googleusercontent.com",
+      "jobflow.guluarte.com",
+      "test.laborflow.io",
+      "laborflow.io",
+      "localhost",
+    ],
   },
   i18n: {
     locales: ["de"],
@@ -14,11 +20,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/github",
-        destination: "https://github.com/steven-tey/precedent",
-        permanent: false,
-      },
+      // {
+      //   source: "/github",
+      //   destination: "https://github.com/steven-tey/precedent",
+      //   permanent: false,
+      // },
     ]
   },
   webpack(config) {

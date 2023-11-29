@@ -2,6 +2,7 @@
 const plugin = require("tailwindcss/plugin")
 module.exports = {
   darkMode: ["class"],
+  mode: 'jit', 
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",

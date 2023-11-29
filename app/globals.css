@@ -74,3 +74,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components { 
+  .button { 
+    @apply my-10 py-10; 
+  } 
+}

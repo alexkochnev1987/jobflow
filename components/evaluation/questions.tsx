@@ -90,34 +90,30 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
     return <LoadingQuestion />
   }
 
-  const buttonClass =
-    "my-2 w-full py-10 text-center text-lg font-normal normal-caseleading-loosetext-black"
+
   return (
     <div className="py-3">
       <Label htmlFor={id} className={cn(error && "text-destructive")}>
         {t(question.question)}
       </Label>
-      <div className="flex flex-col justify-center py-3">
+      <div className="flex flex-col justify-center gap-3">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
           answer.value === inputRef?.current?.value ||
           answer.value === value ? (
             <Button
               key={answer.label}
-              className={buttonClass}
+              className="my-2 w-full py-10 text-center text-lg font-normal normal-caseleading-loosetext-black transition fade-down duration-150"
               size="4"
               color="indigo"
               radius="large"
               onClick={() => handleAnswer(answer)}
-              style={{
-                marginBottom: "1rem",
-              }}
             >
               {t(answer.label)}
             </Button>
           ) : (
             <Button
               key={answer.label}
-              className={buttonClass}
+              className="my-2 w-full py-10 text-center text-lg font-normal normal-caseleading-loosetext-black transition fade-down duration-150"
               size="4"
               color="gray"
               variant="soft"

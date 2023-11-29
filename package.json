@@ -13,9 +13,9 @@
     "dbpush": "doppler run -- npx prisma generate && doppler run -- npx prisma db push",
     "dbseed": "doppler run -- npx prisma db seed",
     "services": "doppler run -- docker compose up",
-    "deploy": "npm run build && npm run deploy:compress && npm run deploy:prepare && npm run deploy:upload && npm run deploy:install",
+    "deploy": "npm run build && npm run deploy:compress && npm run deploy:upload && npm run deploy:clean && npm run deploy:install",
     "deploy:compress": "tar czf next.tar.gz .next node_modules",
-    "deploy:prepare": "ssh www@209.38.176.120 'cd ~/site && rm .next -fr && rm node_modules -fr'",
+    "deploy:clean": "ssh www@209.38.176.120 'cd ~/site && rm .next -fr && rm node_modules -fr'",
     "deploy:upload": "scp next.tar.gz www@209.38.176.120:~/site",
     "deploy:install": "ssh www@209.38.176.120 'cd ~/site && tar xzf next.tar.gz && rm next.tar.gz' && rm next.tar.gz "
   },

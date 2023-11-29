@@ -12,7 +12,8 @@ import { useTranslation } from "react-i18next"
 export default function NavBar({ session }: { session: Session | null }) {
   const scrolled = useScroll(50)
   const { t } = useTranslation()
-
+  // background: linear-gradient(90deg, #007CFB 0%, #01EBFF 100%);
+  // bg-gradient-to-r from-blue-500 to-cyan-300
   return (
     <>
       <div
