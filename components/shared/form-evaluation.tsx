@@ -101,7 +101,7 @@ export default function Form({
               </div>
             </div>
             <Button
-              className="my-10 w-full text-center text-lg font-normal normal-case leading-7 text-black"
+              className="!my-10 w-full text-center text-lg font-normal normal-case leading-7 text-black"
               size="4"
               color="indigo"
               radius="large"

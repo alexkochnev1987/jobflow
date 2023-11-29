@@ -90,10 +90,9 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
     return <LoadingQuestion />
   }
 
-
   return (
     <div className="py-3">
-      <Label htmlFor={id} className={cn(error && "text-destructive")}>
+      <Label htmlFor={id} className={cn(error && "text-destructive", "my-5")}>
         {t(question.question)}
       </Label>
       <div className="flex flex-col justify-center gap-3">
@@ -102,7 +101,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
           answer.value === value ? (
             <Button
               key={answer.label}
-              className="my-2 w-full py-10 text-center text-lg font-normal normal-caseleading-loosetext-black transition fade-down duration-150"
+              className="normal-caseleading-loosetext-black fade-down my-2 w-full !py-10 text-center text-lg font-normal transition duration-150"
               size="4"
               color="indigo"
               radius="large"
@@ -113,7 +112,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
           ) : (
             <Button
               key={answer.label}
-              className="my-2 w-full py-10 text-center text-lg font-normal normal-caseleading-loosetext-black transition fade-down duration-150"
+              className="normal-caseleading-loosetext-black fade-down my-2 w-full !py-10 text-center text-lg font-normal transition duration-150"
               size="4"
               color="gray"
               variant="soft"

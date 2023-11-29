@@ -4,10 +4,7 @@ import "../i18n/config"
 import "./globals.css"
 import "./theme-config.css"
 import cx from "classnames"
-import { sfPro, inter } from "./fonts"
-import Nav from "@/components/layout/nav"
-import Footer from "@/components/layout/footer"
-import { Suspense } from "react"
+import { inter } from "./fonts"
 import { Theme } from "@radix-ui/themes"
 import t from "../i18n/config"
 import NavBar from "@/components/layout/navbar"
@@ -33,12 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cx(inter.variable)}>
-        <Theme>
-          <div>
-            <NavBar session={null} />
-            <main className="flex min-h-screen w-full">{children}</main>
-          </div>
-        </Theme>
+        <Theme>{children}</Theme>
       </body>
     </html>
   )
