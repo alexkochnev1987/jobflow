@@ -11,6 +11,7 @@ import { RenderQuestion } from "../evaluation/questions"
 import Sparckle from "@/components/shared/icons/sparckle.svg"
 import { cn } from "@/lib/utils"
 import { ProgressIndicator } from "@radix-ui/react-progress"
+import { ROUTES } from "@/lib/constants"
 
 type FormProps = {
   title: string
@@ -45,7 +46,7 @@ export default function Form({
 
   const newStep = (newStep) => {
     store.setStep(newStep)
-    router.push(`/?step=${newStep}`)
+    router.push(`${ROUTES.Evaluation}?step=${newStep}`)
   }
 
   const prevStep = () => {

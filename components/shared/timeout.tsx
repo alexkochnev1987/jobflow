@@ -47,7 +47,7 @@ export default function Timeout({ defaultSeconds }) {
             <span className="flex text-2xl font-bold">
               {formattedMinutes}:{formattedSeconds}
             </span>
-            <Link href="/register" className="w-50 self-end">
+            <Link href="/dashboard/register" className="w-50 self-end">
               <Button
                 size="3"
                 variant="outline"

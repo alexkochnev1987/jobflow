@@ -2,6 +2,7 @@
 
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Textarea } from "@/components/ui/textarea"
+import { ROUTES } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { Heading, TextFieldInput } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
@@ -19,7 +20,7 @@ export const LoginForm = () => {
   const [error, setError] = useState("")
 
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl") || "/profile"
+  const callbackUrl = searchParams.get("callbackUrl") || ROUTES.DashBoard
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
