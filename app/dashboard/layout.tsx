@@ -13,7 +13,7 @@ export default async function DashboardLayout({
   const session = await getServerSession(authOptions)
   return (
     <div>
-      <NavBar session={session} />
+      <NavBar/>
       <main className="mx-auto flex min-h-screen w-full max-w-6xl justify-center">
         {children}
       </main>
