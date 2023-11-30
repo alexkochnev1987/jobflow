@@ -11,8 +11,8 @@ export default async function RegisterPage() {
     return redirect(ROUTES.DashBoard)
   }
   return (
-    <>
+    <div className="max-w-sm">
       <RegisterForm />
-    </>
+    </div>
   )
 }

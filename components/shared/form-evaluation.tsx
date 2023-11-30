@@ -74,11 +74,6 @@ export default function Form({
 
   const question = unAnsweredQuestions[0]
 
-  // calculate progress
-  // based on the number of questions
-  // and unaswered questions
-  const progess = 100 - (unAnsweredQuestions.length / questions.length) * 100
-
   return (
     <div
       className={cn(
@@ -86,7 +81,7 @@ export default function Form({
         !showQuestions && "bg-sky-100",
       )}
     >
-      {showQuestions && <Progress value={progess} />}
+      {showQuestions && <Progress value={progress} />}
       <div className="z-10 mx-auto px-10 py-10 md:w-1/2 lg:w-1/3">
         {!showQuestions && (
           <>

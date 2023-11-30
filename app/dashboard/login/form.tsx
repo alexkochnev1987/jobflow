@@ -94,7 +94,7 @@ export const LoginForm = () => {
       </button>
 
       <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
-        <p className="mx-4 mb-0 text-center font-semibold">OR</p>
+        <p className="mx-4 mb-0 text-center font-bold">OR</p>
       </div>
 
       <div className="flex flex-col space-y-4 text-white">

@@ -91,11 +91,11 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   }
 
   return (
-    <div className="py-3">
-      <Label htmlFor={id} className={cn(error && "text-destructive", "my-5")}>
+    <div>
+      <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
         {t(question.question)}
       </Label>
-      <div className="flex flex-col justify-center gap-3">
+      <div className="flex flex-col justify-center gap-3 mt-5">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
           answer.value === inputRef?.current?.value ||
           answer.value === value ? (
