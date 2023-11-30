@@ -1,10 +1,10 @@
 "use client"
 
+import { Button } from "@/components/shared/button"
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Textarea } from "@/components/ui/textarea"
 import { ROUTES } from "@/lib/constants"
 import { cn } from "@/lib/utils"
-import { Heading, TextFieldInput } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChangeEvent, useState } from "react"
@@ -62,11 +62,9 @@ export const LoginForm = () => {
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
-      <Heading className="m-10 text-2xl font-normal leading-7">
-        Konto erstellen
-      </Heading>
+      <h1 className="m-10 text-2xl font-normal leading-7">Konto erstellen</h1>
       <div className="mb-6 flex flex-col gap-2">
-        <TextFieldInput
+        <input
           placeholder="Email"
           id="email"
           name="email"
@@ -74,7 +72,7 @@ export const LoginForm = () => {
           onChange={handleChange}
           className={cn(input_style)}
         />
-        <TextFieldInput
+        <input
           required
           type="password"
           name="password"
@@ -84,41 +82,32 @@ export const LoginForm = () => {
           className={cn(input_style)}
         />
       </div>
-      <button
-        type="submit"
-        style={{ backgroundColor: `${loading ? "#ccc" : "#3446eb"}` }}
-        className="inline-block w-full rounded-lg bg-primary px-7 py-4 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-        disabled={loading}
-      >
+      <Button type="submit" intent="primary" size="medium">
         {loading ? "loading..." : "Anmelden"}
-      </button>
+      </Button>
 
       <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
         <p className="mx-4 mb-0 text-center font-bold">OR</p>
       </div>
 
       <div className="flex flex-col space-y-4 text-white">
-        <button
+        <Button
           disabled={signInClicked}
-          className={`${
-            signInClicked
-              ? "cursor-not-allowed border-gray-200 bg-gray-100"
-              : "border bg-primary"
-          } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
+          className={`flex h-10 w-full items-center justify-center space-x-3 rounded-md border transition-all duration-75 focus:outline-none`}
           onClick={() => {
             setSignInClicked(true)
             signIn("google")
           }}
         >
           {signInClicked ? (
-            <LoadingDots color="#808080" />
+            <LoadingDots color="#ffffff" />
           ) : (
             <>
               <Google className="h-5 w-5" />
               <p>Sign In with Google</p>
             </>
           )}
-        </button>
+        </Button>
       </div>
     </form>
   )

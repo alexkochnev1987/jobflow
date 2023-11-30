@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+
 const plugin = require("tailwindcss/plugin")
 module.exports = {
   darkMode: ["class"],
-  mode: 'jit', 
+  mode: "jit",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -29,7 +30,7 @@ module.exports = {
       },
       fontSize: {
         sm: "0.8rem",
-        base: "1.25rem",
+        base: "1rem",
         xl: "1.5rem",
         "2xl": "1.563rem",
         "3xl": "1.953rem",

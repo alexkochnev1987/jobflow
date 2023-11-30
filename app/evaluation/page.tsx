@@ -35,11 +35,11 @@ export default async function Home({
 
   const questions = await getEvaluationFormQuestions(step.id)
 
-  const progress = Math.round((step.id / steps.length) * 100)
+  const progress = Math.min(Math.round((step.id / steps.length) * 100), 90)
 
   console.log({
     step,
-    stepId
+    stepId,
   })
 
   return (

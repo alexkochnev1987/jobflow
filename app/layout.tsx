@@ -1,6 +1,7 @@
 import "@radix-ui/themes/styles.css"
 import "react-loading-skeleton/dist/skeleton.css"
 import "../i18n/config"
+// also update if changing the css .storybook/preview.ts
 import "./globals.css"
 import "./theme-config.css"
 import cx from "classnames"

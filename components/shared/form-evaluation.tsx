@@ -3,15 +3,14 @@ import { Progress } from "../ui/progress"
 import { userStore } from "@/app/client/store"
 import { useEffect, useState } from "react"
 import { redirect, useRouter } from "next/navigation"
-import { Button } from "@radix-ui/themes"
 import "../../i18n/config-client"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormQuestion } from "@prisma/client"
 import { RenderQuestion } from "../evaluation/questions"
 import Sparckle from "@/components/shared/icons/sparckle.svg"
 import { cn } from "@/lib/utils"
-import { ProgressIndicator } from "@radix-ui/react-progress"
 import { ROUTES } from "@/lib/constants"
+import { Button } from "./button"
 
 type FormProps = {
   title: string
@@ -82,7 +81,7 @@ export default function Form({
       )}
     >
       {showQuestions && <Progress value={progress} />}
-      <div className="z-10 mx-auto px-10 py-10 md:w-1/2 lg:w-1/3">
+      <div className="z-10 mx-auto px-10 py-10 md:w-1/2 lg:w-1/2">
         {!showQuestions && (
           <>
             <div className="flex-col justify-start gap-8">
@@ -97,14 +96,19 @@ export default function Form({
               </div>
             </div>
             <Button
-              className="!my-10 w-full text-center text-lg font-normal normal-case leading-7 text-black"
-              size="4"
-              color="indigo"
-              radius="large"
               onClick={() => setShowQuestions(true)}
+              intent="primary"
+              size="medium"
             >
               {t("Continue")}
             </Button>
+            {/* <button
+              className="!my-10 w-full rounded-lg bg-sky-500 py-3 text-center text-lg font-normal normal-case leading-7 text-white "
+              color="indigo"
+              onClick={() => setShowQuestions(true)}
+            >
+              {t("Continue")}
+            </button> */}
           </>
         )}
 
@@ -118,13 +122,7 @@ export default function Form({
                 error={errors[question.id]}
               />
             ) : (
-              <Button
-                className="my-10 w-full text-center text-lg font-normal normal-case leading-7 text-black"
-                size="4"
-                color="indigo"
-                radius="large"
-                onClick={() => nextStep()}
-              >
+              <Button onClick={() => nextStep()} intent="primary" size="medium">
                 {t("Continue")}
               </Button>
             )}

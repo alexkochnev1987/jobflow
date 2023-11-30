@@ -9,8 +9,8 @@ import { userStore } from "@/app/client/store"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
-import { Button } from "@radix-ui/themes"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
+import { Button } from "../shared/button"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
@@ -91,32 +91,27 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   }
 
   return (
-    <div>
+    <div className="fade-down  w-full transition duration-300">
       <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
         {t(question.question)}
       </Label>
-      <div className="flex flex-col justify-center gap-3 mt-5">
+      <div className="mt-5 flex flex-col justify-center">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
           answer.value === inputRef?.current?.value ||
           answer.value === value ? (
             <Button
               key={answer.label}
-              className="normal-caseleading-loosetext-black fade-down my-2 w-full !py-10 text-center text-lg font-normal transition duration-150"
-              size="4"
-              color="indigo"
-              radius="large"
               onClick={() => handleAnswer(answer)}
+              intent="primary"
+              size="medium"
             >
               {t(answer.label)}
             </Button>
           ) : (
             <Button
               key={answer.label}
-              className="normal-caseleading-loosetext-black fade-down my-2 w-full !py-10 text-center text-lg font-normal transition duration-150"
-              size="4"
-              color="gray"
-              variant="soft"
-              radius="large"
+              intent="secondary"
+              size="medium"
               onClick={() => handleAnswer(answer)}
             >
               {t(answer.label)}

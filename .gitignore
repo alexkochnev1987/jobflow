@@ -49,3 +49,4 @@ database/redis/*
 uploads/*
 wp-data/*
 next.tar.gz
+storybook-static/
