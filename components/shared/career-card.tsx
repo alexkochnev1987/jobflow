@@ -12,10 +12,12 @@ import React from "react"
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   isLoading?: boolean
-  career?: any
+  data?: any
 }
 
-export default function CareerCard({ isLoading }: Props) {
+export default function CareerCard({ isLoading, data }: Props) {
+  const raitingColor =
+  data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
   return (
     <div className="w-[260px] flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
       <Image
@@ -34,7 +36,7 @@ export default function CareerCard({ isLoading }: Props) {
         {!isLoading && (
           <>
             <div className="w-full text-lg font-bold leading-7 text-black">
-              Software Engineer
+              {data.career}
             </div>
 
             <p className="flex  justify-center gap-1 align-middle">
@@ -65,8 +67,8 @@ export default function CareerCard({ isLoading }: Props) {
               </span>
             </p>
             <div className="flex w-full items-start justify-between py-2">
-              <Badge color="green" radius="full">
-                90% Match <Info className="w-4" />
+              <Badge color={raitingColor} radius="full">
+                {data.rating}% Match <Info className="w-4" />
               </Badge>
               <Bookmark className="stroke-slate-700" />
             </div>

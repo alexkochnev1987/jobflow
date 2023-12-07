@@ -3,25 +3,24 @@ import { Avatar, Badge, Box, Button, Card, Tabs, Text } from "@radix-ui/themes"
 import { useResults } from "@/lib/hooks/use-results"
 import { Flex, Heading } from "@radix-ui/themes"
 
-import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
 import React from "react"
 import CareerCard from "@/components/shared/career-card"
 export function ProfileResults({ results }) {
   const careers = results?.careers || []
-  const suitable = careers.filter((c) => c.rating >= 50)
+
+  console.log(careers)
 
   return (
-    <>
+    <div className="flex flex-row flex-wrap gap-4">
       {careers.map((c, index) => (
-        <MatchingCareerCard
+       <CareerCard
           key={c.uid}
           id={index + 1}
-          career={c}
-          hidden={false}
+          data={c}
         />
       ))}
-    </>
+    </div>
   )
 }
 
@@ -60,8 +59,7 @@ export function ProfileTabs() {
           <Heading size="5" className="mb-5">
             Here are your results 🎉
           </Heading>
-          <CareerCard />
-          <CareerCard isLoading={true} />
+          
           <Tabs.Root defaultValue="all" className="mx-auto w-full">
             <Tabs.List>
               <Tabs.Trigger value="all">All matches</Tabs.Trigger>
