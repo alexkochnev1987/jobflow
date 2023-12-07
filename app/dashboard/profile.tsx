@@ -14,11 +14,7 @@ export function ProfileResults({ results }) {
   return (
     <div className="flex flex-row flex-wrap gap-4">
       {careers.map((c, index) => (
-       <CareerCard
-          key={c.uid}
-          id={index + 1}
-          data={c}
-        />
+        <CareerCard key={c.uid} id={index + 1} data={c} />
       ))}
     </div>
   )
@@ -53,13 +49,9 @@ export function ProfileTabs() {
     <>
       <React.Suspense fallback={<Loading />}>
         <div className="text-left">
-          <Heading size="6" className="mb-3 font-medium">
-            Career lab
-          </Heading>
-          <Heading size="5" className="mb-5">
-            Here are your results 🎉
-          </Heading>
-          
+          <h1 className="mb-3 text-xl font-medium">Career lab</h1>
+          <h2 className="mb-5 text-xl font-bold">Here are your results 🎉</h2>
+
           <Tabs.Root defaultValue="all" className="mx-auto w-full">
             <Tabs.List>
               <Tabs.Trigger value="all">All matches</Tabs.Trigger>
