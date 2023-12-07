@@ -38,7 +38,7 @@ export default function MatchingCareerCard({ id, career, hidden }) {
               )}
               {!hidden && (
                 <Heading size="5" className="">
-                  {career.data.name}
+                  {career.data?.name}
                 </Heading>
               )}
             </div>
@@ -52,8 +52,8 @@ export default function MatchingCareerCard({ id, career, hidden }) {
             <p>
               Gehalt:{" "}
               <strong>
-                {salaryFormatter(career.data.salaryMin)} -{" "}
-                {salaryFormatter(career.data.salaryMax)} &euro;
+                {salaryFormatter(career.data?.salaryMin)} -{" "}
+                {salaryFormatter(career.data?.salaryMax)} &euro;
               </strong>
             </p>
             <Badge color="gray" radius="full" size="2">
@@ -62,7 +62,7 @@ export default function MatchingCareerCard({ id, career, hidden }) {
           </Flex>
           <Flex direction="row" justify="between" align="center">
             <p>
-              Umschuling: <strong>{career.data.retrainingWeeks} Wochen</strong>
+              Umschuling: <strong>{career.data?.retrainingWeeks} Wochen</strong>
             </p>
             <Badge color="blue" radius="full" size="2">
               100% Forderbar <Info className="w-4" />
@@ -72,7 +72,7 @@ export default function MatchingCareerCard({ id, career, hidden }) {
             {hidden && <Skeleton width="100%" borderRadius={20} count={4} />}
             {!hidden && (
               <Text as="p" className="py-5">
-                {career.data.description}
+                {career.data?.description}
               </Text>
             )}
           </div>

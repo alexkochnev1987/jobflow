@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/shared/button"
 import { Google, LoadingDots } from "@/components/shared/icons"
-import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/shared/input"
 import { ROUTES } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { signIn } from "next-auth/react"
@@ -55,7 +55,7 @@ export const LoginForm = () => {
   }
 
   const input_style =
-    "form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+    ""
 
   return (
     <form onSubmit={onSubmit}>
@@ -64,7 +64,7 @@ export const LoginForm = () => {
       )}
       <h1 className="m-10 text-2xl font-normal leading-7">Konto erstellen</h1>
       <div className="mb-6 flex flex-col gap-2">
-        <input
+        <Input
           placeholder="Email"
           id="email"
           name="email"
@@ -72,7 +72,7 @@ export const LoginForm = () => {
           onChange={handleChange}
           className={cn(input_style)}
         />
-        <input
+        <Input
           required
           type="password"
           name="password"

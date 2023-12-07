@@ -6,6 +6,7 @@ import { Flex, Heading } from "@radix-ui/themes"
 import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
 import React from "react"
+import CareerCard from "@/components/shared/career-card"
 export function ProfileResults({ results }) {
   const careers = results?.careers || []
   const suitable = careers.filter((c) => c.rating >= 50)
@@ -59,6 +60,8 @@ export function ProfileTabs() {
           <Heading size="5" className="mb-5">
             Here are your results 🎉
           </Heading>
+          <CareerCard />
+          <CareerCard isLoading={true} />
           <Tabs.Root defaultValue="all" className="mx-auto w-full">
             <Tabs.List>
               <Tabs.Trigger value="all">All matches</Tabs.Trigger>

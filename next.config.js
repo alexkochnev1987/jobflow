@@ -12,6 +12,7 @@ const nextConfig = {
       "test.laborflow.io",
       "laborflow.io",
       "localhost",
+      "via.placeholder.com",
     ],
   },
   i18n: {

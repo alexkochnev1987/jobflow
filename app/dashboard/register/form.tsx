@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/shared/button"
 import { Google, LoadingDots } from "@/components/shared/icons"
-import { cn } from "@/lib/utils"
+import { Input } from "@/components/shared/input"
 import { signIn } from "next-auth/react"
 import { ChangeEvent, useState } from "react"
 
@@ -48,9 +48,6 @@ export const RegisterForm = () => {
     setFormValues({ ...formValues, [name]: value })
   }
 
-  const input_style =
-    "form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-
   return (
     <form onSubmit={onSubmit}>
       {error && (
@@ -58,32 +55,29 @@ export const RegisterForm = () => {
       )}
       <h1 className="m-10 text-2xl font-normal leading-7">Konto erstellen</h1>
       <div className="mb-6 flex flex-col gap-2">
-        <input
+        <Input
           required
           type="name"
           name="name"
           value={formValues.name}
           onChange={handleChange}
           placeholder="Name"
-          className={cn(input_style)}
         />
-        <input
+        <Input
           required
           type="email"
           name="email"
           value={formValues.email}
           onChange={handleChange}
           placeholder="Email address"
-          className={cn(input_style)}
         />
-        <input
+        <Input
           required
           type="password"
           name="password"
           value={formValues.password}
           onChange={handleChange}
           placeholder="Password"
-          className={cn(input_style)}
         />
       </div>
       <Button type="submit" intent="primary" size="medium">
