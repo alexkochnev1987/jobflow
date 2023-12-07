@@ -35,12 +35,12 @@ export const DashBoardSidebar = (): ReactElement => {
       </SidebarItem>
       <SidebarItem>
         <Cap width="24" height="24" />
-        <span className="pl-3">Scholarships</span>
+        <span className="pl-3 pr-1">Scholarships</span>
         <Premium width="24" height="24" />
       </SidebarItem>
       <SidebarItem>
         <TextDocument width="24" height="24" />
-        <span className="pl-3">Applications</span>
+        <span className="pl-3 pr-1">Applications</span>
         <Premium width="24" height="24" />
       </SidebarItem>
     </Sidebar>
