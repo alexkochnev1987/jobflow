@@ -31,21 +31,25 @@ model Account {
 }
 
 model Careers {
-  id              String            @id @default(uuid()) @db.Char(36)
-  status          String            @default("draft") @db.VarChar(255)
-  sort            Int?
-  user_created    String?           @db.Char(36)
-  date_created    DateTime?         @db.Timestamp(0)
-  user_updated    String?           @db.Char(36)
-  date_updated    DateTime?         @db.Timestamp(0)
-  name            String?           @unique(map: "careers_name_unique") @db.VarChar(255)
-  description     String?           @db.Text
-  salaryMin       Int?
-  salaryMax       Int?
-  retrainingWeeks Int?
-  pace            Json?
-  format          Json?
-  Careers_Courses Careers_Courses[]
+  id                 String            @id @default(uuid()) @db.Char(36)
+  status             String            @default("draft") @db.VarChar(255)
+  sort               Int?
+  user_created       String?           @db.Char(36)
+  date_created       DateTime?         @db.Timestamp(0)
+  user_updated       String?           @db.Char(36)
+  date_updated       DateTime?         @db.Timestamp(0)
+  name               String?           @unique(map: "careers_name_unique") @db.VarChar(255)
+  description        String?           @db.Text
+  salaryMin          Int?
+  salaryMax          Int?
+  retrainingWeeks    Int?
+  pace               Json?
+  format             Json?
+  detailsTasks       String?           @db.Text
+  detailsSkills      String?           @db.Text
+  detailsRequirement String?           @db.Text
+  detailsFuture      String?           @db.Text
+  Careers_Courses    Careers_Courses[]
 
   @@index([user_created], map: "careers_user_created_foreign")
   @@index([user_updated], map: "careers_user_updated_foreign")
@@ -983,4 +987,14 @@ model Contact {
   @@index([company_id], map: "contact_company_id_foreign")
   @@index([user_created], map: "contact_user_created_foreign")
   @@index([user_updated], map: "contact_user_updated_foreign")
+}
+
+model Prototypes {
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  name        String?  @db.VarChar(255)
+  description String?  @db.Text
+  completed   Boolean? @default(false)
+  image       String?  @db.Char(36)
+
+  @@index([image], map: "prototypes_image_foreign")
 }
