@@ -20,8 +20,8 @@ export const ROUTES = {
   DashBoard: "/dashboard",
   Login: "/dashboard/login",
   Register: "/dashboard/register",
-  Evaluation: "/evaluation",
-  EvaluationResults: "/evaluation/results",
+  Evaluation: "/test",
+  EvaluationResults: "/test/results",
 }
 
-export const DEPLOY_URL = `https://test.laborflow.io/`
+export const DEPLOY_URL = `https://app.laborflow.io/`

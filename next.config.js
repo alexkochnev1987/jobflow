@@ -6,11 +6,19 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
+    remotePatterns: [
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
+    ],
     domains: [
       "lh3.googleusercontent.com",
       "jobflow.guluarte.com",
       "test.laborflow.io",
+      "app.laborflow.io",
       "laborflow.io",
+      "wp.laborflow.io",
+      "directus.laborflow.io",
       "localhost",
       "via.placeholder.com",
     ],
