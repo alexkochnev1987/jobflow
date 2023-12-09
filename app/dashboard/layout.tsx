@@ -5,6 +5,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route"
 import NavBar from "@/components/layout/navbar"
 import { ReactElement } from "react"
 import DashBoardSidebar from "@/components/layout/sidebar"
+import Footer from "@/components/layout/footer"
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
@@ -19,6 +20,7 @@ export default async function DashboardLayout({
         <main className="mx-auto flex min-h-screen w-full max-w-6xl justify-center">
           {children}
         </main>
+        <Footer />
       </div>
     )
   }
@@ -29,6 +31,7 @@ export default async function DashboardLayout({
         <DashBoardSidebar />
         <div className="w-full px-5 ">{children}</div>
       </main>
+      <Footer />
     </div>
   )
 }
