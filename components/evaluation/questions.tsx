@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
-import { Button } from "../shared/button"
+import Button from "../shared/button"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()

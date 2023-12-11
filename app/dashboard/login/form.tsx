@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/shared/button"
+import Button from "@/components/shared/button"
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Input } from "@/components/shared/input"
 import { ROUTES } from "@/lib/constants"
