@@ -10,16 +10,19 @@ import Clock from "@/components/shared/icons/clock.svg"
 import Computer from "@/components/shared/icons/pc.svg"
 import React from "react"
 
+export type Career = {
+  uid: string
+  career: string
+  rating: number
+  salaryMin: number
+  salaryMax: number
+  pace: string
+  format: string
+}
+
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   isLoading?: boolean
-  data?: {
-    career: string
-    rating: number
-    salaryMin: number
-    salaryMax: number
-    pace: string
-    format: string
-  }
+  data?: Career
 }
 
 export default function CareerCard({ isLoading, data }: Props) {
@@ -53,7 +56,8 @@ export default function CareerCard({ isLoading, data }: Props) {
                 Salary:{" "}
               </span>
               <span className="text-sm font-normal leading-snug text-slate-700">
-                {salaryFormatter(data.salaryMin)} - {salaryFormatter(data.salaryMax)} €
+                {salaryFormatter(data.salaryMin)} -{" "}
+                {salaryFormatter(data.salaryMax)} €
               </span>
             </p>
             <p className="flex  justify-center gap-1 align-middle">

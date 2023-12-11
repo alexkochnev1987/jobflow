@@ -1,8 +1,8 @@
 import React from "react"
-import CareerCard from "@/components/shared/career-card"
+import CareerCard, { Career } from "@/components/shared/career-card"
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
-  careers?: any[]
+  careers?: Career[]
 }
 
 export default function CareerGrid({ careers }: Props) {

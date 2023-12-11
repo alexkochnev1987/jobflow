@@ -7,7 +7,7 @@ const career = careers[0]
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "MatchingCareerCard",
+  title: "Test Results",
   component: MatchingCareerCard,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout

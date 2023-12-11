@@ -10,7 +10,7 @@ import { RenderQuestion } from "../evaluation/questions"
 import Sparckle from "@/components/shared/icons/sparckle.svg"
 import { cn } from "@/lib/utils"
 import { ROUTES } from "@/lib/constants"
-import { Button } from "./button"
+import Button from "./button"
 
 type FormProps = {
   title: string

@@ -1,10 +1,11 @@
 import { styled } from "react-cva"
 
-export const Button = styled("button")("my-4 w-full rounded-lg p-2 text-center normal-case leading-loose", {
+export default styled("button")("my-4 w-full rounded-lg p-2 text-center normal-case leading-loose", {
   variants: {
     intent: {
       primary: [
         "bg-sky-500",
+        "border-sky-500",
         "text-white",
         "border-transparent",
         "hover:bg-sky-400",
@@ -15,6 +16,12 @@ export const Button = styled("button")("my-4 w-full rounded-lg p-2 text-center n
         "border-gray-400",
         "hover:bg-gray-200",
       ],
+      outlined: [
+        "bg-white",
+        "text-black",
+        "hover:bg-gray-200",
+        "border border-black",
+      ]
     },
     size: {
       small: ["text-sm", "py-1", "px-2"],
