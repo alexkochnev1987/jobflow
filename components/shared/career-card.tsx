@@ -12,7 +12,14 @@ import React from "react"
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   isLoading?: boolean
-  data?: any
+  data?: {
+    career: string
+    rating: number
+    salaryMin: number
+    salaryMax: number
+    pace: string
+    format: string
+  }
 }
 
 export default function CareerCard({ isLoading, data }: Props) {
@@ -46,7 +53,7 @@ export default function CareerCard({ isLoading, data }: Props) {
                 Salary:{" "}
               </span>
               <span className="text-sm font-normal leading-snug text-slate-700">
-                37.000 - 65.000 €
+                {salaryFormatter(data.salaryMin)} - {salaryFormatter(data.salaryMax)} €
               </span>
             </p>
             <p className="flex  justify-center gap-1 align-middle">
@@ -55,7 +62,7 @@ export default function CareerCard({ isLoading, data }: Props) {
                 Pace:{" "}
               </span>
               <span className="text-sm font-normal leading-snug text-slate-700">
-                Part-Time, Full-Time
+                {data.pace}
               </span>
             </p>
             <p className="flex  justify-center gap-1 align-middle">
@@ -64,7 +71,7 @@ export default function CareerCard({ isLoading, data }: Props) {
                 Format:{" "}
               </span>
               <span className="text-sm font-normal leading-snug text-slate-700">
-                Online, On Campus
+                {data.format}
               </span>
             </p>
           </>
