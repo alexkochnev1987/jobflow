@@ -4,7 +4,7 @@ import careers from "@/test/mocks/careers.json"
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "CareerCard",
+  title: "Career Cards",
   component: CareerGrid,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
