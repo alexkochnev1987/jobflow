@@ -24,7 +24,8 @@ export default function CareerCard({ isLoading, data }: Props) {
         height={115}
         width={261}
         className="shrink grow basis-0 self-stretch"
-        src="/career-img-placeholder.png"
+        src="https://placehold.co/260x115"
+        placeholder="empty"
         alt=""
       />
       <div className="flex h-48 flex-col items-start justify-start gap-3 self-stretch p-4">

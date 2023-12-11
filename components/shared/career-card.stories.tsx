@@ -29,3 +29,20 @@ export const CareerCardLoading: Story = {
     isLoading: true,
   },
 }
+export const CareerCardYellowMatch: Story = {
+  args: {
+    data: {
+      rating: 70,
+      career: "Software Developer",
+    }
+  },
+}
+
+export const CareerCardRedMatch: Story = {
+  args: {
+    data: {
+      rating: 30,
+      career: "Software Developer",
+    }
+  },
+}

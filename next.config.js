@@ -21,6 +21,7 @@ const nextConfig = {
       "directus.laborflow.io",
       "localhost",
       "via.placeholder.com",
+      "placehold.co",
     ],
   },
   i18n: {
