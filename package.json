@@ -106,6 +106,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^7.6.4",
     "@storybook/addon-essentials": "^7.6.3",
     "@storybook/addon-interactions": "^7.6.3",
     "@storybook/addon-links": "^7.6.3",

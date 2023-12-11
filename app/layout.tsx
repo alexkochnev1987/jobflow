@@ -1,4 +1,3 @@
-import "@radix-ui/themes/styles.css"
 import "react-loading-skeleton/dist/skeleton.css"
 import "../i18n/config"
 // also update if changing the css .storybook/preview.ts
@@ -8,7 +7,6 @@ import cx from "classnames"
 import { inter } from "./fonts"
 import { Theme } from "@radix-ui/themes"
 import t from "../i18n/config"
-import NavBar from "@/components/layout/navbar"
 
 export const metadata = {
   title: t("SITE_TITLE"),
