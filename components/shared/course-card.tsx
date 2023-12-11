@@ -1,5 +1,7 @@
 import * as React from "react"
 
+import Skeleton from "react-loading-skeleton"
+
 import Clock from "@/components/shared/icons/clock.svg"
 import Calendar from "@/components/shared/icons/calendar.svg"
 import Location from "@/components/shared/icons/location.svg"
@@ -19,7 +21,10 @@ export type Course = {
   description: string
 }
 
-type Props = React.ComponentPropsWithoutRef<"div"> & Course
+type Props = React.ComponentPropsWithoutRef<"div"> &
+  Course & {
+    isLoading?: boolean
+  }
 
 export default function CourseCard({
   name,
@@ -29,7 +34,13 @@ export default function CourseCard({
   description,
   startDate,
   sponsorship,
+  isLoading,
 }: Props) {
+  if (isLoading) {
+    return (
+      <Skeleton className="h-23 w-full" height={50} width={300} count={1} />
+    )
+  }
   return (
     <>
       {/* mobile */}
@@ -89,7 +100,7 @@ export default function CourseCard({
         <div className="mt-4 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
           {description}
         </div>
-        <div className="flex flex-row gap-1 items-stretch justify-between self-stretch">
+        <div className="flex flex-row items-stretch justify-between gap-1 self-stretch">
           <Button intent="outlined">Contact</Button>
           <Button intent="primary">Enroll</Button>
         </div>
@@ -98,11 +109,11 @@ export default function CourseCard({
       {/* desktop */}
       <div className="hidden w-full flex-col items-end rounded-2xl border border-solid border-[color:var(--grey-300,#D0D5DD)] bg-white p-6 shadow-sm max-md:px-5 md:visible md:flex">
         <div className="flex flex-row">
-          <div className="w-1/5">
+          <div className="w-1/5 justify-center align-middle">
             <Image
               height={120}
               width={120}
-              className="shrink grow basis-0 self-stretch"
+              className="m-auto shrink grow basis-0 "
               src="https://placehold.co/120x120"
               placeholder="empty"
               alt=""
