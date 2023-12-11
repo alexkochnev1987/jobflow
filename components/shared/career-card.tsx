@@ -1,6 +1,6 @@
 "use client"
 import { salaryFormatter } from "@/lib/utils"
-import { Badge } from "@radix-ui/themes"
+import { Badge, Button } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import Image from "next/image"
 import Skeleton from "react-loading-skeleton"
@@ -75,10 +75,17 @@ export default function CareerCard({ isLoading, data }: Props) {
               <Badge color={raitingColor} radius="full">
                 {data.rating}% Match <Info className="w-4" />
               </Badge>
-              <Bookmark className="stroke-slate-700" />
+              <Button variant="ghost">
+                <Bookmark className="stroke-slate-700" />
+              </Button>
             </>
           )}
-          {isLoading && <><Skeleton className="h-4 w-32" count={1} /><Skeleton className="h-4 w-8" count={1} /></>}
+          {isLoading && (
+            <>
+              <Skeleton className="h-4 w-32" count={1} />
+              <Skeleton className="h-4 w-8" count={1} />
+            </>
+          )}
         </div>
       </div>
     </div>
