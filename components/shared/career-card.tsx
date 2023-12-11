@@ -17,7 +17,7 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 
 export default function CareerCard({ isLoading, data }: Props) {
   const raitingColor =
-  data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
+    data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
   return (
     <div className="w-[260px] flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
       <Image
@@ -67,14 +67,19 @@ export default function CareerCard({ isLoading, data }: Props) {
                 Online, On Campus
               </span>
             </p>
-            <div className="flex w-full items-start justify-between py-2">
+          </>
+        )}
+        <div className="flex w-full items-start justify-between py-2">
+          {!isLoading && (
+            <>
               <Badge color={raitingColor} radius="full">
                 {data.rating}% Match <Info className="w-4" />
               </Badge>
               <Bookmark className="stroke-slate-700" />
-            </div>
-          </>
-        )}
+            </>
+          )}
+          {isLoading && <><Skeleton className="h-4 w-32" count={1} /><Skeleton className="h-4 w-8" count={1} /></>}
+        </div>
       </div>
     </div>
   )
