@@ -1,10 +1,10 @@
 import React, { ButtonHTMLAttributes, ReactElement } from "react"
 import { cn } from "@/lib/utils"
-import Lab from "@/components/shared/icons/lab.svg"
-import Book from "@/components/shared/icons/book.svg"
-import Cap from "@/components/shared/icons/cap.svg"
-import Premium from "@/components/shared/icons/premium.svg"
-import TextDocument from "@/components/shared/icons/text-document.svg"
+import Lab from "@/icons/lab.svg"
+import Book from "@/icons/book.svg"
+import Cap from "@/icons/cap.svg"
+import Premium from "@/icons/premium.svg"
+import TextDocument from "@/icons/text-document.svg"
 
 export type Props = React.InputHTMLAttributes<HTMLDivElement>
 

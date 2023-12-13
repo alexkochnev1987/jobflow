@@ -1,6 +1,6 @@
 "use server"
 import Link from "next/link"
-import Logo from "@/components/shared/icons/logo.svg"
+import Logo from "@/icons/logo.svg"
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout

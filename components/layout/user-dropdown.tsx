@@ -8,6 +8,7 @@ import Image from "next/image"
 import { Session } from "next-auth"
 import Link from "next/link"
 import { ROUTES } from "@/lib/constants"
+import UserIcon from "@/icons/user.svg"
 
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {}
@@ -42,14 +43,9 @@ export default function UserDropdown({ session }: { session: Session }) {
       >
         <button
           onClick={() => setOpenPopover(!openPopover)}
-          className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
+          className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
         >
-          <Image
-            alt={email}
-            src={image || "/avatar-placeholder.svg"}
-            width={40}
-            height={40}
-          />
+          <UserIcon />
         </button>
       </Popover>
     </div>

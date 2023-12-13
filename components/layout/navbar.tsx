@@ -25,7 +25,6 @@ export const NavBar = ({ session, ...rest }: Props): ReactElement => {
           <Logo />
         </Link>
         <div className="my-auto flex flex-row gap-2 self-end">
-          <World />
           {session && <UserDropdown session={session} />}
         </div>
       </div>
