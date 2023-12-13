@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import courses from "@/test/mocks/courses.json"
-import CourseCarousel from "./course-carousel"
+import tests from "@/test/mocks/tests.json"
+import TestsCarousel from "./test-carousel"
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Courses",
-  component: CourseCarousel,
+  title: "Tests",
+  component: TestsCarousel,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
   args: {
-    courses,
+    tests,
   },
-} satisfies Meta<typeof CourseCarousel>
+} satisfies Meta<typeof TestsCarousel>
 
 export default meta
 

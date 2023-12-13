@@ -9,7 +9,8 @@ export default function CourseCarousel({ courses }: Props) {
   console.log(courses)
   return (
     <>
-      <div className="flex flex-row flex-wrap h-[600px] overflow-hidden">
+     <h1 className="text-lg font-bold">Umschulungen</h1>
+      <div className="flex flex-row flex-wrap overflow-hidden flex-grow">
         {courses.map((c) => (
           <CourseCard key={c.name} {...c} />
         ))}

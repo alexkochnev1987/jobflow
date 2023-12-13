@@ -11,8 +11,8 @@ export type Test = {
   description: string
 }
 
-type Props = React.ElementType<HTMLDivElement> &
-Test & {
+type Props = React.ComponentPropsWithoutRef<"div"> &
+  Test & {
     isLoading?: boolean
   }
 
@@ -28,9 +28,9 @@ export default function TestCard({
     )
   }
   return (
-    <>
-      <div className="w- flex flex-col items-end rounded-2xl border border-solid border-[color:var(--grey-300,#D0D5DD)] bg-white p-6 shadow-sm max-md:px-5 md:w-1/2 lg:w-1/3 ">
-        <div className="mt-1 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full">
+    <div className="md:w-1/2 lg:w-1/3 ">
+      <div className="border-grey-300 ml-2  flex min-h-full flex-col items-end rounded-2xl border border-solid bg-white p-6 shadow-sm">
+        <div className="mt-1 h-16 self-stretch text-xl font-bold leading-8 text-black  max-md:max-w-full">
           {name}
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start">
@@ -43,6 +43,6 @@ export default function TestCard({
           {description}
         </div>
       </div>
-    </>
+    </div>
   )
 }

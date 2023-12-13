@@ -9,6 +9,7 @@ import Currency from "@/icons/currency.svg"
 import Clock from "@/icons/clock.svg"
 import Computer from "@/icons/pc.svg"
 import React from "react"
+import { useRouter } from "next/navigation"
 
 export type Career = {
   uid: string
@@ -26,11 +27,21 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 }
 
 export default function CareerCard({ isLoading, data }: Props) {
+  const router = useRouter()
+
+  function onClick() {
+    const url = `/dashboard/course/${data.uid}`
+    router.push(url)
+  }
+
   const raitingColor =
     data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
   return (
-    <div className="p-4 w-full flex-col items-start justify-start md:w-1/2  lg:w-1/3">
-      <div className="overflow-hidden rounded-2xl border border-gray-300 bg-white shadow ">
+    <div
+      className="w-full flex-col items-start justify-start p-4 hover:cursor-pointer  md:w-1/2 lg:w-1/3"
+      onClick={onClick}
+    >
+      <div className="min-w-[250px] overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
         <div className="relative h-28 w-full">
           <Image
             fill
