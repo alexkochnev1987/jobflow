@@ -122,7 +122,7 @@ function FooterComponent() {
         <div className="mt-6 flex  justify-start gap-5 max-md:max-w-full max-md:flex-wrap">
           <Logo />
           <div className="my-auto grow self-center whitespace-nowrap text-base leading-6 text-gray-400">
-            © 2023 Laborflow. All rights reserved.
+            © 2023 ShiftYourCareer. All rights reserved.
           </div>
         </div>
       </div>
