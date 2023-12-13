@@ -29,7 +29,7 @@ export default function CareerCard({ isLoading, data }: Props) {
   const raitingColor =
     data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
   return (
-    <div className="w-[260px] flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
+    <div className="w-full flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow md:w-1/2 lg:w-[260px]">
       <Image
         height={115}
         width={261}
