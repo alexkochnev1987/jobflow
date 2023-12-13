@@ -42,8 +42,8 @@ export default function CourseCard({
     )
   }
   return (
-    <>
-      <div className="w- flex flex-col items-end rounded-2xl border border-solid border-[color:var(--grey-300,#D0D5DD)] bg-white p-6 shadow-sm max-md:px-5 md:w-1/2 lg:w-1/3 ">
+    <div className="min-h-full px-1 md:px-4 md:w-1/2 lg:w-1/3">
+      <div className="border-grey-300 flex h-full  flex-col items-end rounded-2xl border border-solid bg-white p-2 shadow-sm ">
         <Image
           height={120}
           width={120}
@@ -105,6 +105,6 @@ export default function CourseCard({
           </Button>
         </div>
       </div>
-    </>
+    </div>
   )
 }

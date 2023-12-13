@@ -30,7 +30,7 @@ export default function CareerCard({ isLoading, data }: Props) {
     data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
   return (
     <div className="p-4 w-full flex-col items-start justify-start md:w-1/2  lg:w-1/3">
-      <div className=" overflow-hidden rounded-2xl border border-gray-300 bg-white shadow ">
+      <div className="overflow-hidden rounded-2xl border border-gray-300 bg-white shadow ">
         <div className="relative h-28 w-full">
           <Image
             fill
