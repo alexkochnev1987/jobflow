@@ -3,13 +3,7 @@ import * as React from "react"
 import Skeleton from "react-loading-skeleton"
 
 import Clock from "@/icons/clock.svg"
-import Calendar from "@/icons/calendar.svg"
-import Location from "@/icons/location.svg"
-import Tag from "@/icons/tag.svg"
-import Bag from "@/icons/bag.svg"
-import Image from "next/image"
-import Button from "./button"
-import { convertMinsToHrsMins, salaryFormatter } from "@/lib/utils"
+import { convertMinsToHrsMins } from "@/lib/utils"
 
 export type Test = {
   name: string

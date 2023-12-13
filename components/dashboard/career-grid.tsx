@@ -14,7 +14,7 @@ export default function CareerGrid({ careers }: Props) {
         Open the details page to find more information about the career, way to
         test whether the career suits as well as trainings.
       </p>
-      <div className="flex flex-row flex-wrap gap-4">
+      <div className="flex flex-row flex-wrap">
         {careers.map((c) => (
           <CareerCard key={c.uid} data={c} />
         ))}
