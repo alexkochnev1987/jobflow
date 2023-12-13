@@ -5,17 +5,18 @@ import { Session } from "next-auth"
 import UserDropdown from "./user-dropdown"
 
 // import { ReactComponent as HeartFilledIcon } from '../../assets/icons/icon_heart_filled.svg'
-import Logo from "@/components/shared/icons/logo2.svg"
-import World from "@/components/shared/icons/world.svg"
+import Logo from "@/icons/logo2.svg"
+import World from "@/icons/world.svg"
 
 export type Props = React.InputHTMLAttributes<HTMLDivElement> & {
   session?: Session
 }
+
 export const NavBar = ({ session, ...rest }: Props): ReactElement => {
   return (
     <div
       className={cn(
-        `flex w-full justify-center bg-gradient-to-r from-blue-500 to-cyan-300`,
+        `flex w-full justify-center bg-gradient-to-r  from-emerald-300 to-emerald-200 px-10 py-2`,
         rest.className,
       )}
     >

@@ -11,7 +11,8 @@
       "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
-      "@/test/*": ["test/*"]
+      "@/test/*": ["test/*"],
+      "@/icons/*": ["components/shared/icons/*"]
     },
     "noImplicitAny": false,
     "strict": false,
