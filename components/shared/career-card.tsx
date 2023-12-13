@@ -35,8 +35,9 @@ export default function CareerCard({ isLoading, data }: Props) {
         width={261}
         className="shrink grow basis-0 self-stretch"
         src="https://placehold.co/260x115"
-        placeholder="empty"
         alt=""
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA..."
+        placeholder="blur"
       />
       <div className="flex h-48 flex-col items-start justify-start gap-3 self-stretch p-4">
         {isLoading && (

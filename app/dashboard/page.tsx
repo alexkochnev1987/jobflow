@@ -9,8 +9,8 @@ export default async function Page() {
     return redirect(ROUTES.Login)
   }
   return (
-    <div className="w-full justify-center text-center">
-      <ProfileTabs />
+    <div className="w-full justify-center text-left">
+      <ProfileTabs user={session?.user} />
     </div>
   )
 }

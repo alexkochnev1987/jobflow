@@ -6,11 +6,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    remotePatterns: [
-      {
-        hostname: "lh3.googleusercontent.com",
-      },
-    ],
+    dangerouslyAllowSVG: true,
     domains: [
       "lh3.googleusercontent.com",
       "jobflow.guluarte.com",
