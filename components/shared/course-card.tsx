@@ -42,8 +42,8 @@ export default function CourseCard({
     )
   }
   return (
-    <div className="min-h-full px-1 md:px-2 md:w-1/2 lg:w-1/3 mt-2">
-      <div className="border-grey-300 flex h-full  flex-col  rounded-2xl border border-solid bg-white p-2 shadow-sm min-h-[200px]">
+    <div className="mt-2 min-h-full px-1 md:w-1/2 md:px-2 lg:w-1/3">
+      <div className="border-grey-300 flex h-full  min-h-[200px]  flex-col rounded-2xl border border-solid bg-white p-2 shadow-sm">
         <Image
           height={120}
           width={120}
@@ -54,7 +54,7 @@ export default function CourseCard({
         <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
           COURSE
         </div>
-        <div className="mt-1 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full h-16">
+        <div className="mt-1 h-16 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full">
           {name}
         </div>
         <div className="mt-1 flex items-center gap-2 self-start px-px">
@@ -95,12 +95,12 @@ export default function CourseCard({
             <span className=""> {sponsorship ? "Yes" : "No"}</span>
           </div>
         </div>
-        <div className="mt-4 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full h-28">
+        <div className="mt-4 h-28 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
           {description}
         </div>
-        <div className="flex flex-row justify-between gap-1 self-stretch items-end">
-          <Button intent="primary" className="bg-rose-500 hover:bg-rose-400">
-            Enroll
+        <div className="flex flex-row items-end justify-between gap-1 self-stretch">
+          <Button intent="primary" className="hover:!bg-rose-400 !bg-rose-500">
+            unverbindlich anfragen
           </Button>
         </div>
       </div>

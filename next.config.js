@@ -7,6 +7,11 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        hostname: "placehold.co",
+      },
+    ],
     domains: [
       "lh3.googleusercontent.com",
       "jobflow.guluarte.com",
@@ -18,6 +23,8 @@ const nextConfig = {
       "localhost",
       "via.placeholder.com",
       "placehold.co",
+      "shiftyourcareer.de",
+      "app.shiftyourcareer.de",
     ],
   },
   i18n: {

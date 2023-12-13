@@ -24,4 +24,4 @@ export const ROUTES = {
   EvaluationResults: "/test/results",
 }
 
-export const DEPLOY_URL = `https://app.laborflow.io/`
+export const DEPLOY_URL = `https://app.shiftyourcareer.de/`
