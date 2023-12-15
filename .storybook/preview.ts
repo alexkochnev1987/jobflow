@@ -2,6 +2,7 @@ import React from "react"
 import type { Preview } from "@storybook/react"
 import { Theme } from "@radix-ui/themes"
 import "react-loading-skeleton/dist/skeleton.css"
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import "../app/globals.css"
 import "../app/theme-config.css"
 import "../node_modules/@radix-ui/themes/styles.css"

@@ -1,3 +1,4 @@
+import 'react-multi-carousel/lib/styles.css';
 import "react-loading-skeleton/dist/skeleton.css"
 import "../i18n/config"
 // also update if changing the css .storybook/preview.ts

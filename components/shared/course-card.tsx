@@ -11,6 +11,7 @@ import Image from "next/image"
 import Button from "./button"
 import { salaryFormatter } from "@/lib/utils"
 
+
 export type Course = {
   name: string
   startDate: string
@@ -42,7 +43,7 @@ export default function CourseCard({
     )
   }
   return (
-    <div className="mt-2 min-h-full px-1 md:w-1/2 md:px-2 lg:w-1/3">
+    <div className="ml-2 min-h-full px-1 md:w-1/2 md:px-2 lg:w-1/3 min-w-[300px]">
       <div className="border-grey-300 flex h-full  min-h-[200px]  flex-col rounded-2xl border border-solid bg-white p-2 shadow-sm">
         <Image
           height={120}
@@ -100,7 +101,7 @@ export default function CourseCard({
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
           <Button intent="primary" className="hover:!bg-rose-400 !bg-rose-500">
-            unverbindlich anfragen
+            Unverbindlich anfragen
           </Button>
         </div>
       </div>
