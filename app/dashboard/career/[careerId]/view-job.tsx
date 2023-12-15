@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import ChevronMore from "@/icons/ChevronMore.svg"
 import Clock from "@/icons/clock.svg"
@@ -5,7 +6,6 @@ import Clock from "@/icons/clock.svg"
 import Location from "@/icons/location.svg"
 import Currency from "@/icons/currency.svg"
 
-import Image from "next/image"
 import { Badge } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import { Career } from "@/components/shared/career-card"
@@ -32,7 +32,6 @@ function JobListing({
   pace,
   format,
 }: Props) {
-  console.log(id)
   return (
     <div className="flex flex-col items-start self-stretch bg-white py-6">
       <div className="w-[423px] max-w-full">

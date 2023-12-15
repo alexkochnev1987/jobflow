@@ -10,6 +10,9 @@ import JobListing from "./view-job"
 import { ROUTES } from "@/lib/constants"
 import { getCareer } from "@/app/actions/server"
 import { Career } from "@/components/shared/career-card"
+import React from "react"
+import Skeleton from "react-loading-skeleton"
+
 
 export default async function Page({
   params,
@@ -18,7 +21,7 @@ export default async function Page({
 }) {
   const career: Career = await getCareer(params.careerId)
 
-  console.log('career', career)
+  console.log("career", career)
 
   return (
     <div>
@@ -27,11 +30,13 @@ export default async function Page({
           <BackIcon /> Results
         </h1>
       </Link>
-      <div>
+      <React.Suspense
+        fallback={<Skeleton className="w-1/3" height={30} count={3} />}
+      >
         <JobListing {...career} rating={90} />
-      </div>
-      <TestsCarousel tests={tests} />
-      <CourseCarousel courses={courses} />
+        <TestsCarousel tests={tests} />
+        <CourseCarousel courses={courses} />
+      </React.Suspense>
     </div>
   )
 }

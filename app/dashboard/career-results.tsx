@@ -1,7 +1,6 @@
 "use client"
 import { useResults } from "@/lib/hooks/use-results"
 
-import Loading from "@/components/shared/loading"
 import React from "react"
 import CareerGrid from "@/components/dashboard/career-grid"
 import Skeleton from "react-loading-skeleton"
