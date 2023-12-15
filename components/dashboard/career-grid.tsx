@@ -16,7 +16,7 @@ export default function CareerGrid({ careers }: Props) {
       </p>
       <div className="flex flex-row flex-wrap">
         {careers.map((c) => (
-          <CareerCard key={c.uid} data={c} />
+          <CareerCard key={c.id} data={c} />
         ))}
       </div>
     </>

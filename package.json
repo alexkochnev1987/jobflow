@@ -25,6 +25,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@directus/sdk": "^13.0.2",
     "@hookform/resolvers": "^3.3.1",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.8.1",

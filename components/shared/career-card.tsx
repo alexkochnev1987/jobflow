@@ -1,5 +1,5 @@
 "use client"
-import { salaryFormatter } from "@/lib/utils"
+import { getImageFullUrl, salaryFormatter } from "@/lib/utils"
 import { Badge, Button } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import Image from "next/image"
@@ -12,8 +12,15 @@ import React from "react"
 import { useRouter } from "next/navigation"
 
 export type Career = {
-  uid: string
-  career: string
+  id: string
+  image: string
+  name: string
+  description: string
+  detailsFuture: string
+  detailsRequirement: string
+  detailsSkills: string
+  detailsTasks: string
+  retrainingWeeks: string
   rating: number
   salaryMin: number
   salaryMax: number
@@ -30,7 +37,7 @@ export default function CareerCard({ isLoading, data }: Props) {
   const router = useRouter()
 
   function onClick() {
-    const url = `/dashboard/course/${data.uid}`
+    const url = `/dashboard/course/${data.id}`
     router.push(url)
   }
 
@@ -45,7 +52,7 @@ export default function CareerCard({ isLoading, data }: Props) {
         <div className="relative h-28 w-full">
           <Image
             fill
-            src="https://placehold.co/520x330"
+            src={getImageFullUrl(data.image)}
             alt=""
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA..."
             placeholder="blur"
@@ -61,7 +68,7 @@ export default function CareerCard({ isLoading, data }: Props) {
           {!isLoading && (
             <>
               <div className="w-full text-lg font-bold leading-7 text-black">
-                {data.career}
+                {data.name}
               </div>
 
               <p className="flex  justify-center gap-1 align-middle">

@@ -49,10 +49,12 @@ model Careers {
   detailsSkills      String?           @db.Text
   detailsRequirement String?           @db.Text
   detailsFuture      String?           @db.Text
+  image              String?           @db.Char(36)
   Careers_Courses    Careers_Courses[]
 
   @@index([user_created], map: "careers_user_created_foreign")
   @@index([user_updated], map: "careers_user_updated_foreign")
+  @@index([image], map: "careers_image_foreign")
 }
 
 model Careers_Courses {

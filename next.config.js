@@ -9,12 +9,21 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
+        protocol: 'https',
         hostname: "placehold.co",
+        pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: "directus.shiftyourcareer.de",
+        pathname: '/**',
+      }
     ],
     domains: [
       "localhost",
+      "placehold.co",
       "app.shiftyourcareer.de",
+      "directus.shiftyourcareer.de",
     ],
   },
   i18n: {

@@ -104,3 +104,7 @@ export const convertMinsToHrsMins = (n: number) => {
 
   return `${minutes}min`
 }
+
+export function getImageFullUrl(id: string) {
+  return `/api/files/${id}`
+}

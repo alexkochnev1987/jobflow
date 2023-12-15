@@ -5,8 +5,11 @@ import Loading from "@/components/shared/loading"
 import React from "react"
 import CareerGrid from "@/components/dashboard/career-grid"
 
-export function ProfileTabs({ user }) {
+export function CareerResults({ user, careers }) {
   const { isLoading, results } = useResults()
+
+  console.log("results", results)
+  console.log("careers", careers)
 
   if (isLoading) return <Loading />
 
@@ -15,7 +18,7 @@ export function ProfileTabs({ user }) {
       <h1 className="text-xl font-bold leading-8 text-neutral-700">
         Welcome {user.name}👋
       </h1>
-      <CareerGrid careers={results?.careers} />
+      <CareerGrid careers={careers} />
     </>
   )
 }
