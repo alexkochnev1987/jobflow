@@ -10,9 +10,11 @@ export default async function Page() {
   if (!session?.user) {
     return redirect(ROUTES.Login)
   }
+
+  const careersRes = careers.map((c) => ({...c, rating: 30}))
   return (
     <div className="w-full justify-center text-left">
-      <CareerResults user={session?.user} careers={careers} />
+      <CareerResults user={session?.user} careers={careersRes} />
     </div>
   )
 }

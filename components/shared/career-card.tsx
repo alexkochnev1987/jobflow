@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import { formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
 import { Badge, Button } from "@radix-ui/themes"
@@ -13,19 +14,19 @@ import { useRouter } from "next/navigation"
 
 export type Career = {
   id: string
-  image: string
+  image?: string
   name: string
   description: string
-  detailsFuture: string
-  detailsRequirement: string
-  detailsSkills: string
-  detailsTasks: string
+  detailsFuture?: string
+  detailsRequirement?: string
+  detailsSkills?: string
+  detailsTasks?: string
   retrainingWeeks: number
   rating?: number
-  salaryMin: number
-  salaryMax: number
-  pace: string[] | string | any
-  format: string[] | string | any
+  salaryMin?: number
+  salaryMax?: number
+  pace?: string[] | string | any
+  format?: string[] | string | any
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
@@ -50,12 +51,9 @@ export default function CareerCard({ isLoading, data }: Props) {
     >
       <div className="min-w-[250px] overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
         <div className="relative h-28 w-full">
-          <Image
-            fill
+          <img
             src={getImageFullUrl(data.image)}
             alt=""
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADA..."
-            placeholder="blur"
             className="h-full w-full object-cover"
           />
         </div>

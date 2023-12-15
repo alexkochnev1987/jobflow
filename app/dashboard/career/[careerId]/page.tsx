@@ -18,6 +18,8 @@ export default async function Page({
 }) {
   const career: Career = await getCareer(params.careerId)
 
+  console.log('career', career)
+
   return (
     <div>
       <Link href={ROUTES.DashBoard}>

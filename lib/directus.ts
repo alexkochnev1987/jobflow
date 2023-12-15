@@ -1,4 +1,4 @@
-import { authentication, createDirectus, graphql, readAssetRaw, readFile, rest } from "@directus/sdk"
+import { authentication, createDirectus, graphql, readAssetRaw, rest } from "@directus/sdk"
 
 const client = createDirectus("https://directus.shiftyourcareer.de")
   .with(graphql())

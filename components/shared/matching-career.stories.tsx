@@ -43,7 +43,7 @@ const meta = {
     career: {
       rating: career.rating,
       data: {
-        name: career.career,
+        name: career.name,
         salaryMin: career.salaryMin,
         salaryMax: career.salaryMax,
         retrainingWeeks: career.retrainingWeeks,

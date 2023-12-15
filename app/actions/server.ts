@@ -12,12 +12,9 @@ export async function getCareers() {
 }
 
 export async function getCareer(id: string) {
-  const res = await prisma?.careers.findFirst({
+  return prisma?.careers.findUnique({
     where: {
-      status: "published",
       id,
     },
   })
-
-  return res
 }

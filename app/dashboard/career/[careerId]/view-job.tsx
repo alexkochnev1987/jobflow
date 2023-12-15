@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import ChevronMore from "@/icons/ChevronMore.svg"
 import Clock from "@/icons/clock.svg"
 
@@ -37,11 +38,9 @@ function JobListing({
       <div className="w-[423px] max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex w-[48%] flex-col items-stretch max-md:ml-0 max-md:w-full">
-            <Image
-              height={193}
-              width={193}
+            <img
               src={getImageFullUrl(image)}
-              placeholder="empty"
+              className="h-full w-full rounded-2xl object-cover"
               alt=""
             />
           </div>
@@ -83,13 +82,13 @@ function JobListing({
       </div>
       <div className="mt-6 w-full self-stretch text-sm leading-6 text-black max-md:max-w-full">
         <p>{description}</p>
-        <h2 className="font-bold text-2xl my-2">Future</h2>
+        <h2 className="my-2 text-2xl font-bold">Future</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
-        <h2 className="font-bold text-2xl my-2">Requirements</h2>
+        <h2 className="my-2 text-2xl font-bold">Requirements</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
-        <h2 className="font-bold text-2xl my-2">Skills</h2>
+        <h2 className="my-2 text-2xl font-bold">Skills</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsSkills }} />
-        <h2 className="font-bold text-2xl my-2">Tasks</h2>
+        <h2 className="my-2 text-2xl font-bold">Tasks</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsTasks }} />
       </div>
       <div className="mt-6 flex items-center gap-0 self-end px-5">
