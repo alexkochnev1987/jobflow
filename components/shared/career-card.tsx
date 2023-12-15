@@ -1,5 +1,5 @@
 "use client"
-import { getImageFullUrl, salaryFormatter } from "@/lib/utils"
+import { formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
 import { Badge, Button } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import Image from "next/image"
@@ -20,12 +20,12 @@ export type Career = {
   detailsRequirement: string
   detailsSkills: string
   detailsTasks: string
-  retrainingWeeks: string
-  rating: number
+  retrainingWeeks: number
+  rating?: number
   salaryMin: number
   salaryMax: number
-  pace: string
-  format: string
+  pace: string[] | string | any
+  format: string[] | string | any
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
@@ -37,7 +37,7 @@ export default function CareerCard({ isLoading, data }: Props) {
   const router = useRouter()
 
   function onClick() {
-    const url = `/dashboard/course/${data.id}`
+    const url = `/dashboard/career/${data.id}`
     router.push(url)
   }
 
@@ -87,7 +87,7 @@ export default function CareerCard({ isLoading, data }: Props) {
                   Pace:{" "}
                 </span>
                 <span className="text-sm font-normal leading-snug text-slate-700">
-                  {data.pace}
+                  {formatArray(data.pace)}
                 </span>
               </p>
               <p className="flex  justify-center gap-1 align-middle">
@@ -96,7 +96,7 @@ export default function CareerCard({ isLoading, data }: Props) {
                   Format:{" "}
                 </span>
                 <span className="text-sm font-normal leading-snug text-slate-700">
-                  {data.format}
+                  {formatArray(data.format)}
                 </span>
               </p>
             </>

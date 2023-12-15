@@ -108,3 +108,10 @@ export const convertMinsToHrsMins = (n: number) => {
 export function getImageFullUrl(id: string) {
   return `/api/files/${id}`
 }
+
+export function formatArray(arr: string[]): string {
+  if (!arr || !arr.length) return ""
+  // capitalize first letter
+  arr = arr.map((str) => capitalize(str))
+  return `${arr.join(", ")}`
+}

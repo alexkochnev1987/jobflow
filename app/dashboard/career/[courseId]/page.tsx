@@ -8,12 +8,16 @@ import tests from "@/test/mocks/tests.json"
 import Link from "next/link"
 import JobListing from "./view-job"
 import { ROUTES } from "@/lib/constants"
+import { getCareer } from "@/app/actions/server"
+import { Career } from "@/components/shared/career-card"
 
 export default async function Page({
   params,
 }: {
-  params: { courseId: string }
+  params: { careerId: string }
 }) {
+  const career: Career = await getCareer(params.careerId)
+
   return (
     <div>
       <Link href={ROUTES.DashBoard}>
@@ -22,7 +26,7 @@ export default async function Page({
         </h1>
       </Link>
       <div>
-        <JobListing />
+        <JobListing {...career} rating={90} />
       </div>
       <TestsCarousel tests={tests} />
       <CourseCarousel courses={courses} />

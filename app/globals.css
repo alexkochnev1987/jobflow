@@ -1,3 +1,8 @@
+p ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
 .radix-themes[data-is-root-theme='true'] {
   /* create new stacking context on the root `Theme` so layered components work out of the box */
   position: relative;
