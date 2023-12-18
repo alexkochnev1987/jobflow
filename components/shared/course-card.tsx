@@ -28,6 +28,7 @@ type Props = React.ComponentPropsWithoutRef<"div"> &
   }
 
 export default function CourseCard({
+  id,
   name,
   pace,
   price,
@@ -100,7 +101,7 @@ export default function CourseCard({
           {description}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
-          <Button intent="primary" className="hover:!bg-rose-400 !bg-rose-500">
+          <Button intent="primary" className="hover:!bg-rose-400 !bg-rose-500" as={"a"} href={`/course/${id}`}>
             Unverbindlich anfragen
           </Button>
         </div>

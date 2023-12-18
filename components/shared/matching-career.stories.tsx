@@ -15,7 +15,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className="flex flex-col items-center justify-center min-h-screen max-w-5xl m-auto">
+      <div className="m-auto flex min-h-screen max-w-5xl flex-col items-center justify-center">
         <Story />
       </div>
     ),
@@ -31,25 +31,16 @@ const meta = {
         type: "number",
       },
     },
-    career: {
-      control: {
-        type: "object",
-      },
-    },
   },
   args: {
-    id: 1,
+    id: "1",
     hidden: false,
-    career: {
-      rating: career.rating,
-      data: {
-        name: career.name,
-        salaryMin: career.salaryMin,
-        salaryMax: career.salaryMax,
-        retrainingWeeks: career.retrainingWeeks,
-        description: career.description,
-      },
-    },
+    name: career.name,
+    salaryMin: career.salaryMin,
+    salaryMax: career.salaryMax,
+    retrainingWeeks: career.retrainingWeeks,
+    description: career.description,
+    rating: career.rating,
   },
 } satisfies Meta<typeof MatchingCareerCard>
 

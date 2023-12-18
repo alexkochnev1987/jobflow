@@ -13,10 +13,26 @@ import {
 } from "@radix-ui/themes"
 import { ChevronDown, Info } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
+import { Career } from "./career-card"
 
-export default function MatchingCareerCard({ id, career, hidden }) {
-  const raitingColor =
-    career.rating < 40 ? "ruby" : career.rating < 80 ? "yellow" : "green"
+type Props = Partial<Career> &
+  React.ComponentPropsWithoutRef<"div"> & {
+    isLoading?: boolean
+    hidden?: boolean
+    rating?: number
+  }
+
+export default function MatchingCareerCard({
+  id,
+  rating,
+  name,
+  salaryMin,
+  retrainingWeeks,
+  salaryMax,
+  description,
+  hidden,
+}: Props) {
+  const raitingColor = rating < 40 ? "ruby" : rating < 80 ? "yellow" : "green"
   return (
     <Card
       variant="surface"
@@ -38,13 +54,13 @@ export default function MatchingCareerCard({ id, career, hidden }) {
               )}
               {!hidden && (
                 <Heading size="5" className="">
-                  {career.data?.name}
+                  {name}
                 </Heading>
               )}
             </div>
             <div>
               <Badge color={raitingColor} radius="full">
-                {career.rating}% <Info className="w-4" />
+                {rating}% <Info className="w-4" />
               </Badge>
             </div>
           </Flex>
@@ -52,8 +68,8 @@ export default function MatchingCareerCard({ id, career, hidden }) {
             <p>
               Gehalt:{" "}
               <strong>
-                {salaryFormatter(career.data?.salaryMin)} -{" "}
-                {salaryFormatter(career.data?.salaryMax)} &euro;
+                {salaryFormatter(salaryMin)} - {salaryFormatter(salaryMax)}{" "}
+                &euro;
               </strong>
             </p>
             <Badge color="gray" radius="full" size="2">
@@ -62,7 +78,7 @@ export default function MatchingCareerCard({ id, career, hidden }) {
           </Flex>
           <Flex direction="row" justify="between" align="center">
             <p>
-              Umschuling: <strong>{career.data?.retrainingWeeks} Wochen</strong>
+              Umschuling: <strong>{retrainingWeeks} Wochen</strong>
             </p>
             <Badge color="blue" radius="full" size="2">
               100% Forderbar <Info className="w-4" />
@@ -72,7 +88,7 @@ export default function MatchingCareerCard({ id, career, hidden }) {
             {hidden && <Skeleton width="100%" borderRadius={20} count={4} />}
             {!hidden && (
               <Text as="p" className="py-5">
-                {career.data?.description}
+                {description}
               </Text>
             )}
           </div>

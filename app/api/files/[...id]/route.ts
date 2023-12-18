@@ -9,6 +9,9 @@ export async function GET(req: NextRequest) {
   const result = await getImage(id)
 
   console.log(result)
-  return new Response(result)
+  return new Response(result, {
+    headers: {
+      "Cache-Control": "public, max-age=31536000, immutable",
+    },
+  })
 }
-

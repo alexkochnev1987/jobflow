@@ -42,6 +42,34 @@ export async function getUserById(id: string) {
   })
 }
 
+export async function getUserByEmail(email: string) {
+  return prisma?.user.findFirst({
+    where: {
+      email,
+    },
+    select: {
+      id: true,
+      email: true,
+      profileId: true,
+      evaluationCompleted: true,
+      Profile: profileSelect,
+    },
+  })
+}
+
+export async function hasCompletedEvaluation(email: string) {
+  const res = await prisma?.user.findFirst({
+    where: {
+      email,
+    },
+    select: {
+      evaluationCompleted: true,
+    },
+  })
+
+  return res.evaluationCompleted
+}
+
 export async function getUserProfileById(id: string) {
   return prisma?.profile.findFirst({
     where: {

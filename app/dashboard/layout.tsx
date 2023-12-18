@@ -3,9 +3,16 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 // import Logo from "@/icons/logo2.svg"
 import NavBar from "@/components/layout/navbar"
-import { ReactElement } from "react"
+import { ReactElement, use } from "react"
 import DashBoardSidebar from "@/components/layout/sidebar"
 import Footer from "@/components/layout/footer"
+import {
+  getUserByEmail,
+  getUserProfileById,
+  hasCompletedEvaluation,
+} from "../actions/user"
+import { ROUTES } from "@/lib/constants"
+import { redirect } from "next/navigation"
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
@@ -13,6 +20,9 @@ export default async function DashboardLayout({
   children: React.ReactNode
 }): Promise<ReactElement> {
   const session = await getServerSession(authOptions)
+
+  const evaluationCompleted = await hasCompletedEvaluation(session?.user?.email)
+
   if (!session?.user) {
     return (
       <div>
@@ -24,6 +34,7 @@ export default async function DashboardLayout({
       </div>
     )
   }
+
   return (
     <div>
       <NavBar session={session} />

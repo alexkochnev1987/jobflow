@@ -15,7 +15,7 @@ type Props = Partial<Career> &
     isLoading?: boolean
   }
 
-function JobListing({
+function Course({
   id,
   image,
   name,

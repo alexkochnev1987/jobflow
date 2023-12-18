@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth"
 import t from "../../i18n/config"
 import Form from "@/components/shared/form-evaluation"
 import { ROUTES } from "@/lib/constants"
+import { hasCompletedEvaluation } from "../actions/user"
 
 export default async function Home({
   searchParams,
@@ -17,7 +18,9 @@ export default async function Home({
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
   const session = await getServerSession()
-  if (session?.user) {
+  const evaluationCompleted = await hasCompletedEvaluation(session?.user?.email)
+
+  if (session?.user && evaluationCompleted) {
     return redirect(ROUTES.DashBoard)
   }
 

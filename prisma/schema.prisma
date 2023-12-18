@@ -295,6 +295,7 @@ model User {
   profileId                  String?                      @db.Char(36)
   notify_career_updates      Boolean?                     @default(true)
   notify_training_updates    Boolean?                     @default(true)
+  evaluationCompleted        Boolean?
   Profile                    Profile[]
   Session                    Session[]
   Account                    Account[]

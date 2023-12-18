@@ -1,5 +1,5 @@
 import { getCareers } from "@/app/actions/server"
-import { QUESTION_CATEGORIES, QUESTION_TYPES } from "@/lib/constants"
+import { QUESTION_TYPES } from "@/lib/constants"
 import { completition } from "@/lib/openai"
 import prisma from "@/lib/prisma"
 import { sliderResponseToText } from "@/lib/utils"

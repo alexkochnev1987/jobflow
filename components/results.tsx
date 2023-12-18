@@ -72,7 +72,7 @@ export default function Results() {
                     <MatchingCareerCard
                       key={c.uid}
                       id={index + 1}
-                      career={c}
+                      {...c}
                       hidden={true}
                     />
                   ))}
