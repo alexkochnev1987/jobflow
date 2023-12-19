@@ -5,10 +5,15 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import Cap from "@/icons/cap.svg"
+import Building from "@/icons/building.svg"
+
 import Button from "@/components/shared/button"
+import { cn } from "@/lib/utils"
 
 const schema = yup
   .object({
+    business: yup.string().oneOf(["training", "company"]).required(),
     name: yup.string().required(),
     first_name: yup.string().required(),
     last_name: yup.string().required(),
@@ -31,12 +36,19 @@ export const RegisterForm = () => {
   const [error, setError] = useState("")
   const {
     register,
+    getValues,
+    setValue,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
 
-  console.log(watch("name"))
+  const { business } = getValues()
+
+  watch("business")
+
+  const isCompany = business === "company"
+  const isTraining = business === "training"
 
   const onSubmit = async (data) => {
     console.log(data)
@@ -69,7 +81,45 @@ export const RegisterForm = () => {
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
-      <h1 className="mb-5 text-xl font-bold leading-7">Company</h1>
+      <h1 className="mb-5 text-xl font-bold leading-7">Business</h1>
+      <input type="hidden" {...register("business")} />
+      <div className="flex w-full flex-row gap-1">
+        <div
+          onClick={() => {
+            setValue("business", "training")
+          }}
+          className={cn(
+            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
+            isTraining && "border-emerald-300 bg-slate-100 text-emerald-300",
+          )}
+        >
+          <Cap
+            className={cn(
+              "mx-auto h-10 w-10 stroke-gray-500",
+              isTraining && "stroke-emerald-300",
+            )}
+          />
+          <p className="font-bold">Training Institute</p>
+        </div>
+        <div
+          onClick={() => {
+            setValue("business", "company")
+          }}
+          className={cn(
+            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
+            isCompany && "border-emerald-300 bg-slate-100 text-emerald-300",
+          )}
+        >
+          <Building
+            className={cn(
+              "mx-auto h-10 w-10 stroke-gray-500",
+              isCompany && "stroke-emerald-300",
+            )}
+          />
+          <p className="font-bold">Company</p>
+        </div>
+      </div>
+      <h1 className="my-5 text-xl font-bold leading-7">Company</h1>
       <div className="mb-6 flex flex-col gap-2">
         <Input {...register("name", { required: true })} placeholder="Name" />
         <Input
