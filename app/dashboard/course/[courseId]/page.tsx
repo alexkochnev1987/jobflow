@@ -12,9 +12,12 @@ import { Career } from "@/components/shared/career-card"
 import React from "react"
 import Skeleton from "react-loading-skeleton"
 
-
-export default async function ViewCourse({careerId}) {
-  const career: Career = await getCareer(careerId)
+export default async function Page({
+  params,
+}: {
+  params: { careerId: string }
+}) {
+  const career: Career = await getCareer(params.careerId)
 
   console.log("career", career)
 

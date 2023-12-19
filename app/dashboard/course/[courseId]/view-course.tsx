@@ -15,7 +15,7 @@ type Props = Partial<Career> &
     isLoading?: boolean
   }
 
-function Course({
+function ViewCourse({
   id,
   image,
   name,
@@ -98,4 +98,4 @@ function Course({
     </div>
   )
 }
-export default JobListing
+export default ViewCourse
