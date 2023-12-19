@@ -306,6 +306,7 @@ model User {
   Session                    Session[]
   Account                    Account[]
   EvaluationFormUserResponse EvaluationFormUserResponse[]
+  Contact                    Contact[]
 
   @@index([profileId])
 }
@@ -993,7 +994,9 @@ model Contact {
   notify_billing_updates Boolean?   @default(true)
   userId                 String?    @db.VarChar(255)
   Company                Companies? @relation(fields: [company_id], references: [id])
+  User                   User?      @relation(fields: [userId], references: [id])
 
+  @@index([userId])
   @@index([company_id], map: "contact_company_id_foreign")
   @@index([user_created], map: "contact_user_created_foreign")
   @@index([user_updated], map: "contact_user_updated_foreign")
