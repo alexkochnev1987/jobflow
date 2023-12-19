@@ -991,6 +991,7 @@ model Contact {
   notify_lead_updates    Boolean?   @default(true)
   notify_view_updates    Boolean?   @default(true)
   notify_billing_updates Boolean?   @default(true)
+  userId                 String?    @db.VarChar(255)
   Company                Companies? @relation(fields: [company_id], references: [id])
 
   @@index([company_id], map: "contact_company_id_foreign")
