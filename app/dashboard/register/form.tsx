@@ -4,27 +4,36 @@ import Button from "@/components/shared/button"
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Input } from "@/components/shared/input"
 import { signIn } from "next-auth/react"
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
+
+type Inputs = {
+  name: string
+  email: string
+  password: string
+}
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
   const [signInClicked, setSignInClicked] = useState(false)
-  const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-  })
   const [error, setError] = useState("")
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>()
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  console.log(watch("name"))
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data)
     setLoading(true)
-    setFormValues({ name: "", email: "", password: "" })
 
     try {
       const res = await fetch("/api/register", {
         method: "POST",
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,41 +52,23 @@ export const RegisterForm = () => {
     }
   }
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setFormValues({ ...formValues, [name]: value })
-  }
-
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
       <h1 className="m-10 text-2xl font-normal leading-7">Konto erstellen</h1>
       <div className="mb-6 flex flex-col gap-2">
+        <Input {...register("name", { required: true })} placeholder="Name" />
         <Input
-          required
-          type="name"
-          name="name"
-          value={formValues.name}
-          onChange={handleChange}
-          placeholder="Name"
-        />
-        <Input
-          required
-          type="email"
-          name="email"
-          value={formValues.email}
-          onChange={handleChange}
+          {...register("email", { required: true })}
           placeholder="Email address"
+          type="email"
         />
         <Input
-          required
-          type="password"
-          name="password"
-          value={formValues.password}
-          onChange={handleChange}
+          {...register("password", { required: true })}
           placeholder="Password"
+          type="password"
         />
       </div>
       <Button type="submit" intent="primary" size="medium">

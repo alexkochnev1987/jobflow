@@ -11,7 +11,7 @@ export default async function LoginPage() {
     return redirect(ROUTES.DashBoard)
   }
   return (
-    <div className="max-w-sm">
+    <div className="max-w-sm mx-auto">
       <LoginForm />
     </div>
   )
