@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import Button from "@/components/shared/button"
 
 const schema = yup
   .object({
@@ -27,7 +28,6 @@ const schema = yup
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
-  const [signInClicked, setSignInClicked] = useState(false)
   const [error, setError] = useState("")
   const {
     register,
@@ -65,56 +65,64 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-full max-w-md">
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
-      <h1 className="text-2xl font-normal leading-7">Company</h1>
+      <h1 className="mb-5 text-xl font-bold leading-7">Company</h1>
       <div className="mb-6 flex flex-col gap-2">
         <Input {...register("name", { required: true })} placeholder="Name" />
         <Input
           {...register("vat", { required: true })}
           placeholder="Tax/VAT number"
         />
-        <Input
-          {...register("street", { required: true })}
-          placeholder="street address"
-        />
-        <Input
-          {...register("zip", { required: true })}
-          placeholder="zip / postal code"
-        />
-        <Input {...register("city", { required: true })} placeholder="city" />
+        <div className="flex flex-row gap-1">
+          <Input
+            {...register("street", { required: true })}
+            placeholder="Street Address"
+          />
+          <Input
+            {...register("zip", { required: true })}
+            placeholder="Zip / Postal code"
+          />
+        </div>
+        <Input {...register("city", { required: true })} placeholder="City" />
         <Input
           {...register("country", { required: true })}
-          placeholder="country"
+          placeholder="Country"
         />
         <Input
           {...register("email_billing", { required: true })}
-          placeholder="email for billing"
+          placeholder="E-mail for billing"
         />
-        <Input {...register("phone", { required: true })} placeholder="phone" />
-        <Input {...register("web", { required: true })} placeholder="web" />
-        <h1 className="text-2xl font-normal leading-7">Contact Person</h1>
+        <Input {...register("phone", { required: true })} placeholder="Phone" />
+        <Input {...register("web", { required: true })} placeholder="Web" />
+        <h1 className="my-5 text-xl font-bold leading-7">Contact Person</h1>
         <Input
           {...register("first_name", { required: true })}
-          placeholder="first name"
+          placeholder="First name"
         />
         <Input
           {...register("last_name", { required: true })}
-          placeholder="last name"
+          placeholder="Last name"
         />
         <Input
           {...register("email_requests", { required: true })}
-          placeholder="email for requests"
+          placeholder="E-mail for requests"
         />
-        <h1 className="text-2xl font-normal leading-7">Account</h1>
-        <Input {...register("email", { required: true })} placeholder="email" />
+        <h1 className="my-5 text-xl font-bold leading-7">Account</h1>
+        <Input
+          {...register("email", { required: true })}
+          placeholder="E-mail"
+        />
         <Input
           {...register("password", { required: true })}
           placeholder="Password"
           type="password"
         />
+        <Button intent="primary" className="!bg-rose-500 hover:!bg-rose-400">
+          Register
+        </Button>
       </div>
     </form>
   )

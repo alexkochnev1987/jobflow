@@ -10,9 +10,5 @@ export default async function RegisterPage() {
   if (session) {
     return redirect(ROUTES.DashBoard)
   }
-  return (
-    <div className="mx-auto max-w-sm">
-      <RegisterForm />
-    </div>
-  )
+  return <RegisterForm />
 }
