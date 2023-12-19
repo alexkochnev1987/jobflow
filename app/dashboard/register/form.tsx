@@ -6,12 +6,17 @@ import { Input } from "@/components/shared/input"
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
-type Inputs = {
-  name: string
-  email: string
-  password: string
-}
+const schema = yup
+  .object({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(12).max(60).required(),
+  })
+  .required()
+
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
@@ -22,11 +27,11 @@ export const RegisterForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm({ resolver: yupResolver(schema) })
 
   console.log(watch("name"))
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit = async (data) => {
     console.log(data)
     setLoading(true)
 
