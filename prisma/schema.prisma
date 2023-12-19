@@ -103,10 +103,12 @@ model Courses {
   start_date      DateTime?         @db.Date
   course_type     Json?
   pace            Json?
+  image           String?           @db.Char(36)
   Careers_Courses Careers_Courses[]
 
   @@index([user_created], map: "courses_user_created_foreign")
   @@index([user_updated], map: "courses_user_updated_foreign")
+  @@index([image], map: "courses_image_foreign")
 }
 
 model EvaluationFormAnswer {
@@ -264,6 +266,7 @@ model Quizzes {
   description   String?         @db.Text
   image         String?         @db.Char(36)
   duration      DateTime?       @db.Time(0)
+  name          String?         @db.VarChar(255)
   QuizzResource QuizzResource[]
 
   @@index([image], map: "quizzes_image_foreign")
