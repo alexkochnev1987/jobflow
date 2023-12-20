@@ -82,6 +82,7 @@ model Companies {
   type          String?   @db.VarChar(255)
   web           String?   @db.VarChar(255)
   email_billing String?   @db.VarChar(255)
+  vat           String?   @db.VarChar(255)
   Address       Address[]
   Contact       Contact[]
 
@@ -964,11 +965,10 @@ model Address {
   user_updated String?    @db.Char(36)
   date_updated DateTime?  @db.Timestamp(0)
   street       String?    @db.VarChar(255)
-  street_no    String?    @db.VarChar(255)
   zip          String?    @db.VarChar(255)
   country      String?    @default("DE") @db.VarChar(255)
-  tax_id       String?    @db.VarChar(255)
   company_id   Int?       @db.UnsignedInt
+  city         String?    @db.VarChar(255)
   Company      Companies? @relation(fields: [company_id], references: [id])
 
   @@index([company_id], map: "address_company_id_foreign")

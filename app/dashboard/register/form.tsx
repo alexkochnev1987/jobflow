@@ -17,7 +17,6 @@ const schema = yup
   })
   .required()
 
-
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
   const [signInClicked, setSignInClicked] = useState(false)
@@ -30,6 +29,8 @@ export const RegisterForm = () => {
   } = useForm({ resolver: yupResolver(schema) })
 
   console.log(watch("name"))
+
+
 
   const onSubmit = async (data) => {
     console.log(data)
