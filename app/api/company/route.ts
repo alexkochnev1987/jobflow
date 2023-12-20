@@ -5,9 +5,6 @@ import { InferType } from "yup"
 import { schemaCompanySignup } from "@/lib/schemas"
 
 export async function POST(req: NextRequest) {
-  // create company
-  // create contact
-  // create user
   try {
     const json = await req.json()
     const data: InferType<typeof schemaCompanySignup> =
