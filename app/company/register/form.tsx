@@ -55,7 +55,7 @@ export const RegisterForm = () => {
     setLoading(true)
 
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("/api/company", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -68,8 +68,6 @@ export const RegisterForm = () => {
         setError((await res.json()).message)
         return
       }
-
-      signIn(undefined, { callbackUrl: "/" })
     } catch (error: any) {
       setLoading(false)
       setError(error)
@@ -89,7 +87,7 @@ export const RegisterForm = () => {
             setValue("business", "training")
           }}
           className={cn(
-            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
+            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white py-2 text-center align-middle text-gray-500",
             isTraining && "border-emerald-300 bg-slate-100 text-emerald-300",
           )}
         >
