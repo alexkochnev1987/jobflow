@@ -85,6 +85,7 @@ model Companies {
   vat           String?   @db.VarChar(255)
   Address       Address[]
   Contact       Contact[]
+  Courses       Courses[]
 
   @@index([logo], map: "companies_logo_foreign")
   @@index([user_created], map: "companies_user_created_foreign")
@@ -108,11 +109,14 @@ model Courses {
   course_type     Json?
   pace            Json?
   image           String?           @db.Char(36)
+  company         Int?              @db.UnsignedInt
+  Company         Companies?        @relation(fields: [company], references: [id])
   Careers_Courses Careers_Courses[]
 
   @@index([user_created], map: "courses_user_created_foreign")
   @@index([user_updated], map: "courses_user_updated_foreign")
   @@index([image], map: "courses_image_foreign")
+  @@index([company], map: "courses_company_foreign")
 }
 
 model EvaluationFormAnswer {

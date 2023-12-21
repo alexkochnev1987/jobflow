@@ -64,11 +64,10 @@ export default function CompanyCourses() {
 
   const onSubmit = async (data) => {
     console.log("onSubmit", data, images)
-    return
     setLoading(true)
 
     try {
-      const res = await fetch("/api/company", {
+      const res = await fetch("/api/course", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -100,6 +99,24 @@ export default function CompanyCourses() {
         </Flex>
         <TextFieldInput {...register("name")} placeholder="Name" />
         {errors.name && <p className="text-red-700">{errors.name.message}</p>}
+        <Flex direction="row" gap="1">
+          <Flex className="w-4/5" direction="column">
+            <TextFieldInput {...register("location")} placeholder="Location" />
+            {errors.location && (
+              <p className="text-red-700">{errors.location.message}</p>
+            )}
+          </Flex>
+          <Flex direction="column" className="w-1/5">
+            <TextFieldInput
+              {...register("price")}
+              placeholder="Price"
+              type="number"
+            />
+            {errors.price && (
+              <p className="text-red-700">{errors.price.message}</p>
+            )}
+          </Flex>
+        </Flex>
         <TextArea
           {...register("description")}
           className="h-20"
@@ -139,17 +156,6 @@ export default function CompanyCourses() {
               </PopoverContent>
             </Popover>
           </Flex>
-          <Flex direction="row" gap="1" align="start">
-            <TextFieldInput
-              {...register("price")}
-              placeholder="Price"
-              type="number"
-            />
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox /> <label>Sponsorship</label>
-            </Flex>
-          </Flex>
-
           <Flex>
             <ImageUploading
               value={images}
@@ -217,17 +223,6 @@ export default function CompanyCourses() {
         <Flex direction="row" wrap="wrap" gap="2">
           <Flex direction="column">
             <label htmlFor="" className="font-medium">
-              Location
-            </label>
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("remote")} /> <label>Remote</label>
-            </Flex>
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("on_campus")} /> <label>On-campus</label>
-            </Flex>
-          </Flex>
-          <Flex direction="column">
-            <label htmlFor="" className="font-medium">
               Pace
             </label>
             <Flex direction="row" align="center" gap="1">
@@ -249,6 +244,9 @@ export default function CompanyCourses() {
               <label>Apprenticenship</label>
             </Flex>
           </Flex>
+        </Flex>
+        <Flex direction="row" align="center" gap="1">
+          <Checkbox {...register("sponsonrship")} /> <label>Sponsorship</label>
         </Flex>
         <Button type="submit" className="!bg-rose-500 hover:!bg-rose-400">
           Add Course

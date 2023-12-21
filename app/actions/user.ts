@@ -82,3 +82,16 @@ export async function getUserProfileById(id: string) {
     },
   })
 }
+
+export async function getUserContactById(userId: string) {
+  return prisma?.contact.findFirst({
+    where: {
+      userId,
+    },
+  })
+}
+
+export async function getUserCompanyById(userId: string) {
+  const contact = await getUserContactById(userId)
+  return contact?.company_id
+}
