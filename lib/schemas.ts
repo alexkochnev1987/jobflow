@@ -25,10 +25,11 @@ export const schemaNewCourse = yup
     name: yup.string().required(),
     description: yup.string().required(),
     price: yup.number().required(),
-    sponsorship: yup.boolean().required(),
-    location: yup.string().required(),
-    type: yup.string().required(),
-    pace: yup.string().required(),
-    image: yup.string().required(),
+    remote: yup.string(),
+    on_campus: yup.string(),
+    part_time: yup.string(),
+    full_time: yup.string(),
+    training: yup.string(),
+    apprenticenship: yup.string(),
   })
   .required()

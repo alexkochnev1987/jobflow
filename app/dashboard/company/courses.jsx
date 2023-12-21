@@ -20,18 +20,6 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { schemaNewCourse } from "@/lib/schemas"
 
 export default function CompanyCourses() {
-  const [showCourseModal, setAddCourseModal] = useState(false)
-  const {
-    register,
-    getValues,
-    setValue,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schemaNewCourse),
-    defaultValues: { business: "training", country: "Germany" },
-  })
   return (
     <Container>
       <Flex direction="row" justify="between">
@@ -39,10 +27,9 @@ export default function CompanyCourses() {
           Trainings
         </h1>
 
-        <AddIcon
-          className="cursor-pointer"
-          onClick={() => setAddCourseModal(true)}
-        />
+        <Link href="/dashboard/company/courses/add">
+          <AddIcon className="cursor-pointer" />
+        </Link>
       </Flex>
 
       <h2 className="text-center text-lg">No trainings found.</h2>
@@ -97,68 +84,6 @@ export default function CompanyCourses() {
           <DeleteIcon className="cursor-pointer" />
         </Flex>
       </Flex>
-
-      <Modal
-        showModal={showCourseModal}
-        setShowModal={() => {
-          setAddCourseModal(false)
-        }}
-      >
-        <div className="w-1/2 rounded-lg border border-gray-400 bg-white p-4 shadow-sm">
-          <Flex direction="column" justify="between" className="w-full" gap="2">
-            <Flex direction="row" justify="between">
-              <h1 className="text-xl font-medium leading-8 text-gray-900">
-                Add course
-              </h1>
-              <Link
-                onClick={(e) => {
-                  e.preventDefault()
-                  setAddCourseModal(false)
-                }}
-                href="#"
-              >
-                <AddIcon className="rotate-45 cursor-pointer" />
-              </Link>
-            </Flex>
-            <p>image</p>
-            <Input {...register("name")} placeholder="Name" />
-            <textarea
-              {...register("description")}
-              className="h-20"
-              placeholder="Description"
-              type="textarea"
-              rows="3"
-            />
-
-            <Input {...register("price")} placeholder="Price" type="number" />
-            <div>
-              <Checkbox /> <label>Sponsorship</label>
-            </div>
-            <label htmlFor="">Location</label>
-            <div>
-              <Checkbox /> Remote
-            </div>
-            <div>
-              <Checkbox /> On-campus
-            </div>
-            <p>startdates</p>
-            <label htmlFor="">Pace</label>
-            <div>
-              <Checkbox /> Part-time
-            </div>
-            <div>
-              <Checkbox /> Full-time
-            </div>
-            <label htmlFor="">Type</label>
-            <div>
-              <Checkbox /> Training
-            </div>
-            <div>
-              <Checkbox /> Apprenticenship
-            </div>
-          </Flex>
-        </div>
-      </Modal>
     </Container>
   )
 }
