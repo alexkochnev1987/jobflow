@@ -1,22 +1,11 @@
 "use client"
 /* eslint-disable @next/next/no-img-element */
-import Clock from "@/icons/clock.svg"
-import Location from "@/icons/location.svg"
-import Tag from "@/icons/tag.svg"
-import Bag from "@/icons/bag.svg"
 import Link from "next/link"
-import { ROUTES } from "@/lib/constants"
-import AddIcon from "@/icons/add.svg"
-import EditIcon from "@/icons/edit.svg"
-import DeleteIcon from "@/icons/delete.svg"
 import React, { useState } from "react"
-import Skeleton from "react-loading-skeleton"
 
 import {
-  Box,
   Button,
   Checkbox,
-  Container,
   Flex,
   PopoverContent,
   TextArea,
@@ -33,11 +22,12 @@ import { CalendarDays } from "lucide-react"
 import { Popover, PopoverTrigger } from "@radix-ui/react-popover"
 import { format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
+import { LoadingDots } from "@/components/shared/icons"
 
 export default function CompanyCourses() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [images, setImages] = React.useState([])
+  const [images, setImages] = useState([])
   const {
     register,
     getValues,
@@ -248,8 +238,13 @@ export default function CompanyCourses() {
         <Flex direction="row" align="center" gap="1">
           <Checkbox {...register("sponsonrship")} /> <label>Sponsorship</label>
         </Flex>
-        <Button type="submit" className="!bg-rose-500 hover:!bg-rose-400">
-          Add Course
+        {error && <p className="text-red-700">{error}</p>}
+        <Button
+          type="submit"
+          className="!bg-rose-500 hover:!bg-rose-400"
+          disabled={loading}
+        >
+          {loading ? <LoadingDots color="#ffffff" /> : "Add course"}
         </Button>
       </Flex>
     </form>
