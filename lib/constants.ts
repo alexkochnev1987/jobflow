@@ -22,6 +22,8 @@ export const ROUTES = {
   Register: "/dashboard/register",
   Evaluation: "/test",
   EvaluationResults: "/test/results",
+  AddCourse: "/dashboard/company/course/add",
+  EditCourse: "/dashboard/company/course/edit",
 }
 
 export const DEPLOY_URL = `https://app.shiftyourcareer.de/`
