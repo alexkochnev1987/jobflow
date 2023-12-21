@@ -3,23 +3,15 @@
 import Clock from "@/icons/clock.svg"
 import Location from "@/icons/location.svg"
 import Tag from "@/icons/tag.svg"
-import Bag from "@/icons/bag.svg"
-
 import Link from "next/link"
-import { ROUTES } from "@/lib/constants"
 import AddIcon from "@/icons/add.svg"
 import EditIcon from "@/icons/edit.svg"
 import DeleteIcon from "@/icons/delete.svg"
 import React, { useState } from "react"
-import Skeleton from "react-loading-skeleton"
-import { Box, Checkbox, Container, Flex } from "@radix-ui/themes"
-import Modal from "@/components/shared/modal"
-import { Input } from "@/components/shared/input"
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { schemaNewCourse } from "@/lib/schemas"
+import { Container, Flex } from "@radix-ui/themes"
 
-export default function CompanyCourses() {
+
+export default function CompanyCourses({ courses, company }) {
   return (
     <Container>
       <Flex direction="row" justify="between">
@@ -32,7 +24,9 @@ export default function CompanyCourses() {
         </Link>
       </Flex>
 
-      <h2 className="text-center text-lg">No trainings found.</h2>
+      {courses.length === 0 && (
+        <h2 className="text-center text-lg">No trainings found.</h2>
+      )}
 
       <Flex
         direction="column"

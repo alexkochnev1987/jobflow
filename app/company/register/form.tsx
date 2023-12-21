@@ -134,10 +134,7 @@ export const RegisterForm = () => {
         {errors.zip && <p className="text-red-700">{errors.zip.message}</p>}
         <Input {...register("city", { required: true })} placeholder="City" />
         {errors.city && <p className="text-red-700">{errors.city.message}</p>}
-        <Select name="Country" {...register("country", { required: true })}>
-          <option value="" selected>
-            Select Country
-          </option>
+        <Select name="Country" {...register("country")}>
           <option value="Afghanistan">Afghanistan</option>
           <option value="Albania">Albania</option>
           <option value="Algeria">Algeria</option>

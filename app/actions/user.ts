@@ -93,5 +93,9 @@ export async function getUserContactById(userId: string) {
 
 export async function getUserCompanyById(userId: string) {
   const contact = await getUserContactById(userId)
-  return contact?.company_id
+  return prisma?.companies.findFirst({
+    where: {
+      id: contact?.company_id,
+    },
+  })
 }

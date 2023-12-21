@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    const companyId = await getUserCompanyById(user.id)
+    const company = await getUserCompanyById(user.id)
 
     const data: InferType<typeof schemaNewCourse> =
       await schemaNewCourse.validate(json)
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
         course_type: JSON.stringify(courseType),
         pace: JSON.stringify(pace),
         image: directusImage.id,
-        company: companyId,
+        company: company.id,
       },
     })
 
