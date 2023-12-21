@@ -19,3 +19,16 @@ export const schemaCompanySignup = yup
     password: yup.string().min(12).max(60).required(),
   })
   .required()
+
+export const schemaNewCourse = yup
+  .object({
+    name: yup.string().required(),
+    description: yup.string().required(),
+    price: yup.number().required(),
+    sponsorship: yup.boolean().required(),
+    location: yup.string().required(),
+    type: yup.string().required(),
+    pace: yup.string().required(),
+    image: yup.string().required(),
+  })
+  .required()

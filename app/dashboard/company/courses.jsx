@@ -10,13 +10,28 @@ import { ROUTES } from "@/lib/constants"
 import AddIcon from "@/icons/add.svg"
 import EditIcon from "@/icons/edit.svg"
 import DeleteIcon from "@/icons/delete.svg"
-import React from "react"
+import React, { useState } from "react"
 import Skeleton from "react-loading-skeleton"
-import { Container, Flex } from "@radix-ui/themes"
+import { Box, Container, Flex } from "@radix-ui/themes"
 import Modal from "@/components/shared/modal"
+import { Input } from "@/components/shared/input"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { schemaNewCourse } from "@/lib/schemas"
 
 export default function CompanyCourses() {
-  const [showCourseModal, setAddCourseModal] = React.useState(false)
+  const [showCourseModal, setAddCourseModal] = useState(false)
+  const {
+    register,
+    getValues,
+    setValue,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaNewCourse),
+    defaultValues: { business: "training", country: "Germany" },
+  })
   return (
     <Container>
       <Flex direction="row" justify="between">
@@ -30,21 +45,6 @@ export default function CompanyCourses() {
         />
       </Flex>
 
-      <Modal
-        showModal={showCourseModal}
-        setShowModal={() => {
-          setAddCourseModal(false)
-        }}
-      >
-        <Flex direction="row" justify="between">
-          <h1 className="text-xl font-medium leading-8 text-gray-900">
-            Trainings
-          </h1>
-          <Link href={ROUTES.AddCourse}>
-            <AddIcon className="cursor-pointer" />
-          </Link>
-        </Flex>
-      </Modal>
       <h2 className="text-center text-lg">No trainings found.</h2>
 
       <Flex
@@ -97,6 +97,47 @@ export default function CompanyCourses() {
           <DeleteIcon className="cursor-pointer" />
         </Flex>
       </Flex>
+
+      <Modal
+        showModal={showCourseModal}
+        setShowModal={() => {
+          setAddCourseModal(false)
+        }}
+      >
+        <div className="w-1/2 rounded-lg border border-gray-400 bg-white p-4 shadow-sm">
+          <Flex direction="column" justify="between" className="w-full" gap="2">
+            <Flex direction="row" justify="between">
+              <h1 className="text-xl font-medium leading-8 text-gray-900">
+                Add course
+              </h1>
+              <Link
+                onClick={(e) => {
+                  e.preventDefault()
+                  setAddCourseModal(false)
+                }}
+                href="#"
+              >
+                <AddIcon className="rotate-45 cursor-pointer" />
+              </Link>
+            </Flex>
+            <Input {...register("name")} placeholder="Name" />
+            <textarea
+              {...register("description")}
+              className="h-20"
+              placeholder="Description"
+              type="textarea"
+              rows="3"
+            />
+            <p>sponsorship</p>
+            <Input {...register("price")} placeholder="Price" type="number" />
+            <p>location checkboxes</p>
+            <p>startdates</p>
+            <p>pace</p>
+            <p>type</p>
+            <p>image</p>
+          </Flex>
+        </div>
+      </Modal>
     </Container>
   )
 }
