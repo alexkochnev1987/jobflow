@@ -70,6 +70,7 @@ export default function CompanyCourses() {
         setError((await res.json()).message)
         return
       }
+      alert("Course added")
     } catch (error: any) {
       setLoading(false)
       setError(error)
@@ -122,7 +123,7 @@ export default function CompanyCourses() {
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  variant={"outline"}
+                  variant={"soft"}
                   className={cn(
                     "w-[240px] pl-3 text-left font-normal",
                     !start_date && "text-muted-foreground",
