@@ -12,7 +12,7 @@ import EditIcon from "@/icons/edit.svg"
 import DeleteIcon from "@/icons/delete.svg"
 import React, { useState } from "react"
 import Skeleton from "react-loading-skeleton"
-import { Box, Container, Flex } from "@radix-ui/themes"
+import { Box, Checkbox, Container, Flex } from "@radix-ui/themes"
 import Modal from "@/components/shared/modal"
 import { Input } from "@/components/shared/input"
 import { useForm } from "react-hook-form"
@@ -120,6 +120,7 @@ export default function CompanyCourses() {
                 <AddIcon className="rotate-45 cursor-pointer" />
               </Link>
             </Flex>
+            <p>image</p>
             <Input {...register("name")} placeholder="Name" />
             <textarea
               {...register("description")}
@@ -128,13 +129,33 @@ export default function CompanyCourses() {
               type="textarea"
               rows="3"
             />
-            <p>sponsorship</p>
+
             <Input {...register("price")} placeholder="Price" type="number" />
-            <p>location checkboxes</p>
+            <div>
+              <Checkbox /> <label>Sponsorship</label>
+            </div>
+            <label htmlFor="">Location</label>
+            <div>
+              <Checkbox /> Remote
+            </div>
+            <div>
+              <Checkbox /> On-campus
+            </div>
             <p>startdates</p>
-            <p>pace</p>
-            <p>type</p>
-            <p>image</p>
+            <label htmlFor="">Pace</label>
+            <div>
+              <Checkbox /> Part-time
+            </div>
+            <div>
+              <Checkbox /> Full-time
+            </div>
+            <label htmlFor="">Type</label>
+            <div>
+              <Checkbox /> Training
+            </div>
+            <div>
+              <Checkbox /> Apprenticenship
+            </div>
           </Flex>
         </div>
       </Modal>
