@@ -30,6 +30,8 @@ export const schemaNewCourse = yup
     part_time: yup.string(),
     full_time: yup.string(),
     training: yup.string(),
+    image: yup.string(),
+    start_date: yup.date(),
     apprenticenship: yup.string(),
   })
   .required()

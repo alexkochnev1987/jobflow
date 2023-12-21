@@ -9,15 +9,15 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: "placehold.co",
-        pathname: '/**',
+        pathname: "/**",
       },
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: "directus.shiftyourcareer.de",
-        pathname: '/**',
-      }
+        pathname: "/**",
+      },
     ],
     domains: [
       "localhost",
@@ -30,6 +30,7 @@ const nextConfig = {
     locales: ["de"],
     defaultLocale: "de",
   },
+  transpilePackages: ["lucide-react"],
   async redirects() {
     return [
       // {
