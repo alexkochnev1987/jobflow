@@ -80,14 +80,14 @@ function JobListing({
       </div>
       <div className="mt-6 w-full self-stretch text-sm leading-6 text-black max-md:max-w-full">
         <p>{description}</p>
-        <h2 className="my-2 text-2xl font-bold">Future</h2>
+        {/* <h2 className="my-2 text-2xl font-bold">Future</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
         <h2 className="my-2 text-2xl font-bold">Requirements</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
         <h2 className="my-2 text-2xl font-bold">Skills</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsSkills }} />
         <h2 className="my-2 text-2xl font-bold">Tasks</h2>
-        <p dangerouslySetInnerHTML={{ __html: detailsTasks }} />
+        <p dangerouslySetInnerHTML={{ __html: detailsTasks }} /> */}
       </div>
       <div className="mt-6 flex items-center gap-0 self-end px-5">
         <div className="my-auto grow whitespace-nowrap text-sm font-medium text-emerald-300">
