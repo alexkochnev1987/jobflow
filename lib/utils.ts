@@ -111,6 +111,7 @@ export function getImageFullUrl(id: string) {
 
 export function formatArray(arr: string[]): string {
   if (!arr || !arr.length) return ""
+  if (!Array.isArray(arr)) return arr
   // capitalize first letter
   arr = arr.map((str) => capitalize(str))
   return `${arr.join(", ")}`

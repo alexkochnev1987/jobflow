@@ -10,5 +10,7 @@ export default async function Page() {
   const user = await getUserByEmail(session.user.email)
   const company = await getUserCompanyById(user.id)
   const courses = await getCoursesByCompanyId(company.id)
-  return <CompanyCourses courses={courses} company={company} />
+
+  console.log(courses)
+  return <CompanyCourses courses={courses} />
 }
