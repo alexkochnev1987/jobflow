@@ -21,11 +21,11 @@ export const NavBar = ({
   return (
     <div
       className={cn(
-        `flex w-full justify-center bg-gradient-to-r  from-emerald-300 to-emerald-200 px-10 py-2`,
+        `flex w-full justify-center bg-gradient-to-r  from-emerald-300 to-emerald-200 px-10 py-1`,
         rest.className,
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-6xl   justify-between">
+      <div className="mx-auto flex h-10 w-full max-w-6xl   justify-between">
         <Link href="/" className="flex items-center font-display text-xl">
           <Logo />
         </Link>

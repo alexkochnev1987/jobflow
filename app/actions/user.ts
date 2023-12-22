@@ -93,7 +93,7 @@ export async function getUserContactById(userId: string) {
 
 export async function getUserCompanyById(userId: string) {
   const contact = await getUserContactById(userId)
-  return prisma?.companies.findFirst({
+  return prisma?.companies.findUnique({
     where: {
       id: contact?.company_id,
     },
@@ -102,7 +102,9 @@ export async function getUserCompanyById(userId: string) {
 
 export async function isCompanyUser(email: string) {
   const user = await getUserByEmail(email)
-  const company = await getUserCompanyById(user.id)
-
-  return !!company
+  const contact = await getUserContactById(user.id)
+  if (!contact) {
+    return false
+  }
+  return true
 }

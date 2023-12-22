@@ -21,7 +21,7 @@ export default async function DashboardLayout({
   children: React.ReactNode
 }): Promise<ReactElement> {
   const session = await getServerSession(authOptions)
-  const isCompany = await isCompanyUser(session.user.email)
+  const isCompany = await isCompanyUser(session?.user?.email)
 
 
   if (!session?.user) {
