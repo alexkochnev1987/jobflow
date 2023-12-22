@@ -21,12 +21,36 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { LoadingDots } from "@/components/shared/icons"
 
 export default function CompanyCourses({ courses }) {
-  const [open, setOpen] = useState(false)
+  const [deleteId, setDeleteId] = useState(0)
+  const [loading, setLoading] = useState(false)
+
+  const onDelete = async () => {
+    setLoading(true)
+
+    try {
+      const res = await fetch(`/api/course?id=${deleteId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      setLoading(false)
+      setDeleteId(0)
+      if (!res.ok) {
+        return
+      }
+      // remove course from courses array
+    } catch (error: any) {
+      setLoading(false)
+    }
+  }
   return (
     <Container>
-      <AlertDialog open={open}>
+      <AlertDialog open={deleteId > 0}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -36,11 +60,14 @@ export default function CompanyCourses({ courses }) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setOpen(false)}>
+            <AlertDialogCancel onClick={() => setDeleteId(0)}>
               Cancel
             </AlertDialogCancel>
-            <AlertDialogAction className="bg-red-700 text-white hover:bg-red-500">
-              Continue
+            <AlertDialogAction
+              className="bg-red-700 text-white hover:bg-red-500"
+              onClick={onDelete}
+            >
+              {loading ? <LoadingDots color="#ffffff" /> : "Delete"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -110,7 +137,7 @@ export default function CompanyCourses({ courses }) {
             </Link>
             <DeleteIcon
               className="cursor-pointer"
-              onClick={() => setOpen(true)}
+              onClick={() => setDeleteId(course.id)}
             />
           </Flex>
         </Flex>

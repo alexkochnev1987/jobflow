@@ -9,7 +9,34 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../auth/[...nextauth]/route"
 import { getUserCompanyById } from "@/app/actions/user"
 
-// TODO: If data.id then update course
+export async function DELETE(req: NextRequest) {
+  try {
+    const id = req.url.split("=")[1]
+
+    const course = await prisma.courses.update({
+      where: {
+        id: parseInt(id.toString(), 10),
+      },
+      data: {
+        status: "draft",
+      },
+    })
+
+    return NextResponse.json({
+      ...course,
+    })
+  } catch (error: any) {
+    console.log(error)
+    return new NextResponse(
+      JSON.stringify({
+        status: "error",
+        message: error.message,
+      }),
+      { status: 500 },
+    )
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
@@ -26,7 +53,6 @@ export async function POST(req: NextRequest) {
     const data: InferType<typeof schemaNewCourse> =
       await schemaNewCourse.validate(json)
 
-    const isEdit = !!data.id
     const courseType = []
 
     if (data.apprenticenship === "on") {
