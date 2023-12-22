@@ -86,7 +86,7 @@ export default function CourseForm({ defaultValues = {} }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" gap="3">
         <Flex direction="row" align="center">
-          <Link href="/dashboard/company">
+          <Link href="/dashboard/trainings">
             <BackIcon />
           </Link>
           <h1 className="text-xl font-medium leading-8 text-gray-900">

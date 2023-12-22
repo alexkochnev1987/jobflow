@@ -78,7 +78,7 @@ export default function CompanyCourses({ courses }) {
           Trainings
         </h1>
 
-        <Link href="/dashboard/company/courses/add">
+        <Link href="/dashboard/trainings/courses/add">
           <AddIcon className="cursor-pointer" />
         </Link>
       </Flex>
@@ -133,7 +133,7 @@ export default function CompanyCourses({ courses }) {
             </Flex>
           </Flex>
           <Flex justify="end" gap="2">
-            <Link href={`/dashboard/company/courses/edit/${course.id}`}>
+            <Link href={`/dashboard/trainings/courses/edit/${course.id}`}>
               <EditIcon className="cursor-pointer" />
             </Link>
             <DeleteIcon
