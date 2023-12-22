@@ -34,9 +34,14 @@ const ButtonGroup = ({ next, previous }) => {
 
 export default function TestsCarousel({ tests }: Props) {
   console.log(tests)
+
+  if (!tests) {
+    return <h1 className="my-2 text-lg font-bold">No tests found</h1>
+  }
+
   return (
     <>
-      <h1 className="text-lg font-bold">Beruf testen</h1>
+      <h1 className="my-2 text-lg font-bold">Beruf testen</h1>
       <Carousel
         arrows={false}
         customButtonGroup={

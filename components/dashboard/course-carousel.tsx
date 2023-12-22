@@ -32,9 +32,13 @@ const ButtonGroup = ({ next, previous }) => {
 }
 export default function CourseCarousel({ courses }: Props) {
   console.log(courses)
+
+  if (!courses?.length)
+    return <h1 className="my-3 text-lg font-bold">Courses not found</h1>
+
   return (
     <>
-      <h1 className="text-lg font-bold ">Umschulungen</h1>
+      <h1 className="my-3 text-lg font-bold">Umschulungen</h1>
       <Carousel
         arrows={false}
         customButtonGroup={

@@ -27,6 +27,7 @@ export type Career = {
   salaryMax?: number
   pace?: string[] | string | any
   format?: string[] | string | any
+  Careers_Courses: any[]
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {

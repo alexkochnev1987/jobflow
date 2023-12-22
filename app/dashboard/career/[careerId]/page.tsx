@@ -2,7 +2,7 @@
 import CourseCarousel from "@/components/dashboard/course-carousel"
 import TestsCarousel from "@/components/dashboard/test-carousel"
 import BackIcon from "@/icons/back.svg"
-import courses from "@/test/mocks/courses.json"
+
 import tests from "@/test/mocks/tests.json"
 
 import Link from "next/link"
@@ -13,7 +13,6 @@ import { Career } from "@/components/shared/career-card"
 import React from "react"
 import Skeleton from "react-loading-skeleton"
 
-
 export default async function Page({
   params,
 }: {
@@ -21,7 +20,10 @@ export default async function Page({
 }) {
   const career: Career = await getCareer(params.careerId)
 
-  console.log("career", career)
+  console.log("courses", career.Careers_Courses)
+
+  const courses = career.Careers_Courses?.map((c) => c.courses)
+
 
   return (
     <div>

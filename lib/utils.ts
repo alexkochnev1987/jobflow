@@ -116,3 +116,8 @@ export function formatArray(arr: string[]): string {
   arr = arr.map((str) => capitalize(str))
   return `${arr.join(", ")}`
 }
+
+export function formatDateString(d: Date): string {
+  if (!d) return ""
+  return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
+}
