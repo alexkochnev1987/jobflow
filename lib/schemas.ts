@@ -22,6 +22,7 @@ export const schemaCompanySignup = yup
 
 export const schemaNewCourse = yup
   .object({
+    id: yup.number(),
     name: yup.string().required(),
     description: yup.string().required(),
     price: yup.number().required(),
