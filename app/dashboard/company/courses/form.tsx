@@ -37,10 +37,11 @@ export default function CourseForm({ defaultValues = {} }) {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaNewCourse),
-    values: {
+    defaultValues: {
       ...defaultValues,
     },
   })
+
 
   watch("start_date")
 
