@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { schemaNewCourse } from "@/lib/schemas"
 import ImageUploading from "react-images-uploading"
 
-import { cn } from "@/lib/utils"
+import { cn, getImageFullUrl } from "@/lib/utils"
 import { CalendarDays } from "lucide-react"
 import { Popover, PopoverTrigger } from "@radix-ui/react-popover"
 import { format } from "date-fns"
@@ -37,17 +37,18 @@ export default function CourseForm({ defaultValues = {} }) {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaNewCourse),
-    defaultValues: {
+    values: {
       ...defaultValues,
     },
   })
 
-
+  watch("image")
   watch("start_date")
+  watch("apprenticenship")
 
-  const { start_date, id } = getValues()
+  const { start_date, id, apprenticenship, image } = getValues()
 
-  console.log(errors)
+  console.log(apprenticenship)
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -74,7 +75,7 @@ export default function CourseForm({ defaultValues = {} }) {
         setError((await res.json()).message)
         return
       }
-      alert("Course added")
+      alert("Course updated")
     } catch (error: any) {
       setLoading(false)
       setError(error)
@@ -167,6 +168,13 @@ export default function CourseForm({ defaultValues = {} }) {
                 errors,
               }) => (
                 <div className="upload__image-wrapper">
+                  {image && imageList.length === 0 && (
+                    <img
+                      src={getImageFullUrl(image)}
+                      alt="Course logo"
+                      className="mb-2 w-48"
+                    />
+                  )}
                   {imageList.length === 0 && (
                     <Button
                       className="h-10"
@@ -235,13 +243,14 @@ export default function CourseForm({ defaultValues = {} }) {
               <Checkbox {...register("training")} /> <label>Training</label>
             </Flex>
             <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("apprenticenship")} />{" "}
+              <Checkbox {...register("apprenticenship")} value="on" />
               <label>Apprenticenship</label>
             </Flex>
           </Flex>
         </Flex>
         <Flex direction="row" align="center" gap="1">
-          <Checkbox {...register("sponsonrship")} /> <label>Sponsorship</label>
+          <Checkbox {...register("sponsonrship")} />
+          <label>Sponsorship</label>
         </Flex>
         {error && <p className="text-red-700">{error}</p>}
         <Button

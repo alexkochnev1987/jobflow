@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../auth/[...nextauth]/route"
 import { getUserCompanyById } from "@/app/actions/user"
 
+// TODO: If data.id then update course
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
@@ -25,6 +26,7 @@ export async function POST(req: NextRequest) {
     const data: InferType<typeof schemaNewCourse> =
       await schemaNewCourse.validate(json)
 
+    const isEdit = !!data.id
     const courseType = []
 
     if (data.apprenticenship === "on") {
@@ -42,27 +44,38 @@ export async function POST(req: NextRequest) {
       pace.push("full-time")
     }
 
-    const formData = new FormData()
+    const payload = {
+      name: data.name,
+      description: data.description,
+      price: data.price,
+      sponsonrship: data.sponsonrship === "on",
+      start_date: data.start_date,
+      location: data.location,
+      course_type: courseType,
+      pace: pace,
+      company: company.id,
+      image: data.image,
+      status: "published",
+    }
 
-    const blob = await fetch(data.image).then((r) => r.blob())
-    formData.append("title", data.name)
-    formData.append("image", blob, data.name.replace(/\.[^/.]+$/, ""))
+    if (data.image && data.image.length > 36) {
+      const formData = new FormData()
 
-    const directusImage = await directus.request(uploadFiles(formData))
+      const blob = await fetch(data.image).then((r) => r.blob())
+      formData.append("title", data.name)
+      formData.append("image", blob, data.name.replace(/\.[^/.]+$/, ""))
 
-    const course = await prisma.courses.create({
-      data: {
-        name: data.name,
-        description: data.description,
-        price: data.price,
-        sponsonrship: data.sponsonrship === "on",
-        start_date: data.start_date,
-        location: data.location,
-        course_type: courseType,
-        pace: pace,
-        image: directusImage.id,
-        company: company.id,
+      const directusImage = await directus.request(uploadFiles(formData))
+
+      payload.image = directusImage.id
+    }
+
+    const course = await prisma.courses.upsert({
+      where: {
+        id: data.id,
       },
+      update: payload,
+      create: payload,
     })
 
     return NextResponse.json({
