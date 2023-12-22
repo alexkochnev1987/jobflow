@@ -44,6 +44,7 @@ export default function CompanyCourses({ courses }) {
         return
       }
       // remove course from courses array
+      courses = courses.filter((course) => course.id !== deleteId)
     } catch (error: any) {
       setLoading(false)
     }
