@@ -14,6 +14,7 @@ import { schemaCompanySignup } from "@/lib/schemas"
 import { ROUTES } from "@/lib/constants"
 import { p } from "@directus/sdk/dist/index-7ec1f729"
 import { Select } from "@/components/shared/select"
+import { LoadingDots } from "@/components/shared/icons"
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
@@ -456,7 +457,7 @@ export const RegisterForm = () => {
         )}
         {error && <p className="text-red-700">{error}</p>}
         <Button intent="primary" className="!bg-rose-500 hover:!bg-rose-400">
-          Register
+          {loading ? <LoadingDots color="#ffffff" /> : "Register"}
         </Button>
       </div>
     </form>

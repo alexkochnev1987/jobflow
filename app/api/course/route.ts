@@ -36,10 +36,10 @@ export async function POST(req: NextRequest) {
 
     const pace = []
     if (data.part_time === "on") {
-      pace.push("part_time")
+      pace.push("part-time")
     }
     if (data.full_time === "on") {
-      pace.push("full_time")
+      pace.push("full-time")
     }
 
     const formData = new FormData()
