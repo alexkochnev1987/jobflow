@@ -6,13 +6,18 @@ import UserDropdown from "./user-dropdown"
 
 // import { ReactComponent as HeartFilledIcon } from '../../assets/icons/icon_heart_filled.svg'
 import Logo from "@/icons/logo2.svg"
-import World from "@/icons/world.svg"
+import CompanyDropdown from "./company-dropdown"
 
 export type Props = React.InputHTMLAttributes<HTMLDivElement> & {
   session?: Session
+  isCompany?: boolean
 }
 
-export const NavBar = ({ session, ...rest }: Props): ReactElement => {
+export const NavBar = ({
+  session,
+  isCompany,
+  ...rest
+}: Props): ReactElement => {
   return (
     <div
       className={cn(
@@ -25,7 +30,8 @@ export const NavBar = ({ session, ...rest }: Props): ReactElement => {
           <Logo />
         </Link>
         <div className="my-auto flex flex-row gap-2 self-end">
-          {session && <UserDropdown session={session} />}
+          {session && !isCompany && <UserDropdown session={session} />}
+          {session && isCompany && <CompanyDropdown session={session} />}
         </div>
       </div>
     </div>

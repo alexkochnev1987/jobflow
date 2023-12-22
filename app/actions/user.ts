@@ -99,3 +99,10 @@ export async function getUserCompanyById(userId: string) {
     },
   })
 }
+
+export async function isCompanyUser(email: string) {
+  const user = await getUserByEmail(email)
+  const company = await getUserCompanyById(user.id)
+
+  return !!company
+}

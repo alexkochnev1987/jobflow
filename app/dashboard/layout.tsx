@@ -10,6 +10,7 @@ import {
   getUserByEmail,
   getUserProfileById,
   hasCompletedEvaluation,
+  isCompanyUser,
 } from "../actions/user"
 import { ROUTES } from "@/lib/constants"
 import { redirect } from "next/navigation"
@@ -20,8 +21,8 @@ export default async function DashboardLayout({
   children: React.ReactNode
 }): Promise<ReactElement> {
   const session = await getServerSession(authOptions)
+  const isCompany = await isCompanyUser(session.user.email)
 
-  const evaluationCompleted = await hasCompletedEvaluation(session?.user?.email)
 
   if (!session?.user) {
     return (
@@ -37,7 +38,7 @@ export default async function DashboardLayout({
 
   return (
     <div>
-      <NavBar session={session} />
+      <NavBar session={session} isCompany={isCompany} />
       <main className="mx-auto flex min-h-screen w-full max-w-5xl justify-stretch py-5">
         <div className="w-full px-5 ">{children}</div>
       </main>
