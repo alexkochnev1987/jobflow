@@ -96,13 +96,17 @@ export async function POST(req: NextRequest) {
       payload.image = directusImage.id
     }
 
-    const course = await prisma.courses.upsert({
-      where: {
-        id: data.id,
-      },
-      update: payload,
-      create: payload,
-    })
+    const course = data.id
+      ? await prisma.courses.upsert({
+          where: {
+            id: data.id,
+          },
+          update: payload,
+          create: payload,
+        })
+      : await prisma.courses.create({
+          data: payload,
+        })
 
     return NextResponse.json({
       ...course,
