@@ -22,9 +22,9 @@ export const ROUTES = {
   Register: "/dashboard/register",
   Evaluation: "/test",
   EvaluationResults: "/test/results",
-  Trainings: "/dashboard/trainings",
-  AddCourse: "/dashboard/trainings/course/add",
-  EditCourse: "/dashboard/trainings/course/edit",
+  Trainings: "/trainings",
+  AddCourse: "/trainings/courses/add",
+  EditCourse: "/trainings/courses/edit",
 }
 
 export const DEPLOY_URL = `https://app.shiftyourcareer.de/`

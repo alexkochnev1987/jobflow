@@ -22,6 +22,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { LoadingDots } from "@/components/shared/icons"
+import { ROUTES } from "@/lib/constants"
 
 export default function CompanyCourses({ courses }) {
   const [deleteId, setDeleteId] = useState(0)
@@ -78,7 +79,7 @@ export default function CompanyCourses({ courses }) {
           Trainings
         </h1>
 
-        <Link href="/dashboard/trainings/courses/add">
+        <Link href={ROUTES.AddCourse}>
           <AddIcon className="cursor-pointer" />
         </Link>
       </Flex>
@@ -133,7 +134,7 @@ export default function CompanyCourses({ courses }) {
             </Flex>
           </Flex>
           <Flex justify="end" gap="2">
-            <Link href={`/dashboard/trainings/courses/edit/${course.id}`}>
+            <Link href={`${ROUTES.EditCourse}/${course.id}`}>
               <EditIcon className="cursor-pointer" />
             </Link>
             <DeleteIcon

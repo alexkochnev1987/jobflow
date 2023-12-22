@@ -23,6 +23,7 @@ import { Popover, PopoverTrigger } from "@radix-ui/react-popover"
 import { format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import { LoadingDots } from "@/components/shared/icons"
+import { ROUTES } from "@/lib/constants"
 
 export default function CourseForm({ defaultValues = {} }) {
   const [loading, setLoading] = useState(false)
@@ -86,7 +87,7 @@ export default function CourseForm({ defaultValues = {} }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" gap="3">
         <Flex direction="row" align="center">
-          <Link href="/dashboard/trainings">
+          <Link href={ROUTES.Trainings}>
             <BackIcon />
           </Link>
           <h1 className="text-xl font-medium leading-8 text-gray-900">
