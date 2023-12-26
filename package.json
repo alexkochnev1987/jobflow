@@ -20,7 +20,8 @@
     "deploy:install": "ssh www@209.38.176.120 'cd ~/site && tar xzf next.tar.gz && rm next.tar.gz' && rm next.tar.gz ",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "preview-email": "email dev"
+    "preview-email": "email dev",
+    "stripe-listen": "stripe listen --forward-to http://localhost:3000/api/stripe"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

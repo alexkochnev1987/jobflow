@@ -18,13 +18,13 @@ import {
 
 export type Course = {
   name: string
-  start_date: Date
+  start_date?: Date
   pace: string[]
   location: string
   price: number
   sponsorship: boolean
   description: string
-  image: string
+  image?: string
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> &

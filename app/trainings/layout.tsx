@@ -5,7 +5,6 @@ import { ReactElement } from "react"
 import { ROUTES } from "@/lib/constants"
 import { redirect } from "next/navigation"
 import { isCompanyUser } from "@/app/actions/user"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import NavBar from "@/components/layout/navbar"
 import FooterComponent from "@/components/layout/footer"
 
@@ -14,7 +13,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }): Promise<ReactElement> {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession()
   const isCompany = await isCompanyUser(session?.user?.email)
 
   if (!isCompany) {

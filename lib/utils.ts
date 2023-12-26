@@ -2,6 +2,12 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ms from "ms"
 
+export const componentToHTML = async (component) => {
+  const ReactDOMServer = (await import("react-dom/server")).default
+  const staticMarkup = ReactDOMServer.renderToStaticMarkup(component)
+  return staticMarkup
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

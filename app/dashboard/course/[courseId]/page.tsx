@@ -2,7 +2,6 @@
 import CourseCarousel from "@/components/dashboard/course-carousel"
 import TestsCarousel from "@/components/dashboard/test-carousel"
 import BackIcon from "@/icons/back.svg"
-import courses from "@/test/mocks/courses.json"
 import tests from "@/test/mocks/tests.json"
 
 import Link from "next/link"
@@ -32,7 +31,7 @@ export default async function Page({
         fallback={<Skeleton className="w-1/3" height={30} count={3} />}
       >
         <TestsCarousel tests={tests} />
-        <CourseCarousel courses={courses} />
+        <CourseCarousel courses={[]} />
       </React.Suspense>
     </div>
   )

@@ -6,7 +6,6 @@ import { schemaCompanySignup, schemaNewCourse } from "@/lib/schemas"
 import { uploadFiles } from "@directus/sdk"
 import directus from "@/lib/directus"
 import { getServerSession } from "next-auth"
-import { authOptions } from "../auth/[...nextauth]/route"
 import { getUserCompanyById } from "@/app/actions/user"
 
 export async function DELETE(req: NextRequest) {
@@ -40,7 +39,7 @@ export async function DELETE(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
-    const session = await getServerSession(authOptions)
+    const session = await getServerSession()
 
     const user = await prisma?.user.findFirst({
       where: {

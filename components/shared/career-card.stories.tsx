@@ -13,7 +13,6 @@ const meta = {
   },
   args: {
     isLoading: false,
-    data: career,
   },
 } satisfies Meta<typeof CareerCard>
 
@@ -28,20 +27,4 @@ export const CareerCardLoading: Story = {
     isLoading: true,
   },
 }
-export const CareerCardYellowMatch: Story = {
-  args: {
-    data: {
-      ...career,
-      rating: 70,
-    },
-  },
-}
 
-export const CareerCardRedMatch: Story = {
-  args: {
-    data: {
-      ...career,
-      rating: 30,
-    },
-  },
-}

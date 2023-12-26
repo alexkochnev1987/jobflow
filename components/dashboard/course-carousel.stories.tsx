@@ -10,9 +10,6 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-  args: {
-    courses,
-  },
 } satisfies Meta<typeof CourseCarousel>
 
 export default meta

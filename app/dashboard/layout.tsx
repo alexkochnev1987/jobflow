@@ -1,6 +1,5 @@
 "use server"
 import { getServerSession } from "next-auth"
-import { authOptions } from "../api/auth/[...nextauth]/route"
 // import Logo from "@/icons/logo2.svg"
 import NavBar from "@/components/layout/navbar"
 import { ReactElement, use } from "react"
@@ -20,7 +19,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }): Promise<ReactElement> {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession()
   const isCompany = await isCompanyUser(session?.user?.email)
 
 

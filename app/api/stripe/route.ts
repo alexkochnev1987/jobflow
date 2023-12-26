@@ -2,6 +2,10 @@ import { sendEmail } from "@/lib/email"
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 import { createUser } from "@/app/actions/user"
+import PaymentFailedEmail from "emails/payment-failed-email"
+import WelcomeEmail from "emails/welcome-email"
+import { componentToHTML } from "@/lib/utils"
+
 
 // This is your test secret API key.
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
@@ -45,7 +49,12 @@ export async function POST(req: NextRequest) {
       await sendEmail({
         to: email,
         subject: "Welcome to Shift Your Career",
-        html: `Your credentials ${email} ${password}`,
+        html: await componentToHTML(
+          WelcomeEmail({
+            username: email,
+            password,
+          }),
+        ),
       })
       break
     }
@@ -54,7 +63,7 @@ export async function POST(req: NextRequest) {
       await sendEmail({
         to: customer_email,
         subject: "Payment failed",
-        html: "Payment failed",
+        html: await componentToHTML(PaymentFailedEmail()),
       })
       break
     }
