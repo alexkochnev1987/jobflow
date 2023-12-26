@@ -74,32 +74,7 @@ export default function Results() {
               <Heading size="8" className="font-normal leading-7">
                 Passende Karrieren
               </Heading>
-              <div className="relative mb-20 w-full">
-                <div className="absolute -bottom-5 z-20 flex w-full flex-col align-middle">
-                  <div className="m-auto">
-                    <PaymentButton />
-                  </div>
-                  <ul className="m-auto text-lg font-bold leading-7 text-neutral-700">
-                    <li className="flex flex-row items-center gap-1">
-                      <CheckCircle className="h-9 w-9" />
-                      60-Tage-Zufriedenheitsgarantie
-                    </li>
-                    <li className="flex flex-row items-center gap-1">
-                      <CheckCircle className="h-9 w-9" /> 100% sicher{" "}
-                      <Image
-                        src={"/ssl.png"}
-                        width="53"
-                        height="23"
-                        alt="SSL"
-                        className="ml-2"
-                      />
-                    </li>
-                    <li className="flex flex-row items-center gap-1">
-                      <CheckCircle className="h-9 w-9" /> Sofortiger Zugang und
-                      lebenslanger Kundensupport
-                    </li>
-                  </ul>
-                </div>
+              <div className="relative  w-full">
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
                 <div className="relative">
                   {careers.map((c, index) => (
@@ -111,6 +86,31 @@ export default function Results() {
                     />
                   ))}
                 </div>
+              </div>
+              <div className=" z-20 flex w-full flex-col align-middle">
+                <div className="m-auto">
+                  <PaymentButton />
+                </div>
+                <ul className="m-auto text-lg font-bold leading-7 text-neutral-700">
+                  <li className="flex flex-row items-center gap-1">
+                    <CheckCircle className="h-9 w-9" />
+                    60-Tage-Zufriedenheitsgarantie
+                  </li>
+                  <li className="flex flex-row items-center gap-1">
+                    <CheckCircle className="h-9 w-9" /> 100% sicher{" "}
+                    <Image
+                      src={"/ssl.png"}
+                      width="53"
+                      height="23"
+                      alt="SSL"
+                      className="ml-2"
+                    />
+                  </li>
+                  <li className="flex flex-row items-center gap-1">
+                    <CheckCircle className="h-9 w-9" /> Sofortiger Zugang und
+                    lebenslanger Kundensupport
+                  </li>
+                </ul>
               </div>
             </Flex>
           </div>

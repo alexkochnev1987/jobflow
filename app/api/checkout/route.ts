@@ -5,6 +5,8 @@ import Stripe from "stripe"
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export async function POST(req: NextRequest) {
+  const formData = await req.formData()
+
   try {
     const session = await stripe.checkout.sessions.create({
       line_items: [
@@ -15,6 +17,9 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: "payment",
+      metadata: {
+        uid: formData.get("uid").toString(),
+      },
       success_url: `http://localhost:3000/payment?success=true`,
       cancel_url: `http://localhost:3000/test/results?canceled=true`,
     })

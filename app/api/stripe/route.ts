@@ -1,9 +1,6 @@
 import { sendEmail } from "@/lib/email"
-import WelcomeEmail from "emails/welcome-email"
 import { NextRequest, NextResponse } from "next/server"
-import { render } from "@react-email/render"
 import Stripe from "stripe"
-import PaymentFailedEmail from "emails/payment-failed-email"
 import { createUser } from "@/app/actions/user"
 
 // This is your test secret API key.
@@ -14,13 +11,13 @@ const endpointSecret =
   "whsec_c5aebea467ccda0b5085d0e23562989ff64441b6e0b95ea0cfbbebda3902d430"
 
 export async function POST(req: NextRequest) {
-  const payload = await req.json()
-  const sig = req.headers["stripe-signature"]
+  const body = await req.text()
+  const sig = req.headers.get("stripe-signature") as string | string[]
 
   let event
 
   try {
-    event = stripe.webhooks.constructEvent(payload, sig, endpointSecret)
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
   } catch (err) {
     return new NextResponse(
       JSON.stringify({
@@ -33,27 +30,22 @@ export async function POST(req: NextRequest) {
 
   // Handle the checkout.session.completed event
   switch (event.type) {
-    case "checkout.session.async_payment_succeeded": {
-      const sessionWithCustomer = await stripe.checkout.sessions.retrieve(
-        event.data.object.id,
-        {
-          expand: ["customer"],
-        },
-      )
-      const customer = sessionWithCustomer.customer as Stripe.Customer
+    case "checkout.session.completed": {
+      const { payment_status, customer_details } = event.data.object
+
+      if (payment_status !== "paid") {
+        break
+      }
+
+      const { name, email } = customer_details
 
       const password = Math.random().toString(36).slice(-8)
-      await createUser(customer.name, customer.email, password)
+      await createUser(name, email, password)
 
       await sendEmail({
-        to: customer.email,
+        to: email,
         subject: "Welcome to Shift Your Career",
-        html: render(
-          WelcomeEmail({
-            password: password,
-            username: customer.email,
-          }),
-        ),
+        html: `Your credentials ${email} ${password}`,
       })
       break
     }
@@ -62,7 +54,7 @@ export async function POST(req: NextRequest) {
       await sendEmail({
         to: customer_email,
         subject: "Payment failed",
-        html: render(PaymentFailedEmail()),
+        html: "Payment failed",
       })
       break
     }

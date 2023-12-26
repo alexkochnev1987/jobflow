@@ -3,10 +3,12 @@
 import React from "react"
 import { loadStripe } from "@stripe/stripe-js"
 import Button from "../shared/button"
+import { userStore } from "@/app/client/store"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function PaymentButton() {
+  const { id } = userStore()
   React.useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search)
@@ -22,9 +24,10 @@ export default function PaymentButton() {
   }, [])
   return (
     <form action="/api/checkout" method="POST">
+      <input type="hidden" name="uid" value={id} />
       <Button
         type="submit"
-        className="text-bold m-auto max-w-sm rounded-full bg-rose-500 text-lg leading-snug text-white hover:bg-rose-600"
+        className="text-bold !hover:bg-rose-600 m-auto max-w-sm rounded-full !bg-rose-500 text-lg leading-snug text-white"
       >
         Ergebnis sichern
       </Button>
