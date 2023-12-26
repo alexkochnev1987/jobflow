@@ -6,7 +6,6 @@ import PaymentFailedEmail from "emails/payment-failed-email"
 import WelcomeEmail from "emails/welcome-email"
 import { componentToHTML } from "@/lib/utils"
 
-
 // This is your test secret API key.
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -44,8 +43,11 @@ export async function POST(req: NextRequest) {
       const { name, email } = customer_details
 
       const password = Math.random().toString(36).slice(-8)
+
+      console.log("Creating user")
       await createUser(name, email, password)
 
+      console.log("Sending email")
       await sendEmail({
         to: email,
         subject: "Welcome to Shift Your Career",

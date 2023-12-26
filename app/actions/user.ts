@@ -35,8 +35,12 @@ const profileSelect = {
 export async function createUser(name, email, password) {
   const hashed_password = await hash(password, 12)
 
-  return prisma.user.create({
-    data: {
+  return prisma.user.upsert({
+    where: {
+      email,
+    },
+    update: { password: hashed_password },
+    create: {
       name,
       email: email.toLowerCase(),
       password: hashed_password,
