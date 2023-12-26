@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       line_items: [
         {
           // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          price: "price_1ORfWrG0SAwjll4VcTkb9b72",
+          price: process.env.STRIPE_LINE_ITEM,
           quantity: 1,
         },
       ],
@@ -20,8 +20,8 @@ export async function POST(req: NextRequest) {
       metadata: {
         uid: formData.get("uid").toString(),
       },
-      success_url: `http://localhost:3000/payment?success=true`,
-      cancel_url: `http://localhost:3000/test/results?canceled=true`,
+      success_url: `https://app.shiftyourcareer.de/dashboard/login`,
+      cancel_url: `https://app.shiftyourcareer.de/test/results?canceled=true`,
     })
 
     // redirect to checkout
