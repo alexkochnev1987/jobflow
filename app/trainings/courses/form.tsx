@@ -84,7 +84,7 @@ export default function CourseForm({ defaultValues = {} }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-md">
       <Flex direction="column" gap="3">
         <Flex direction="row" align="center">
           <Link href={ROUTES.Trainings}>
@@ -96,24 +96,16 @@ export default function CourseForm({ defaultValues = {} }) {
         </Flex>
         <TextFieldInput {...register("name")} placeholder="Name" />
         {errors.name && <p className="text-red-700">{errors.name.message}</p>}
-        <Flex direction="row" gap="1">
-          <Flex className="w-4/5" direction="column">
-            <TextFieldInput {...register("location")} placeholder="Location" />
-            {errors.location && (
-              <p className="text-red-700">{errors.location.message}</p>
-            )}
-          </Flex>
-          <Flex direction="column" className="w-1/5">
-            <TextFieldInput
-              {...register("price")}
-              placeholder="Price"
-              type="number"
-            />
-            {errors.price && (
-              <p className="text-red-700">{errors.price.message}</p>
-            )}
-          </Flex>
-        </Flex>
+        <TextFieldInput {...register("location")} placeholder="Location" />
+        {errors.location && (
+          <p className="text-red-700">{errors.location.message}</p>
+        )}
+        <TextFieldInput
+          {...register("price")}
+          placeholder="Price"
+          type="number"
+        />
+        {errors.price && <p className="text-red-700">{errors.price.message}</p>}
         <TextArea
           {...register("description")}
           className="h-20"
