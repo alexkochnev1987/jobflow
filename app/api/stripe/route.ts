@@ -1,0 +1,75 @@
+import { sendEmail } from "@/lib/email"
+import WelcomeEmail from "emails/welcome-email"
+import { NextRequest, NextResponse } from "next/server"
+import { render } from "@react-email/render"
+import Stripe from "stripe"
+import PaymentFailedEmail from "emails/payment-failed-email"
+import { createUser } from "@/app/actions/user"
+
+// This is your test secret API key.
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+const endpointSecret =
+  process.env.STRIPE_WEBHOOK_SECRET ||
+  "whsec_c5aebea467ccda0b5085d0e23562989ff64441b6e0b95ea0cfbbebda3902d430"
+
+export async function POST(req: NextRequest) {
+  const payload = await req.json()
+  const sig = req.headers["stripe-signature"]
+
+  let event
+
+  try {
+    event = stripe.webhooks.constructEvent(payload, sig, endpointSecret)
+  } catch (err) {
+    return new NextResponse(
+      JSON.stringify({
+        status: "error",
+        message: err.message,
+      }),
+      { status: 500 },
+    )
+  }
+
+  // Handle the checkout.session.completed event
+  switch (event.type) {
+    case "checkout.session.async_payment_succeeded": {
+      const sessionWithCustomer = await stripe.checkout.sessions.retrieve(
+        event.data.object.id,
+        {
+          expand: ["customer"],
+        },
+      )
+      const customer = sessionWithCustomer.customer as Stripe.Customer
+
+      const password = Math.random().toString(36).slice(-8)
+      await createUser(customer.name, customer.email, password)
+
+      await sendEmail({
+        to: customer.email,
+        subject: "Welcome to Shift Your Career",
+        html: render(
+          WelcomeEmail({
+            password: password,
+            username: customer.email,
+          }),
+        ),
+      })
+      break
+    }
+    case "checkout.session.async_payment_failed": {
+      const { customer_email } = event.data.object
+      await sendEmail({
+        to: customer_email,
+        subject: "Payment failed",
+        html: render(PaymentFailedEmail()),
+      })
+      break
+    }
+    default:
+      console.log(`Unhandled event type ${event.type}`)
+      break
+  }
+
+  return new NextResponse(JSON.stringify(event))
+}

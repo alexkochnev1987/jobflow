@@ -1,4 +1,5 @@
 "use server"
+import { hash } from "bcryptjs"
 import prisma from "lib/prisma"
 const tagsSelect = {
   select: {
@@ -29,6 +30,18 @@ const profileSelect = {
       select: userPersonalitySelect,
     },
   },
+}
+
+export async function createUser(name, email, password) {
+  const hashed_password = await hash(password, 12)
+
+  return prisma.user.create({
+    data: {
+      name,
+      email: email.toLowerCase(),
+      password: hashed_password,
+    },
+  })
 }
 
 export async function getUserById(id: string) {

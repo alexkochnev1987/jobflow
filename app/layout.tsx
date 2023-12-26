@@ -1,11 +1,11 @@
-import 'react-multi-carousel/lib/styles.css';
+import "react-multi-carousel/lib/styles.css"
 import "react-loading-skeleton/dist/skeleton.css"
 import "../i18n/config"
 // also update if changing the css .storybook/preview.ts
+import { fontLato } from "./fonts"
 import "./globals.css"
 import "./theme-config.css"
 import cx from "classnames"
-import { inter } from "./fonts"
 import { Theme } from "@radix-ui/themes"
 import t from "../i18n/config"
 
@@ -29,7 +29,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(inter.variable)}>
+      <body className={cx(fontLato.className)}>
         <Theme>{children}</Theme>
       </body>
     </html>

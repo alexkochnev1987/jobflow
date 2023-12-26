@@ -6,6 +6,9 @@ import Timeout from "@/components/shared/timeout"
 import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
 import { useTranslation } from "react-i18next"
+import PaymentButton from "./payment/button"
+import CheckCircle from "@/icons/checkbox.svg"
+import Image from "next/image"
 export default function Results() {
   const { isLoading, results } = useResults()
   const { t } = useTranslation()
@@ -16,7 +19,10 @@ export default function Results() {
   const communicationSkills = results?.personality?.communications_skills || ""
   const leadership = results?.personality?.leadership || ""
   const teamwork = results?.personality?.teamwork || ""
+
+  // only show the first 3 careers
   const careers = results?.careers || []
+  careers.splice(3, careers.length - 3)
 
   const seconds = 15 * 60
   return (
@@ -35,6 +41,9 @@ export default function Results() {
       {!isLoading && (
         <>
           <div className="z-10 w-full max-w-3xl p-5">
+            <h1 className="mb-2 text-center text-lg font-bold leading-8 text-neutral-700">
+              Here are your results 🎉
+            </h1>
             <Flex direction="column" gap="5" align="start">
               <Timeout defaultSeconds={seconds} />
               <p>
@@ -65,7 +74,32 @@ export default function Results() {
               <Heading size="8" className="font-normal leading-7">
                 Passende Karrieren
               </Heading>
-              <div className="relative w-full">
+              <div className="relative mb-20 w-full">
+                <div className="absolute -bottom-5 z-20 flex w-full flex-col align-middle">
+                  <div className="m-auto">
+                    <PaymentButton />
+                  </div>
+                  <ul className="m-auto text-lg font-bold leading-7 text-neutral-700">
+                    <li className="flex flex-row items-center gap-1">
+                      <CheckCircle className="h-9 w-9" />
+                      60-Tage-Zufriedenheitsgarantie
+                    </li>
+                    <li className="flex flex-row items-center gap-1">
+                      <CheckCircle className="h-9 w-9" /> 100% sicher{" "}
+                      <Image
+                        src={"/ssl.png"}
+                        width="53"
+                        height="23"
+                        alt="SSL"
+                        className="ml-2"
+                      />
+                    </li>
+                    <li className="flex flex-row items-center gap-1">
+                      <CheckCircle className="h-9 w-9" /> Sofortiger Zugang und
+                      lebenslanger Kundensupport
+                    </li>
+                  </ul>
+                </div>
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
                 <div className="relative">
                   {careers.map((c, index) => (
