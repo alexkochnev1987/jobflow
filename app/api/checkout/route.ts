@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
       metadata: {
         uid: formData.get("uid").toString(),
       },
-      success_url: `${req.nextUrl.origin}${ROUTES.Login}?success=true`,
-      cancel_url: `${req.nextUrl.origin}${ROUTES.EvaluationResults}?canceled=true`,
+      success_url: `https://app.shiftyourcareer.de${ROUTES.Login}?success=true`,
+      cancel_url: `https://app.shiftyourcareer.de/${ROUTES.EvaluationResults}?canceled=true`,
     })
 
     // redirect to checkout
