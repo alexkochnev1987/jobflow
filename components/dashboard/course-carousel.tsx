@@ -33,8 +33,12 @@ const ButtonGroup = ({ next, previous }) => {
 export default function CourseCarousel({ courses }: Props) {
   console.log(courses)
 
-  if (!courses?.length)
-    return <h1 className="my-3 text-lg font-bold">Courses not found</h1>
+  if (!courses || courses.length < 1)
+    return (
+      <h1 className="my-3 text-lg font-bold">
+        There are not Courses for this career
+      </h1>
+    )
 
   return (
     <>
@@ -54,7 +58,7 @@ export default function CourseCarousel({ courses }: Props) {
         deviceType={"desktop"}
       >
         {courses.map((c) => (
-          <CourseCard key={c.name} {...c} />
+          <CourseCard key={c?.name} {...c} />
         ))}
       </Carousel>
     </>

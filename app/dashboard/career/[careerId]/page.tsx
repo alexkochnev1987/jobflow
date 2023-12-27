@@ -22,8 +22,7 @@ export default async function Page({
 
   console.log("courses", career.Careers_Courses)
 
-  const courses = career.Careers_Courses?.map((c) => c.courses)
-
+  const courses = career.Careers_Courses?.map((c) => c.courses).filter((c) => c)
 
   return (
     <div>

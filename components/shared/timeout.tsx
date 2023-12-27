@@ -27,6 +27,7 @@ export default function Timeout({ defaultSeconds }) {
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
   const formattedSeconds =
     remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
+
   return (
     <Callout.Root
       size="3"
@@ -44,7 +45,7 @@ export default function Timeout({ defaultSeconds }) {
           gespeichert. Wenn du dich weder registrierst noch einen Premium-Report
           kaufst, verfällt dein Ergebnis.
         </span>
-        {remainingSeconds > 0 && (
+        {seconds > 0 && (
           <Flex direction="row" justify="between" align="center">
             <span className="flex text-2xl font-bold">
               {formattedMinutes}:{formattedSeconds}

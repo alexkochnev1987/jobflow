@@ -14,7 +14,7 @@ export default function WelcomeEmail({ username, password }) {
           <Text style={paragraph}>Welcome to our app!</Text>
           <Text style={paragraph}>{username}</Text>
           <Text style={paragraph}>{password}</Text>
-          <Text style={paragraph}>https://app.shiftyourcareer.de/{ROUTES.Login}</Text>
+          <Text style={paragraph}>https://app.shiftyourcareer.de{ROUTES.Login}</Text>
         </Container>
       </Section>
     </Html>

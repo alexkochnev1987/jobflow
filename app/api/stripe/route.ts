@@ -1,7 +1,7 @@
 import { sendEmail } from "@/lib/email"
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
-import { createUser } from "@/app/actions/user"
+import { createUser, upgradeUser } from "@/app/actions/user"
 import PaymentFailedEmail from "emails/payment-failed-email"
 import WelcomeEmail from "emails/welcome-email"
 import { componentToHTML } from "@/lib/utils"
@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
 
       console.log("Creating user")
       await createUser(name, email, password)
+      await upgradeUser(email)
 
       console.log("Sending email")
       await sendEmail({
