@@ -11,6 +11,8 @@ casdsfdsf@guluarte.com ^1234567890$
 
 ## Billing
 
+Open a new browser window in incgnito mode and go to https://app.shiftyourcareer.de/
+
 Test cards for billing see [Stripe docs](https://stripe.com/docs/testing?testing-method=card-numbers#visa )
 
 4242 4242 4242 4242
