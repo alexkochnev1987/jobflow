@@ -32,7 +32,7 @@ const profileSelect = {
   },
 }
 
-export async function createUser(name, email, password) {
+export async function createUser(name: string, email: string, password: string) {
   const hashed_password = await hash(password, 12)
 
   return prisma.user.upsert({
@@ -44,6 +44,17 @@ export async function createUser(name, email, password) {
       name,
       email: email.toLowerCase(),
       password: hashed_password,
+    },
+  })
+}
+
+export async function upgradeUser(email: string) {
+  return prisma?.user.update({
+    where: {
+      email: email.toLowerCase(),
+    },
+    data: {
+      premium: true,
     },
   })
 }

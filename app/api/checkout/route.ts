@@ -1,3 +1,4 @@
+import { ROUTES } from "@/lib/constants"
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 
@@ -5,6 +6,8 @@ import Stripe from "stripe"
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export async function POST(req: NextRequest) {
+  console.log(req.nextUrl)
+  // https or http
   const formData = await req.formData()
 
   try {
@@ -20,8 +23,8 @@ export async function POST(req: NextRequest) {
       metadata: {
         uid: formData.get("uid").toString(),
       },
-      success_url: `https://app.shiftyourcareer.de/dashboard/login`,
-      cancel_url: `https://app.shiftyourcareer.de/test/results?canceled=true`,
+      success_url: `${req.nextUrl.origin}${ROUTES.Login}?success=true`,
+      cancel_url: `${req.nextUrl.origin}${ROUTES.EvaluationResults}?canceled=true`,
     })
 
     // redirect to checkout

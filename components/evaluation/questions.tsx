@@ -7,10 +7,11 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { QUESTION_TYPES } from "@/lib/constants"
 import { userStore } from "@/app/client/store"
 import { useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils"
+import { capitalizeFirstLetter, cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 import Button from "../shared/button"
+import { motion } from "framer-motion"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
@@ -35,13 +36,19 @@ export function RenderQuestion({ question, inputRef, error }) {
     case QUESTION_TYPES.Button:
     case QUESTION_TYPES.MBTI:
       return (
-        <ButtonQuestion
-          question={question as EvaluationFormQuestion}
-          anwsers={question.EvaluationFormAnswer as EvaluationFormAnswer[]}
-          inputRef={inputRef[question.id]}
-          id={question.id}
-          error={error}
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 100 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ButtonQuestion
+            question={question as EvaluationFormQuestion}
+            anwsers={question.EvaluationFormAnswer as EvaluationFormAnswer[]}
+            inputRef={inputRef[question.id]}
+            id={question.id}
+            error={error}
+          />
+        </motion.div>
       )
     case QUESTION_TYPES.Text:
     default:
@@ -93,7 +100,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   return (
     <div className="fade-down  w-full transition duration-300">
       <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
-        {t(question.question)}
+        {capitalizeFirstLetter(t(question.question))}
       </Label>
       <div className="mt-5 flex flex-col justify-center">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
@@ -105,7 +112,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               intent="primary"
               size="medium"
             >
-              {t(answer.label)}
+              {capitalizeFirstLetter(t(answer.label))}
             </Button>
           ) : (
             <Button
@@ -114,7 +121,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               size="medium"
               onClick={() => handleAnswer(answer)}
             >
-              {t(answer.label)}
+              {capitalizeFirstLetter(t(answer.label))}
             </Button>
           ),
         )}

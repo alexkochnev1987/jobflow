@@ -12,11 +12,11 @@ import { cn } from "@/lib/utils"
 import { ROUTES } from "@/lib/constants"
 import Button from "./button"
 
+
 type FormProps = {
   title: string
   description: string
   questions: Partial<EvaluationFormQuestion>[]
-  progress: number
   step: number
 }
 
@@ -24,7 +24,6 @@ export default function Form({
   title,
   description,
   questions,
-  progress,
   step,
 }: FormProps): JSX.Element {
   const [errors, setErrors] = useState({})
@@ -42,6 +41,11 @@ export default function Form({
   useEffect(() => {
     setUnAnsweredQuestions(questions.filter((q) => !store.findResponse(q.id)))
   }, [questions, store])
+
+  const percentAnswered =
+    ((questions.length - unAnsweredQuestions.length) / questions.length) * 100
+
+  console.log(percentAnswered, unAnsweredQuestions.length, questions.length)
 
   const newStep = (newStep) => {
     store.setStep(newStep)
@@ -80,7 +84,7 @@ export default function Form({
         !showQuestions && "bg-sky-100",
       )}
     >
-      {showQuestions && <Progress value={progress} />}
+      {showQuestions && <Progress value={percentAnswered} />}
       <div className="z-10 mx-auto px-10 py-10 md:w-1/2 lg:w-1/2">
         {!showQuestions && (
           <>
@@ -115,12 +119,13 @@ export default function Form({
         {showQuestions && (
           <>
             {question ? (
-              <RenderQuestion
-                key={question.id}
-                question={question}
-                inputRef={elRefs}
-                error={errors[question.id]}
-              />
+
+                <RenderQuestion
+                  key={question.id}
+                  question={question}
+                  inputRef={elRefs}
+                  error={errors[question.id]}
+                />
             ) : (
               <Button onClick={() => nextStep()} intent="primary" size="medium">
                 {t("Continue")}

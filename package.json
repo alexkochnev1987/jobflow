@@ -80,7 +80,7 @@
     "eslint-config-next": "13.1.1",
     "focus-trap-react": "^10.0.2",
     "formik": "^2.4.4",
-    "framer-motion": "^8.4.2",
+    "framer-motion": "^8.5.5",
     "i18next": "^23.7.6",
     "i18next-fs-backend": "^2.3.0",
     "lucide-react": "^0.105.0",

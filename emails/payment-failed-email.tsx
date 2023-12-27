@@ -12,7 +12,7 @@ export default function PaymentFailedEmail() {
           <Text style={heading}>Hi there!</Text>
           <Text style={paragraph}>Payment failed, please try again!</Text>
           <Text style={paragraph}>
-            https://app.shiftyourcareer.de/{ROUTES.EvaluationResults}
+            https://app.shiftyourcareer.de{ROUTES.EvaluationResults}
           </Text>
         </Container>
       </Section>

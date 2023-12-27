@@ -26,7 +26,6 @@ export default async function Home({
 
   const stepId = parseInt(searchParams.step?.toString()) || null
 
-  // todo get FormEvaluation from server
 
   const steps = await getEvaluationFormSteps()
 
@@ -38,7 +37,6 @@ export default async function Home({
 
   const questions = await getEvaluationFormQuestions(step.id)
 
-  const progress = Math.min(Math.round((step.id / steps.length) * 100), 90)
 
   console.log({
     step,
@@ -50,7 +48,6 @@ export default async function Home({
       step={step.id}
       questions={questions}
       title={t(step.title)}
-      progress={progress}
       description={t(step.description)}
     />
   )

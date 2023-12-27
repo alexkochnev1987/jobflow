@@ -307,6 +307,7 @@ model User {
   notify_career_updates      Boolean?                     @default(true)
   notify_training_updates    Boolean?                     @default(true)
   evaluationCompleted        Boolean?
+  premium                    Boolean?
   Profile                    Profile[]
   Session                    Session[]
   Account                    Account[]
