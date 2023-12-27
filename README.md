@@ -2,6 +2,19 @@
 
 [![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
+## Testing 
+### Company users
+user@example.com ^1234567890$
+
+### Premium user:
+casdsfdsf@guluarte.com ^1234567890$
+
+## Billing
+
+Test cards for billing see [Stripe docs](https://stripe.com/docs/testing?testing-method=card-numbers#visa )
+
+4242 4242 4242 4242
+
 ## [Requeriments](./docs/requeriments.md)
 
 ## [Architecture](./docs/architecrure.drawio)
