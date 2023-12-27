@@ -1,4 +1,5 @@
-import React, { ReactElement } from "react"
+"use client"
+import React, { ReactElement, useEffect } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Session } from "next-auth"
@@ -18,6 +19,7 @@ export const NavBar = ({
   isCompany,
   ...rest
 }: Props): ReactElement => {
+  useEffect(() => {}, [session])
   return (
     <div
       className={cn(

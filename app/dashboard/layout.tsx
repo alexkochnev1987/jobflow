@@ -13,6 +13,7 @@ import {
 } from "../actions/user"
 import { ROUTES } from "@/lib/constants"
 import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
@@ -22,7 +23,7 @@ export default async function DashboardLayout({
   const session = await getServerSession()
   const isCompany = await isCompanyUser(session?.user?.email)
 
-
+  revalidatePath("/")
   if (!session?.user) {
     return (
       <div>
