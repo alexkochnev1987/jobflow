@@ -128,7 +128,7 @@ export default function Form({
                 />
             ) : (
               <Button onClick={() => nextStep()} intent="primary" size="medium">
-                {t("Continue")}
+                {t("Get your results")}
               </Button>
             )}
           </>

@@ -1,8 +1,9 @@
 "use client"
-import { Button, Callout } from "@radix-ui/themes"
+import { Button, Callout, Flex } from "@radix-ui/themes"
 import { useEffect, useState } from "react"
 import { Info } from "lucide-react"
 import Link from "next/link"
+import PaymentButton from "../payment/button"
 
 export default function Timeout({ defaultSeconds }) {
   const [seconds, setSeconds] = useState(defaultSeconds)
@@ -30,10 +31,11 @@ export default function Timeout({ defaultSeconds }) {
     <Callout.Root
       size="3"
       variant="outline"
-      className="border-l-2 border-[#A7C5FD] bg-[#F1F6FD]"
+      color="mint"
+      className="border-l-2 border-emerald-300 bg-[#F1F6FD]"
     >
       <Callout.Icon>
-        <Info color="#0052EA" />
+        <Info color="#5DC4BC " />
       </Callout.Icon>
       <div className="flex flex-col gap-3">
         <h2 className="flex text-lg font-bold">Testergebnisse gespeichert</h2>
@@ -43,20 +45,12 @@ export default function Timeout({ defaultSeconds }) {
           kaufst, verfällt dein Ergebnis.
         </span>
         {remainingSeconds > 0 && (
-          <>
+          <Flex direction="row" justify="between" align="center">
             <span className="flex text-2xl font-bold">
               {formattedMinutes}:{formattedSeconds}
             </span>
-            <Link href="/dashboard/register" className="w-50 self-end">
-              <Button
-                size="3"
-                variant="outline"
-                className="!border-[#181818] !text-[#181818]"
-              >
-                Ergebnisse speichern
-              </Button>
-            </Link>
-          </>
+            <PaymentButton className="text-bold m-auto max-w-xs rounded-full bg-rose-500 text-lg leading-snug text-white hover:bg-rose-600" />
+          </Flex>
         )}
       </div>
     </Callout.Root>

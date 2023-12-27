@@ -19,6 +19,7 @@ async function mapCareers(evaluationResponse: any) {
   console.log("jsonRes", jsonRes)
   const careers = await getCareers()
 
+  console.log("jsonRes.db", careers)
   console.log("jsonRes.careers", jsonRes.careers)
 
   const sorted = jsonRes.careers
@@ -154,7 +155,7 @@ export async function POST(request: NextRequest) {
   const careers = await getCareers()
 
   const careersText = careers
-    .map((c) => `uid: ${c.id} - name: ${c.name}`)
+    .map((c) => `uid: "${c.id}" - name: "${c.name}"`)
     .join("\n")
 
   const mbtiResult = await calculateMBTI(uid)
@@ -183,9 +184,6 @@ Sie bei der Arbeit: Beschreiben Sie den Arbeitsstil des Benutzers unter Berücks
 Stärken: Zählen Sie die Stärken des Benutzers auf, basierend auf seinen Werten und wie diese Stärken mit seiner idealen Arbeitsumgebung in Einklang stehen.
 Sobald Sie diese Variablen generiert haben, ordnen Sie das Benutzerprofil den am besten geeigneten Karrierewegen aus der bereitgestellten Liste zu. Weisen Sie jedem Beruf eine Prozentbewertung zu, die den Grad der Eignung angibt. Ordnen Sie die Berufe absteigend nach der Prozentübereinstimmung an.
 
-Zu vergleichende Berufe:
-
-${careersText}
 
 Zusätzliche Richtlinien:
 
@@ -194,12 +192,16 @@ Geben Sie für jede Zuordnung eine detaillierte Analyse ab, in der erklärt wird
 Gewährleisten Sie Genauigkeit und Gründlichkeit bei Ihren Bewertungen.
 Verwenden Sie Prozentbewertungen, um die Eignung jedes Berufs zu quantifizieren.
 Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und fundierte Zuordnungen bereitzustellen.
+
+Only use the following Careers:
+${careersText}
+
 `
   console.log(prompt)
 
   const res = await retry(
     {
-      times: 3,
+      times: 5,
       delay: 1000,
     },
     async () => {
@@ -216,6 +218,15 @@ Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und
 
       if (fnResponse.careers.some((c) => c.rating <= 1)) {
         throw new Error("Some careers don't have a rating")
+      }
+
+      // check if gpt halucionate a career that doesn't exist
+      if (
+        fnResponse.careers.some(
+          (c) => !careers.find((career) => career.id === c.uid),
+        )
+      ) {
+        throw new Error("Some careers don't exist")
       }
 
       try {

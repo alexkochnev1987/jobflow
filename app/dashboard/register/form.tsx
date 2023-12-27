@@ -8,6 +8,7 @@ import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { ROUTES } from "@/lib/constants"
 
 const schema = yup
   .object({
@@ -30,8 +31,6 @@ export const RegisterForm = () => {
 
   console.log(watch("name"))
 
-
-
   const onSubmit = async (data) => {
     console.log(data)
     setLoading(true)
@@ -51,7 +50,7 @@ export const RegisterForm = () => {
         return
       }
 
-      signIn(undefined, { callbackUrl: "/" })
+      signIn(undefined, { callbackUrl: ROUTES.DashBoard })
     } catch (error: any) {
       setLoading(false)
       setError(error)

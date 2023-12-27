@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cx(fontLato.className)}>
-        <Theme>{children}</Theme>
+        <Theme color="mint">{children}</Theme>
       </body>
     </html>
   )

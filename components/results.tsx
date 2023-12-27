@@ -80,8 +80,9 @@ export default function Results() {
                   {careers.map((c, index) => (
                     <MatchingCareerCard
                       key={c.uid}
-                      id={index + 1}
+                      {...c.data}
                       {...c}
+                      id={index + 1}
                       hidden={true}
                     />
                   ))}
@@ -89,7 +90,7 @@ export default function Results() {
               </div>
               <div className=" z-20 flex w-full flex-col align-middle">
                 <div className="m-auto">
-                  <PaymentButton />
+                  <PaymentButton className="text-bold m-auto max-w-sm rounded-full bg-rose-500 text-lg leading-snug text-white hover:bg-rose-600" />
                 </div>
                 <ul className="m-auto text-lg font-bold leading-7 text-neutral-700">
                   <li className="flex flex-row items-center gap-1">
