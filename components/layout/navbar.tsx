@@ -9,6 +9,8 @@ import UserDropdown from "./user-dropdown"
 import Logo from "@/icons/logo2.svg"
 import CompanyDropdown from "./company-dropdown"
 
+
+
 export type Props = React.InputHTMLAttributes<HTMLDivElement> & {
   session?: Session
   isCompany?: boolean

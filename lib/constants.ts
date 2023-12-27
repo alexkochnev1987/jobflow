@@ -18,8 +18,8 @@ export const QUESTION_TYPES = {
 
 export const ROUTES = {
   DashBoard: "/dashboard",
-  Login: "/dashboard/login",
-  Register: "/dashboard/register",
+  Login: "/login",
+  Register: "/register",
   Evaluation: "/test",
   EvaluationResults: "/test/results",
   Trainings: "/trainings",

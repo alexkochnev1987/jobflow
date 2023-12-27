@@ -23,17 +23,8 @@ export default async function DashboardLayout({
   const session = await getServerSession()
   const isCompany = await isCompanyUser(session?.user?.email)
 
-  revalidatePath("/")
   if (!session?.user) {
-    return (
-      <div>
-        <NavBar session={session} />
-        <main className="mx-auto flex min-h-screen w-full max-w-6xl justify-center">
-          {children}
-        </main>
-        <Footer />
-      </div>
-    )
+    return redirect(ROUTES.Login)
   }
 
   return (
