@@ -109,14 +109,6 @@ export default function CourseCard({
           {description}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
-          <Button
-            intent="primary"
-            className="!bg-rose-500 hover:!bg-rose-400"
-            as={"a"}
-            href={`/course/${id}`}
-          >
-            Unverbindlich anfragen
-          </Button>
           <ContactModal />
         </div>
       </div>
