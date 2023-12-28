@@ -1016,3 +1016,12 @@ model Prototypes {
 
   @@index([image], map: "prototypes_image_foreign")
 }
+
+model Careers_Quizzes {
+  id         Int     @id @default(autoincrement()) @db.UnsignedInt
+  Careers_id String? @db.Char(36)
+  Quizzes_id Int?    @db.UnsignedInt
+
+  @@index([Careers_id], map: "careers_quizzes_careers_id_foreign")
+  @@index([Quizzes_id], map: "careers_quizzes_quizzes_id_foreign")
+}
