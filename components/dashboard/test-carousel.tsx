@@ -35,17 +35,15 @@ const ButtonGroup = ({ next, previous }) => {
 export default function TestsCarousel({ tests }: Props) {
   console.log(tests)
 
-  if (!tests) {
-    return <h1 className="my-2 text-lg font-bold">No tests found</h1>
+  if (!tests || tests.length < 1) {
+    return <></>
   }
 
   return (
     <div className="relative">
       <p className="mb-5 mt-2 text-base font-semibold leading-normal text-slate-700">
         Beruf testen{" "}
-        <span className="font-normal text-gray-400">
-          ({tests.length})
-        </span>
+        <span className="font-normal text-gray-400">({tests.length})</span>
       </p>
       <Carousel
         arrows={false}

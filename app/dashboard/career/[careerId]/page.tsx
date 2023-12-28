@@ -21,8 +21,10 @@ export default async function Page({
   const career: Career = await getCareer(params.careerId)
 
   console.log("courses", career.Careers_Courses)
-
+  
   const courses = career.Careers_Courses?.map((c) => c.courses).filter((c) => c)
+  const quizzes = career.Careers_Quizzes?.map((c) => c.Quizzes).filter((c) => c)
+  console.log("quizzes", quizzes)
 
   return (
     <div>
@@ -35,7 +37,7 @@ export default async function Page({
         fallback={<Skeleton className="w-1/3" height={30} count={3} />}
       >
         <JobListing {...career} rating={90} />
-        <TestsCarousel tests={tests} />
+        <TestsCarousel tests={quizzes} />
         <CourseCarousel courses={courses} />
       </React.Suspense>
     </div>

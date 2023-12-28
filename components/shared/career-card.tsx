@@ -28,6 +28,7 @@ export type Career = {
   pace?: string[] | string | any
   format?: string[] | string | any
   Careers_Courses: any[]
+  Careers_Quizzes: any[]
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {

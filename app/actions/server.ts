@@ -7,7 +7,6 @@ export async function getCareers() {
       status: "published",
     },
   })
-
 }
 
 export async function getCareer(id: string) {
@@ -29,6 +28,18 @@ export async function getCareer(id: string) {
       detailsSkills: true,
       detailsTasks: true,
       retrainingWeeks: true,
+      Careers_Quizzes: {
+        select: {
+          Quizzes: {
+            select: {
+              id: true,
+              name: true,
+              description: true,
+              duration: true,
+            },
+          },
+        },
+      },
       Careers_Courses: {
         select: {
           courses: {

@@ -102,17 +102,18 @@ export const salaryFormatter = (salary: number): string => {
   return formatter.format(salary)
 }
 
-export const convertMinsToHrsMins = (n: number) => {
+export const convertMinsToHrsMins = (date: Date) => {
+  const n = date.getDate()
   const hours = Math.trunc(n / 60)
   const minutes = n % 60
 
   if (hours > 0 && minutes > 0) {
-    return `${hours}h ${minutes}min`
+    return `${hours}h ${minutes} min`
   } else if (hours > 0) {
     return `${hours}h`
   }
 
-  return `${minutes}min`
+  return `${minutes} min`
 }
 
 export function getImageFullUrl(id: string) {
