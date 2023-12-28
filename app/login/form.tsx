@@ -1,10 +1,11 @@
 "use client"
 
-import Button from "@/components/shared/button"
+// import Button from "@/components/shared/button"
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Input } from "@/components/shared/input"
 import { ROUTES } from "@/lib/constants"
 import { cn } from "@/lib/utils"
+import { Button } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChangeEvent, useState } from "react"
@@ -81,7 +82,7 @@ export const LoginForm = () => {
           className={cn(input_style)}
         />
       </div>
-      <Button type="submit" intent="primary" size="medium">
+      <Button type="submit" variant="solid" size="4" className="mx-auto w-full">
         {loading ? <LoadingDots color="#ffffff" /> : "Anmelden"}
       </Button>
 

@@ -56,17 +56,16 @@ export default function CompanyCourses({ courses }) {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the
-              course.
-            </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setDeleteId(0)}>
+            <AlertDialogCancel
+              onClick={() => setDeleteId(0)}
+              className="font-bold !text-black"
+            >
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
-              className="bg-red-700 text-white hover:bg-red-500"
+              className="bg-red-700 !font-bold !text-white hover:bg-red-500"
               onClick={onDelete}
             >
               {loading ? <LoadingDots color="#ffffff" /> : "Delete"}

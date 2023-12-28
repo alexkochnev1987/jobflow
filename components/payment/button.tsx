@@ -2,13 +2,13 @@
 
 import React from "react"
 import { loadStripe } from "@stripe/stripe-js"
-import Button from "../shared/button"
 import { userStore } from "@/app/client/store"
 import { cn } from "@/lib/utils"
+import { Button } from "@radix-ui/themes"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-export default function PaymentButton({ className }) {
+export default function PaymentButton({}) {
   const { id } = userStore()
   React.useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -26,7 +26,7 @@ export default function PaymentButton({ className }) {
   return (
     <form action="/api/checkout" method="POST">
       <input type="hidden" name="uid" value={id} />
-      <Button type="submit" className={cn(className)}>
+      <Button type="submit" size="4" variant="solid" className="mt-10 w-full">
         Ergebnis sichern
       </Button>
     </form>

@@ -2,7 +2,7 @@
 import { Progress } from "../ui/progress"
 import { userStore } from "@/app/client/store"
 import { useEffect, useState } from "react"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import "../../i18n/config-client"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormQuestion } from "@prisma/client"
@@ -10,8 +10,7 @@ import { RenderQuestion } from "../evaluation/questions"
 import Sparckle from "@/icons/sparckle.svg"
 import { cn } from "@/lib/utils"
 import { ROUTES } from "@/lib/constants"
-import Button from "./button"
-
+import { Button } from "@radix-ui/themes"
 
 type FormProps = {
   title: string
@@ -101,8 +100,9 @@ export default function Form({
             </div>
             <Button
               onClick={() => setShowQuestions(true)}
-              intent="primary"
-              size="medium"
+              size="4"
+              variant="solid"
+              className="mt-10 w-full"
             >
               {t("Continue")}
             </Button>
@@ -119,15 +119,19 @@ export default function Form({
         {showQuestions && (
           <>
             {question ? (
-
-                <RenderQuestion
-                  key={question.id}
-                  question={question}
-                  inputRef={elRefs}
-                  error={errors[question.id]}
-                />
+              <RenderQuestion
+                key={question.id}
+                question={question}
+                inputRef={elRefs}
+                error={errors[question.id]}
+              />
             ) : (
-              <Button onClick={() => nextStep()} intent="primary" size="medium">
+              <Button
+                onClick={() => nextStep()}
+                size="4"
+                variant="solid"
+                className="mt-10 w-full"
+              >
                 {t("Get your results")}
               </Button>
             )}

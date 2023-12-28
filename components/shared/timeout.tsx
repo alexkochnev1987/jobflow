@@ -50,7 +50,7 @@ export default function Timeout({ defaultSeconds }) {
             <span className="flex text-2xl font-bold">
               {formattedMinutes}:{formattedSeconds}
             </span>
-            <PaymentButton className="text-bold !hover:bg-emerald-600 m-auto max-w-xs rounded-full !bg-emerald-300 text-lg leading-snug text-white" />
+            <PaymentButton />
           </Flex>
         )}
       </div>
