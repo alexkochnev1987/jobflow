@@ -37,7 +37,10 @@ export default function CourseCarousel({ courses }: Props) {
 
   return (
     <>
-      <h1 className="my-3 text-lg font-bold">Umschulungen</h1>
+      <p className="mb-5 mt-8  text-base font-semibold leading-normal text-slate-700">
+        Umschulungen{" "}
+        <span className="font-normal text-gray-400">({courses.length})</span>
+      </p>
       <Carousel
         arrows={false}
         customButtonGroup={

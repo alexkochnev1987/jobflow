@@ -50,8 +50,8 @@ export default function CourseCard({
     )
   }
   return (
-    <div className="ml-2 min-h-full min-w-[300px] self-stretch px-1 md:w-1/2 md:px-2  lg:w-1/3">
-      <div className="border-grey-300 flex h-full  min-h-[200px]  flex-col rounded-2xl border border-solid bg-white p-2 shadow-sm ">
+    <div className="min-h-full min-w-[300px] self-stretch px-1 md:w-1/2 lg:w-1/3">
+      <div className="border-grey-300 flex h-full  min-h-[200px]  flex-col rounded-2xl border border-solid bg-white p-2 shadow-md ">
         <img
           height={120}
           width={120}

@@ -41,7 +41,12 @@ export default function TestsCarousel({ tests }: Props) {
 
   return (
     <div className="relative">
-      <h1 className="my-2 text-lg font-bold">Beruf testen</h1>
+      <p className="mb-5 mt-2 text-base font-semibold leading-normal text-slate-700">
+        Beruf testen{" "}
+        <span className="font-normal text-gray-400">
+          ({tests.length})
+        </span>
+      </p>
       <Carousel
         arrows={false}
         customButtonGroup={
