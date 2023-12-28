@@ -12,9 +12,10 @@ import Button from "@/components/shared/button"
 import { cn } from "@/lib/utils"
 import { schemaCompanySignup } from "@/lib/schemas"
 import { ROUTES } from "@/lib/constants"
-import { p } from "@directus/sdk/dist/index-7ec1f729"
 import { Select } from "@/components/shared/select"
 import { LoadingDots } from "@/components/shared/icons"
+import "react-phone-number-input/style.css"
+import PhoneInput from "react-phone-number-input"
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false)
@@ -24,6 +25,7 @@ export const RegisterForm = () => {
     getValues,
     setValue,
     handleSubmit,
+    control,
     watch,
     formState: { errors },
   } = useForm({
@@ -31,10 +33,13 @@ export const RegisterForm = () => {
     defaultValues: { business: "training", country: "Germany" },
   })
 
-  const { business } = getValues()
+  const setPhone = (value: string) => setValue("phone", value)
+
+  const { business, phone } = getValues()
 
   console.log(errors)
   watch("business")
+  watch("phone")
 
   const isCompany = business === "company"
   const isTraining = business === "training"
@@ -415,7 +420,12 @@ export const RegisterForm = () => {
         {errors.email_billing && (
           <p className="text-red-700">{errors.email_billing.message}</p>
         )}
-        <Input {...register("phone", { required: true })} placeholder="Phone" />
+        <PhoneInput
+          placeholder="Phone"
+          value={phone}
+          onChange={setPhone}
+          defaultCountry="DE"
+        />
         {errors.phone && <p className="text-red-700">{errors.phone.message}</p>}
         <Input {...register("web", { required: true })} placeholder="Web" />
         {errors.web && <p className="text-red-700">{errors.web.message}</p>}

@@ -104,6 +104,7 @@
     "react-loading-skeleton": "^3.3.1",
     "react-markdown": "^8.0.4",
     "react-multi-carousel": "^2.8.4",
+    "react-phone-number-input": "^3.3.8",
     "react-responsive-carousel": "^3.2.23",
     "react-spring": "^9.7.2",
     "react-wrap-balancer": "^0.3.0",

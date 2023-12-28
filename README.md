@@ -11,7 +11,7 @@ casdsfdsf@guluarte.com ^1234567890$
 
 ## Billing
 
-Open a new browser window in incgnito mode and go to https://app.shiftyourcareer.de/
+Open a new browser window in incognito mode and go to https://app.shiftyourcareer.de/
 
 Test cards for billing see [Stripe docs](https://stripe.com/docs/testing?testing-method=card-numbers#visa )
 
