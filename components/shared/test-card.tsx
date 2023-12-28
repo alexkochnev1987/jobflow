@@ -35,11 +35,11 @@ export default function TestCard({
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start">
           <Clock className="fill-slate-700" />
-          <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
+          <div className="grow self-stretch whitespace-nowrap text-base leading-6 text-slate-700">
             <span className=""> {convertMinsToHrsMins(time)}</span>
           </div>
         </div>
-        <div className="mt-4 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
+        <div className="mt-4 self-stretch text-base leading-6 text-slate-700 max-md:max-w-full">
           {description}
         </div>
       </div>

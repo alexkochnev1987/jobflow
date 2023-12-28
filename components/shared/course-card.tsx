@@ -58,7 +58,7 @@ export default function CourseCard({
           src={getImageFullUrl(image)}
           placeholder="empty"
           alt=""
-          className="rounded-sm object-cover"
+          className="rounded-xl object-cover"
         />
         <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
           COURSE
