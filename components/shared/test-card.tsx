@@ -7,7 +7,7 @@ import { convertMinsToHrsMins } from "@/lib/utils"
 
 export type Test = {
   name: string
-  duration: Date
+  duration: Date | number
   description: string
 }
 

@@ -25,8 +25,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-inter)", "system-ui", "sans-serif"],
-        default: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        default: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
         sm: "0.8rem",
@@ -38,38 +38,38 @@ module.exports = {
         "5xl": "3.052rem",
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "hsla(220, 17%, 93%, 1)",
+        input: "hsl(217, 16%, 84%)",
+        ring: "hsl(175, 47%, 57%)",
+        background: "hsl(0, 0%, 100%)",
+        foreground: "hsl(240, 2%, 26%)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(175, 47%, 67%)",
+          foreground: "hsla(0, 0%, 100%, 1)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(346, 100%, 59%)",
+          foreground: "hsl(0, 0%, 100%)",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "hsl(346, 100%, 59%)",
+          foreground: "hsl(0, 0%, 100%)",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "hsl(216, 24%, 96%)",
+          foreground: "hsl(0, 0%, 0%)",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(175, 47%, 67%)",
+          foreground: "hsla(0, 0%, 100%, 1)",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "hsla(0, 0%, 100%, 1)",
+          foreground: "hsla(217, 24%, 27%, 1)",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsla(0, 0%, 100%, 1)",
+          foreground: "hsla(217, 24%, 27%, 1)",
         },
       },
       borderRadius: {

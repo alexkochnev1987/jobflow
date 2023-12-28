@@ -15,6 +15,7 @@ import {
   getImageFullUrl,
   salaryFormatter,
 } from "@/lib/utils"
+import ContactModal from "../courses/contact-modal"
 
 export type Course = {
   name: string
@@ -116,6 +117,7 @@ export default function CourseCard({
           >
             Unverbindlich anfragen
           </Button>
+          <ContactModal />
         </div>
       </div>
     </div>

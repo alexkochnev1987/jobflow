@@ -30,7 +30,7 @@ export default async function Page({
       <React.Suspense
         fallback={<Skeleton className="w-1/3" height={30} count={3} />}
       >
-        <TestsCarousel tests={tests} />
+        <TestsCarousel tests={[]} />
         <CourseCarousel courses={[]} />
       </React.Suspense>
     </div>

@@ -102,8 +102,10 @@ export const salaryFormatter = (salary: number): string => {
   return formatter.format(salary)
 }
 
-export const convertMinsToHrsMins = (date: Date) => {
-  const n = date.getDate()
+export const convertMinsToHrsMins = (date: Date | number) => {
+  // check if it is date or number
+  const isDa = date instanceof Date
+  const n = isDa ? date.getDate() : date
   const hours = Math.trunc(n / 60)
   const minutes = n % 60
 

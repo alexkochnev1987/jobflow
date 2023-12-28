@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import tests from "@/test/mocks/tests.json"
-import TestCard from "./test-card"
+import TestCard, { Test } from "./test-card"
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

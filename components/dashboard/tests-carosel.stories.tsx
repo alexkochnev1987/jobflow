@@ -11,7 +11,7 @@ const meta = {
     layout: "centered",
   },
   args: {
-    tests,
+    tests: [],
   },
 } satisfies Meta<typeof TestsCarousel>
 

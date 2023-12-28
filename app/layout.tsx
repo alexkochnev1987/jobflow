@@ -8,6 +8,7 @@ import "./theme-config.css"
 import cx from "classnames"
 import { Theme } from "@radix-ui/themes"
 import t from "../i18n/config"
+import ContactModal from "@/components/courses/contact-modal"
 
 export const metadata = {
   title: t("SITE_TITLE"),
