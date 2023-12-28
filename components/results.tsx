@@ -31,7 +31,7 @@ export default function Results() {
         <div className="z-10 flex flex-col items-center">
           <Heading
             size="5"
-            className="w-full p-5 text-2xl font-normal leading-7"
+            className="w-full p-5 text-center text-2xl font-normal leading-7"
           >
             Dein Ergebnis wird berechnet
           </Heading>
@@ -90,7 +90,7 @@ export default function Results() {
               </div>
               <div className=" z-20 flex w-full flex-col align-middle">
                 <div className="m-auto">
-                  <PaymentButton className="text-bold m-auto max-w-sm rounded-full bg-rose-500 text-lg leading-snug text-white hover:bg-rose-600" />
+                  <PaymentButton className="text-bold !hover:bg-rose-600 m-auto max-w-sm rounded-full !bg-rose-500 text-lg leading-snug text-white" />
                 </div>
                 <ul className="m-auto text-lg font-bold leading-7 text-neutral-700">
                   <li className="flex flex-row items-center gap-1">

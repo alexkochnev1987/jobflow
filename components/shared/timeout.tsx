@@ -33,10 +33,10 @@ export default function Timeout({ defaultSeconds }) {
       size="3"
       variant="outline"
       color="mint"
-      className="border-l-2 border-emerald-300 bg-[#F1F6FD]"
+      className="border-l-2 border-emerald-300 bg-slate-100"
     >
       <Callout.Icon>
-        <Info color="#5DC4BC " />
+        <Info className="stroke-emerald-300" />
       </Callout.Icon>
       <div className="flex flex-col gap-3">
         <h2 className="flex text-lg font-bold">Testergebnisse gespeichert</h2>
@@ -50,7 +50,7 @@ export default function Timeout({ defaultSeconds }) {
             <span className="flex text-2xl font-bold">
               {formattedMinutes}:{formattedSeconds}
             </span>
-            <PaymentButton className="text-bold m-auto max-w-xs rounded-full bg-rose-500 text-lg leading-snug text-white hover:bg-rose-600" />
+            <PaymentButton className="text-bold !hover:bg-emerald-600 m-auto max-w-xs rounded-full !bg-emerald-300 text-lg leading-snug text-white" />
           </Flex>
         )}
       </div>

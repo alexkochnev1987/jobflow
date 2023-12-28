@@ -39,7 +39,7 @@ export function RenderQuestion({ question, inputRef, error }) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 100 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.5 }}
         >
           <ButtonQuestion
             question={question as EvaluationFormQuestion}
