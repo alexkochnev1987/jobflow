@@ -89,12 +89,12 @@ function JobListing({
         <h2 className="my-2 text-2xl font-bold">Tasks</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsTasks }} /> */}
       </div>
-      <div className="mt-6 flex items-center gap-0 self-end px-5">
+      {/* <div className="mt-6 flex items-center gap-0 self-end px-5">
         <div className="my-auto grow whitespace-nowrap text-sm font-medium text-emerald-300">
           Show details
         </div>
         <ChevronMore />
-      </div>
+      </div> */}
     </div>
   )
 }
