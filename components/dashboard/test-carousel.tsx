@@ -25,7 +25,7 @@ const responsive = {
 
 const ButtonGroup = ({ next, previous }) => {
   return (
-    <div className="carousel-button-group absolute -top-2 right-1 flex cursor-pointer flex-row gap-3">
+    <div className="carousel-button-group absolute -top-8 right-1 z-50 flex cursor-pointer flex-row gap-3">
       <Arrow onClick={() => previous()} className="rotate-180" />
       <Arrow onClick={() => next()} />
     </div>
@@ -40,7 +40,7 @@ export default function TestsCarousel({ tests }: Props) {
   }
 
   return (
-    <>
+    <div className="relative">
       <h1 className="my-2 text-lg font-bold">Beruf testen</h1>
       <Carousel
         arrows={false}
@@ -53,13 +53,13 @@ export default function TestsCarousel({ tests }: Props) {
         ssr={true} // means to render carousel on server-side.
         infinite={true}
         keyBoardControl={true}
-        containerClass="flex flex-row"
+        containerClass="flex flex-row overflow-visible overflow-x-clip"
         deviceType={"desktop"}
       >
         {tests.map((c) => (
           <TestCard key={c.name} {...c} />
         ))}
       </Carousel>
-    </>
+    </div>
   )
 }
