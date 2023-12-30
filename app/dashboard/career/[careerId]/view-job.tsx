@@ -9,6 +9,7 @@ import { Badge } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import { Career } from "@/components/shared/career-card"
 import { formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
+import l18n from "@/i18n/config"
 
 type Props = Partial<Career> &
   React.ComponentPropsWithoutRef<"div"> & {
@@ -48,12 +49,12 @@ function JobListing({
                 {rating}% Match <Info className="w-4" />
               </Badge>
               <div className="mt-3 text-lg font-bold leading-7 text-black">
-                {name}
+                {l18n.t(name)}
               </div>
               <div className="mt-4 flex items-center justify-between gap-2 pr-2.5">
                 <Currency className="fill-slate-700" />
                 <div className="grow self-stretch whitespace-nowrap text-sm leading-5 text-slate-700">
-                  <span className="font-semibold">Salary:</span>{" "}
+                  <span className="font-semibold">{l18n.t("Salary:")}</span>{" "}
                   <span className="font-normal">
                     {salaryFormatter(salaryMin)} - {salaryFormatter(salaryMax)}{" "}
                     €
@@ -63,14 +64,14 @@ function JobListing({
               <div className="mt-1.5 flex items-center justify-between gap-2 pr-2">
                 <Clock className="fill-slate-700" />
                 <div className="grow self-stretch whitespace-nowrap text-sm leading-5 text-slate-700">
-                  <span className="font-semibold">Pace: </span>{" "}
+                  <span className="font-semibold">{l18n.t("Pace:")} </span>{" "}
                   <span>{formatArray(pace)}</span>
                 </div>
               </div>
               <div className="mt-1.5 flex items-center justify-between gap-2">
                 <Location />
                 <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-                  <span className="font-semibold">Format:</span>{" "}
+                  <span className="font-semibold">{l18n.t("Format:")}</span>{" "}
                   <span className="">{formatArray(format)}</span>
                 </div>
               </div>
@@ -79,7 +80,7 @@ function JobListing({
         </div>
       </div>
       <div className="mt-6 w-full self-stretch text-sm leading-6 text-black max-md:max-w-full">
-        <p>{description}</p>
+        <p>{l18n.t(description)}</p>
         {/* <h2 className="my-2 text-2xl font-bold">Future</h2>
         <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
         <h2 className="my-2 text-2xl font-bold">Requirements</h2>

@@ -41,6 +41,8 @@ const nextConfig = {
     ]
   },
   webpack(webpackConfig) {
+    // Fixes npm packages that depend on `fs` module
+    webpackConfig.resolve.fallback = { fs: false };
     const imageRule = webpackConfig.module.rules.find((rule) => {
       //@ts-ignore
       if (typeof rule !== "string" && rule.test instanceof RegExp) {
@@ -57,6 +59,8 @@ const nextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     })
+
+
 
     return webpackConfig
   },

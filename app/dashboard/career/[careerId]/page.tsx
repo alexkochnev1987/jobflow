@@ -13,6 +13,7 @@ import Skeleton from "react-loading-skeleton"
 import { Test } from "@/components/shared/test-card"
 import { Course } from "@/components/shared/course-card"
 import ContactModal from "@/components/courses/contact-modal"
+import l18n from "@/i18n/config"
 
 export default async function Page({
   params,
@@ -35,7 +36,7 @@ export default async function Page({
     <div>
       <Link href={ROUTES.DashBoard}>
         <h1 className="flex cursor-pointer flex-row items-center text-xl font-bold">
-          <BackIcon /> Results
+          <BackIcon /> {l18n.t("Results")}
         </h1>
       </Link>
       <React.Suspense

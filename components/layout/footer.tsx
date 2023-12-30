@@ -1,6 +1,6 @@
 import React from "react"
 import Logo from "@/icons/logo.svg"
-
+import l18n from "@/i18n/config"
 function FooterComponent() {
   return (
     <footer className="mx-auto  flex  max-w-6xl flex-col items-stretch border-t border-solid border-t-[color:var(--grey-300,#D0D5DD)] bg-white px-20 py-12 max-md:px-5">
@@ -10,19 +10,19 @@ function FooterComponent() {
             <div className="flex grow flex-col items-stretch pb-12 max-md:mt-8">
               <div className="text-base font-semibold leading-5 text-black">
                 {" "}
-                Media{" "}
+                {l18n.t("Media")}{" "}
               </div>
               <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                 {" "}
-                Stories{" "}
+                {l18n.t("Stories")}{" "}
               </div>
               <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                 {" "}
-                Affiliate{" "}
+                {l18n.t("ffiliate")}{" "}
               </div>
               <div className="mb-9 mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                 {" "}
-                Press{" "}
+                {l18n.t("Press")}{" "}
               </div>
             </div>
           </div>
@@ -33,19 +33,19 @@ function FooterComponent() {
                   <div className="flex flex-col items-stretch max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      Support{" "}
+                      {l18n.t("Support")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Institutes{" "}
+                      {l18n.t("Institutes")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Blog{" "}
+                      {l18n.t("Blog")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      FAQ{" "}
+                      {l18n.t("FAQ")}{" "}
                     </div>
                   </div>
                 </div>
@@ -53,19 +53,19 @@ function FooterComponent() {
                   <div className="flex grow flex-col items-stretch pb-9 max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      About{" "}
+                      {l18n.t("About")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Our Team{" "}
+                      {l18n.t("Our Team")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Companies{" "}
+                      {l18n.t("Companies")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Philosophy{" "}
+                      {l18n.t("Philosophy")}{" "}
                     </div>
                   </div>
                 </div>
@@ -73,19 +73,19 @@ function FooterComponent() {
                   <div className="flex flex-col items-stretch max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      Social{" "}
+                      {l18n.t("Social")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Twitter{" "}
+                      {l18n.t("Twitter")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      LinkedIn{" "}
+                      {l18n.t("LinkedIn")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Facebook{" "}
+                      {l18n.t("Facebook")}{" "}
                     </div>
                   </div>
                 </div>
@@ -93,23 +93,23 @@ function FooterComponent() {
                   <div className="flex grow flex-col items-stretch max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      Legal{" "}
+                      {l18n.t("Legal")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Terms{" "}
+                      {l18n.t("Terms")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Privacy{" "}
+                      {l18n.t("Privacy")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Data Protection{" "}
+                      {l18n.t("Data Protection")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      Contact{" "}
+                      {l18n.t("Contact")}{" "}
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,8 @@ function FooterComponent() {
         <div className="mt-6 flex  justify-start gap-5 max-md:max-w-full max-md:flex-wrap">
           <Logo />
           <div className="my-auto grow self-center whitespace-nowrap text-base leading-6 text-gray-400">
-            © 2023 ShiftYourCareer. All rights reserved.
+            © {new Date().getFullYear()}{" "}
+            {l18n.t("ShiftYourCareer. All rights reserved.")}
           </div>
         </div>
       </div>

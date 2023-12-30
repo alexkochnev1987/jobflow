@@ -12,6 +12,7 @@
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
       "@/test/*": ["test/*"],
+      "@/i18n/*": ["i18n/*"],
       "@/icons/*": ["components/shared/icons/*"]
     },
     "noImplicitAny": false,

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Info } from "lucide-react"
 import Link from "next/link"
 import PaymentButton from "../payment/button"
+import l18n from "@/i18n/config"
 
 export default function Timeout({ defaultSeconds }) {
   const [seconds, setSeconds] = useState(defaultSeconds)
@@ -39,11 +40,13 @@ export default function Timeout({ defaultSeconds }) {
         <Info className="stroke-emerald-300" />
       </Callout.Icon>
       <div className="flex flex-col gap-3">
-        <h2 className="flex text-lg font-bold">Testergebnisse gespeichert</h2>
+        <h2 className="flex text-lg font-bold">
+          {l18n.t("Testergebnisse gespeichert")}
+        </h2>
         <span>
-          Deine Antworten und dein Berufe sind für die nächsten 15 Minuten
-          gespeichert. Wenn du dich weder registrierst noch einen Premium-Report
-          kaufst, verfällt dein Ergebnis.
+          {l18n.t(
+            "Deine Antworten und dein Berufe sind für die nächsten 15 Minuten gespeichert. Wenn du dich weder registrierst noch einen Premium-Report kaufst, verfällt dein Ergebnis.",
+          )}
         </span>
         {seconds > 0 && (
           <Flex direction="row" justify="between" align="center">

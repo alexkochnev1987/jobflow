@@ -8,7 +8,7 @@ import Calendar from "@/icons/calendar.svg"
 import Location from "@/icons/location.svg"
 import Tag from "@/icons/tag.svg"
 import Bag from "@/icons/bag.svg"
-import Button from "./button"
+
 import {
   formatArray,
   formatDateString,
@@ -16,6 +16,7 @@ import {
   salaryFormatter,
 } from "@/lib/utils"
 import ContactModal from "../courses/contact-modal"
+import l18n from "@/i18n/config"
 
 export type Course = {
   name: string
@@ -62,51 +63,54 @@ export default function CourseCard({
           className="rounded-xl object-cover"
         />
         <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
-          COURSE
+          {l18n.t("COURSE")}
         </div>
         <div className="mt-1 h-16 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full">
-          {name}
+          {l18n.t(name)}
         </div>
         <div className="mt-1 flex items-center gap-2 self-start px-px">
           <Calendar />
           <div className="text-sm font-medium leading-5 text-slate-700">
-            <span className="font-semibold">Start date:</span>
+            <span className="font-semibold">{l18n.t("Start date:")}</span>
             <span className="capitalize"> {formatDateString(start_date)}</span>
           </div>
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start">
           <Clock className="fill-slate-700" />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">Pace:</span>
+            <span className="font-semibold">{l18n.t("Pace:")}</span>
             <span className=""> {formatArray(pace)}</span>
           </div>
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start pr-14 max-md:pr-5">
           <Location />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">Location:</span>
-            <span className=""> {location}</span>
+            <span className="font-semibold">{l18n.t("Location:")}</span>
+            <span className=""> {l18n.t(location)}</span>
           </div>
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start">
           <Tag />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">Price: </span>
+            <span className="font-semibold">{l18n.t("Price:")} </span>
             <span className=""> {salaryFormatter(price)} €</span>
           </div>
         </div>
         <div className="ml-5 mt-1 self-start whitespace-nowrap text-sm leading-6 text-sky-500 max-md:ml-2.5">
-          Want it for free?
+          {l18n.t("Want it for free?")}
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start pr-7 max-md:pr-5">
           <Bag />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">Sponsorship:</span>
-            <span className=""> {sponsorship ? "Yes" : "No"}</span>
+            <span className="font-semibold">{l18n.t("Sponsorship:")}</span>
+            <span className="">
+              {" "}
+              {sponsorship ? l18n.t("Yes") : l18n.t("No")}
+            </span>
           </div>
         </div>
         <div className="mt-4 h-28 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
-          {description}
+          {l18n.t(description)}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
           <ContactModal />

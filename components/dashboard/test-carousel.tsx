@@ -3,6 +3,7 @@ import React from "react"
 import Carousel from "react-multi-carousel"
 import Arrow from "@/icons/arrow-next.svg"
 import TestCard, { Test } from "../shared/test-card"
+import l18n from "@/i18n/config"
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   tests?: Test[]
@@ -42,7 +43,7 @@ export default function TestsCarousel({ tests }: Props) {
   return (
     <div className="relative">
       <p className="mb-5 mt-2 text-base font-semibold leading-normal text-slate-700">
-        Beruf testen{" "}
+        {l18n.t("Beruf testen")}{" "}
         <span className="font-normal text-gray-400">({tests.length})</span>
       </p>
       <Carousel

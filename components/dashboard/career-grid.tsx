@@ -2,6 +2,8 @@ import React from "react"
 import CareerCard, { Career } from "@/components/shared/career-card"
 import Skeleton from "react-loading-skeleton"
 
+import l18n from "@/i18n/config"
+
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   careers?: Career[]
   isLoading?: boolean
@@ -14,14 +16,19 @@ export default function CareerGrid({ careers, isLoading }: Props) {
       <p className="py-8 text-lg font-normal text-neutral-700">
         {isLoading && <Skeleton className="w-1/3" count={1} />}
         {!isLoading && (
-          <>We found {careers.length} suitable careers for you! </>
+          <>
+            {l18n.t("We found {{careers}} suitable careers for you!", {
+              careers: careers?.length,
+            })}{" "}
+          </>
         )}
       </p>
       <p className="pb-8 text-lg font-normal text-neutral-700">
         {!isLoading && (
           <>
-            Open the details page to find more information about the career, way
-            to test whether the career suits as well as trainings.{" "}
+            {l18n.t(
+              "Open the details page to find more information about the career, way to test whether the career suits as well as trainings.",
+            )}
           </>
         )}
       </p>

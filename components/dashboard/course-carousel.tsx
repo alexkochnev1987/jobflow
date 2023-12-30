@@ -3,6 +3,7 @@ import React from "react"
 import CourseCard, { Course } from "../shared/course-card"
 import Carousel from "react-multi-carousel"
 import Arrow from "@/icons/arrow-next.svg"
+import l18n from "@/i18n/config"
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   courses?: Course[]
@@ -38,7 +39,7 @@ export default function CourseCarousel({ courses }: Props) {
   return (
     <>
       <p className="mb-5 mt-8  text-base font-semibold leading-normal text-slate-700">
-        Umschulungen{" "}
+      {l18n.t("Umschulungen")}{" "}
         <span className="font-normal text-gray-400">({courses.length})</span>
       </p>
       <Carousel

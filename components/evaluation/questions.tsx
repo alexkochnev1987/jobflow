@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 import Button from "../shared/button"
 import { motion } from "framer-motion"
-import l18n from "../../i18n/config"
+import l18n from "@/i18n/config"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
