@@ -9,6 +9,7 @@ import { Button } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChangeEvent, useState } from "react"
+import l18n from "../../i18n/config"
 
 export const LoginForm = () => {
   const router = useRouter()
@@ -62,10 +63,12 @@ export const LoginForm = () => {
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
-      <h1 className="m-10 text-2xl font-normal leading-7">Konto erstellen</h1>
+      <h1 className="m-10 text-2xl font-normal leading-7">
+        {l18n.t("Konto erstellen")}
+      </h1>
       <div className="mb-6 flex flex-col gap-2">
         <Input
-          placeholder="Email"
+          placeholder={l18n.t("Email")}
           id="email"
           name="email"
           value={formValues.email}
@@ -78,12 +81,12 @@ export const LoginForm = () => {
           name="password"
           value={formValues.password}
           onChange={handleChange}
-          placeholder="Password"
+          placeholder={l18n.t("Password")}
           className={cn(input_style)}
         />
       </div>
       <Button type="submit" variant="solid" size="4" className="mx-auto w-full">
-        {loading ? <LoadingDots color="#ffffff" /> : "Anmelden"}
+        {loading ? <LoadingDots color="#ffffff" /> : l18n.t("Anmelden")}
       </Button>
 
       {/* <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">

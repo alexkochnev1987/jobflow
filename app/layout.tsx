@@ -1,22 +1,22 @@
 import "react-multi-carousel/lib/styles.css"
 import "react-loading-skeleton/dist/skeleton.css"
-import "../i18n/config"
+// import "../i18n/config"
 // also update if changing the css .storybook/preview.ts
 import { fontLato } from "./fonts"
 import "./globals.css"
 import "./theme-config.css"
 import cx from "classnames"
 import { Theme } from "@radix-ui/themes"
-import t from "../i18n/config"
+import l18n from "../i18n/config"
 import ContactModal from "@/components/courses/contact-modal"
 
 export const metadata = {
-  title: t("SITE_TITLE"),
-  description: t("META_DESCRIPTION"),
+  title: l18n.t("SITE_TITLE"),
+  description: l18n.t("META_DESCRIPTION"),
   twitter: {
     card: "summary_large_image",
-    title: t("SITE_TITLE"),
-    description: t("META_DESCRIPTION"),
+    title: l18n.t("SITE_TITLE"),
+    description: l18n.t("META_DESCRIPTION"),
     creator: "@guluarte",
   },
   metadataBase: new URL("http://localhost:3000"),
