@@ -13,8 +13,16 @@ i18n
     backend: {
       backends: [fsBacked, backend],
       // http backend options
-      loadPath: "/api/locales?lng={{lng}}&ns={{ns}}",
-      addPath: "/api/locales?lng={{lng}}&ns={{ns}}",
+      backendOptions: [
+        {
+          loadPath: "./locales/de/translations.json",
+          addPath: "./locales/de/translations.json",
+        },
+        {
+          addPath: "/api/locales?lng={{lng}}&ns={{ns}}",
+          loadPath: "/locales/de/translations.json",
+        },
+      ],
     },
     lng: "de",
     resources: {
