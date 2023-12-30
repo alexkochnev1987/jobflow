@@ -35,5 +35,9 @@
         }
       }
     }
-  }
+  },
+  "Konto erstellen": "Konto erstellen",
+  "Email": "Email",
+  "Password": "Password",
+  "Anmelden": "Anmelden"
 }

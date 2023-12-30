@@ -15,12 +15,12 @@ i18n
       // http backend options
       backendOptions: [
         {
-          loadPath: "./locales/de/translations.json",
-          addPath: "./locales/de/translations.json",
+          loadPath: "./locales/{{lng}}/{{ns}}.json",
+          addPath: "./locales/{{lng}}/{{ns}}.json",
         },
         {
           addPath: "/api/locales?lng={{lng}}&ns={{ns}}",
-          loadPath: "/locales/de/translations.json",
+          loadPath: "/api/locales?lng={{lng}}&ns={{ns}}",
         },
       ],
     },

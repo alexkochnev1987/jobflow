@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       )
     }
   } catch (error) {}
-  console.log(data)
+
   return new Response(data, {
     status: 200,
   })
