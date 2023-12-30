@@ -27,7 +27,7 @@ i18n
     lng: "de",
     resources: {
       de: {
-        translations: require("./locales/de/translations.json"),
+        translations: require("../locales/de/translations.json"),
       },
     },
     ns: ["translations"],
