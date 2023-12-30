@@ -7,11 +7,11 @@ import fsBacked from "i18next-fs-backend"
 // .use(fsBackend)
 i18n
   .use(detector)
-  .use(fsBacked)
-  .use(backend)
+  .use(chained)
   // .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     backend: {
+      backends: [fsBacked, backend],
       // http backend options
       loadPath: "/api/locales?lng={{lng}}&ns={{ns}}",
       addPath: "/api/locales?lng={{lng}}&ns={{ns}}",
