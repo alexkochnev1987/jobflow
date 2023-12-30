@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 import Button from "../shared/button"
 import { motion } from "framer-motion"
+import l18n from "../../i18n/config"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
@@ -66,7 +67,6 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   const store = userStore()
   const [value, setValue] = useState("")
   const [isLoading, setIsLoading] = useState(true)
-  const { t } = useTranslation()
 
   useEffect(() => {
     const hasResponse = store.findResponse(id)
@@ -100,7 +100,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   return (
     <div className="fade-down  w-full transition duration-300">
       <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
-        {capitalizeFirstLetter(t(question.question))}
+        {capitalizeFirstLetter(l18n.t(question.question))}
       </Label>
       <div className="mt-5 flex flex-col justify-center">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
@@ -112,7 +112,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               intent="primary"
               size="medium"
             >
-              {capitalizeFirstLetter(t(answer.label))}
+              {capitalizeFirstLetter(l18n.t(answer.label))}
             </Button>
           ) : (
             <Button
@@ -121,7 +121,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               size="medium"
               onClick={() => handleAnswer(answer)}
             >
-              {capitalizeFirstLetter(t(answer.label))}
+              {capitalizeFirstLetter(l18n.t(answer.label))}
             </Button>
           ),
         )}

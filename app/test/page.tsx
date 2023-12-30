@@ -6,10 +6,10 @@ import {
 } from "../actions/form-evaluation"
 import { redirect } from "next/navigation"
 import { getServerSession } from "next-auth"
-import t from "../../i18n/config"
 import Form from "@/components/shared/form-evaluation"
 import { ROUTES } from "@/lib/constants"
 import { hasCompletedEvaluation } from "../actions/user"
+import l18n from "../../i18n/config"
 
 export default async function Home({
   searchParams,
@@ -47,8 +47,8 @@ export default async function Home({
     <Form
       step={step.id}
       questions={questions}
-      title={t(step.title)}
-      description={t(step.description)}
+      title={l18n.t(step.title)}
+      description={l18n.t(step.description)}
     />
   )
 }

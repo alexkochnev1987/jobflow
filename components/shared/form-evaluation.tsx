@@ -3,7 +3,6 @@ import { Progress } from "../ui/progress"
 import { userStore } from "@/app/client/store"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import "../../i18n/config-client"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormQuestion } from "@prisma/client"
 import { RenderQuestion } from "../evaluation/questions"
@@ -11,6 +10,7 @@ import Sparckle from "@/icons/sparckle.svg"
 import { cn } from "@/lib/utils"
 import { ROUTES } from "@/lib/constants"
 import { Button } from "@radix-ui/themes"
+import l18n from "../../i18n/config"
 
 type FormProps = {
   title: string
@@ -30,7 +30,6 @@ export default function Form({
   const [unAnsweredQuestions, setUnAnsweredQuestions] = useState([])
   const store = userStore()
   const router = useRouter()
-  const { t } = useTranslation()
   const elRefs = {}
 
   useEffect(() => {
@@ -61,7 +60,7 @@ export default function Form({
     for (const key of Object.keys(elRefs)) {
       const el = elRefs[key]
       if (!el?.current?.value || el?.current?.value === "") {
-        localErrors[key] = "Required"
+        localErrors[key] = l18n.t("Required")
       }
     }
     setErrors(localErrors)
@@ -91,11 +90,11 @@ export default function Form({
               <div className="mb-10 flex h-8 w-full flex-row align-middle">
                 <Sparckle />
                 <h1 className="mx-3 my-auto text-sm font-medium uppercase text-sky-500">
-                  {title}
+                  {l18n.t(title)}
                 </h1>
               </div>
               <div className="self-stretch text-lg font-normal leading-7 text-black">
-                {description}
+                {l18n.t(description)}
               </div>
             </div>
             <Button
@@ -104,7 +103,7 @@ export default function Form({
               variant="solid"
               className="mt-10 w-full"
             >
-              {t("Continue")}
+              {l18n.t("Continue")}
             </Button>
             {/* <button
               className="!my-10 w-full rounded-lg bg-sky-500 py-3 text-center text-lg font-normal normal-case leading-7 text-white "
@@ -132,14 +131,14 @@ export default function Form({
                 variant="solid"
                 className="mt-10 w-full"
               >
-                {t("Get your results")}
+                {l18n.t("Get your results")}
               </Button>
             )}
           </>
         )}
 
         {hasErrors(errors) && (
-          <p className="w-full flex-1 text-destructive">{t("FORM_ERRORS")}</p>
+          <p className="w-full flex-1 text-destructive">{l18n.t("FORM_ERRORS")}</p>
         )}
       </div>
     </div>
