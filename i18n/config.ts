@@ -34,7 +34,7 @@ i18n
 
     defaultNS: "translations",
     fallbackLng: "de", // use en if detected lng is not available
-    saveMissing: true, // send not translated keys to endpoint
+    saveMissing: process.env.NODE_ENV === "development", // send not translated keys to endpoint
   })
 
 export default i18n
