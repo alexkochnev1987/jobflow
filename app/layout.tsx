@@ -20,7 +20,6 @@ export const metadata = {
     creator: "@guluarte",
   },
   metadataBase: new URL("http://localhost:3000"),
-  themeColor: "#FFF",
 }
 
 export default async function RootLayout({
