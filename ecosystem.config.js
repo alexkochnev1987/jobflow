@@ -3,8 +3,8 @@ module.exports = {
         {
             name: 'jobflow',
             exec_mode: 'cluster',
-            instances: 2,
-            max_memory_restart: '250M',
+            instances: 1,
+            max_memory_restart: '500M',
             script: 'node_modules/next/dist/bin/next',
             args: 'start',
             watch: true,

@@ -39,5 +39,15 @@
     "**/*.json",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "node_modules/**/*"]
+  "exclude": [
+    "node_modules",
+    "node_modules/**/*",
+    "**/node_modules/*",
+    ".next",
+    ".react-email",
+    ".storybook",
+    ".storybook-static",
+    "build",
+    "public"
+  ]
 }

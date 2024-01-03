@@ -10,6 +10,8 @@ import {
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
+
+  return null;
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 

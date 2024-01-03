@@ -30,21 +30,16 @@ export const LoginForm = () => {
       setLoading(true)
       setFormValues({ email: "", password: "" })
 
-      const res = await signIn("credentials", {
-        redirect: false,
+      console.log("callbackUrl", callbackUrl)
+      await signIn("credentials", {
         email: formValues.email,
         password: formValues.password,
-        callbackUrl,
+        callbackUrl
       })
 
       setLoading(false)
 
-      console.log(res)
-      if (res?.ok) {
-        router.push(callbackUrl)
-      } else {
-        setError("invalid email or password")
-      }
+      router.push(callbackUrl)
     } catch (error: any) {
       console.log(error)
       setLoading(false)

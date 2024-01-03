@@ -3,7 +3,6 @@ import type { NextAuthConfig } from "next-auth"
 
 import { compare } from "bcryptjs"
 
-
 export const config = {
   providers: [
     CredentialsProvider({
@@ -27,7 +26,10 @@ export const config = {
           },
         })
 
-        if (!user || !(await compare(credentials.password as string, user.password))) {
+        if (
+          !user ||
+          !(await compare(credentials.password as string, user.password))
+        ) {
           return null
         }
 
@@ -41,6 +43,10 @@ export const config = {
     }),
   ],
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      return baseUrl
+    },
     jwt: ({ token, user }) => {
       if (user) {
         const u = user as unknown as any
