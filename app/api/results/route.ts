@@ -12,6 +12,7 @@ import {
   getUserPersonalities,
   getUserPersonalityByName,
 } from "@/app/actions/user-personality"
+import { authOptions } from "../auth/[...nextauth]/route"
 
 async function mapCareers(evaluationResponse: any) {
   const jsonRes = JSON.parse(evaluationResponse)
@@ -64,7 +65,7 @@ function getProfile({ uid, userId }: { uid?: string; userId?: string }) {
 
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
 
   const user = await prisma?.user.findFirst({
     where: {

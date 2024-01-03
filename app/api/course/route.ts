@@ -7,6 +7,7 @@ import { uploadFiles } from "@directus/sdk"
 import directus from "@/lib/directus"
 import { getServerSession } from "next-auth"
 import { getUserCompanyById } from "@/app/actions/user"
+import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function DELETE(req: NextRequest) {
   try {
@@ -39,7 +40,7 @@ export async function DELETE(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
-    const session = await getServerSession()
+    const session = await getServerSession(authOptions)
 
     const user = await prisma?.user.findFirst({
       where: {

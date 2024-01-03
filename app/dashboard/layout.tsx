@@ -14,13 +14,14 @@ import {
 import { ROUTES } from "@/lib/constants"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
+import { authOptions } from "../api/auth/[...nextauth]/route"
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode
 }): Promise<ReactElement> {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
   const isCompany = await isCompanyUser(session?.user?.email)
 
   if (!session?.user) {

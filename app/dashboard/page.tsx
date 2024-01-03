@@ -5,9 +5,10 @@ import { CareerResults } from "./career-results"
 import { getCareers } from "../actions/server"
 import { isCompanyUser } from "../actions/user"
 import { revalidatePath } from "next/cache"
+import { authOptions } from "../api/auth/[...nextauth]/route"
 
 export default async function Page() {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
   if (!session?.user) {
     return redirect(ROUTES.Login)
   }

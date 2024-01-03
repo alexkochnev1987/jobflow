@@ -10,6 +10,7 @@ import Form from "@/components/shared/form-evaluation"
 import { ROUTES } from "@/lib/constants"
 import { hasCompletedEvaluation } from "../actions/user"
 import l18n from "../../i18n/config"
+import { authOptions } from "../api/auth/[...nextauth]/route"
 
 export default async function Home({
   searchParams,
@@ -17,7 +18,7 @@ export default async function Home({
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
   const evaluationCompleted = await hasCompletedEvaluation(session?.user?.email)
 
   if (session?.user && evaluationCompleted) {
