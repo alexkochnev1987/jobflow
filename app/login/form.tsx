@@ -40,14 +40,15 @@ export const LoginForm = () => {
       setLoading(false)
 
       console.log(res)
-      if (!res?.error) {
+      if (res?.ok) {
         router.push(callbackUrl)
       } else {
         setError("invalid email or password")
       }
     } catch (error: any) {
+      console.log(error)
       setLoading(false)
-      setError(error)
+      setError(JSON.stringify(error))
     }
   }
 

@@ -1,5 +1,4 @@
 "use server"
-import { getServerSession } from "next-auth"
 // import Logo from "@/icons/logo2.svg"
 import NavBar from "@/components/layout/navbar"
 import { ReactElement, use } from "react"
@@ -13,15 +12,14 @@ import {
 } from "../actions/user"
 import { ROUTES } from "@/lib/constants"
 import { redirect } from "next/navigation"
-import { revalidatePath } from "next/cache"
-import { authOptions } from "../api/auth/[...nextauth]/route"
+import { auth } from "auth"
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode
 }): Promise<ReactElement> {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   const isCompany = await isCompanyUser(session?.user?.email)
 
   if (!session?.user) {

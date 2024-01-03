@@ -1,13 +1,11 @@
-import { hash } from "bcryptjs"
 import prisma from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 import { InferType } from "yup"
-import { schemaCompanySignup, schemaNewCourse } from "@/lib/schemas"
+import { schemaNewCourse } from "@/lib/schemas"
 import { uploadFiles } from "@directus/sdk"
 import directus from "@/lib/directus"
-import { getServerSession } from "next-auth"
 import { getUserCompanyById } from "@/app/actions/user"
-import { authOptions } from "../auth/[...nextauth]/route"
+import { auth } from "auth"
 
 export async function DELETE(req: NextRequest) {
   try {
@@ -40,7 +38,7 @@ export async function DELETE(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     const user = await prisma?.user.findFirst({
       where: {

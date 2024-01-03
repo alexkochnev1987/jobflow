@@ -1,14 +1,12 @@
-import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
 import { CareerResults } from "./career-results"
 import { getCareers } from "../actions/server"
 import { isCompanyUser } from "../actions/user"
-import { revalidatePath } from "next/cache"
-import { authOptions } from "../api/auth/[...nextauth]/route"
+import { auth } from "auth"
 
 export default async function Page() {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user) {
     return redirect(ROUTES.Login)
   }

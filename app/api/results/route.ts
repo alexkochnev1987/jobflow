@@ -3,16 +3,14 @@ import { QUESTION_TYPES } from "@/lib/constants"
 import { completition } from "@/lib/openai"
 import prisma from "@/lib/prisma"
 import { sliderResponseToText } from "@/lib/utils"
-import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
 import { retry } from "radash"
 import { v4 as uuid } from "uuid"
 import {
   calculateMBTI,
-  getUserPersonalities,
   getUserPersonalityByName,
 } from "@/app/actions/user-personality"
-import { authOptions } from "../auth/[...nextauth]/route"
+import { auth } from "auth"
 
 async function mapCareers(evaluationResponse: any) {
   const jsonRes = JSON.parse(evaluationResponse)
@@ -65,7 +63,7 @@ function getProfile({ uid, userId }: { uid?: string; userId?: string }) {
 
 export async function POST(request: NextRequest) {
   const { uid } = await request.json()
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   const user = await prisma?.user.findFirst({
     where: {

@@ -1,13 +1,12 @@
-import { getServerSession } from "next-auth"
 import { LoginForm } from "./form"
 import { redirect } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
 import NavBar from "@/components/layout/navbar"
 import FooterComponent from "@/components/layout/footer"
-import { authOptions } from "../api/auth/[...nextauth]/route"
+import { auth } from "auth"
 
 export default async function LoginPage() {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (session) {
     return redirect(ROUTES.DashBoard)

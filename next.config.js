@@ -3,7 +3,11 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   experimental: {
-    serverActions: true,
+    serverActions: {
+      dev: true,
+      // This is the default value
+      check: true,
+    }
   },
   images: {
     dangerouslyAllowSVG: true,

@@ -25,10 +25,9 @@ export const LoggedIn: Story = {
         email: "test@test.com",
         image: "",
         name: "Test User",
+        id: "1",
       },
       expires: "",
     },
   },
 }
-
-
