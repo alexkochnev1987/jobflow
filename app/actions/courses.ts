@@ -29,6 +29,18 @@ export async function getCourseById(id: number) {
           logo: true,
         },
       },
+      Courses_Prototypes: {
+        select: {
+          Prototypes: {
+            select: {
+              id: true,
+              name: true,
+              file: true,
+              description: true,
+            },
+          },
+        },
+      },
       Careers_Courses: {
         select: {
           careers: {

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { getImageFullUrl } from "@/lib/utils"
-import { Courses } from "@prisma/client"
+import { Courses, Prototypes } from "@prisma/client"
 import { Flex, Grid } from "@radix-ui/themes"
 import l18n from "@/i18n/config"
 import ResourceCard from "@/components/shared/resource-card"
@@ -8,9 +8,10 @@ import ResourceCard from "@/components/shared/resource-card"
 type Props = Partial<Courses> &
   React.ComponentPropsWithoutRef<"div"> & {
     isLoading?: boolean
+    prototypes?: Partial<Prototypes>[]
   }
 
-function ViewCourse({ image, description }: Props) {
+function ViewCourse({ image, description, prototypes }: Props) {
   return (
     <>
       <Grid columns="2" gap="4" width="auto" className="my-5">
@@ -28,9 +29,18 @@ function ViewCourse({ image, description }: Props) {
           </p>
         </Flex>
       </Grid>
-      <h2 className="text-lg font-bold leading-7"> {l18n.t("Files")}</h2>
+      {prototypes?.length > 0 && (
+        <h2 className="text-lg font-bold leading-7"> {l18n.t("Files")}</h2>
+      )}
       <Grid columns="2">
-        <ResourceCard name="File 1" description="File 1" url="test" />
+        {prototypes.map((p) => (
+          <ResourceCard
+            name={p.name}
+            description={p.description}
+            file={p.file}
+            key={p.id}
+          />
+        ))}
       </Grid>
     </>
   )

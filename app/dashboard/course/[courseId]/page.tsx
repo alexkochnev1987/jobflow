@@ -21,12 +21,15 @@ export default async function Page({
 }) {
   const course = await getCourseById(params.courseId)
 
+  const prototypes = course.Courses_Prototypes?.map((p) => p.Prototypes)
+
   console.log("course", course)
+  console.log("prototypes", prototypes)
 
   return (
     <div>
       <GoBack title={course.name} />
-      <ViewCourse {...course} />
+      <ViewCourse {...course} prototypes={prototypes} />
     </div>
   )
 }

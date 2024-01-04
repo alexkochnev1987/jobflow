@@ -1011,13 +1011,16 @@ model Contact {
 }
 
 model Prototypes {
-  id          Int      @id @default(autoincrement()) @db.UnsignedInt
-  name        String?  @db.VarChar(255)
-  description String?  @db.Text
-  completed   Boolean? @default(false)
-  image       String?  @db.Char(36)
+  id                 Int                  @id @default(autoincrement()) @db.UnsignedInt
+  name               String?              @db.VarChar(255)
+  description        String?              @db.Text
+  completed          Boolean?             @default(false)
+  image              String?              @db.Char(36)
+  file               String?              @db.Char(36)
+  Courses_Prototypes Courses_Prototypes[]
 
   @@index([image], map: "prototypes_image_foreign")
+  @@index([file], map: "prototypes_file_foreign")
 }
 
 model Careers_Quizzes {
@@ -1032,11 +1035,12 @@ model Careers_Quizzes {
 }
 
 model Courses_Prototypes {
-  id            Int      @id @default(autoincrement()) @db.UnsignedInt
-  Courses_id    Int?     @db.UnsignedInt
-  Prototypes_id Int?     @db.UnsignedInt
-  Courses       Courses? @relation(fields: [coursesId], references: [id])
-  coursesId     Int?     @db.UnsignedInt
+  id            Int         @id @default(autoincrement()) @db.UnsignedInt
+  Courses_id    Int?        @db.UnsignedInt
+  Prototypes_id Int?        @db.UnsignedInt
+  coursesId     Int?        @db.UnsignedInt
+  Courses       Courses?    @relation(fields: [Courses_id], references: [id])
+  Prototypes    Prototypes? @relation(fields: [Prototypes_id], references: [id])
 
   @@index([Courses_id], map: "courses_prototypes_courses_id_foreign")
   @@index([Prototypes_id], map: "courses_prototypes_prototypes_id_foreign")

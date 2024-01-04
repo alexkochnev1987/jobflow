@@ -122,6 +122,8 @@ export function getImageFullUrl(id: string) {
   return `/api/files/${id}`
 }
 
+
+
 export function formatArray(arr: string[]): string {
   if (!arr || !arr.length) return ""
   if (!Array.isArray(arr)) return arr
