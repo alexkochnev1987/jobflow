@@ -19,9 +19,9 @@ export const LoginForm = () => {
     email: "",
     password: "",
   })
-  const [error, setError] = useState("")
-
   const searchParams = useSearchParams()
+  const [error, setError] = useState(searchParams.get("error") || "")
+
   const callbackUrl = searchParams.get("callbackUrl") || ROUTES.DashBoard
 
   const onSubmit = async (e: React.FormEvent) => {

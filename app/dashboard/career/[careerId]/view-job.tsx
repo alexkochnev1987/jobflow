@@ -1,3 +1,4 @@
+"use client"
 /* eslint-disable @next/next/no-img-element */
 import ChevronMore from "@/icons/ChevronMore.svg"
 import Clock from "@/icons/clock.svg"
@@ -5,11 +6,13 @@ import Clock from "@/icons/clock.svg"
 import Location from "@/icons/location.svg"
 import Currency from "@/icons/currency.svg"
 
-import { Badge } from "@radix-ui/themes"
+import { Badge, Flex } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import { Career } from "@/components/shared/career-card"
-import { formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
+import { cn, formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
 import l18n from "@/i18n/config"
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible"
+import { useState } from "react"
 
 type Props = Partial<Career> &
   React.ComponentPropsWithoutRef<"div"> & {
@@ -32,6 +35,7 @@ function JobListing({
   pace,
   format,
 }: Props) {
+  const [isCollapsed, setIsCollapsed] = useState(false)
   return (
     <div className="flex flex-col items-start self-stretch bg-white py-6">
       <div className="w-[423px] max-w-full">
@@ -79,23 +83,56 @@ function JobListing({
           </div>
         </div>
       </div>
-      <div className="mt-6 w-full self-stretch text-sm leading-6 text-black max-md:max-w-full">
+      <div className="mt-6 w-full self-stretch text-base leading-6 text-black max-md:max-w-full">
         <p>{l18n.t(description)}</p>
-        {/* <h2 className="my-2 text-2xl font-bold">Future</h2>
-        <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
-        <h2 className="my-2 text-2xl font-bold">Requirements</h2>
-        <p dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
-        <h2 className="my-2 text-2xl font-bold">Skills</h2>
-        <p dangerouslySetInnerHTML={{ __html: detailsSkills }} />
-        <h2 className="my-2 text-2xl font-bold">Tasks</h2>
-        <p dangerouslySetInnerHTML={{ __html: detailsTasks }} /> */}
       </div>
-      {/* <div className="mt-6 flex items-center gap-0 self-end px-5">
+      <div
+        className="mt-6 flex cursor-pointer items-center gap-0 self-end  px-5"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
         <div className="my-auto grow whitespace-nowrap text-sm font-medium text-emerald-300">
           Show details
         </div>
-        <ChevronMore />
-      </div> */}
+        <ChevronMore
+          className={cn(
+            !isCollapsed && "rotate-180",
+          )}
+        />
+      </div>
+      <Collapsible open={isCollapsed} className="w-full">
+        <CollapsibleContent className="w-full">
+          <Flex direction="column" gap="4">
+            <Flex direction="row" align="stretch" className="w-full" gap="2">
+              <Flex className="w-1/3" direction="column">
+                <h1 className="font-bold">
+                  {l18n.t("What does a {{name}} do?", {
+                    name: l18n.t(name),
+                  })}
+                </h1>
+                <p dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
+              </Flex>
+              <Flex className="w-1/3" direction="column">
+                <h1 className="font-bold">
+                  {l18n.t("How do I become a {{name}}?", {
+                    name: l18n.t(name),
+                  })}
+                </h1>
+                <p dangerouslySetInnerHTML={{ __html: detailsTasks }} />
+              </Flex>
+              <Flex className="w-1/3" direction="column">
+                <h1 className="font-bold">{l18n.t("Skills")}</h1>
+                <p dangerouslySetInnerHTML={{ __html: detailsSkills }} />
+              </Flex>
+            </Flex>
+            <h1 className="font-bold">
+              {l18n.t("Future perspective of {{name}}", {
+                name: l18n.t(name),
+              })}
+            </h1>
+            <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
+          </Flex>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   )
 }

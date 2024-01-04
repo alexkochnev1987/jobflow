@@ -308,5 +308,18 @@
       "": "Deine Antworten und dein Berufe sind für die nächsten 15 Minuten gespeichert. Wenn du dich weder registrierst noch einen Premium-Report kaufst, verfällt dein Ergebnis."
     }
   },
-  "UX-Designer": "UX-Designer"
+  "UX-Designer": "UX-Designer",
+  "What does {{name}} do?": "What does {{name}} do?",
+  "What does a {{name}} do?": "What does a {{name}} do?",
+  "How do I become a {{name}}": "How do I become a {{name}}",
+  "How do I become a {{name}}?": "How do I become a {{name}}?",
+  "Future perspective of {{name}}": "Future perspective of {{name}}",
+  "Skills": "Skills",
+  "Train Driver": "Train Driver",
+  "Recruiter": "Recruiter",
+  "Als Recruiter identifiziert man talentierte Fachkräfte, führt Interviews und gestaltet die Personalbeschaffung für Unternehmen": {
+    " Man spielt eine Schlüsselrolle bei der Auswahl der besten Mitarbeiter, um das Team zu stärken und zum Unternehmenserfolg beizutragen": {
+      "": "Als Recruiter identifiziert man talentierte Fachkräfte, führt Interviews und gestaltet die Personalbeschaffung für Unternehmen. Man spielt eine Schlüsselrolle bei der Auswahl der besten Mitarbeiter, um das Team zu stärken und zum Unternehmenserfolg beizutragen."
+    }
+  }
 }
