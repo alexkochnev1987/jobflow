@@ -15,8 +15,10 @@ import {
   getImageFullUrl,
   salaryFormatter,
 } from "@/lib/utils"
-import ContactModal from "../courses/contact-modal"
 import l18n from "@/i18n/config"
+import { Button } from "@radix-ui/themes"
+import { useRouter } from "next/navigation"
+import { ROUTES } from "@/lib/constants"
 
 export type Course = {
   name: string
@@ -46,11 +48,18 @@ export default function CourseCard({
   sponsorship,
   isLoading,
 }: Props) {
+  const router = useRouter()
+
   if (isLoading) {
     return (
       <Skeleton className="h-23 w-full" height={50} width={300} count={1} />
     )
   }
+
+  const handleClick = () => {
+    router.push(ROUTES.ViewCourse(id))
+  }
+
   return (
     <div className="min-h-full min-w-[300px] self-stretch px-1 md:w-1/2 lg:w-1/3">
       <div className="border-grey-300 flex h-full  min-h-[200px]  flex-col rounded-2xl border border-solid bg-white p-2 shadow-md ">
@@ -113,7 +122,14 @@ export default function CourseCard({
           {l18n.t(description)}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
-          <ContactModal />
+          <Button
+            onClick={handleClick}
+            variant="solid"
+            size="4"
+            className="my-4 w-full !bg-rose-500 hover:!bg-rose-400"
+          >
+            Unverbindlich anfragen
+          </Button>
         </div>
       </div>
     </div>

@@ -10,29 +10,23 @@ import { getCareer } from "@/app/actions/server"
 import { Career } from "@/components/shared/career-card"
 import React from "react"
 import Skeleton from "react-loading-skeleton"
+import { getCourseById } from "@/app/actions/courses"
+import ViewCourse from "./view-course"
+import GoBack from "@/components/shared/go-back"
 
 export default async function Page({
   params,
 }: {
-  params: { careerId: string }
+  params: { courseId: number }
 }) {
-  const career: Career = await getCareer(params.careerId)
+  const course = await getCourseById(params.courseId)
 
-  console.log("career", career)
+  console.log("course", course)
 
   return (
     <div>
-      <Link href={ROUTES.DashBoard}>
-        <h1 className="flex cursor-pointer flex-row items-center text-xl font-bold">
-          <BackIcon /> Results
-        </h1>
-      </Link>
-      <React.Suspense
-        fallback={<Skeleton className="w-1/3" height={30} count={3} />}
-      >
-        <TestsCarousel tests={[]} />
-        <CourseCarousel courses={[]} />
-      </React.Suspense>
+      <GoBack title={course.name} />
+      <ViewCourse {...course} />
     </div>
   )
 }

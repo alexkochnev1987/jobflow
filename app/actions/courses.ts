@@ -12,6 +12,34 @@ export async function getCourseById(id: number) {
     where: {
       id: parseInt(id.toString(), 10),
     },
+    select: {
+      name: true,
+      description: true,
+      sponsonrship: true,
+      price: true,
+      location: true,
+      start_date: true,
+      course_type: true,
+      pace: true,
+      image: true,
+      Company: {
+        select: {
+          id: true,
+          name: true,
+          logo: true,
+        },
+      },
+      Careers_Courses: {
+        select: {
+          careers: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      },
+    },
   })
 }
 
