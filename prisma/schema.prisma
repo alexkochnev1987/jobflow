@@ -94,25 +94,26 @@ model Companies {
 }
 
 model Courses {
-  id              Int               @id @default(autoincrement()) @db.UnsignedInt
-  status          String            @default("draft") @db.VarChar(255)
-  sort            Int?
-  user_created    String?           @db.Char(36)
-  date_created    DateTime?         @db.Timestamp(0)
-  user_updated    String?           @db.Char(36)
-  date_updated    DateTime?         @db.Timestamp(0)
-  name            String?           @db.VarChar(255)
-  description     String?           @db.Text
-  sponsonrship    Boolean?
-  price           Decimal?          @db.Decimal(10, 5)
-  location        String?           @db.VarChar(255)
-  start_date      DateTime?         @db.Date
-  course_type     Json?
-  pace            Json?
-  image           String?           @db.Char(36)
-  company         Int?              @db.UnsignedInt
-  Company         Companies?        @relation(fields: [company], references: [id])
-  Careers_Courses Careers_Courses[]
+  id                 Int                  @id @default(autoincrement()) @db.UnsignedInt
+  status             String               @default("draft") @db.VarChar(255)
+  sort               Int?
+  user_created       String?              @db.Char(36)
+  date_created       DateTime?            @db.Timestamp(0)
+  user_updated       String?              @db.Char(36)
+  date_updated       DateTime?            @db.Timestamp(0)
+  name               String?              @db.VarChar(255)
+  description        String?              @db.Text
+  sponsonrship       Boolean?
+  price              Decimal?             @db.Decimal(10, 5)
+  location           String?              @db.VarChar(255)
+  start_date         DateTime?            @db.Date
+  course_type        Json?
+  pace               Json?
+  image              String?              @db.Char(36)
+  company            Int?                 @db.UnsignedInt
+  Company            Companies?           @relation(fields: [company], references: [id])
+  Careers_Courses    Careers_Courses[]
+  Courses_Prototypes Courses_Prototypes[]
 
   @@index([user_created], map: "courses_user_created_foreign")
   @@index([user_updated], map: "courses_user_updated_foreign")
@@ -1028,4 +1029,24 @@ model Careers_Quizzes {
 
   @@index([Careers_id], map: "careers_quizzes_careers_id_foreign")
   @@index([Quizzes_id], map: "careers_quizzes_quizzes_id_foreign")
+}
+
+model Courses_Prototypes {
+  id            Int      @id @default(autoincrement()) @db.UnsignedInt
+  Courses_id    Int?     @db.UnsignedInt
+  Prototypes_id Int?     @db.UnsignedInt
+  Courses       Courses? @relation(fields: [coursesId], references: [id])
+  coursesId     Int?     @db.UnsignedInt
+
+  @@index([Courses_id], map: "courses_prototypes_courses_id_foreign")
+  @@index([Prototypes_id], map: "courses_prototypes_prototypes_id_foreign")
+}
+
+model Careers_Prototypes {
+  id            Int     @id @default(autoincrement()) @db.UnsignedInt
+  Careers_id    String? @db.Char(36)
+  Prototypes_id Int?    @db.UnsignedInt
+
+  @@index([Careers_id], map: "careers_prototypes_careers_id_foreign")
+  @@index([Prototypes_id], map: "careers_prototypes_prototypes_id_foreign")
 }
