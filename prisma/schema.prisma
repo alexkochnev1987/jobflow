@@ -1001,6 +1001,7 @@ model Contact {
   notify_view_updates    Boolean?   @default(true)
   notify_billing_updates Boolean?   @default(true)
   userId                 String?    @db.VarChar(255)
+  avatar                 String?    @db.Char(36)
   Company                Companies? @relation(fields: [company_id], references: [id])
   User                   User?      @relation(fields: [userId], references: [id])
 
@@ -1008,6 +1009,7 @@ model Contact {
   @@index([company_id], map: "contact_company_id_foreign")
   @@index([user_created], map: "contact_user_created_foreign")
   @@index([user_updated], map: "contact_user_updated_foreign")
+  @@index([avatar], map: "contact_avatar_foreign")
 }
 
 model Prototypes {

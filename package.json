@@ -30,7 +30,6 @@
   "dependencies": {
     "@directus/sdk": "^13.0.2",
     "@hookform/resolvers": "^3.3.1",
-    "@prisma/client": "^4.8.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -104,6 +103,7 @@
     "react-markdown": "^8.0.4",
     "react-multi-carousel": "^2.8.4",
     "react-phone-number-input": "^3.3.8",
+    "@prisma/client": "^4.8.1",
     "react-responsive-carousel": "^3.2.23",
     "react-spring": "^9.7.2",
     "react-wrap-balancer": "^0.3.0",

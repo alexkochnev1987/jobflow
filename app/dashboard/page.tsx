@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
 import { CareerResults } from "./career-results"
-import { getCareers } from "../actions/server"
+import { getCareers } from "../actions/careers"
 import { isCompanyUser } from "../actions/user"
 import { auth } from "auth"
 
