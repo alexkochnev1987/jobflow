@@ -2,12 +2,8 @@
 // import Logo from "@/icons/logo2.svg"
 import NavBar from "@/components/layout/navbar"
 import { ReactElement, use } from "react"
-import DashBoardSidebar from "@/components/layout/sidebar"
 import Footer from "@/components/layout/footer"
 import {
-  getUserByEmail,
-  getUserProfileById,
-  hasCompletedEvaluation,
   isCompanyUser,
 } from "../actions/user"
 import { ROUTES } from "@/lib/constants"

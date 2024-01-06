@@ -1,4 +1,4 @@
-import { getCareers } from "@/app/actions/server"
+import { getCareers } from "@/app/actions/careers"
 import { QUESTION_TYPES } from "@/lib/constants"
 import { completition } from "@/lib/openai"
 import prisma from "@/lib/prisma"
