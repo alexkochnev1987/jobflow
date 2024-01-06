@@ -6,9 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { Box, Button, Flex, Grid, TextArea } from "@radix-ui/themes"
 import Image from "next/image"
 import { useForm } from "react-hook-form"
-import { Input } from "../shared/input"
+import { Input, Textarea } from "../shared/input"
 import { useState } from "react"
 import { LoadingDots } from "../shared/icons"
+import Link from "next/link"
 
 export default function ContactModal() {
   const [loading, setLoading] = useState(false)
@@ -55,13 +56,13 @@ export default function ContactModal() {
       <DialogContent className="text-black sm:max-w-[425px]">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex className="text-black" direction="column" gap="2">
-            <Grid columns="2" className="mb-4">
+            <Flex>
               <Image
                 src="https://placehold.co/95x95"
                 alt="sdsd"
                 width={95}
                 height={95}
-                className="h-24 w-24 rounded-lg"
+                className="mb-2 mr-5 h-24 w-24 rounded-lg"
               />
               <Flex
                 direction="row"
@@ -81,9 +82,9 @@ export default function ContactModal() {
                   <p className="text-gray-500"> {l18n.t("Contact Person")}</p>
                 </Flex>
               </Flex>
-            </Grid>
+            </Flex>
             <label className="mb-1 text-sm font-medium leading-tight text-slate-700">
-            {l18n.t("Full Name:")}
+              {l18n.t("Full Name")}
             </label>
             <Input
               {...register("name", { required: true })}
@@ -93,8 +94,8 @@ export default function ContactModal() {
             {errors.name && (
               <p className="text-red-700">{errors.name.message}</p>
             )}
-            <label className="mb-1 text-sm font-medium leading-tight text-slate-700">
-            {l18n.t("E-mail")}
+            <label className="my-2 text-sm font-medium leading-tight text-slate-700">
+              {l18n.t("E-mail")}
             </label>
             <Input
               {...register("email", { required: true })}
@@ -104,10 +105,10 @@ export default function ContactModal() {
             {errors.email && (
               <p className="text-red-700">{errors.email.message}</p>
             )}
-            <label className="mb-1 text-sm font-medium leading-tight text-slate-700">
-            {l18n.t("Message")}
+            <label className="my-2 text-sm font-medium leading-tight text-slate-700">
+              {l18n.t("Message")}
             </label>
-            <TextArea
+            <Textarea
               {...register("message")}
               className="my-1 h-20"
               placeholder="Message"
@@ -120,9 +121,11 @@ export default function ContactModal() {
             {error && <p className="text-red-700">{JSON.stringify(error)}</p>}
           </Flex>
           <Flex direction="column" gap="2">
-            <p className="my-1 text-sm text-gray-500">
-              By contacting this institution you agree to the Terms and
-              Conditions
+            <p className="my-2 text-sm text-gray-500">
+              By contacting this institution you agree to the{" "}
+              <Link href="/terms" className="text-sky-500">
+                Terms and Conditions
+              </Link>
             </p>
             <Button
               type="submit"
