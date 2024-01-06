@@ -19,6 +19,7 @@ import l18n from "@/i18n/config"
 import { Button } from "@radix-ui/themes"
 import { useRouter } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
+import ContactModal from "../courses/contact-modal"
 
 export type Course = {
   name: string
@@ -105,9 +106,7 @@ export default function CourseCard({
             <span className=""> {salaryFormatter(price)} €</span>
           </div>
         </div>
-        <div className="ml-5 mt-1 self-start whitespace-nowrap text-sm leading-6 text-sky-500 max-md:ml-2.5">
-          {l18n.t("Want it for free?")}
-        </div>
+        <ContactModal />
         <div className="mt-1.5 flex items-center gap-2 self-start pr-7 max-md:pr-5">
           <Bag />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">

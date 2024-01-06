@@ -12,7 +12,6 @@ import React from "react"
 import Skeleton from "react-loading-skeleton"
 import { Test } from "@/components/shared/test-card"
 import { Course } from "@/components/shared/course-card"
-import ContactModal from "@/components/courses/contact-modal"
 import l18n from "@/i18n/config"
 
 export default async function Page({

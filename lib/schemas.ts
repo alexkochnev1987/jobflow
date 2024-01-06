@@ -1,5 +1,11 @@
 import * as yup from "yup"
-
+export const schemaContactModal = yup
+  .object({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
+    message: yup.string().required(),
+  })
+  .required()
 export const schemaCompanySignup = yup
   .object({
     business: yup.string().oneOf(["training", "company"]).required(),
