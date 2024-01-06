@@ -1,4 +1,4 @@
-"use server"
+import 'server-only'
 import { hash } from "bcryptjs"
 import prisma from "lib/prisma"
 const tagsSelect = {
