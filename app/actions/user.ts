@@ -45,13 +45,20 @@ export async function getProfile({
   uid?: string
   userId?: string
 }) {
-  const query = userId
-    ? {
-        uid,
-      }
-    : {
-        userId,
-      }
+  if (userId === undefined && uid === undefined) {
+    throw new Error("uid or userId must be provided")
+  }
+
+  const query =
+    userId === undefined
+      ? {
+          uid,
+        }
+      : {
+          userId,
+        }
+  console.log(query)
+
   return prisma?.profile?.findFirstOrThrow({
     where: query,
     select: {
@@ -166,7 +173,7 @@ export async function hasCompletedEvaluation(email: string) {
     },
   })
 
-  return res.evaluationCompleted
+  return res?.evaluationCompleted ?? false
 }
 
 export async function getUserProfileById(id: string) {
@@ -231,7 +238,6 @@ export async function deleteUser() {
   if (!user) {
     return
   }
-
 
   // delete profile
   await prisma?.profile.deleteMany({

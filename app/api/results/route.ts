@@ -16,11 +16,7 @@ import { getProfile, getUserByEmail } from "@/app/actions/user"
 async function mapCareers(evaluationResponse: any) {
   const jsonRes = JSON.parse(evaluationResponse)
 
-  console.log("jsonRes", jsonRes)
   const careers = await getCareers()
-
-  console.log("jsonRes.db", careers)
-  console.log("jsonRes.careers", jsonRes.careers)
 
   const sorted = jsonRes.careers
     .map((r) => ({
@@ -38,16 +34,10 @@ export async function POST(request: NextRequest) {
   const session = await auth()
 
   if (session) {
-    // returning user profile
-    const profile = await prisma.profile.findFirstOrThrow({
-      where: {
-        userId: session.user.id,
-      },
-    })
+    const user = await getUserByEmail(session.user.email)
+    const profilefull = await getProfile({ userId: user.id })
 
-    const profilefull = await getProfile({ uid: profile.uid })
-
-    console.log('Returning user profile')
+    console.log("Returning user profile")
     return NextResponse.json({
       ...(await mapCareers(profilefull.evaluation_response)),
       personality: profilefull.userPersonality,
@@ -215,7 +205,7 @@ ${careersText}
         console.log(e)
       }
 
-      return getProfile(uid)
+      return getProfile({ uid })
     },
   )
 

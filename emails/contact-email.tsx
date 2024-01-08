@@ -23,13 +23,14 @@ import { ROUTES } from "../lib/constants"
 export const TemplateName = "contact-email"
 
 export const TemplateStruct = object({
+  name: defaulted(string(), "batman@example.com"),
   email: defaulted(string(), "batman@example.com"),
-  password: defaulted(string(), "password"),
+  message: defaulted(string(), "password"),
 })
 
 export type TemplateProps = Infer<typeof TemplateStruct>
 
-export const Template = ({ email, password }: TemplateProps) => (
+export const Template = ({ name, email, message }: TemplateProps) => (
   <Html>
     <Head />
     <Preview>🎉</Preview>
@@ -46,11 +47,15 @@ export const Template = ({ email, password }: TemplateProps) => (
           </Text>
           <Text style={paragraph}>Anmeldeinformationen:</Text>
           <Text style={paragraph}>
+            <strong>Full Name:</strong> {name}
+          </Text>
+          <Text style={paragraph}>
             <strong>Email:</strong> {email}
           </Text>
           <Text style={paragraph}>
-            <strong>Passwort:</strong> {password}
+            <strong>Message:</strong> {message}
           </Text>
+
           <Text style={paragraph}>
             Um deine Ergebnisse einzusehen, melde Dich bitte unter folgendem
             Link an:{" "}

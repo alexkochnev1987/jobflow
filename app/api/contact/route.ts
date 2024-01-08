@@ -2,9 +2,10 @@ import { sendEmail } from "@/lib/email"
 import { schemaContactModal } from "@/lib/schemas"
 import { componentToHTML } from "@/lib/utils"
 import { auth } from "auth"
-import ContactCourseEmail from "emails/contact-course-email"
 import { NextRequest, NextResponse } from "next/server"
 import { InferType } from "yup"
+
+import { Template as ContactCourseEmail } from "@/emails/contact-email"
 
 export async function POST(req: NextRequest) {
   try {
