@@ -20,8 +20,7 @@ import * as React from 'react';
 export const TemplateName = 'payment-failed-email';
 
 export const TemplateStruct = object({
-  email: defaulted(string(), 'batman@example.com'),
-  name: defaulted(string(), 'Bruce Wayne')
+  customer_email: defaulted(string(), 'batman@example.com'),
 });
 
 export type TemplateProps = Infer<typeof TemplateStruct>;
@@ -72,7 +71,7 @@ const button = {
   padding: '10px'
 };
 
-export const Template = ({ name }: TemplateProps) => (
+export const Template = ({ customer_email }: TemplateProps) => (
   <Html>
     <Head />
     <Body style={main}>

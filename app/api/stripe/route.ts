@@ -1,7 +1,7 @@
 import { sendEmail } from "@/lib/email"
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
-import { createUser, upgradeUser } from "@/app/actions/user"
+import { createUser, linkProfile, upgradeUser } from "@/app/actions/user"
 
 import { Template as WelcomeEmail } from "@/emails/welcome-email"
 import { Template as PaymentFailedEmail } from "@/emails/payment-failed-email"
@@ -36,7 +36,8 @@ export async function POST(req: NextRequest) {
   // Handle the checkout.session.completed event
   switch (event.type) {
     case "checkout.session.completed": {
-      const { payment_status, customer_details } = event.data.object
+      const { payment_status, customer_details, metadata } = event.data
+        .object as Stripe.Checkout.Session
 
       if (payment_status !== "paid") {
         break
@@ -48,6 +49,7 @@ export async function POST(req: NextRequest) {
 
       console.log("Creating user")
       await createUser(name, email, password)
+      await linkProfile(metadata.uid, customer_details.email)
       await upgradeUser(email)
 
       console.log("Sending email")
@@ -65,11 +67,11 @@ export async function POST(req: NextRequest) {
       break
     }
     case "checkout.session.async_payment_failed": {
-      const { customer_email } = event.data.object
+      const { customer_email } = event.data.object as Stripe.Checkout.Session
       await sendEmail({
         to: customer_email,
         subject: "Payment failed",
-        html: await componentToHTML(PaymentFailedEmail(customer_email)),
+        html: await componentToHTML(PaymentFailedEmail({ customer_email })),
       })
       break
     }

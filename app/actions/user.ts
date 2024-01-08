@@ -38,6 +38,67 @@ const profileSelect = {
   },
 }
 
+export async function getProfile({
+  uid,
+  userId,
+}: {
+  uid?: string
+  userId?: string
+}) {
+  const query = userId
+    ? {
+        uid,
+      }
+    : {
+        userId,
+      }
+  return prisma?.profile?.findFirstOrThrow({
+    where: query,
+    select: {
+      id: true,
+      evaluation_response: true,
+      userPersonality: {
+        select: {
+          id: true,
+          name: true,
+          you_at_work: true,
+          strengths_summary: true,
+          communications_skills: true,
+          leadership: true,
+          teamwork: true,
+        },
+      },
+    },
+  })
+}
+
+export async function linkProfile(uid: string, email: string) {
+  const user = await prisma?.user.findFirst({
+    where: {
+      email,
+    },
+  })
+  const profile = await getProfile({ uid })
+
+  await prisma?.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      profileId: profile.id,
+    },
+  })
+
+  await prisma?.profile.update({
+    where: {
+      id: profile.id,
+    },
+    data: {
+      userId: user.id,
+    },
+  })
+}
+
 export async function createUser(
   name: string,
   email: string,
@@ -170,6 +231,7 @@ export async function deleteUser() {
   if (!user) {
     return
   }
+
 
   // delete profile
   await prisma?.profile.deleteMany({

@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 export async function POST(req: NextRequest) {
   console.log(req.nextUrl)
   // https or http
-  const formData = await req.formData()
+  const uid = req.nextUrl.searchParams.get("uid")
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       ],
       mode: "payment",
       metadata: {
-        uid: formData.get("uid").toString(),
+        uid,
       },
       success_url: `https://app.shiftyourcareer.de${ROUTES.Login}?success=true`,
       cancel_url: `https://app.shiftyourcareer.de/${ROUTES.EvaluationResults}?canceled=true`,

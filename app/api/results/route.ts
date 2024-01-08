@@ -11,6 +11,7 @@ import {
   getUserPersonalityByName,
 } from "@/app/actions/user-personality"
 import { auth } from "auth"
+import { getProfile, getUserByEmail } from "@/app/actions/user"
 
 async function mapCareers(evaluationResponse: any) {
   const jsonRes = JSON.parse(evaluationResponse)
@@ -33,77 +34,42 @@ async function mapCareers(evaluationResponse: any) {
   }
 }
 
-function getProfile({ uid, userId }: { uid?: string; userId?: string }) {
-  const query = userId
-    ? {
-        uid,
-      }
-    : {
-        userId,
-      }
-  return prisma?.profile?.findFirst({
-    where: query,
-    select: {
-      id: true,
-      evaluation_response: true,
-      userPersonality: {
-        select: {
-          id: true,
-          name: true,
-          you_at_work: true,
-          strengths_summary: true,
-          communications_skills: true,
-          leadership: true,
-          teamwork: true,
-        },
-      },
-    },
-  })
-}
-
 export async function POST(request: NextRequest) {
-  const { uid } = await request.json()
   const session = await auth()
 
-  const user = await prisma?.user.findFirst({
-    where: {
-      email: session?.user?.email,
-    },
-  })
+  if (session) {
+    // returning user profile
+    const profile = await prisma.profile.findFirstOrThrow({
+      where: {
+        userId: session.user.id,
+      },
+    })
 
-  // if the user already has a profile, use it
-  if (session && user) {
-    const profile = await getProfile({ userId: user.id })
+    const profilefull = await getProfile({ uid: profile.uid })
+
+    console.log('Returning user profile')
+    return NextResponse.json({
+      ...(await mapCareers(profilefull.evaluation_response)),
+      personality: profilefull.userPersonality,
+    })
+  }
+
+  const { uid } = await request.json()
+
+  console.log(uid)
+
+  try {
+    const profile = await getProfile({ uid })
+
     if (profile?.evaluation_response) {
-      console.log("using cached response using user.id", profile.id)
+      console.log("using cached response", profile)
       return NextResponse.json({
         ...(await mapCareers(profile.evaluation_response)),
         personality: profile.userPersonality,
       })
     }
-  }
-
-  const profile = await getProfile({ uid })
-
-  if (user && profile?.evaluation_response) {
-    // link profile with user
-    console.log("linking profile with user", profile.id)
-    await prisma?.user.update({
-      where: {
-        id: user.id,
-      },
-      data: {
-        profileId: profile.id,
-      },
-    })
-  }
-
-  if (profile?.evaluation_response) {
-    console.log("using cached response", profile)
-    return NextResponse.json({
-      ...(await mapCareers(profile.evaluation_response)),
-      personality: profile.userPersonality,
-    })
+  } catch (error) {
+    console.log("Profile not found")
   }
 
   const userResponses = await prisma?.evaluationFormUserResponse.findMany({

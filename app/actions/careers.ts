@@ -54,9 +54,6 @@ export async function getCareer(id: string) {
               image: true,
               sponsonrship: true,
               Company: {
-                where: {
-                  status: "published",
-                },
                 select: {
                   logo: true,
                   name: true,
@@ -67,9 +64,6 @@ export async function getCareer(id: string) {
                       avatar: true,
                       first_name: true,
                       last_name: true,
-                    },
-                    where: {
-                      status: "published",
                     },
                   },
                 },

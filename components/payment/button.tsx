@@ -23,9 +23,9 @@ export default function PaymentButton({}) {
       )
     }
   }, [])
+  
   return (
-    <form action="/api/checkout" method="POST">
-      <input type="hidden" name="uid" value={id} />
+    <form action={`/api/checkout?uid=${id}`} method="POST">
       <Button type="submit" size="4" variant="solid" className="mt-10 w-full">
         Ergebnis sichern
       </Button>
