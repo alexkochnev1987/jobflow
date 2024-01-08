@@ -22,7 +22,7 @@ export default async function Page() {
     <div>
       <Link href={ROUTES.DashBoard}>
         <h1 className="flex cursor-pointer flex-row items-center text-xl font-bold">
-          <BackIcon /> {l18n.t("Settings")}
+          <BackIcon /> {l18n.t("settings.title", "Settings")}
         </h1>
       </Link>
 

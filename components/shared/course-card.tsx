@@ -88,36 +88,44 @@ export default function CourseCard({
           className="rounded-xl object-cover"
         />
         <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
-          {l18n.t("COURSE")}
+          {l18n.t("course.card.title", "COURSE")}
         </div>
         <div className="mt-1 h-16 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full">
-          {l18n.t(name)}
+          {l18n.t(`course.${id}.name`,  name)}
         </div>
         <div className="mt-1 flex items-center gap-2 self-start px-px">
           <Calendar />
           <div className="text-sm font-medium leading-5 text-slate-700">
-            <span className="font-semibold">{l18n.t("Start date:")}</span>
+            <span className="font-semibold">
+              {l18n.t("course.card.start", "Start date:")}
+            </span>
             <span className="capitalize"> {formatDateString(start_date)}</span>
           </div>
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start">
           <Clock className="fill-slate-700" />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">{l18n.t("Pace:")}</span>
+            <span className="font-semibold">
+              {l18n.t("course.card.pace", "Pace:")}
+            </span>
             <span className=""> {formatArray(pace)}</span>
           </div>
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start pr-14 max-md:pr-5">
           <Location />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">{l18n.t("Location:")}</span>
+            <span className="font-semibold">
+              {l18n.t("course.card.location", "Location:")}
+            </span>
             <span className=""> {l18n.t(location)}</span>
           </div>
         </div>
         <div className="mt-1.5 flex items-center gap-2 self-start">
           <Tag />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">{l18n.t("Price:")} </span>
+            <span className="font-semibold">
+              {l18n.t("course.card.price", "Price:")}{" "}
+            </span>
             <span className=""> {salaryFormatter(price)} €</span>
           </div>
         </div>
@@ -128,12 +136,14 @@ export default function CourseCard({
             <span className="font-semibold">{l18n.t("Sponsorship:")}</span>
             <span className="">
               {" "}
-              {sponsorship ? l18n.t("Yes") : l18n.t("No")}
+              {sponsorship
+                ? l18n.t("course.card.sponsorship.yes", "Yes")
+                : l18n.t("course.card.sponsorship.no", "No")}
             </span>
           </div>
         </div>
         <div className="mt-4 h-28 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
-          {l18n.t(description)}
+          {l18n.t(`course.${id}.description`, description)}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
           <Button
@@ -142,7 +152,7 @@ export default function CourseCard({
             size="4"
             className="my-4 w-full !bg-rose-500 hover:!bg-rose-400"
           >
-            Unverbindlich anfragen
+            {l18n.t("course.card.button", "Unverbindlich anfragen")}
           </Button>
         </div>
       </div>

@@ -90,11 +90,11 @@ export default function Form({
               <div className="mb-10 flex h-8 w-full flex-row align-middle">
                 <Sparckle />
                 <h1 className="mx-3 my-auto text-sm font-medium uppercase text-sky-500">
-                  {l18n.t(title)}
+                  {l18n.t("test.title", title)}
                 </h1>
               </div>
               <div className="self-stretch text-lg font-normal leading-7 text-black">
-                {l18n.t(description)}
+                {l18n.t("test.description", description)}
               </div>
             </div>
             <Button
@@ -103,7 +103,7 @@ export default function Form({
               variant="solid"
               className="mt-10 w-full"
             >
-              {l18n.t("Continue")}
+              {l18n.t("test.button.start", "Continue")}
             </Button>
             {/* <button
               className="!my-10 w-full rounded-lg bg-sky-500 py-3 text-center text-lg font-normal normal-case leading-7 text-white "
@@ -131,14 +131,16 @@ export default function Form({
                 variant="solid"
                 className="mt-10 w-full"
               >
-                {l18n.t("Get your results")}
+                {l18n.t("test.result.cta", "Get your results")}
               </Button>
             )}
           </>
         )}
 
         {hasErrors(errors) && (
-          <p className="w-full flex-1 text-destructive">{l18n.t("FORM_ERRORS")}</p>
+          <p className="w-full flex-1 text-destructive">
+            {l18n.t("FORM_ERRORS")}
+          </p>
         )}
       </div>
     </div>

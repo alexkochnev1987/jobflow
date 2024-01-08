@@ -22,7 +22,7 @@ function ViewCourse({ image, description, prototypes }: Props) {
         />
         <Flex direction="column" gap="4">
           <h2 className="text-lg font-bold leading-7">
-            {l18n.t("What you’ll get from this short course")}
+            {l18n.t("view-course.title", "What you’ll get from this short course")}
           </h2>
           <p className="text-base font-normal leading-normal">
             {l18n.t(description)}
@@ -30,7 +30,7 @@ function ViewCourse({ image, description, prototypes }: Props) {
         </Flex>
       </Grid>
       {prototypes?.length > 0 && (
-        <h2 className="text-lg font-bold leading-7"> {l18n.t("Files")}</h2>
+        <h2 className="text-lg font-bold leading-7"> {l18n.t("view-course.files", "Files")}</h2>
       )}
       <Grid columns="2">
         {prototypes.map((p) => (

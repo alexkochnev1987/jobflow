@@ -41,10 +41,11 @@ export default function Timeout({ defaultSeconds }) {
       </Callout.Icon>
       <div className="flex flex-col gap-3">
         <h2 className="flex text-lg font-bold">
-          {l18n.t("Testergebnisse gespeichert")}
+          {l18n.t("timeout.title", "Testergebnisse gespeichert")}
         </h2>
         <span>
           {l18n.t(
+            "timeout.body",
             "Deine Antworten und dein Berufe sind für die nächsten 15 Minuten gespeichert. Wenn du dich weder registrierst noch einen Premium-Report kaufst, verfällt dein Ergebnis.",
           )}
         </span>

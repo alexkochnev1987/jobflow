@@ -32,7 +32,7 @@ export default function Results() {
             size="5"
             className="w-full p-5 text-center text-2xl font-normal leading-7"
           >
-            {l18n.t("Dein Ergebnis wird berechnet")}
+            {l18n.t("results.title", "Dein Ergebnis wird berechnet")}
           </Heading>
           <Loading />
         </div>
@@ -41,37 +41,38 @@ export default function Results() {
         <>
           <div className="z-10 w-full max-w-3xl p-5">
             <h1 className="mb-2 text-center text-lg font-bold leading-8 text-neutral-700">
-              {l18n.t("Here are your results 🎉")}
+              {l18n.t("results.subtitle", "Here are your results 🎉")}
             </h1>
             <Flex direction="column" gap="5" align="start">
               <Timeout defaultSeconds={seconds} />
               <p>
                 {l18n.t(
+                  "results.ai",
                   "Ihre Antworten wurden von einer K.I. analysiert. Das soeben abgeschlossene Assessment wird von Unternehmen, Universitäten und Karrierecoaches auf der ganzen Welt verlangt.",
                 )}
               </p>
               <Heading size="7" className="font-normal leading-7">
-                {l18n.t("Sie bei der Arbeit")}
+                {l18n.t("results.you-at-work", "Sie bei der Arbeit")}
               </Heading>
               <p>{youArWork}</p>
               <Heading size="7" className="font-normal leading-7">
-                {l18n.t("Stärken")}
+                {l18n.t("results.strenghts", "Stärken")}
               </Heading>
               <p>{strengths}</p>
               <Heading size="7" className="font-normal leading-7">
-                {l18n.t("Kommunikationsfähigkeiten")}
+                {l18n.t("results.communication", "Kommunikationsfähigkeiten")}
               </Heading>
               <p>{communicationSkills}</p>
               <Heading size="7" className="font-normal leading-7">
-                {l18n.t("Führungsqualitäten")}
+                {l18n.t("results.softskills", "Führungsqualitäten")}
               </Heading>
               <p>{leadership}</p>
               <Heading size="7" className="font-normal leading-7">
-                {l18n.t("Arbeit im Team")}
+                {l18n.t("results.teamwork", "Arbeit im Team")}
               </Heading>
               <p>{teamwork}</p>
               <Heading size="8" className="font-normal leading-7">
-                {l18n.t("Passende Karrieren")}
+                {l18n.t("results.careers", "Passende Karrieren")}
               </Heading>
               <div className="relative  w-full">
                 <div className="absolute z-10 h-full w-full rounded bg-gradient-to-b from-transparent via-white to-gray-50 opacity-70"></div>
@@ -94,10 +95,14 @@ export default function Results() {
                 <ul className="m-auto text-lg font-bold leading-7 text-neutral-700">
                   <li className="flex flex-row items-center gap-1">
                     <CheckCircle className="h-9 w-9" />
-                    {l18n.t("60-Tage-Zufriedenheitsgarantie")}
+                    {l18n.t(
+                      "results.payment-text-1",
+                      "60-Tage-Zufriedenheitsgarantie",
+                    )}
                   </li>
                   <li className="flex flex-row items-center gap-1">
-                    <CheckCircle className="h-9 w-9" /> {l18n.t("100% sicher")}{" "}
+                    <CheckCircle className="h-9 w-9" />{" "}
+                    {l18n.t("results.payment-text-ssl", "100% sicher")}{" "}
                     <Image
                       src={"/ssl.png"}
                       width="53"
@@ -108,7 +113,10 @@ export default function Results() {
                   </li>
                   <li className="flex flex-row items-center gap-1">
                     <CheckCircle className="h-9 w-9" />{" "}
-                    {l18n.t("Sofortiger Zugang und lebenslanger Kundensupport")}
+                    {l18n.t(
+                      "results.payment-text-3",
+                      "Sofortiger Zugang und lebenslanger Kundensupport",
+                    )}
                   </li>
                 </ul>
               </div>

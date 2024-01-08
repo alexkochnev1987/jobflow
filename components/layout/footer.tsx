@@ -10,19 +10,19 @@ function FooterComponent() {
             <div className="flex grow flex-col items-stretch pb-12 max-md:mt-8">
               <div className="text-base font-semibold leading-5 text-black">
                 {" "}
-                {l18n.t("Media")}{" "}
+                {l18n.t("footer.Media")}{" "}
               </div>
               <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                 {" "}
-                {l18n.t("Stories")}{" "}
+                {l18n.t("footer.Stories")}{" "}
               </div>
               <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                 {" "}
-                {l18n.t("ffiliate")}{" "}
+                {l18n.t("footer.ffiliate")}{" "}
               </div>
               <div className="mb-9 mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                 {" "}
-                {l18n.t("Press")}{" "}
+                {l18n.t("footer.Press")}{" "}
               </div>
             </div>
           </div>
@@ -33,19 +33,19 @@ function FooterComponent() {
                   <div className="flex flex-col items-stretch max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      {l18n.t("Support")}{" "}
+                      {l18n.t("footer.Support")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Institutes")}{" "}
+                      {l18n.t("footer.Institutes")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Blog")}{" "}
+                      {l18n.t("footer.Blog")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("FAQ")}{" "}
+                      {l18n.t("footer.FAQ")}{" "}
                     </div>
                   </div>
                 </div>
@@ -53,19 +53,19 @@ function FooterComponent() {
                   <div className="flex grow flex-col items-stretch pb-9 max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      {l18n.t("About")}{" "}
+                      {l18n.t("footer.About")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Our Team")}{" "}
+                      {l18n.t("footer.Our Team")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Companies")}{" "}
+                      {l18n.t("footer.Companies")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Philosophy")}{" "}
+                      {l18n.t("footer.Philosophy")}{" "}
                     </div>
                   </div>
                 </div>
@@ -73,19 +73,19 @@ function FooterComponent() {
                   <div className="flex flex-col items-stretch max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      {l18n.t("Social")}{" "}
+                      {l18n.t("footer.Social")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Twitter")}{" "}
+                      {l18n.t("footer.Twitter")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("LinkedIn")}{" "}
+                      {l18n.t("footer.LinkedIn")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Facebook")}{" "}
+                      {l18n.t("footer.Facebook")}{" "}
                     </div>
                   </div>
                 </div>
@@ -93,23 +93,23 @@ function FooterComponent() {
                   <div className="flex grow flex-col items-stretch max-md:mt-3.5">
                     <div className="text-base font-semibold leading-5 text-black">
                       {" "}
-                      {l18n.t("Legal")}{" "}
+                      {l18n.t("footer.Legal")}{" "}
                     </div>
                     <div className="mt-4 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Terms")}{" "}
+                      {l18n.t("footer.Terms")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Privacy")}{" "}
+                      {l18n.t("footer.Privacy")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Data Protection")}{" "}
+                      {l18n.t("footer.Data Protection")}{" "}
                     </div>
                     <div className="mt-3 whitespace-nowrap text-base leading-6 text-gray-500">
                       {" "}
-                      {l18n.t("Contact")}{" "}
+                      {l18n.t("footer.Contact")}{" "}
                     </div>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ function FooterComponent() {
           <Logo />
           <div className="my-auto grow self-center whitespace-nowrap text-base leading-6 text-gray-400">
             © {new Date().getFullYear()}{" "}
-            {l18n.t("ShiftYourCareer. All rights reserved.")}
+            {l18n.t("footer.ShiftYourCareer. All rights reserved.")}
           </div>
         </div>
       </div>

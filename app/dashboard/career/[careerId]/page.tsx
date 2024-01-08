@@ -35,7 +35,7 @@ export default async function Page({
     <div>
       <Link href={ROUTES.DashBoard}>
         <h1 className="flex cursor-pointer flex-row items-center text-xl font-bold">
-          <BackIcon /> {l18n.t("Results")}
+          <BackIcon /> {l18n.t("dashboard.career.back", "Results")}
         </h1>
       </Link>
       <React.Suspense

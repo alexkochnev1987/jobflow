@@ -55,7 +55,10 @@ export const LoginForm = () => {
   function getFriendlyErrorMessage(error) {
     switch (error) {
       case "CredentialsSignin":
-        return "Invalid email or password"
+        return l18n.t(
+          "login.error.CredentialsSignin",
+          "Email oder Passwort ist falsch",
+        )
       default:
         return error
     }
@@ -66,27 +69,29 @@ export const LoginForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h1 className="m-10 text-2xl font-normal leading-7">
-        {l18n.t("Anmelden")}
+        {l18n.t("login.title", "Anmelden")}
       </h1>
 
       <div className="mb-6 flex flex-col gap-2">
-        <label className="text-base">{l18n.t("Email")}</label>
+        <label className="text-base">{l18n.t("login.email", "Email")}</label>
         <Input
-          placeholder={l18n.t("Email")}
+          placeholder={l18n.t("login.email", "Email")}
           id="email"
           name="email"
           value={formValues.email}
           onChange={handleChange}
           className={cn(input_style)}
         />
-        <label className="text-base">{l18n.t("Password")}</label>
+        <label className="text-base">
+          {l18n.t("login.password", "Password")}
+        </label>
         <Input
           required
           type="password"
           name="password"
           value={formValues.password}
           onChange={handleChange}
-          placeholder={l18n.t("Password")}
+          placeholder={l18n.t("login.password", "Password")}
           className={cn(input_style)}
         />
       </div>
@@ -102,7 +107,11 @@ export const LoginForm = () => {
         size="4"
         className="mx-auto w-full rounded-full"
       >
-        {loading ? <LoadingDots color="#ffffff" /> : l18n.t("einloggen")}
+        {loading ? (
+          <LoadingDots color="#ffffff" />
+        ) : (
+          l18n.t("login.button", "einloggen")
+        )}
       </Button>
 
       {/* <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">

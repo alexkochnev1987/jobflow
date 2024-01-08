@@ -17,6 +17,7 @@ import { LoadingDots } from "@/components/shared/icons"
 import { signOut } from "next-auth/react"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { schemaChangePasswrd } from "@/lib/schemas"
+import l18n from "@/i18n/config"
 
 export default function SettingsClient({ deleteUser, updatePassword }) {
   const {
@@ -46,20 +47,26 @@ export default function SettingsClient({ deleteUser, updatePassword }) {
       <AlertDialog open={openConfirmDelete}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>
+              {l18n.t("settings.delete.confirm", "Are you absolutely sure?")}
+            </AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel
               onClick={() => setOpenConfirmDelete(false)}
               className="font-bold !text-black"
             >
-              Cancel
+              {l18n.t("settings.delete.cancel", "Cancel")}
             </AlertDialogCancel>
             <AlertDialogAction
               className="bg-red-700 !font-bold !text-white hover:bg-red-500"
               onClick={handleDeleteUser}
             >
-              {isLoading ? <LoadingDots color="#ffffff" /> : "Delete"}
+              {isLoading ? (
+                <LoadingDots color="#ffffff" />
+              ) : (
+                l18n.t("settings.delete.delete", "Delete")
+              )}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -69,7 +76,10 @@ export default function SettingsClient({ deleteUser, updatePassword }) {
           <Flex direction="column" gap="2">
             <TextFieldInput
               type="password"
-              placeholder="New password"
+              placeholder={l18n.t(
+                "settings.delete.new-password",
+                "New Password",
+              )}
               {...register("password", {
                 required: true,
               })}
@@ -82,12 +92,18 @@ export default function SettingsClient({ deleteUser, updatePassword }) {
                 required: true,
                 validate: (val: string) => {
                   if (watch("password") != val) {
-                    return "Your passwords do no match"
+                    return l18n.t(
+                      "settings.password.error",
+                      "Passwords do not match",
+                    )
                   }
                 },
               })}
               type="password"
-              placeholder="Confirm password"
+              placeholder={l18n.t(
+                "settings.password.confirm",
+                "Confirm password",
+              )}
             />
             {errors.password_confirmation && (
               <p className="text-red-700">
@@ -95,7 +111,7 @@ export default function SettingsClient({ deleteUser, updatePassword }) {
               </p>
             )}
             <Button variant="default" type="submit">
-              Update password
+              {l18n.t("settings.password.button", "Update Password")}
             </Button>
           </Flex>
         </form>
@@ -103,7 +119,7 @@ export default function SettingsClient({ deleteUser, updatePassword }) {
           variant="destructive"
           onClick={() => setOpenConfirmDelete(true)}
         >
-          Delete account
+          {l18n.t("settings.delete.button", "Delete account")}
         </Button>
       </Flex>
     </>

@@ -53,7 +53,7 @@ export default function ContactModal({ company }) {
     <Dialog>
       <DialogTrigger asChild>
         <div className="ml-5 mt-1 cursor-pointer self-start whitespace-nowrap text-sm leading-6 text-sky-500 max-md:ml-2.5">
-          {l18n.t("Want it for free?")}
+          {l18n.t("contact.modal.link", "Want it for free?")}
         </div>
       </DialogTrigger>
       <DialogContent className="text-black sm:max-w-[425px]">
@@ -84,39 +84,42 @@ export default function ContactModal({ company }) {
                   <p className="font-semibold text-black">
                     {contact?.first_name} {contact?.last_name}
                   </p>
-                  <p className="text-gray-500"> {l18n.t("Contact Person")}</p>
+                  <p className="text-gray-500">
+                    {" "}
+                    {l18n.t("contact.modal.person", "Contact Person")}
+                  </p>
                 </Flex>
               </Flex>
             </Flex>
             <label className="mb-1 text-sm font-medium leading-tight text-slate-700">
-              {l18n.t("Full Name")}
+              {l18n.t("contact.modal.name", "Name")}
             </label>
             <Input
               {...register("name", { required: true })}
               className="my-1"
-              placeholder="Name"
+              placeholder={l18n.t("contact.modal.name", "Name")}
             />
             {errors.name && (
               <p className="text-red-700">{errors.name.message}</p>
             )}
             <label className="my-2 text-sm font-medium leading-tight text-slate-700">
-              {l18n.t("E-mail")}
+              {l18n.t("contact.modal.email", "E-mail")}
             </label>
             <Input
               {...register("email", { required: true })}
-              placeholder="E-mail"
+              placeholder={l18n.t("contact.modal.email", "Email")}
               className="my-1"
             />
             {errors.email && (
               <p className="text-red-700">{errors.email.message}</p>
             )}
             <label className="my-2 text-sm font-medium leading-tight text-slate-700">
-              {l18n.t("Message")}
+              {l18n.t("contact.modal.message", "Message")}
             </label>
             <Textarea
               {...register("message")}
               className="my-1 h-20"
-              placeholder="Message"
+              placeholder={l18n.t("contact.modal.message", "Message")}
               rows={3}
             />
             {errors.message && (
@@ -127,9 +130,12 @@ export default function ContactModal({ company }) {
           </Flex>
           <Flex direction="column" gap="2">
             <p className="my-2 text-sm text-gray-500">
-              By contacting this institution you agree to the{" "}
+              {l18n.t(
+                "contact.modal.footer.text",
+                " By contacting this institution you agree to the ",
+              )}
               <Link href="/terms" className="text-sky-500">
-                Terms and Conditions
+                {l18n.t("contact.modal.footer.terms", "Terms and conditions")}
               </Link>
             </p>
             <Button

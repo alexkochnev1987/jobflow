@@ -17,9 +17,13 @@ export default function CareerGrid({ careers, isLoading }: Props) {
         {isLoading && <Skeleton className="w-1/3" count={1} />}
         {!isLoading && (
           <>
-            {l18n.t("We found {{careers}} suitable careers for you!", {
-              careers: careers?.length,
-            })}{" "}
+            {l18n.t(
+              "dashboard.greeting",
+              "We found {{careers}} suitable careers for you!",
+              {
+                careers: careers?.length,
+              },
+            )}{" "}
           </>
         )}
       </p>
@@ -27,6 +31,7 @@ export default function CareerGrid({ careers, isLoading }: Props) {
         {!isLoading && (
           <>
             {l18n.t(
+              "dashboard.body",
               "Open the details page to find more information about the career, way to test whether the career suits as well as trainings.",
             )}
           </>

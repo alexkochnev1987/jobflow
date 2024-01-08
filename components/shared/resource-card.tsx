@@ -27,7 +27,7 @@ export default function ResourceCard({ name, description, file }: Props) {
           prefetch={false}
           className="text-sm font-semibold leading-tight text-emerald-300"
         >
-          Download
+          {l18n.t("view-course.download", "Download")}
         </Link>
       </Flex>
     </Card>

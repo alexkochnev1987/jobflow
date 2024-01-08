@@ -97,10 +97,17 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
     return <LoadingQuestion />
   }
 
+  console.log(anwsers)
+
   return (
     <div className="fade-down  w-full transition duration-300">
       <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
-        {capitalizeFirstLetter(l18n.t(question.question))}
+        {capitalizeFirstLetter(
+          l18n.t(
+            `test.question.${question.id}.title`,
+            question.question as string,
+          ),
+        )}
       </Label>
       <div className="mt-5 flex flex-col justify-center">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
@@ -112,7 +119,12 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               intent="primary"
               size="medium"
             >
-              {capitalizeFirstLetter(l18n.t(answer.label))}
+              {capitalizeFirstLetter(
+                l18n.t(
+                  `test.question.${question.id}.option.${answer.value}`,
+                  answer.label,
+                ),
+              )}
             </Button>
           ) : (
             <Button
@@ -121,7 +133,12 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               size="medium"
               onClick={() => handleAnswer(answer)}
             >
-              {capitalizeFirstLetter(l18n.t(answer.label))}
+              {capitalizeFirstLetter(
+                l18n.t(
+                  `test.question.${question.id}.option.${answer.value}`,
+                  answer.label,
+                ),
+              )}
             </Button>
           ),
         )}
