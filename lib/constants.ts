@@ -19,6 +19,7 @@ export const QUESTION_TYPES = {
 export const ROUTES = {
   DashBoard: "/dashboard",
   Login: "/login",
+  Contact: "/contact",
   Register: "/register",
   Evaluation: "/test",
   EvaluationResults: "/test/results",
