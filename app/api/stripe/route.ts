@@ -53,7 +53,8 @@ export async function POST(req: NextRequest) {
       console.log("Sending email")
       await sendEmail({
         to: email,
-        subject: "Welcome to Shift Your Career",
+        subject:
+          "Herzlichen Glückwunsch! Dein Testergebnis ist jetzt verfügbar!",
         html: await componentToHTML(
           WelcomeEmail({
             email,
