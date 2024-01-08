@@ -21,6 +21,19 @@ import { useRouter } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
 import ContactModal from "../courses/contact-modal"
 
+export type Contact = {
+  id: string
+  avatar: string
+  first_name: string
+  last_name: string
+}
+
+export type Company = {
+  id: string
+  logo: string
+  Contact?: Contact
+}
+
 export type Course = {
   name: string
   start_date?: Date
@@ -30,6 +43,7 @@ export type Course = {
   sponsorship: boolean
   description: string
   image?: string
+  Company?: Company
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> &
@@ -48,6 +62,7 @@ export default function CourseCard({
   start_date,
   sponsorship,
   isLoading,
+  Company,
 }: Props) {
   const router = useRouter()
 
@@ -106,7 +121,7 @@ export default function CourseCard({
             <span className=""> {salaryFormatter(price)} €</span>
           </div>
         </div>
-        <ContactModal />
+        <ContactModal company={Company} />
         <div className="mt-1.5 flex items-center gap-2 self-start pr-7 max-md:pr-5">
           <Bag />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">

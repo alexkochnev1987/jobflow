@@ -39,7 +39,7 @@ export default function CourseCarousel({ courses }: Props) {
   return (
     <>
       <p className="mb-5 mt-8  text-base font-semibold leading-normal text-slate-700">
-      {l18n.t("Umschulungen")}{" "}
+        {l18n.t("Umschulungen")}{" "}
         <span className="font-normal text-gray-400">({courses.length})</span>
       </p>
       <Carousel
@@ -57,7 +57,7 @@ export default function CourseCarousel({ courses }: Props) {
         deviceType={"desktop"}
       >
         {courses.map((c) => (
-          <CourseCard key={c?.name} {...c} />
+          <CourseCard key={c?.name} {...c}  />
         ))}
       </Carousel>
     </>

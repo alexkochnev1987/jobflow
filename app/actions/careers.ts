@@ -1,4 +1,4 @@
-import 'server-only'
+import "server-only"
 import prisma from "lib/prisma"
 
 export async function getCareers() {
@@ -53,6 +53,27 @@ export async function getCareer(id: string) {
               description: true,
               image: true,
               sponsonrship: true,
+              Company: {
+                where: {
+                  status: "published",
+                },
+                select: {
+                  logo: true,
+                  name: true,
+                  id: true,
+                  Contact: {
+                    select: {
+                      id: true,
+                      avatar: true,
+                      first_name: true,
+                      last_name: true,
+                    },
+                    where: {
+                      status: "published",
+                    },
+                  },
+                },
+              },
             },
           },
         },

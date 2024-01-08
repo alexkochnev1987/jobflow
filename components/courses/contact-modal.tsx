@@ -5,44 +5,47 @@ import { schemaContactModal } from "@/lib/schemas"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Box, Button, Flex, Grid, TextArea } from "@radix-ui/themes"
 import Image from "next/image"
-import { useForm } from "react-hook-form"
+import { useForm, useFormState } from "react-hook-form"
 import { Input, Textarea } from "../shared/input"
 import { useState } from "react"
 import { LoadingDots } from "../shared/icons"
 import Link from "next/link"
+import { getImageFullUrl } from "@/lib/utils"
 
-export default function ContactModal() {
-  const [loading, setLoading] = useState(false)
+export default function ContactModal({ company }) {
   const [error, setError] = useState("")
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isLoading },
   } = useForm({
     resolver: yupResolver(schemaContactModal),
   })
 
+  const contact = company?.Contact?.[0]
+  console.log(company)
   const onSubmit = async (data) => {
     console.log("onSubmit", data)
-    setLoading(true)
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          company_id: company?.id,
+          contact_id: contact?.id,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
       })
 
-      setLoading(false)
       if (!res.ok) {
         setError((await res.json()).message)
         return
       }
-      alert("Course updated")
+      alert("Message sent")
     } catch (error: any) {
-      setLoading(false)
       setError(error)
     }
   }
@@ -58,7 +61,7 @@ export default function ContactModal() {
           <Flex className="text-black" direction="column" gap="2">
             <Flex>
               <Image
-                src="https://placehold.co/95x95"
+                src={getImageFullUrl(company?.logo)}
                 alt="sdsd"
                 width={95}
                 height={95}
@@ -71,14 +74,16 @@ export default function ContactModal() {
                 className="justify-center self-center align-middle"
               >
                 <Image
-                  src="https://placehold.co/40x40"
+                  src={getImageFullUrl(contact?.avatar)}
                   alt="sdsd"
                   width={40}
                   height={40}
                   className="m-1 h-10 w-10 rounded-full"
                 />
                 <Flex direction="column">
-                  <p className="font-semibold text-black">Alice</p>
+                  <p className="font-semibold text-black">
+                    {contact?.first_name} {contact?.last_name}
+                  </p>
                   <p className="text-gray-500"> {l18n.t("Contact Person")}</p>
                 </Flex>
               </Flex>
@@ -131,7 +136,7 @@ export default function ContactModal() {
               type="submit"
               className="w-full !rounded-sm !bg-rose-500 !p-2 font-bold !text-white hover:!bg-rose-400"
             >
-              {loading ? <LoadingDots color="#ffffff" /> : "Send"}
+              {isLoading ? <LoadingDots color="#ffffff" /> : "Send"}
             </Button>
           </Flex>
         </form>
