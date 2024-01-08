@@ -1,6 +1,12 @@
-import 'server-only'
+"use server"
+import "server-only"
+
 import { hash } from "bcryptjs"
 import prisma from "lib/prisma"
+import { auth } from "auth"
+import { sendEmail } from "@/lib/email"
+import { componentToHTML } from "@/lib/utils"
+import { Template as AccountDeletionEmail } from "@/emails/account-deletion"
 const tagsSelect = {
   select: {
     tags: {
@@ -32,7 +38,11 @@ const profileSelect = {
   },
 }
 
-export async function createUser(name: string, email: string, password: string) {
+export async function createUser(
+  name: string,
+  email: string,
+  password: string,
+) {
   const hashed_password = await hash(password, 12)
 
   return prisma.user.upsert({
@@ -135,4 +145,57 @@ export async function isCompanyUser(email: string) {
     return false
   }
   return true
+}
+
+export async function updatePassword(password: string) {
+  const session = await auth()
+  const hashed_password = await hash(password, 12)
+
+  return prisma?.user.update({
+    where: {
+      email: session.user.email,
+    },
+    data: {
+      password: hashed_password,
+    },
+  })
+}
+
+export async function deleteUser() {
+  const session = await auth()
+  console.log(session)
+
+  const user = await getUserByEmail(session.user.email)
+
+  if (!user) {
+    return
+  }
+
+  // delete profile
+  await prisma?.profile.deleteMany({
+    where: {
+      userId: user.id,
+    },
+  })
+
+  // delete accounts
+  await prisma?.account.deleteMany({
+    where: {
+      userId: user.id,
+    },
+  })
+
+  // delete user
+  await prisma?.user.delete({
+    where: {
+      email: session.user.email,
+    },
+  })
+
+  // send email
+  await sendEmail({
+    to: session.user.email,
+    subject: "Account gelöscht 😢",
+    html: await componentToHTML(AccountDeletionEmail()),
+  })
 }

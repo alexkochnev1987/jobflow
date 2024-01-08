@@ -330,5 +330,8 @@
   "E-mail": "E-mail",
   "Full Name": "Full Name",
   "Full Name:": "Full Name:",
-  "Message": "Message"
+  "Message": "Message",
+  "Dashboard": "Dashboard",
+  "Settings": "Settings",
+  "Logout": "Logout"
 }

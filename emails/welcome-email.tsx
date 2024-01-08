@@ -61,7 +61,7 @@ export const Template = ({ email, password }: TemplateProps) => (
           </Text>
           <Text style={paragraph}>
             Bei Fragen oder Problemen{" "}
-            <Link href={ROUTES.Login} style={anchor}>
+            <Link href={ROUTES.Contact} style={anchor}>
               kontaktiere bitte den Support
             </Link>
             .

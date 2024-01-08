@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
       const { name, email } = customer_details
 
-      const password = Math.random().toString(36).slice(-8)
+      const password = Math.random().toString(36).slice(-14)
 
       console.log("Creating user")
       await createUser(name, email, password)

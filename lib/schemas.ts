@@ -8,6 +8,13 @@ export const schemaContactModal = yup
     company_id: yup.number(),
   })
   .required()
+
+  export const schemaChangePasswrd = yup
+    .object({
+      password: yup.string().required().min(12).max(60),
+      password_confirmation: yup.string().required().min(12).max(60),
+    })
+    .required()
 export const schemaCompanySignup = yup
   .object({
     business: yup.string().oneOf(["training", "company"]).required(),

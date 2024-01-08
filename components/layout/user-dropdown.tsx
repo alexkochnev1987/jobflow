@@ -4,10 +4,10 @@ import { useState } from "react"
 import { signOut } from "next-auth/react"
 import { LayoutDashboard, LogOut } from "lucide-react"
 import Popover from "@/components/shared/popover"
-import Image from "next/image"
 import { Session } from "next-auth"
 import Link from "next/link"
 import { ROUTES } from "@/lib/constants"
+import l18n from "@/i18n/config"
 import UserIcon from "@/icons/user.svg"
 
 export default function UserDropdown({ session }: { session: Session }) {
@@ -26,14 +26,21 @@ export default function UserDropdown({ session }: { session: Session }) {
               href={ROUTES.DashBoard}
             >
               <LayoutDashboard className="h-4 w-4" />
-              <p className="text-sm">Dashboard</p>
+              <p className="text-sm">{l18n.t("Dashboard")}</p>
+            </Link>
+            <Link
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              href={ROUTES.Settings}
+            >
+              <LayoutDashboard className="h-4 w-4" />
+              <p className="text-sm">{l18n.t("Settings")}</p>
             </Link>
             <button
               className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
               onClick={() => signOut()}
             >
               <LogOut className="h-4 w-4" />
-              <p className="text-sm">Logout</p>
+              <p className="text-sm">{l18n.t("Logout")}</p>
             </button>
           </div>
         }
