@@ -30,7 +30,11 @@ export default function ContactModal({ company }) {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          contact_id: contact?.id,
+          company_id: company?.id,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,8 +58,6 @@ export default function ContactModal({ company }) {
       </DialogTrigger>
       <DialogContent className="text-black sm:max-w-[425px]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input type="hidden" name="contact_id" value={contact?.id} />
-          <input type="hidden" name="company_id" value={company?.id} />
           <Flex className="text-black" direction="column" gap="2">
             <Flex>
               <Image

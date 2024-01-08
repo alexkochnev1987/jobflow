@@ -9,6 +9,7 @@ import { InferType } from "yup"
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
+    
 
     const data: InferType<typeof schemaContactModal> =
       await schemaContactModal.validate(json)
@@ -18,6 +19,7 @@ export async function POST(req: NextRequest) {
         id: data.contact_id,
       },
     })
+
 
     await sendEmail({
       to: contact.email,
@@ -30,6 +32,8 @@ export async function POST(req: NextRequest) {
         }),
       ),
     })
+
+    console.log("email sent")
 
     return NextResponse.json({
       status: "success",
