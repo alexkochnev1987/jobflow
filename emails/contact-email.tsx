@@ -17,7 +17,7 @@ import {
 import { defaulted, number, object, string, type Infer } from 'superstruct';
 import * as React from 'react';
 
-export const TemplateName = 'payment-failed-email';
+export const TemplateName = 'BatmanEmail';
 
 export const TemplateStruct = object({
   email: defaulted(string(), 'batman@example.com'),
