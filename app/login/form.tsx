@@ -34,7 +34,7 @@ export const LoginForm = () => {
       await signIn("credentials", {
         email: formValues.email,
         password: formValues.password,
-        callbackUrl
+        callbackUrl,
       })
 
       setLoading(false)
@@ -52,17 +52,25 @@ export const LoginForm = () => {
     setFormValues({ ...formValues, [name]: value })
   }
 
+  function getFriendlyErrorMessage(error) {
+    switch (error) {
+      case "CredentialsSignin":
+        return "Invalid email or password"
+      default:
+        return error
+    }
+  }
+
   const input_style = ""
 
   return (
     <form onSubmit={onSubmit}>
-      {error && (
-        <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
-      )}
       <h1 className="m-10 text-2xl font-normal leading-7">
-        {l18n.t("Konto erstellen")}
+        {l18n.t("Anmelden")}
       </h1>
+
       <div className="mb-6 flex flex-col gap-2">
+        <label className="text-base">{l18n.t("Email")}</label>
         <Input
           placeholder={l18n.t("Email")}
           id="email"
@@ -71,6 +79,7 @@ export const LoginForm = () => {
           onChange={handleChange}
           className={cn(input_style)}
         />
+        <label className="text-base">{l18n.t("Password")}</label>
         <Input
           required
           type="password"
@@ -81,8 +90,19 @@ export const LoginForm = () => {
           className={cn(input_style)}
         />
       </div>
-      <Button type="submit" variant="solid" size="4" className="mx-auto w-full">
-        {loading ? <LoadingDots color="#ffffff" /> : l18n.t("Anmelden")}
+
+      {error && (
+        <p className="mb-6 rounded py-4 text-center font-extrabold text-red-800">
+          {getFriendlyErrorMessage(error)}
+        </p>
+      )}
+      <Button
+        type="submit"
+        variant="solid"
+        size="4"
+        className="mx-auto w-full rounded-full"
+      >
+        {loading ? <LoadingDots color="#ffffff" /> : l18n.t("einloggen")}
       </Button>
 
       {/* <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
