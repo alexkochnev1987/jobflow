@@ -9,7 +9,7 @@ import { Button } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChangeEvent, useState } from "react"
-import l18n from "../../i18n/config"
+import l18n from "@/i18n/config"
 
 export const LoginForm = () => {
   const router = useRouter()

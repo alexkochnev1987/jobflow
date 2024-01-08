@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       metadata: {
         uid,
       },
-      success_url: `https://app.shiftyourcareer.de${ROUTES.Login}?success=true`,
+      success_url: `https://app.shiftyourcareer.de${ROUTES.Payment}?success=true`,
       cancel_url: `https://app.shiftyourcareer.de/${ROUTES.EvaluationResults}?canceled=true`,
     })
 
