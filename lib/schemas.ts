@@ -4,6 +4,8 @@ export const schemaContactModal = yup
     name: yup.string().required(),
     email: yup.string().email().required(),
     message: yup.string().required(),
+    contact_id: yup.number(),
+    company_id: yup.number(),
   })
   .required()
 export const schemaCompanySignup = yup

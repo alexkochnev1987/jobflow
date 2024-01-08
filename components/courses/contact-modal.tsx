@@ -17,7 +17,7 @@ export default function ContactModal({ company }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schemaContactModal),
   })
@@ -30,11 +30,7 @@ export default function ContactModal({ company }) {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify({
-          ...data,
-          company_id: company?.id,
-          contact_id: contact?.id,
-        }),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,6 +54,8 @@ export default function ContactModal({ company }) {
       </DialogTrigger>
       <DialogContent className="text-black sm:max-w-[425px]">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <input type="hidden" name="contact_id" value={contact?.id} />
+          <input type="hidden" name="company_id" value={company?.id} />
           <Flex className="text-black" direction="column" gap="2">
             <Flex>
               <Image
@@ -136,7 +134,7 @@ export default function ContactModal({ company }) {
               type="submit"
               className="w-full !rounded-sm !bg-rose-500 !p-2 font-bold !text-white hover:!bg-rose-400"
             >
-              {isLoading ? <LoadingDots color="#ffffff" /> : "Send"}
+              {isSubmitting ? <LoadingDots color="#ffffff" /> : "Send"}
             </Button>
           </Flex>
         </form>
