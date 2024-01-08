@@ -13,6 +13,7 @@
       "@/styles/*": ["styles/*"],
       "@/test/*": ["test/*"],
       "@/i18n/*": ["i18n/*"],
+      "@/emails/*": ["emails/*"],
       "@/icons/*": ["components/shared/icons/*"]
     },
     "noImplicitAny": false,

@@ -72,10 +72,9 @@ const button = {
   padding: '10px'
 };
 
-export const Template = ({ email, name }: TemplateProps) => (
+export const Template = ({ name }: TemplateProps) => (
   <Html>
     <Head />
-    <Preview>This is our email preview text for {name} &lt;{email}&gt;</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={box}>
