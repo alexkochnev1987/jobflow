@@ -51,7 +51,7 @@ export const userStore = create<UserState>()(
           }),
       }),
       {
-        name: "user-storage",
+        name: "user-storage-v1",
       },
     ),
   ),
