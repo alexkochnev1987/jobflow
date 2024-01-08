@@ -621,5 +621,11 @@
       "footer": "Bitte beachten Sie, dass Ihre Ergebnisse ausschließlich für Sie bestimmt sind und vertrauliche Informationen enthalten können. Falls Sie Probleme beim Zugriff haben",
       "contact": "kontaktieren Sie bitte den Support."
     }
+  },
+  "login": {
+    "title": "Anmelden",
+    "email": "Email",
+    "password": "Password",
+    "button": "einloggen"
   }
 }

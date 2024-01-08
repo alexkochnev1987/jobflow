@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
 import { auth } from "auth"
 import { Flex } from "@radix-ui/themes"
+import LoginBackground from "./bg"
 
 export default async function LoginPage() {
   const session = await auth()
@@ -12,12 +13,7 @@ export default async function LoginPage() {
   }
   return (
     <div className="flex flex-row">
-      <div
-        style={{
-          backgroundImage: `url(/login-bg.png)`,
-        }}
-        className="hidden min-h-screen w-1/2 bg-cover bg-center md:block"
-      ></div>
+      <LoginBackground />
       <Flex justify="center" align="center" className="mx-auto">
         <LoginForm />
       </Flex>
