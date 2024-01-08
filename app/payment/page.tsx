@@ -47,7 +47,7 @@ export default async function LoginPage() {
           <Button
             as="a"
             href={ROUTES.Login}
-            className="my-2 w-auto self-start rounded-full bg-rose-500  hover:bg-rose-600"
+            className="my-2 w-auto self-start rounded-full !bg-rose-500  !hover:bg-rose-600"
           >
             Jetzt anmelden
           </Button>
