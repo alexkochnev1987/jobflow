@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { signOut } from "next-auth/react"
-import { LayoutDashboard, LogOut } from "lucide-react"
+import {  LayoutDashboard, LogOut, Settings } from "lucide-react"
 import Popover from "@/components/shared/popover"
 import { Session } from "next-auth"
 import Link from "next/link"
@@ -32,7 +32,7 @@ export default function UserDropdown({ session }: { session: Session }) {
               className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
               href={ROUTES.Settings}
             >
-              <LayoutDashboard className="h-4 w-4" />
+              <Settings className="h-4 w-4" />
               <p className="text-sm">{l18n.t("Settings")}</p>
             </Link>
             <button
