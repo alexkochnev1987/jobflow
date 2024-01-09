@@ -218,32 +218,32 @@ export default function CourseForm({ defaultValues = {} }) {
 
         <Flex direction="row" wrap="wrap" gap="2">
           <Flex direction="column">
-            <label htmlFor="" className="font-medium">
+            <label htmlFor="part_time" className="font-medium">
               Pace
             </label>
             <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("part_time")} /> <label>Part-time</label>
+              <Checkbox {...register("part_time")} /> <label htmlFor="part_time" >Part-time</label>
             </Flex>
             <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("full_time")} /> <label>Full-time</label>
+              <Checkbox {...register("full_time")} /> <label htmlFor="full_time" >Full-time</label>
             </Flex>
           </Flex>
           <Flex direction="column">
-            <label htmlFor="" className="font-medium">
+            <label htmlFor="training" className="font-medium">
               Type
             </label>
             <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("training")} /> <label>Training</label>
+              <Checkbox {...register("training")} /> <label htmlFor="training">Training</label>
             </Flex>
             <Flex direction="row" align="center" gap="1">
               <Checkbox {...register("apprenticenship")} value="on" />
-              <label>Apprenticenship</label>
+              <label htmlFor="apprenticenship">Apprenticenship</label>
             </Flex>
           </Flex>
         </Flex>
         <Flex direction="row" align="center" gap="1">
           <Checkbox {...register("sponsonrship")} />
-          <label>Sponsorship</label>
+          <label htmlFor="sponsonrship">Sponsorship</label>
         </Flex>
         {error && <p className="text-red-700">{error}</p>}
         <Button

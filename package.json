@@ -143,6 +143,7 @@
     "concurrently": "^7.6.0",
     "constructs": "10.2.69",
     "encoding": "^0.1.13",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-storybook": "^0.6.15",
     "postcss": "^8.4.21",
     "prettier": "^2.8.8",

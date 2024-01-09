@@ -4,7 +4,6 @@
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Input } from "@/components/shared/input"
 import { ROUTES } from "@/lib/constants"
-import { cn } from "@/lib/utils"
 import { Button } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
@@ -13,7 +12,6 @@ import l18n from "@/i18n/config"
 
 export const LoginForm = () => {
   const router = useRouter()
-  const [signInClicked, setSignInClicked] = useState(false)
   const [loading, setLoading] = useState(false)
   const [formValues, setFormValues] = useState({
     email: "",
@@ -37,9 +35,8 @@ export const LoginForm = () => {
         callbackUrl,
       })
 
-      setLoading(false)
-
       router.push(callbackUrl)
+      setLoading(false)
     } catch (error: any) {
       console.log(error)
       setLoading(false)
@@ -52,7 +49,7 @@ export const LoginForm = () => {
     setFormValues({ ...formValues, [name]: value })
   }
 
-  function getFriendlyErrorMessage(error) {
+  function getFriendlyErrorMessage(error: string) {
     switch (error) {
       case "CredentialsSignin":
         return l18n.t(
@@ -63,8 +60,6 @@ export const LoginForm = () => {
         return error
     }
   }
-
-  const input_style = ""
 
   return (
     <form onSubmit={onSubmit}>
@@ -80,7 +75,6 @@ export const LoginForm = () => {
           name="email"
           value={formValues.email}
           onChange={handleChange}
-          className={cn(input_style)}
         />
         <label className="text-base">
           {l18n.t("login.password", "Password")}
@@ -92,7 +86,6 @@ export const LoginForm = () => {
           value={formValues.password}
           onChange={handleChange}
           placeholder={l18n.t("login.password", "Password")}
-          className={cn(input_style)}
         />
       </div>
 
@@ -113,30 +106,6 @@ export const LoginForm = () => {
           l18n.t("login.button", "einloggen")
         )}
       </Button>
-
-      {/* <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300">
-        <p className="mx-4 mb-0 text-center font-bold">OR</p>
-      </div> */}
-      {/* 
-      <div className="flex flex-col space-y-4 text-white">
-        <Button
-          disabled={signInClicked}
-          className={`flex h-10 w-full items-center justify-center space-x-3 rounded-md border transition-all duration-75 focus:outline-none`}
-          onClick={() => {
-            setSignInClicked(true)
-            signIn("google")
-          }}
-        >
-          {signInClicked ? (
-            <LoadingDots color="#ffffff" />
-          ) : (
-            <>
-              <Google className="h-5 w-5" />
-              <p>Sign In with Google</p>
-            </>
-          )}
-        </Button>
-      </div> */}
     </form>
   )
 }

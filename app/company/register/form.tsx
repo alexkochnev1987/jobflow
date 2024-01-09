@@ -78,6 +78,11 @@ export const RegisterForm = () => {
       <input type="hidden" {...register("business")} />
       <div className="flex w-full flex-row gap-1">
         <div
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {
+            setValue("business", "training")
+          }}
           onClick={() => {
             setValue("business", "training")
           }}
@@ -95,6 +100,11 @@ export const RegisterForm = () => {
           <p className="font-bold">Training Institute</p>
         </div>
         <div
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {
+            setValue("business", "company")
+          }}
           onClick={() => {
             setValue("business", "company")
           }}

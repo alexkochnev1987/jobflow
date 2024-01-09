@@ -11,6 +11,7 @@ import Clock from "@/icons/clock.svg"
 import Computer from "@/icons/pc.svg"
 import React from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export type Career = {
   id: string
@@ -47,7 +48,8 @@ export default function CareerCard({ isLoading, data }: Props) {
   const raitingColor =
     data.rating < 40 ? "ruby" : data.rating < 80 ? "yellow" : "green"
   return (
-    <div
+    <Link
+      href={`/dashboard/career/${data.id}`}
       className="w-full flex-col items-start justify-start p-4 hover:cursor-pointer  md:w-1/2 lg:w-1/3"
       onClick={onClick}
     >
@@ -121,6 +123,6 @@ export default function CareerCard({ isLoading, data }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
