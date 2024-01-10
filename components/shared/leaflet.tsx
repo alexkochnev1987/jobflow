@@ -13,7 +13,7 @@ export default function Leaflet({
   const transitionProps = { type: "spring", stiffness: 500, damping: 30 }
   useEffect(() => {
     controls.start({
-      y: 20,
+      x: -80,
       transition: transitionProps,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,12 +22,12 @@ export default function Leaflet({
   async function handleDragEnd(_: any, info: any) {
     const offset = info.offset.y
     const velocity = info.velocity.y
-    const height = leafletRef.current?.getBoundingClientRect().height || 0
-    if (offset > height / 2 || velocity > 800) {
-      await controls.start({ y: "100%", transition: transitionProps })
+    const width = leafletRef.current?.getBoundingClientRect().width || 0
+    if (offset > width / 2 || velocity > 800) {
+      await controls.start({ x: "100%", transition: transitionProps })
       setShow(false)
     } else {
-      controls.start({ y: 0, transition: transitionProps })
+      controls.start({ x: 0, transition: transitionProps })
     }
   }
 
@@ -36,12 +36,12 @@ export default function Leaflet({
       <motion.div
         ref={leafletRef}
         key="leaflet"
-        className="group fixed inset-x-0 bottom-0 z-40 w-screen cursor-grab bg-white pb-5 active:cursor-grabbing sm:hidden"
-        initial={{ y: "100%" }}
+        className="group fixed inset-y-0 bottom-0 z-40 w-screen cursor-grab bg-white pb-5 active:cursor-grabbing sm:hidden"
+        initial={{ x: "100%" }}
         animate={controls}
-        exit={{ y: "100%" }}
+        exit={{ x: "100%" }}
         transition={transitionProps}
-        drag="y"
+        drag="x"
         dragDirectionLock
         onDragEnd={handleDragEnd}
         dragElastic={{ top: 0, bottom: 1 }}
