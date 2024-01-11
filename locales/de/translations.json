@@ -47,31 +47,31 @@
   "Web Development": "Web Development",
   "footer": {
     "Media": "Media",
-    "Stories": "Stories",
-    "ffiliate": "Affiliate",
-    "Press": "Press",
-    "Support": "Support",
-    "Institutes": "Institutes",
-    "Blog": "Blog",
+    "affiliate": "Affiliate",
+    "press": "Press",
+    "support": "Support",
+    "institutes": "Institutes",
+    "blog": "Blog",
     "FAQ": "FAQ",
     "About": "About",
-    "Our Team": "Our Team",
-    "Companies": "Companies",
-    "Philosophy": "Philosophy",
-    "Social": "Social",
-    "Twitter": "Twitter",
-    "LinkedIn": "LinkedIn",
-    "Facebook": "Facebook",
-    "Legal": "Legal",
-    "Terms": "Terms",
-    "Privacy": "Privacy",
-    "Data Protection": "Data Protection",
-    "Contact": "Contact",
+    "out-team": "Our team",
+    "companies": "Companies",
+    "philosophy": "Philosophy",
+    "social": "Social",
+    "twitter": "Twitter",
+    "linkedin": "Linkedin",
+    "facebook": "Facebook",
+    "legal": "Legal",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "data-protection": "Data protection",
+    "contact": "Contact",
     "ShiftYourCareer": {
       " All rights reserved": {
-        "": "ShiftYourCareer. All rights reserved."
+        "": "footer.ShiftYourCareer. All rights reserved."
       }
-    }
+    },
+    "stories": "Stories"
   },
   "test": {
     "1": {
@@ -626,6 +626,10 @@
     "title": "Anmelden",
     "email": "Email",
     "password": "Password",
-    "button": "einloggen"
-  }
+    "button": "einloggen",
+    "error": {
+      "CredentialsSignin": "Email oder Passwort ist falsch"
+    }
+  },
+  "Support": "Support"
 }
