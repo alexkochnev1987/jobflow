@@ -54,7 +54,7 @@ function FooterComponent() {
           <Logo />
           <div className="my-auto grow self-center whitespace-nowrap text-base leading-6 text-gray-400">
             © {new Date().getFullYear()}{" "}
-            {l18n.t("footer.ShiftYourCareer. All rights reserved.")}
+            {l18n.t("footer.copyright")}
           </div>
         </div>
       </div>
