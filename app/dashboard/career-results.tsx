@@ -23,7 +23,7 @@ export function CareerResults({ user, careers }) {
       {isLoading && <Skeleton className="w-1/3" height={30} count={1} />}
       {!isLoading && (
         <h1 className="text-xl font-bold leading-8 text-neutral-700">
-          {l18n.t("dashbaord.greet", "Welcome {{name}}👋", {
+          {l18n.t("dashboard.greet", "Welcome {{name}}👋", {
             name: user?.name,
           })}
         </h1>

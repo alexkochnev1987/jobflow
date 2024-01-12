@@ -1,72 +1,70 @@
 {
   "SITE_TITLE": "Shift Your Career",
   "META_DESCRIPTION": "META_DESCRIPTION",
-  "Settings": "Settings",
-  "Logout": "Logout",
-  "Support": "Support",
+  "Settings": "Einstellungen",
+  "Logout": "Abmelden",
+  "Support": "Unterstützung",
   "dashboard": {
-    "greeting": "We found {{careers}} suitable careers for you!",
-    "body": "Open the details page to find more information about the career, way to test whether the career suits as well as trainings.",
+    "greeting": "Wir haben {{careers}} passende Karrieren für dich gefunden!",
+    "body": "Öffne die Detailseite, um mehr Informationen über die Karriere zu finden, Wege zu testen, ob die Karriere passt, sowie Trainings.",
     "view-job": {
-      "how-become": "How do I become a {{name}}?"
+      "how-become": "Wie werde ich ein {{name}}?"
     },
     "career": {
-      "back": "Results"
-    }
-  },
-  "dashbaord": {
-    "greet": "Welcome {{name}}👋"
+      "back": "Ergebnisse"
+    },
+    "greet": "Willkommen {{name}}👋"
   },
   "Dashboard": "Dashboard",
   "career-card": {
-    "salary": "Salary:",
-    "pace": "Pace",
+    "salary": "Gehalt:",
+    "pace": "Tempo",
     "format": "Format",
-    "match": "Match"
+    "match": "Übereinstimmung"
   },
   "footer": {
-    "Media": "Media",
-    "affiliate": "footer.affiliate",
-    "stories": "footer.stories",
-    "press": "footer.press",
-    "support": "footer.support",
-    "institutes": "footer.institutes",
-    "blog": "footer.blog",
-    "FAQ": "footer.FAQ",
-    "About": "footer.About",
-    "out-team": "footer.out-team",
-    "companies": "footer.companies",
-    "philosophy": "footer.philosophy",
-    "social": "footer.social",
-    "twitter": "footer.twitter",
-    "linkedin": "footer.linkedin",
-    "facebook": "footer.facebook",
-    "legal": "footer.legal",
-    "terms": "footer.terms",
-    "privacy": "footer.privacy",
-    "data-protection": "footer.data-protection",
-    "contact": "footer.contact",
-    "copyright": "footer.copyright"
+    "Media": "Medien",
+    "affiliate": "Affiliate",
+    "stories": "Geschichten",
+    "press": "Presse",
+    "support": "Unterstützung",
+    "institutes": "Institute",
+    "blog": "Blog",
+    "FAQ": "FAQ",
+    "About": "Über",
+    "out-team": "unser Team",
+    "companies": "Unternehmen",
+    "philosophy": "Philosophie",
+    "social": "Sozial",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "facebook": "Facebook",
+    "legal": "Rechtlich",
+    "terms": "Bedingungen",
+    "privacy": "Datenschutz",
+    "data-protection": "Datenschutz",
+    "contact": "Kontakt",
+    "copyright": "Shift Your Career. All rights reserved."
   },
   "view-job": {
-    "match": "{{rating}}% Match",
-    "pace": "Pace",
-    "salary": "Salary",
-    "show-details": "Show details",
-    "what-does": "What does a {{name}} do?",
+    "match": "{{rating}}% Übereinstimmung",
+    "pace": "Tempo",
+    "salary": "Gehalt",
+    "show-details": "Details anzeigen",
+    "what-does": "Was macht ein {{name}}?",
     "format": "Format",
-    "skills": "Skills",
-    "future": "Future perspective of {{name}}"
+    "skills": "Fähigkeiten",
+    "future": "Zukunftsperspektive von {{name}}"
   },
   "test": {
     "carousel": {
       "title": "Beruf testen"
     },
     "button": {
-      "start": "Continue"
+      "start": "Weiter"
     },
     "result": {
-      "cta": "Get your results"
+      "cta": "Erhalten Sie Ihre Ergebnisse"
     }
   },
   "course": {
@@ -74,13 +72,13 @@
       "title": "Umschulungen"
     },
     "card": {
-      "title": "COURSE",
-      "start": "Start date:",
-      "location": "Location:",
-      "pace": "Pace:",
-      "price": "Price:",
+      "title": "KURS",
+      "start": "Startdatum:",
+      "location": "Standort:",
+      "pace": "Tempo:",
+      "price": "Preis:",
       "sponsorship": {
-        "no": "No"
+        "no": "Nein"
       },
       "button": "Unverbindlich anfragen"
     }
@@ -88,38 +86,40 @@
   "Remote": "Remote",
   "contact": {
     "modal": {
-      "link": "Want it for free?",
-      "person": "Contact Person",
+      "link": "Möchten Sie es kostenlos haben?",
+      "person": "Kontaktperson",
       "name": "Name",
       "email": "E-mail",
-      "message": "Message",
+      "message": "Nachricht",
       "footer": {
-        "text": " By contacting this institution you agree to the ",
-        "terms": "Terms and conditions"
+        "text": " Mit der Kontaktaufnahme zu dieser Institution stimmen Sie den ",
+        "terms": "Geschäftsbedingungen zu"
       }
     }
   },
-  "On campus": "On campus",
+  "On campus": "Auf dem Campus",
   "view-course": {
-    "title": "What you’ll get from this short course"
+    "title": "Was Sie von diesem Kurzkurs erwarten können",
+    "files": "Files",
+    "download": "Download"
   },
   "settings": {
-    "title": "Settings",
+    "title": "Einstellungen",
     "delete": {
-      "confirm": "Are you absolutely sure?",
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "new-password": "New Password",
-      "button": "Delete account"
+      "confirm": "Sind Sie sich absolut sicher?",
+      "cancel": "Abbrechen",
+      "delete": "Löschen",
+      "new-password": "Neues Passwort",
+      "button": "Konto löschen"
     },
     "password": {
-      "confirm": "Confirm password",
-      "button": "Update Password"
+      "confirm": "Passwort bestätigen",
+      "button": "Passwort aktualisieren"
     }
   },
   "results": {
     "title": "Dein Ergebnis wird berechnet",
-    "subtitle": "Here are your results 🎉",
+    "subtitle": "Hier sind deine Ergebnisse 🎉",
     "you-at-work": "Sie bei der Arbeit",
     "strenghts": "Stärken",
     "communication": "Kommunikationsfähigkeiten",
