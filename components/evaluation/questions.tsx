@@ -12,7 +12,6 @@ import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 import Button from "../shared/button"
 import { motion } from "framer-motion"
-import l18n from "@/i18n/config"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
@@ -102,12 +101,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   return (
     <div className="fade-down  w-full transition duration-300">
       <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
-        {capitalizeFirstLetter(
-          l18n.t(
-            `test.question.${question.id}.title`,
-            question.question as string,
-          ),
-        )}
+        {capitalizeFirstLetter(question.question)}
       </Label>
       <div className="mt-5 flex flex-col justify-center">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
@@ -119,12 +113,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               intent="primary"
               size="medium"
             >
-              {capitalizeFirstLetter(
-                l18n.t(
-                  `test.question.${question.id}.option.${answer.value}`,
-                  answer.label,
-                ),
-              )}
+              {capitalizeFirstLetter(answer.label)}
             </Button>
           ) : (
             <Button
@@ -133,12 +122,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               size="medium"
               onClick={() => handleAnswer(answer)}
             >
-              {capitalizeFirstLetter(
-                l18n.t(
-                  `test.question.${question.id}.option.${answer.value}`,
-                  answer.label,
-                ),
-              )}
+              {capitalizeFirstLetter(answer.label)}
             </Button>
           ),
         )}
@@ -166,7 +150,7 @@ function TextQuestion({ question, id, inputRef, error }) {
   return (
     <div className="py-3">
       <Label htmlFor={id} className={cn(error && "text-destructive")}>
-        {t(question)}
+        {question}
       </Label>
       <Textarea
         placeholder={t("Deine Antwort")}
@@ -203,7 +187,7 @@ function YesNoQuestion({ question, id, inputRef, error }) {
   return (
     <div className="flex flex-row py-3">
       <Label htmlFor={id} className={cn("w-2/3", error && "text-destructive")}>
-        {t(question)}
+        {question}
       </Label>
       <RadioGroup
         className="flex w-1/3 flex-row items-center justify-start  space-x-2"
@@ -257,7 +241,7 @@ function SliderQuestion({ question, id, max, inputRef }) {
   return (
     <div className="py-5">
       <Label htmlFor={id} className="">
-        {t(question.question)}
+        {question.question}
       </Label>
       <Slider
         defaultValue={[value]}

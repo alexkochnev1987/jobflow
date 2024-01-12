@@ -12,6 +12,7 @@ import Computer from "@/icons/pc.svg"
 import React from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import l18n from "@/i18n/config"
 
 export type Career = {
   id: string
@@ -76,7 +77,7 @@ export default function CareerCard({ isLoading, data }: Props) {
               <p className="flex  justify-center gap-1 align-middle">
                 <Currency className="fill-slate-700" />
                 <span className="text-sm font-semibold leading-tight text-slate-700">
-                  Salary:{" "}
+                {l18n.t("career-card.salary", "Salary:")}:{" "}
                 </span>
                 <span className="text-sm font-normal leading-snug text-slate-700">
                   {salaryFormatter(data.salaryMin)} -{" "}
@@ -86,7 +87,7 @@ export default function CareerCard({ isLoading, data }: Props) {
               <p className="flex  justify-center gap-1 align-middle">
                 <Clock className="fill-slate-700" />
                 <span className="text-sm font-semibold leading-tight text-slate-700">
-                  Pace:{" "}
+                {l18n.t("career-card.pace", "Pace")}:{" "}
                 </span>
                 <span className="text-sm font-normal leading-snug text-slate-700">
                   {formatArray(data.pace)}
@@ -95,7 +96,7 @@ export default function CareerCard({ isLoading, data }: Props) {
               <p className="flex  justify-center gap-1 align-middle">
                 <Computer className="stroke-slate-700" />
                 <span className="text-sm font-semibold leading-tight text-slate-700">
-                  Format:{" "}
+                {l18n.t("career-card.format", "Format")}:{" "}
                 </span>
                 <span className="text-sm font-normal leading-snug text-slate-700">
                   {formatArray(data.format)}
@@ -107,7 +108,7 @@ export default function CareerCard({ isLoading, data }: Props) {
             {!isLoading && (
               <>
                 <Badge color={raitingColor} radius="full">
-                  {data.rating}% Match <Info className="w-4" />
+                  {data.rating}% {l18n.t("career-card.match", "Match")} <Info className="w-4" />
                 </Badge>
                 <Button variant="ghost">
                   <Bookmark className="stroke-slate-700" />

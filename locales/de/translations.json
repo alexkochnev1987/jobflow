@@ -1,535 +1,83 @@
 {
   "SITE_TITLE": "Shift Your Career",
   "META_DESCRIPTION": "META_DESCRIPTION",
-  "Dashboard": "Dashboard",
   "Settings": "Settings",
   "Logout": "Logout",
+  "Support": "Support",
   "dashboard": {
-    "view-career": {
-      "b3ce54ca-6871-4184-856a-936ded060d35": {
-        "name": "Web Development",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      },
-      "salary": "Salary:",
-      "pace": "Pace:",
-      "format": "Format:",
-      "how-become": "How do I become a {{name}}?",
-      "skills": "Skills",
-      "future": "Future perspective of {{name}}",
-      "what-does": "What does a {{name}} do?",
-      "60949dda-c1d9-41d5-822a-6ff8149d34f9": {
-        "name": "Recruiter",
-        "description": "Als Recruiter identifiziert man talentierte Fachkräfte, führt Interviews und gestaltet die Personalbeschaffung für Unternehmen. Man spielt eine Schlüsselrolle bei der Auswahl der besten Mitarbeiter, um das Team zu stärken und zum Unternehmenserfolg beizutragen."
-      },
-      "3bc4c732-759a-448d-a2ef-6f4d84986ab0": {
-        "name": "UX-Designer",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      },
-      "f264c709-7205-4278-8005-ba76f83a1a57": {
-        "name": "Data Analyst",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      },
-      "455554fa-0450-48f0-bae7-692ab3142f62": {
-        "name": "Train Driver",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      },
-      "5a6a3e27-0bb2-4b94-985b-01784a499d9b": {
-        "name": "Gardener",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      }
+    "greeting": "We found {{careers}} suitable careers for you!",
+    "body": "Open the details page to find more information about the career, way to test whether the career suits as well as trainings.",
+    "view-job": {
+      "how-become": "How do I become a {{name}}?"
     },
     "career": {
       "back": "Results"
-    },
-    "greeting": "We found {{careers}} suitable careers for you!",
-    "body": "Open the details page to find more information about the career, way to test whether the career suits as well as trainings."
+    }
   },
-  "Web Development": "Web Development",
+  "dashbaord": {
+    "greet": "Welcome {{name}}👋"
+  },
+  "Dashboard": "Dashboard",
+  "career-card": {
+    "salary": "Salary:",
+    "pace": "Pace",
+    "format": "Format",
+    "match": "Match"
+  },
   "footer": {
     "Media": "Media",
-    "affiliate": "Affiliate",
-    "press": "Press",
-    "support": "Support",
-    "institutes": "Institutes",
-    "blog": "Blog",
-    "FAQ": "FAQ",
-    "About": "About",
-    "out-team": "Our team",
-    "companies": "Companies",
-    "philosophy": "Philosophy",
-    "social": "Social",
-    "twitter": "Twitter",
-    "linkedin": "Linkedin",
-    "facebook": "Facebook",
-    "legal": "Legal",
-    "terms": "Terms",
-    "privacy": "Privacy",
-    "data-protection": "Data protection",
-    "contact": "Contact",
-    "ShiftYourCareer": {
-      " All rights reserved": {
-        "": "footer.ShiftYourCareer. All rights reserved."
-      }
-    },
-    "stories": "Stories",
-    "copyright": "Shift Your Career. All rights reserved."
+    "affiliate": "footer.affiliate",
+    "stories": "footer.stories",
+    "press": "footer.press",
+    "support": "footer.support",
+    "institutes": "footer.institutes",
+    "blog": "footer.blog",
+    "FAQ": "footer.FAQ",
+    "About": "footer.About",
+    "out-team": "footer.out-team",
+    "companies": "footer.companies",
+    "philosophy": "footer.philosophy",
+    "social": "footer.social",
+    "twitter": "footer.twitter",
+    "linkedin": "footer.linkedin",
+    "facebook": "footer.facebook",
+    "legal": "footer.legal",
+    "terms": "footer.terms",
+    "privacy": "footer.privacy",
+    "data-protection": "footer.data-protection",
+    "contact": "footer.contact",
+    "copyright": "footer.copyright"
+  },
+  "view-job": {
+    "match": "{{rating}}% Match",
+    "pace": "Pace",
+    "salary": "Salary",
+    "show-details": "Show details",
+    "what-does": "What does a {{name}} do?",
+    "format": "Format",
+    "skills": "Skills",
+    "future": "Future perspective of {{name}}"
   },
   "test": {
-    "1": {
-      "name": "HTML für Einsteiger",
-      "description": "The main task of a UX designer is to develop a good product, such as a website, app or software - which is easy to use lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi finibus metus quis lorem."
-    },
     "carousel": {
       "title": "Beruf testen"
     },
-    "title": "Personality",
-    "description": "Our values are deeply held beliefs and principles that guide a person's behavior and decisions. It is important to know them because they serve as an inner compass and help make authentic decisions that are in line with one's beliefs and goals.",
     "button": {
       "start": "Continue"
-    },
-    "question": {
-      "246": {
-        "title": "At parties do you:",
-        "option": {
-          "1": "Stay late, with increasing energy",
-          "2": "Leave early with decreased energy"
-        }
-      },
-      "247": {
-        "option": {
-          "1": "Sensible people",
-          "2": "Imaginative people"
-        },
-        "title": "Are you more attracted to:"
-      },
-      "248": {
-        "title": "Are you more interested in:",
-        "option": {
-          "1": "What is actual",
-          "2": "What is possible"
-        }
-      },
-      "249": {
-        "title": "In judging others are you more swayed by:",
-        "option": {
-          "1": "Laws than circumstances",
-          "2": "Circumstances than laws"
-        }
-      },
-      "250": {
-        "option": {
-          "1": "Objective",
-          "2": "Personal"
-        },
-        "title": "In approaching others is your inclination to be somewhat:"
-      },
-      "251": {
-        "title": "Are you more:",
-        "option": {
-          "1": "Punctual",
-          "2": "Leisurely"
-        }
-      },
-      "252": {
-        "title": "Does it bother you more having things:",
-        "option": {
-          "1": "Incomplete",
-          "2": "Completed"
-        }
-      },
-      "253": {
-        "option": {
-          "1": "Keep abreast of other’s happenings",
-          "2": "Get behind on the news"
-        },
-        "title": "In your social groups do you:"
-      },
-      "254": {
-        "title": "In doing ordinary things are you more likely to:",
-        "option": {
-          "1": "Do it the usual way",
-          "2": "Do it your own way"
-        }
-      },
-      "255": {
-        "title": "Writers should:",
-        "option": {
-          "1": "“Say what they mean and mean what they say”",
-          "2": "Express things more by use of analogy"
-        }
-      },
-      "256": {
-        "title": "Which appeals to you more:",
-        "option": {
-          "1": "Consistency of thought",
-          "2": "Harmonious human relationships"
-        }
-      },
-      "257": {
-        "title": "Are you more comfortable in making:",
-        "option": {
-          "1": "Logical judgments",
-          "2": "Value judgments"
-        }
-      },
-      "258": {
-        "title": "Do you want things:",
-        "option": {
-          "1": "Settled and decided",
-          "2": "Unsettled and undecided"
-        }
-      },
-      "259": {
-        "title": "Would you say you are more:",
-        "option": {
-          "1": "Serious and determined",
-          "2": "Easy-going"
-        }
-      },
-      "260": {
-        "title": "In phoning do you:",
-        "option": {
-          "1": "Rarely question that it will all be said",
-          "2": "Rehearse what you’ll say"
-        }
-      },
-      "261": {
-        "title": "Facts:",
-        "option": {
-          "1": "“Speak for themselves”",
-          "2": "Illustrate principles"
-        }
-      },
-      "262": {
-        "title": "Are visionaries:",
-        "option": {
-          "1": "somewhat annoying",
-          "2": "rather fascinating"
-        }
-      },
-      "263": {
-        "title": "Are you more often:",
-        "option": {
-          "1": "a cool-headed person",
-          "2": "a warm-hearted person"
-        }
-      },
-      "267": {
-        "title": "Is it worse to be:",
-        "option": {
-          "1": "unjust",
-          "2": "merciless"
-        }
-      },
-      "268": {
-        "title": "Should one usually let events occur:",
-        "option": {
-          "1": "by careful selection and choice",
-          "2": "randomly and by chance"
-        }
-      },
-      "269": {
-        "title": "Do you feel better about:",
-        "option": {
-          "1": "having purchased",
-          "2": "having the option to buy"
-        }
-      },
-      "270": {
-        "title": "In making decisions do you feel more comfortable with:",
-        "option": {
-          "1": "standards",
-          "2": "feelings"
-        }
-      },
-      "271": {
-        "title": "Are you more:",
-        "option": {
-          "1": "firm than gentle",
-          "2": "gentle than firm"
-        }
-      },
-      "272": {
-        "title": "Which is more admirable:",
-        "option": {
-          "1": "the ability to organize and be methodical",
-          "2": "the ability to adapt and make do"
-        }
-      },
-      "273": {
-        "title": "Do you put more value on:",
-        "option": {
-          "1": "infinite",
-          "2": "open-minded"
-        }
-      },
-      "274": {
-        "title": "Does new and non-routine interaction with others:",
-        "option": {
-          "1": "stimulate and energize you",
-          "2": "tax your reserves"
-        }
-      },
-      "275": {
-        "title": "Are you more frequently:",
-        "option": {
-          "1": "a practical sort of person",
-          "2": "a fanciful sort of person"
-        }
-      },
-      "276": {
-        "title": "Are you more likely to:",
-        "option": {
-          "1": "see how others are useful",
-          "2": "see how others see"
-        }
-      },
-      "277": {
-        "title": "Which is more satisfying:",
-        "option": {
-          "1": "to discuss an issue thoroughly",
-          "2": "to arrive at agreement on an issue"
-        }
-      },
-      "278": {
-        "title": "Which rules you more:",
-        "option": {
-          "1": "your head",
-          "2": "your heart"
-        }
-      },
-      "280": {
-        "title": "Are you more comfortable with work that is:",
-        "option": {
-          "1": "contracted",
-          "2": "done on a casual basis"
-        }
-      },
-      "281": {
-        "title": "Do you tend to look for:",
-        "option": {
-          "1": "the orderly",
-          "2": "whatever turns up"
-        }
-      },
-      "283": {
-        "option": {
-          "1": "many friends with brief contact",
-          "2": "a few friends with more lengthy contact"
-        },
-        "title": "Do you prefer:"
-      },
-      "284": {
-        "title": "Do you go more by:",
-        "option": {
-          "1": "facts",
-          "2": "principles"
-        }
-      },
-      "285": {
-        "option": {
-          "1": "production and distribution",
-          "2": "design and research"
-        },
-        "title": "Are you more interested in:"
-      },
-      "286": {
-        "title": "Which is more of a compliment:",
-        "option": {
-          "1": "“There is a very logical person.”",
-          "2": "“There is a very sentimental person.”"
-        }
-      },
-      "287": {
-        "title": "Do you value in yourself more that you are:",
-        "option": {
-          "1": "unwavering",
-          "2": "devoted"
-        }
-      },
-      "288": {
-        "title": "Do you more often prefer the:",
-        "option": {
-          "1": "final and unalterable statement",
-          "2": "tentative and preliminary statement"
-        }
-      },
-      "289": {
-        "title": "Are you more comfortable:",
-        "option": {
-          "1": "after a decision",
-          "2": "before a decision"
-        }
-      },
-      "290": {
-        "title": "Do you:",
-        "option": {
-          "1": "speak easily and at length with strangers",
-          "2": "find little to say to strangers"
-        }
-      },
-      "291": {
-        "option": {
-          "1": "experience",
-          "2": "hunch"
-        },
-        "title": "Are you more likely to trust your:"
-      },
-      "292": {
-        "title": "Do you feel:",
-        "option": {
-          "1": "more practical than ingenious",
-          "2": "more ingenious than practical"
-        }
-      },
-      "293": {
-        "title": "Which person is more to be complimented – one of:",
-        "option": {
-          "1": "clear reason",
-          "2": "strong feeling"
-        }
-      },
-      "294": {
-        "option": {
-          "1": "fair-minded",
-          "2": "sympathetic"
-        },
-        "title": "Are you more inclined to be:"
-      },
-      "295": {
-        "title": "Is it preferable mostly to:",
-        "option": {
-          "1": "make sure things are arranged",
-          "2": "just let things happen"
-        }
-      },
-      "296": {
-        "title": "In relationships should most things be:",
-        "option": {
-          "1": "re-negotiable",
-          "2": "random and circumstantial"
-        }
-      },
-      "297": {
-        "title": "When the phone rings do you:",
-        "option": {
-          "1": "hasten to get to it first",
-          "2": "hope someone else will answer"
-        }
-      },
-      "298": {
-        "title": "Do you prize more in yourself:",
-        "option": {
-          "1": "a strong sense of reality",
-          "2": "a vivid imagination"
-        }
-      },
-      "299": {
-        "title": "Are you drawn more to:",
-        "option": {
-          "1": "fundamentals",
-          "2": "overtones"
-        }
-      },
-      "300": {
-        "title": "Which seems the greater error:",
-        "option": {
-          "1": "to be too passionate",
-          "2": "to be too objective"
-        }
-      },
-      "301": {
-        "option": {
-          "1": "hard-headed",
-          "2": "soft-hearted"
-        },
-        "title": "Do you see yourself as basically:"
-      },
-      "302": {
-        "title": "Which situation appeals to you more:",
-        "option": {
-          "1": "the structured and scheduled",
-          "2": "the unstructured and unscheduled"
-        }
-      },
-      "303": {
-        "title": "Are you a person that is more:",
-        "option": {
-          "1": "routinized than whimsical",
-          "2": "whimsical than routinized"
-        }
-      },
-      "304": {
-        "title": "Are you more inclined to be:",
-        "option": {
-          "1": "easy to approach",
-          "2": "somewhat reserved"
-        }
-      },
-      "305": {
-        "title": "In writings do you prefer:",
-        "option": {
-          "1": "the more literal",
-          "2": "the more figurative"
-        }
-      },
-      "306": {
-        "title": "Is it harder for you to:",
-        "option": {
-          "1": "identify with others",
-          "2": "utilize others"
-        }
-      },
-      "307": {
-        "title": "Which do you wish more for yourself:",
-        "option": {
-          "1": "clarity of reason",
-          "2": "strength of compassion"
-        }
-      },
-      "308": {
-        "title": "Which is the greater fault:",
-        "option": {
-          "1": "being indiscriminate",
-          "2": "being critical"
-        }
-      },
-      "309": {
-        "title": "Do you prefer the:",
-        "option": {
-          "1": "planned event",
-          "2": "unplanned event"
-        }
-      },
-      "310": {
-        "title": "Do you tend to be more:",
-        "option": {
-          "1": "deliberate than spontaneous",
-          "2": "spontaneous than deliberate"
-        }
-      }
     },
     "result": {
       "cta": "Get your results"
     }
   },
   "course": {
-    "7": {
-      "name": "Web Development Bootcamp 2",
-      "description": "Quisque a augue ut ante elementum condimentum. Suspendisse at pretium felis. Nulla facilisi. Pellentesque vel ipsum velit. Vivamus vulputate sapien a est aliquet bibendum.2"
-    },
-    "8": {
-      "name": "Web Development Bootcamp",
-      "description": "Quisque a augue ut ante elementum condimentum. Suspendisse at pretium felis. Nulla facilisi. Pellentesque vel ipsum velit. Vivamus vulputate sapien a est aliquet bibendum."
-    },
     "carousel": {
       "title": "Umschulungen"
     },
     "card": {
       "title": "COURSE",
       "start": "Start date:",
-      "pace": "Pace:",
       "location": "Location:",
+      "pace": "Pace:",
       "price": "Price:",
       "sponsorship": {
         "no": "No"
@@ -541,10 +89,10 @@
   "contact": {
     "modal": {
       "link": "Want it for free?",
-      "name": "Name",
       "person": "Contact Person",
-      "message": "Message",
+      "name": "Name",
       "email": "E-mail",
+      "message": "Message",
       "footer": {
         "text": " By contacting this institution you agree to the ",
         "terms": "Terms and conditions"
@@ -552,17 +100,16 @@
     }
   },
   "On campus": "On campus",
-  "dashbaord": {
-    "greet": "Welcome {{name}}👋"
+  "view-course": {
+    "title": "What you’ll get from this short course"
   },
-  "Recruiter": "Recruiter",
   "settings": {
     "title": "Settings",
     "delete": {
       "confirm": "Are you absolutely sure?",
       "cancel": "Cancel",
-      "new-password": "New Password",
       "delete": "Delete",
+      "new-password": "New Password",
       "button": "Delete account"
     },
     "password": {
@@ -570,51 +117,34 @@
       "button": "Update Password"
     }
   },
-  "UX-Designer": "UX-Designer",
-  "Data Analyst": "Data Analyst",
-  "Train Driver": "Train Driver",
-  "Gardener": "Gardener",
-  "view-course": {
-    "title": "What you’ll get from this short course",
-    "files": "Files",
-    "download": "Download"
-  },
-  "Quisque a augue ut ante elementum condimentum": {
-    " Suspendisse at pretium felis": {
-      " Nulla facilisi": {
-        " Pellentesque vel ipsum velit": {
-          " Vivamus vulputate sapien a est aliquet bibendum": {
-            "2": "Quisque a augue ut ante elementum condimentum. Suspendisse at pretium felis. Nulla facilisi. Pellentesque vel ipsum velit. Vivamus vulputate sapien a est aliquet bibendum.2",
-            "": "Quisque a augue ut ante elementum condimentum. Suspendisse at pretium felis. Nulla facilisi. Pellentesque vel ipsum velit. Vivamus vulputate sapien a est aliquet bibendum."
-          }
-        }
-      }
-    }
-  },
-  "Personality": "Personality",
-  "Our values are deeply held beliefs and principles that guide a person's behavior and decisions": {
-    " It is important to know them because they serve as an inner compass and help make authentic decisions that are in line with one's beliefs and goals": {
-      "": "Our values are deeply held beliefs and principles that guide a person's behavior and decisions. It is important to know them because they serve as an inner compass and help make authentic decisions that are in line with one's beliefs and goals."
-    }
-  },
   "results": {
     "title": "Dein Ergebnis wird berechnet",
     "subtitle": "Here are your results 🎉",
-    "ai": "Ihre Antworten wurden von einer K.I. analysiert. Das soeben abgeschlossene Assessment wird von Unternehmen, Universitäten und Karrierecoaches auf der ganzen Welt verlangt.",
     "you-at-work": "Sie bei der Arbeit",
-    "communication": "Kommunikationsfähigkeiten",
     "strenghts": "Stärken",
+    "communication": "Kommunikationsfähigkeiten",
+    "ai": "Ihre Antworten wurden von einer K.I. analysiert. Das soeben abgeschlossene Assessment wird von Unternehmen, Universitäten und Karrierecoaches auf der ganzen Welt verlangt.",
     "softskills": "Führungsqualitäten",
     "teamwork": "Arbeit im Team",
     "careers": "Passende Karrieren",
     "payment-text-1": "60-Tage-Zufriedenheitsgarantie",
     "payment-text-ssl": "100% sicher",
-    "payment-text-3": "Sofortiger Zugang und lebenslanger Kundensupport"
+    "payment-text-3": "Sofortiger Zugang und lebenslanger Kundensupport",
+    "matching-card": {
+      "Gehalt": "Gehalt",
+      "Beruf mit Zukunft": "Beruf mit Zukunft",
+      "Umschuling": "Umschuling",
+      "Wochen": "{{retrainingWeeks}} Wochen",
+      "Details": "Details",
+      "Anbieter": "Anbieter",
+      "Beruf testen": "Beruf testen"
+    }
   },
   "timeout": {
     "title": "Testergebnisse gespeichert",
     "body": "Deine Antworten und dein Berufe sind für die nächsten 15 Minuten gespeichert. Wenn du dich weder registrierst noch einen Premium-Report kaufst, verfällt dein Ergebnis."
   },
+  "Forderbar": "Forderbar",
   "payment": {
     "success": {
       "title": "Herzlichen Glückwunsch!  Dein Testergebnis ist jetzt verfügbar!",
@@ -627,10 +157,6 @@
     "title": "Anmelden",
     "email": "Email",
     "password": "Password",
-    "button": "einloggen",
-    "error": {
-      "CredentialsSignin": "Email oder Passwort ist falsch"
-    }
-  },
-  "Support": "Support"
+    "button": "einloggen"
+  }
 }

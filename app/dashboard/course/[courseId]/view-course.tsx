@@ -25,7 +25,7 @@ function ViewCourse({ image, description, prototypes }: Props) {
             {l18n.t("view-course.title", "What you’ll get from this short course")}
           </h2>
           <p className="text-base font-normal leading-normal">
-            {l18n.t(description)}
+            {description}
           </p>
         </Flex>
       </Grid>

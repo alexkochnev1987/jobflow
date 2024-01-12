@@ -1,4 +1,4 @@
-import Results from "@/components/results"
+import Results from "./results"
 
 
 export default async function Page() {

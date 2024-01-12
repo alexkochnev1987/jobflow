@@ -9,9 +9,9 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "doppler run -- next start",
     "lint": "next lint",
-    "dbpull": "doppler run -- npx prisma db pull && npx prisma generate",
-    "dbpush": "doppler run -- npx prisma generate && doppler run -- npx prisma db push",
-    "dbseed": "doppler run -- npx prisma db seed",
+    "db:pull": "doppler run -- npx prisma db pull && npx prisma generate",
+    "db:push": "doppler run -- npx prisma generate && doppler run -- npx prisma db push",
+    "db:seed": "doppler run -- npx prisma db seed",
     "services": "doppler run -- docker compose up",
     "deploy": "npm run build && npm run deploy:compress && npm run deploy:upload && npm run deploy:clean && npm run deploy:install",
     "deploy:compress": "tar czf next.tar.gz .next node_modules public",
@@ -20,9 +20,9 @@
     "deploy:install": "ssh www@209.38.176.120 'cd ~/site && tar xzf next.tar.gz && rm next.tar.gz' && rm next.tar.gz ",
     "prod:restart": "doppler run -- pm2 restart ecosystem.config.js",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "preview-email": "email preview ./emails/",
-    "stripe-listen": "stripe listen --forward-to http://localhost:3000/api/stripe"
+    "storybook:build": "storybook build",
+    "email:preview": "email preview ./emails/",
+    "stripe:listen": "stripe listen --forward-to http://localhost:3000/api/stripe"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

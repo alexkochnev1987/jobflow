@@ -90,11 +90,11 @@ export default function Form({
               <div className="mb-10 flex h-8 w-full flex-row align-middle">
                 <Sparckle />
                 <h1 className="mx-3 my-auto text-sm font-medium uppercase text-sky-500">
-                  {l18n.t("test.title", title)}
+                  {title}
                 </h1>
               </div>
               <div className="self-stretch text-lg font-normal leading-7 text-black">
-                {l18n.t("test.description", description)}
+                {description}
               </div>
             </div>
             <Button

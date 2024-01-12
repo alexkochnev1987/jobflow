@@ -6,7 +6,7 @@ import Timeout from "@/components/shared/timeout"
 import MatchingCareerCard from "@/components/shared/matching-career"
 import Loading from "@/components/shared/loading"
 import l18n from "@/i18n/config"
-import PaymentButton from "./payment/button"
+import PaymentButton from "@/components/payment/button"
 import CheckCircle from "@/icons/checkbox.svg"
 import Image from "next/image"
 export default function Results() {

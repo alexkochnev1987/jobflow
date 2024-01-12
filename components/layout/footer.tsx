@@ -1,7 +1,7 @@
 import React from "react"
 import Logo from "@/icons/logo.svg"
 import l18n from "@/i18n/config"
-import { Flex, Grid } from "@radix-ui/themes"
+import { Flex } from "@radix-ui/themes"
 function FooterComponent() {
   return (
     <footer className="mx-auto  flex  max-w-6xl flex-col items-stretch border-t border-solid border-t-[color:var(--grey-300,#D0D5DD)] bg-white px-20 py-12 text-gray-500 max-md:px-5">

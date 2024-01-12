@@ -47,8 +47,8 @@ export default async function Home({
     <Form
       step={step.id}
       questions={questions}
-      title={l18n.t(step.title)}
-      description={l18n.t(step.description)}
+      title={step.title}
+      description={step.description}
     />
   )
 }

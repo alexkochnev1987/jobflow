@@ -2,9 +2,7 @@
 import { salaryFormatter } from "@/lib/utils"
 import {
   Badge,
-  Box,
   Button,
-  Callout,
   Card,
   DropdownMenu,
   Flex,
@@ -14,6 +12,7 @@ import {
 import { ChevronDown, Info } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 import { Career } from "./career-card"
+import l18n from "@/i18n/config"
 
 type Props = Partial<Career> &
   React.ComponentPropsWithoutRef<"div"> & {
@@ -66,22 +65,27 @@ export default function MatchingCareerCard({
           </Flex>
           <Flex direction="row" justify="between" align="center">
             <p>
-              Gehalt:{" "}
+              {l18n.t("results.matching-card.Gehalt", "Gehalt")}{" "}
               <strong>
                 {salaryFormatter(salaryMin)} - {salaryFormatter(salaryMax)}{" "}
                 &euro;
               </strong>
             </p>
             <Badge color="gray" radius="full" size="2">
-              Beruf mit Zukunft <Info className="w-4" />
+              {l18n.t("results.matching-card.Beruf mit Zukunft", "Beruf mit Zukunft")} <Info className="w-4" />
             </Badge>
           </Flex>
           <Flex direction="row" justify="between" align="center">
             <p>
-              Umschuling: <strong>{retrainingWeeks} Wochen</strong>
+              {l18n.t("results.matching-card.Umschuling","Umschuling")}:{" "}
+              <strong>
+                {l18n.t("results.matching-card.Wochen", "{{retrainingWeeks}} Wochen", {
+                  retrainingWeeks,
+                })}
+              </strong>
             </p>
             <Badge color="blue" radius="full" size="2">
-              100% Forderbar <Info className="w-4" />
+              100% {l18n.t("Forderbar")} <Info className="w-4" />
             </Badge>
           </Flex>
           <div>
@@ -98,7 +102,7 @@ export default function MatchingCareerCard({
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger>
                     <Button variant="ghost" color="gray">
-                      Details
+                      {l18n.t("results.matching-card.Details", "Details")}
                       <ChevronDown />
                     </Button>
                   </DropdownMenu.Trigger>
@@ -108,7 +112,7 @@ export default function MatchingCareerCard({
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger>
                     <Button variant="ghost" color="gray">
-                      Anbieter
+                      {l18n.t("results.matching-card.Anbieter", "Anbieter")}
                       <ChevronDown />
                     </Button>
                   </DropdownMenu.Trigger>
@@ -117,7 +121,7 @@ export default function MatchingCareerCard({
             </Flex>
             <Flex direction="row" className="w-1/6" justify="end">
               <Button variant="ghost" color="gray">
-                Beruf testen
+                {l18n.t("results.matching-card.Beruf testen","Beruf testen")}
               </Button>
             </Flex>
           </Flex>

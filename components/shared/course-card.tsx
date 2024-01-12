@@ -91,7 +91,7 @@ export default function CourseCard({
           {l18n.t("course.card.title", "COURSE")}
         </div>
         <div className="mt-1 h-16 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full">
-          {l18n.t(`course.${id}.name`,  name)}
+          {name}
         </div>
         <div className="mt-1 flex items-center gap-2 self-start px-px">
           <Calendar />
@@ -143,7 +143,7 @@ export default function CourseCard({
           </div>
         </div>
         <div className="mt-4 h-28 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
-          {l18n.t(`course.${id}.description`, description)}
+          {description}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
           <Button
