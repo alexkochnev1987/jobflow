@@ -33,6 +33,10 @@ export default function Form({
   const elRefs = {}
 
   useEffect(() => {
+    store.totalQuestions = questions.length
+  }, [questions, store])
+
+  useEffect(() => {
     setErrors({})
   }, [step])
 

@@ -10,6 +10,8 @@ interface UserState {
   id: string
   responses: Response[]
   step: number
+  totalQuestions: number
+  undoLast: () => void
   setStep: (step: number) => void
   findResponse: (question_id: number) => Response | undefined
   save: (question_id: number, response: string | number) => void
@@ -20,8 +22,20 @@ export const userStore = create<UserState>()(
     persist(
       (set, get) => ({
         step: 1,
+        totalQuestions: 0,
         id: Date.now().toString(),
         responses: [],
+        undoLast: () => {
+          const responses = get().responses
+          const lastResponse = responses.pop()
+          if (lastResponse) {
+            set((state) => ({
+              ...state,
+              responses,
+            }))
+          }
+          return lastResponse?.response || ""
+        },
         setStep: (step: number) =>
           set((state) => ({
             ...state,
