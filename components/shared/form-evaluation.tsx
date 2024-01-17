@@ -89,13 +89,19 @@ export default function Form({
             <div className="flex-col justify-start gap-8">
               <div className="mb-10 flex h-8 w-full flex-row align-middle">
                 <Sparckle />
-                <h1 className="mx-3 my-auto text-sm font-medium uppercase text-sky-500">
-                  {title}
-                </h1>
+                <h1
+                  className="mx-3 my-auto text-sm font-medium uppercase text-sky-500"
+                  dangerouslySetInnerHTML={{
+                    __html: title,
+                  }}
+                ></h1>
               </div>
-              <div className="self-stretch text-lg font-normal leading-7 text-black">
-                {description}
-              </div>
+              <div
+                className="self-stretch text-lg font-normal leading-7 text-black"
+                dangerouslySetInnerHTML={{
+                  __html: description,
+                }}
+              ></div>
             </div>
             <Button
               onClick={() => setShowQuestions(true)}

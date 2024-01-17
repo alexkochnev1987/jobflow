@@ -43,8 +43,6 @@ model Careers {
   salaryMin          Int?
   salaryMax          Int?
   retrainingWeeks    Int?
-  pace               Json?
-  format             Json?
   detailsTasks       String?           @db.Text
   detailsSkills      String?           @db.Text
   detailsRequirement String?           @db.Text

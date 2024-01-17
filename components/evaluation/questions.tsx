@@ -101,7 +101,11 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   return (
     <div className="fade-down  w-full transition duration-300">
       <Label htmlFor={id} className={cn(error && "text-destructive", "mb-10")}>
-        {capitalizeFirstLetter(question.question)}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: capitalizeFirstLetter(question.question),
+          }}
+        />
       </Label>
       <div className="mt-5 flex flex-col justify-center">
         {anwsers?.map((answer: EvaluationFormAnswer) =>
@@ -113,7 +117,11 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               intent="primary"
               size="medium"
             >
-              {capitalizeFirstLetter(answer.label)}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: capitalizeFirstLetter(answer.label),
+                }}
+              />
             </Button>
           ) : (
             <Button
@@ -122,7 +130,11 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
               size="medium"
               onClick={() => handleAnswer(answer)}
             >
-              {capitalizeFirstLetter(answer.label)}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: capitalizeFirstLetter(answer.label),
+                }}
+              />
             </Button>
           ),
         )}

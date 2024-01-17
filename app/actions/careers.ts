@@ -5,7 +5,33 @@ export async function getCareers() {
   return prisma?.careers.findMany({
     where: {
       status: "published",
-    },
+    }, select: {
+      id: true,
+      name: true,
+      description: true,
+      detailsFuture: true,
+      detailsRequirement: true,
+      detailsSkills: true,
+      detailsTasks: true,
+      image: true,
+      retrainingWeeks: true,
+      salaryMax: true,
+      salaryMin: true,
+      Careers_Courses: {
+        select: {
+          courses: {
+            where: {
+              status: "published",
+            },
+            select: {
+              id: true,
+              pace: true,
+              location: true,
+            }
+          }
+        }
+      }
+    }
   })
 }
 
@@ -19,8 +45,6 @@ export async function getCareer(id: string) {
       name: true,
       salaryMin: true,
       salaryMax: true,
-      pace: true,
-      format: true,
       image: true,
       description: true,
       detailsFuture: true,

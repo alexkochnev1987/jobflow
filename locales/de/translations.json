@@ -158,5 +158,7 @@
     "email": "Email",
     "password": "Password",
     "button": "einloggen"
-  }
+  },
+  "full-time": "Vollzeit",
+  "part-time": "Teilzeit"
 }

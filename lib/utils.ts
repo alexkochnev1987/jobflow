@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ms from "ms"
+import { Career } from "@/components/shared/career-card"
+import l18n from "@/i18n/config"
 
 export const componentToHTML = async (component) => {
   const ReactDOMServer = (await import("react-dom/server")).default
@@ -17,10 +19,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
-  if (!timestamp) return "never"
-  return `${ms(Date.now() - new Date(timestamp).getTime())}${
-    timeOnly ? "" : " ago"
-  }`
+  if (!timestamp) return l18n.t("never")
+  return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? "" : " ago"
+    }`
 }
 
 export async function fetcher<JSON = any>(
@@ -128,11 +129,32 @@ export function formatArray(arr: string[]): string {
   if (!arr || !arr.length) return ""
   if (!Array.isArray(arr)) return arr
   // capitalize first letter
-  arr = arr.map((str) => capitalize(str))
+  arr = arr.map((str) => capitalize(l18n.t(str)))
   return `${arr.join(", ")}`
 }
 
 export function formatDateString(d: Date): string {
   if (!d) return ""
   return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
+}
+
+
+export function getCareerPace(data: Career) {
+  return [
+    ...new Set(
+      data.Careers_Courses.flatMap(
+        (item) => item.courses?.pace ?? false,
+      ).filter((i) => i),
+    ),
+  ]
+}
+
+export function getCareerFormat(data: Career) {
+  return [
+    ...new Set(
+      data.Careers_Courses.flatMap(
+        (item) => item.courses?.location ?? false,
+      ).filter((i) => i),
+    ),
+  ]
 }

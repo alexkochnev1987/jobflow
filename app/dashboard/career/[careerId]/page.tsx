@@ -13,6 +13,7 @@ import Skeleton from "react-loading-skeleton"
 import { Test } from "@/components/shared/test-card"
 import { Course } from "@/components/shared/course-card"
 import l18n from "@/i18n/config"
+import { getCareerFormat, getCareerPace } from "@/lib/utils"
 
 export default async function Page({
   params,
@@ -30,7 +31,8 @@ export default async function Page({
     (c) => c,
   ) as Test[]
   console.log("quizzes", quizzes)
-
+  const pace = getCareerPace(career)
+  const format = getCareerFormat(career)
   return (
     <div>
       <Link href={ROUTES.DashBoard}>
@@ -41,7 +43,7 @@ export default async function Page({
       <React.Suspense
         fallback={<Skeleton className="w-1/3" height={30} count={3} />}
       >
-        <JobListing {...career} rating={90} />
+        <JobListing {...career} rating={90} pace={pace} format={format} />
 
         <TestsCarousel tests={quizzes} />
         <CourseCarousel courses={courses} />

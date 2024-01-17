@@ -28,7 +28,6 @@ function JobListing({
   detailsRequirement,
   detailsSkills,
   detailsTasks,
-  retrainingWeeks,
   rating,
   salaryMin,
   salaryMax,
@@ -36,6 +35,7 @@ function JobListing({
   format,
 }: Props) {
   const [isCollapsed, setIsCollapsed] = useState(false)
+
   return (
     <div className="flex flex-col items-start self-stretch bg-white py-6">
       <div className="w-[423px] max-w-full">
@@ -49,7 +49,7 @@ function JobListing({
           </div>
           <div className="ml-5 flex  flex-col items-stretch max-md:ml-0 max-md:w-full">
             <div className="my-auto flex flex-col px-5 py-0.5 max-md:mt-10">
-              <Badge color="green" radius="full" className="w-24">
+              <Badge color="green" radius="full" className="w-40">
                 {l18n.t("view-job.match", "{{rating}}% Match", {
                   rating,
                 })}{" "}
@@ -61,27 +61,37 @@ function JobListing({
               <div className="mt-4 flex items-center justify-between gap-2 pr-2.5">
                 <Currency className="fill-slate-700" />
                 <div className="grow self-stretch whitespace-nowrap text-sm leading-5 text-slate-700">
-                  <span className="font-semibold">{l18n.t("view-job.salary", "Salary")}:</span>{" "}
+                  <span className="font-semibold">
+                    {l18n.t("view-job.salary", "Salary")}:
+                  </span>{" "}
                   <span className="font-normal">
                     {salaryFormatter(salaryMin)} - {salaryFormatter(salaryMax)}{" "}
                     €
                   </span>
                 </div>
               </div>
-              <div className="mt-1.5 flex items-center justify-between gap-2 pr-2">
-                <Clock className="fill-slate-700" />
-                <div className="grow self-stretch whitespace-nowrap text-sm leading-5 text-slate-700">
-                  <span className="font-semibold">{l18n.t("view-job.pace", "Pace")}: </span>{" "}
-                  <span>{formatArray(pace)}</span>
+              {pace.length > 0 && (
+                <div className="mt-1.5 flex items-center justify-between gap-2 pr-2">
+                  <Clock className="fill-slate-700" />
+                  <div className="grow self-stretch whitespace-nowrap text-sm leading-5 text-slate-700">
+                    <span className="font-semibold">
+                      {l18n.t("view-job.pace", "Pace")}:{" "}
+                    </span>{" "}
+                    <span>{formatArray(pace)}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-1.5 flex items-center justify-between gap-2">
-                <Location />
-                <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-                  <span className="font-semibold">{l18n.t("view-job.format", "Format")}:</span>{" "}
-                  <span className="">{formatArray(format)}</span>
+              )}
+              {format.length > 0 && (
+                <div className="mt-1.5 flex items-center justify-between gap-2">
+                  <Location />
+                  <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
+                    <span className="font-semibold">
+                      {l18n.t("view-job.format", "Format")}:
+                    </span>{" "}
+                    <span className="">{formatArray(format)}</span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -107,13 +117,9 @@ function JobListing({
             <Flex direction="row" align="stretch" className="w-full" gap="2">
               <Flex className="w-1/3" direction="column">
                 <h1 className="font-bold">
-                  {l18n.t(
-                    "view-job.what-does",
-                    "What does a {{name}} do?",
-                    {
-                      name,
-                    },
-                  )}
+                  {l18n.t("view-job.what-does", "What does a {{name}} do?", {
+                    name,
+                  })}
                 </h1>
                 <p dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
               </Flex>
@@ -130,18 +136,16 @@ function JobListing({
                 <p dangerouslySetInnerHTML={{ __html: detailsTasks }} />
               </Flex>
               <Flex className="w-1/3" direction="column">
-                <h1 className="font-bold">{l18n.t("view-job.skills","Skills")}</h1>
+                <h1 className="font-bold">
+                  {l18n.t("view-job.skills", "Skills")}
+                </h1>
                 <p dangerouslySetInnerHTML={{ __html: detailsSkills }} />
               </Flex>
             </Flex>
             <h1 className="font-bold">
-              {l18n.t(
-                "view-job.future",
-                "Future perspective of {{name}}",
-                {
-                  name,
-                },
-              )}
+              {l18n.t("view-job.future", "Future perspective of {{name}}", {
+                name,
+              })}
             </h1>
             <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
           </Flex>

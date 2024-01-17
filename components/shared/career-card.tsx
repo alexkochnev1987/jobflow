@@ -1,9 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
+import {
+  formatArray,
+  getCareerFormat,
+  getCareerPace,
+  getImageFullUrl,
+  salaryFormatter,
+} from "@/lib/utils"
 import { Badge, Button } from "@radix-ui/themes"
 import { Info } from "lucide-react"
-import Image from "next/image"
 import Skeleton from "react-loading-skeleton"
 import Bookmark from "@/icons/bookmark.svg"
 import Currency from "@/icons/currency.svg"
@@ -39,7 +44,11 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 }
 
 export default function CareerCard({ isLoading, data }: Props) {
+  console.log(data)
   const router = useRouter()
+
+  const pace = getCareerPace(data)
+  const format = getCareerFormat(data)
 
   function onClick() {
     const url = `/dashboard/career/${data.id}`
@@ -77,38 +86,44 @@ export default function CareerCard({ isLoading, data }: Props) {
               <p className="flex  justify-center gap-1 align-middle">
                 <Currency className="fill-slate-700" />
                 <span className="text-sm font-semibold leading-tight text-slate-700">
-                {l18n.t("career-card.salary", "Salary:")}:{" "}
+                  {l18n.t("career-card.salary", "Salary:")}:{" "}
                 </span>
                 <span className="text-sm font-normal leading-snug text-slate-700">
                   {salaryFormatter(data.salaryMin)} -{" "}
                   {salaryFormatter(data.salaryMax)} €
                 </span>
               </p>
-              <p className="flex  justify-center gap-1 align-middle">
-                <Clock className="fill-slate-700" />
-                <span className="text-sm font-semibold leading-tight text-slate-700">
-                {l18n.t("career-card.pace", "Pace")}:{" "}
-                </span>
-                <span className="text-sm font-normal leading-snug text-slate-700">
-                  {formatArray(data.pace)}
-                </span>
-              </p>
-              <p className="flex  justify-center gap-1 align-middle">
-                <Computer className="stroke-slate-700" />
-                <span className="text-sm font-semibold leading-tight text-slate-700">
-                {l18n.t("career-card.format", "Format")}:{" "}
-                </span>
-                <span className="text-sm font-normal leading-snug text-slate-700">
-                  {formatArray(data.format)}
-                </span>
-              </p>
+              {pace.length > 0 && (
+                <p className="flex  justify-center gap-1 align-middle">
+                  <Clock className="fill-slate-700" />
+                  <span className="text-sm font-semibold leading-tight text-slate-700">
+                    {l18n.t("career-card.pace", "Pace")}:{" "}
+                  </span>
+                  <span className="text-sm font-normal leading-snug text-slate-700">
+                    {formatArray(pace)}
+                  </span>
+                </p>
+              )}
+
+              {format.length > 0 && (
+                <p className="flex  justify-center gap-1 align-middle">
+                  <Computer className="stroke-slate-700" />
+                  <span className="text-sm font-semibold leading-tight text-slate-700">
+                    {l18n.t("career-card.format", "Format")}:{" "}
+                  </span>
+                  <span className="text-sm font-normal leading-snug text-slate-700">
+                    {formatArray(format)}
+                  </span>
+                </p>
+              )}
             </>
           )}
           <div className="flex w-full items-start justify-between py-2">
             {!isLoading && (
               <>
                 <Badge color={raitingColor} radius="full">
-                  {data.rating}% {l18n.t("career-card.match", "Match")} <Info className="w-4" />
+                  {data.rating}% {l18n.t("career-card.match", "Match")}{" "}
+                  <Info className="w-4" />
                 </Badge>
                 <Button variant="ghost">
                   <Bookmark className="stroke-slate-700" />
