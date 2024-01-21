@@ -160,5 +160,86 @@
     "button": "einloggen"
   },
   "full-time": "Vollzeit",
-  "part-time": "Teilzeit"
+  "part-time": "Teilzeit",
+  "schemaContactModal": {
+    "name": {
+      "required": "Name ist erforderlich"
+    },
+    "email": {
+      "required": "E-Mail ist erforderlich"
+    },
+    "message": {
+      "required": "Nachricht ist erforderlich"
+    },
+    "contact_id": {
+      "typeError": "Kontakt-ID Typfehler"
+    },
+    "company_id": {
+      "typeError": "Firmen-ID Typfehler"
+    }
+  },
+  "schemaChangePasswrd": {
+    "password": {
+      "required": "Passwort ist erforderlich",
+      "min": "Passwort Mindestlänge erforderlich",
+      "max": "Passwort Maximallänge erforderlich"
+    },
+    "password_confirmation": {
+      "required": "Passwortbestätigung ist erforderlich",
+      "min": "Mindestlänge der Passwortbestätigung erforderlich",
+      "max": "Maximallänge der Passwortbestätigung erforderlich"
+    }
+  },
+  "schemaCompanySignup": {
+    "city": {
+      "required": "Stadt ist erforderlich"
+    },
+    "street": {
+      "required": "Straße ist erforderlich"
+    },
+    "country": {
+      "required": "Land ist erforderlich"
+    },
+    "web": {
+      "required": "Webadresse ist erforderlich"
+    },
+    "zip": {
+      "required": "Postleitzahl ist erforderlich"
+    },
+    "business": {
+      "required": "Geschäft ist erforderlich"
+    },
+    "phone": {
+      "required": "Telefonnummer ist erforderlich"
+    },
+    "email": {
+      "required": "E-Mail ist erforderlich"
+    },
+    "email_requests": {
+      "required": "E-Mail für Anfragen ist erforderlich"
+    },
+    "email_billing": {
+      "required": "E-Mail für Rechnungsstellung ist erforderlich"
+    },
+    "password": {
+      "min": "Mindestlänge des Passworts erforderlich",
+      "max": "Maximallänge des Passworts erforderlich",
+      "required": "Passwort ist erforderlich"
+    }
+  },
+  "schemaNewCourse": {
+    "description": {
+      "required": "Beschreibung ist erforderlich"
+    },
+    "image": {
+      "required": "Bild ist erforderlich"
+    },
+    "price": {
+      "typeError": "Preis Typfehler",
+      "required": "Preis ist erforderlich"
+    },
+    "name": {
+      "required": "Name ist erforderlich"
+    }
+  }
 }
