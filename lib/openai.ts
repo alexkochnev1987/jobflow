@@ -30,7 +30,7 @@ export async function completition(prompt: string) {
                   rating: {
                     type: "number",
                     description: "Rating of the career option",
-                    minimum: 0,
+                    minimum: 10,
                     maximum: 100,
                   },
                   uid: {
