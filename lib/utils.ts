@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge"
 import ms from "ms"
 import { Career } from "@/components/shared/career-card"
 import l18n from "@/i18n/config"
+import { text } from "stream/consumers"
 
 export const componentToHTML = async (component) => {
   const ReactDOMServer = (await import("react-dom/server")).default
@@ -12,6 +13,10 @@ export const componentToHTML = async (component) => {
 
 export function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
+export function removeHTML(text: string) {
+  return text.replace(/<[^>]*>?/gm, '');
 }
 
 export function cn(...inputs: ClassValue[]) {

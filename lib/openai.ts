@@ -23,10 +23,10 @@ export async function completition(prompt: string) {
               items: {
                 type: "object",
                 properties: {
-                  career: {
-                    type: "string",
-                    description: "Name of the career option",
-                  },
+                  // career: {
+                  //   type: "string",
+                  //   description: "Name of the career option",
+                  // },
                   rating: {
                     type: "number",
                     description: "Rating of the career option",

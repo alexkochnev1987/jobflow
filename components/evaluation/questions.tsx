@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { QUESTION_TYPES } from "@/lib/constants"
 import { userStore } from "@/app/client/store"
 import { useEffect, useRef, useState } from "react"
-import { capitalizeFirstLetter, cn } from "@/lib/utils"
+import { capitalizeFirstLetter, cn, removeHTML } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 import Button from "../shared/button"
@@ -86,7 +86,7 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
 
   function handleAnswer(answer: EvaluationFormAnswer) {
     setValue(answer.value)
-    store.save(id, answer.value)
+    store.save(id, parseInt(removeHTML(answer.value), 10))
     inputRef.current = {
       value: answer.value,
     }
