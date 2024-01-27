@@ -156,8 +156,8 @@ ${careersText}
 
   const res = await retry(
     {
-      times: 5,
-      delay: 1000,
+      times: 10,
+      delay: 100,
     },
     async () => {
       console.log("trying to get results")
@@ -172,6 +172,7 @@ ${careersText}
       console.log("careers", fnResponse)
 
       if (fnResponse.careers.some((c) => c.rating <= 1)) {
+        console.log("Some careers don't have a rating")
         throw new Error("Some careers don't have a rating")
       }
 
@@ -181,6 +182,7 @@ ${careersText}
           (c) => !careers.find((career) => career.id === c.uid),
         )
       ) {
+        console.log("Some careers don't exist")
         throw new Error("Some careers don't exist")
       }
 
