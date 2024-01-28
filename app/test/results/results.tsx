@@ -9,6 +9,7 @@ import l18n from "@/i18n/config"
 import PaymentButton from "@/components/payment/button"
 import CheckCircle from "@/icons/checkbox.svg"
 import Image from "next/image"
+import LoadingAnimation from "./loading-animation"
 export default function Results() {
   const { isLoading, results } = useResults()
 
@@ -34,7 +35,7 @@ export default function Results() {
           >
             {l18n.t("results.title", "Dein Ergebnis wird berechnet")}
           </Heading>
-          <Loading />
+          <LoadingAnimation />
         </div>
       )}
       {!isLoading && (

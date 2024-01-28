@@ -157,7 +157,10 @@
     "title": "Anmelden",
     "email": "Email",
     "password": "Password",
-    "button": "einloggen"
+    "button": "einloggen",
+    "error": {
+      "CredentialsSignin": "Email oder Passwort ist falsch"
+    }
   },
   "full-time": "Vollzeit",
   "part-time": "Teilzeit",
