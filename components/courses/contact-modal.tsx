@@ -49,12 +49,17 @@ export default function ContactModal({ company }) {
       setError(error)
     }
   }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="ml-5 mt-1 cursor-pointer self-start whitespace-nowrap text-sm leading-6 text-sky-500 max-md:ml-2.5">
-          {l18n.t("contact.modal.link", "Want it for free?")}
-        </div>
+        <Button
+          variant="solid"
+          size="4"
+          className="my-4 w-full !bg-rose-500 hover:!bg-rose-400"
+        >
+          {l18n.t("course.card.button", "Unverbindlich anfragen")}
+        </Button>
       </DialogTrigger>
       <DialogContent className="text-black sm:max-w-[425px]">
         <form onSubmit={handleSubmit(onSubmit)}>

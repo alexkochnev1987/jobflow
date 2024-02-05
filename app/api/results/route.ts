@@ -120,38 +120,28 @@ export async function POST(request: NextRequest) {
 
   console.log(personality)
 
-  const prompt = `Benutzerprofil:
-  
-  ${userResponsesText}
+  const staticPrompt = process.env.PROMPT;
 
-  ${personality.name}
-  ${personality.you_at_work}
-  ${personality.strengths_summary}
-  ${personality.teamwork}
-  ${personality.communications_skills}
-  ${personality.leadership}
+  if (!staticPrompt) {
+    throw new Error("No prompt found");
+  }
 
-Aufgabenanweisungen:
+  const replacementDic = {
+    "{userResponsesText}": userResponsesText,
+    "{personality.name}": personality.name,
+    "{personality.you_at_work}": personality.you_at_work,
+    "{personality.strengths_summary}": personality.strengths_summary,
+    "{personality.teamwork}": personality.teamwork,
+    "{personality.communications_skills}": personality.communications_skills,
+    "{personality.leadership}": personality.leadership,
+    "{careersText}": careersText,
+  };
 
-Stellen Sie sich vor, Sie sind ein fortschrittlicher KI-Karriereberater. Basierend auf den persönlichen Werten des Benutzers und seiner idealen Arbeitsumgebung, generieren Sie die folgenden Variablen:
+  const prompt = Object.entries(replacementDic).reduce(
+    (acc, [key, value]) => acc.replace(key, value),
+    staticPrompt,
+  );
 
-Sie bei der Arbeit: Beschreiben Sie den Arbeitsstil des Benutzers unter Berücksichtigung seiner Werte und Vorlieben.
-Stärken: Zählen Sie die Stärken des Benutzers auf, basierend auf seinen Werten und wie diese Stärken mit seiner idealen Arbeitsumgebung in Einklang stehen.
-Sobald Sie diese Variablen generiert haben, ordnen Sie das Benutzerprofil den am besten geeigneten Karrierewegen aus der bereitgestellten Liste zu. Weisen Sie jedem Beruf eine Prozentbewertung zu, die den Grad der Eignung angibt. Ordnen Sie die Berufe absteigend nach der Prozentübereinstimmung an.
-
-
-Zusätzliche Richtlinien:
-
-Berücksichtigen Sie die generierten Variablen ('youAtWork' und 'strengths') sorgfältig bei den Zuordnungen.
-Geben Sie für jede Zuordnung eine detaillierte Analyse ab, in der erklärt wird, warum der Beruf zum Benutzerprofil passt.
-Gewährleisten Sie Genauigkeit und Gründlichkeit bei Ihren Bewertungen.
-Verwenden Sie Prozentbewertungen, um die Eignung jedes Berufs zu quantifizieren.
-Kommentieren Sie nicht das Ergebnis; konzentrieren Sie sich darauf, präzise und fundierte Zuordnungen bereitzustellen.
-
-Only use the following Careers:
-${careersText}
-
-`
   console.log(prompt)
 
   const res = await retry(

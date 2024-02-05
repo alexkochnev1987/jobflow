@@ -64,7 +64,7 @@ export default function CourseCard({
   isLoading,
   Company,
 }: Props) {
-  const router = useRouter()
+
 
   if (isLoading) {
     return (
@@ -72,9 +72,6 @@ export default function CourseCard({
     )
   }
 
-  const handleClick = () => {
-    router.push(ROUTES.ViewCourse(id))
-  }
 
   return (
     <div className="min-h-full min-w-[300px] self-stretch px-1 md:w-1/2 lg:w-1/3">
@@ -129,7 +126,9 @@ export default function CourseCard({
             <span className=""> {salaryFormatter(price)} €</span>
           </div>
         </div>
-        <ContactModal company={Company} />
+        <div className="ml-5 mt-1 cursor-pointer self-start whitespace-nowrap text-sm leading-6 text-sky-500 max-md:ml-2.5">
+          {l18n.t("contact.modal.link", "Want it for free?")}
+        </div>
         <div className="mt-1.5 flex items-center gap-2 self-start pr-7 max-md:pr-5">
           <Bag />
           <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
@@ -146,14 +145,8 @@ export default function CourseCard({
           {description}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
-          <Button
-            onClick={handleClick}
-            variant="solid"
-            size="4"
-            className="my-4 w-full !bg-rose-500 hover:!bg-rose-400"
-          >
-            {l18n.t("course.card.button", "Unverbindlich anfragen")}
-          </Button>
+          
+          <ContactModal company={Company} />
         </div>
       </div>
     </div>

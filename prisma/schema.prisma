@@ -252,13 +252,13 @@ model QuizzResource {
   date_created DateTime? @db.Timestamp(0)
   user_updated String?   @db.Char(36)
   date_updated DateTime? @db.Timestamp(0)
-  quiz_id      Int?      @db.UnsignedInt
   description  String?   @db.Text
   file         String?   @db.Char(36)
-  quizz        Quizzes?  @relation(fields: [quiz_id], references: [id])
+  Quizzes      Quizzes?  @relation(fields: [quizzesId], references: [id])
+  quizzesId    Int?      @db.UnsignedInt
 
+  @@index(quizzesId)
   @@index([file], map: "quizzresource_file_foreign")
-  @@index([quiz_id], map: "quizzresource_quiz_id_foreign")
   @@index([user_created], map: "quizzresource_user_created_foreign")
   @@index([user_updated], map: "quizzresource_user_updated_foreign")
 }
@@ -275,8 +275,8 @@ model Quizzes {
   image           String?           @db.Char(36)
   duration        DateTime?         @db.Time(0)
   name            String?           @db.VarChar(255)
-  QuizzResource   QuizzResource[]
   Careers_Quizzes Careers_Quizzes[]
+  Quizz_Resource  QuizzResource[]
 
   @@index([image], map: "quizzes_image_foreign")
   @@index([user_created], map: "quizzes_user_created_foreign")
@@ -1053,4 +1053,13 @@ model Careers_Prototypes {
 
   @@index([Careers_id], map: "careers_prototypes_careers_id_foreign")
   @@index([Prototypes_id], map: "careers_prototypes_prototypes_id_foreign")
+}
+
+model Quizzes_QuizzResource {
+  id               Int  @id @default(autoincrement()) @db.UnsignedInt
+  Quizzes_id       Int? @db.UnsignedInt
+  QuizzResource_id Int? @db.UnsignedInt
+
+  @@index([Quizzes_id], map: "quizzes_quizzresource_quizzes_id_foreign")
+  @@index([QuizzResource_id], map: "quizzes_quizzresource_quizzresource_id_foreign")
 }

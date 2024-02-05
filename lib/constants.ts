@@ -28,6 +28,7 @@ export const ROUTES = {
   Trainings: "/trainings",
   AddCourse: "/trainings/courses/add",
   ViewCourse: (id: string) => "/dashboard/course/" + id,
+  ViewTest: (id: string) => "/dashboard/quizz/" + id,
   ViewCareer: (id: string) => "/dashboard/career/" + id,
   EditCourse: "/trainings/courses/edit",
 }

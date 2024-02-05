@@ -1,17 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import { getImageFullUrl } from "@/lib/utils"
-import { Courses, Prototypes } from "@prisma/client"
+import { QuizzResource, Quizzes } from "@prisma/client"
 import { Flex, Grid } from "@radix-ui/themes"
 import l18n from "@/i18n/config"
 import ResourceCard from "@/components/shared/resource-card"
 
-type Props = Partial<Courses> &
+type Props = Partial<Quizzes> &
   React.ComponentPropsWithoutRef<"div"> & {
     isLoading?: boolean
-    prototypes?: Partial<Prototypes>[]
+    prototypes?: Partial<QuizzResource>[]
   }
 
-function ViewCourse({ image, description, prototypes }: Props) {
+function ViewQuizz({ image, description, prototypes }: Props) {
   return (
     <>
       <Grid columns="2" gap="4" width="auto" className="my-5">
@@ -35,7 +35,7 @@ function ViewCourse({ image, description, prototypes }: Props) {
       <Grid columns="2">
         {prototypes.map((p) => (
           <ResourceCard
-            name={p.name}
+            name={p.description}
             description={p.description}
             file={p.file}
             key={p.id}
@@ -45,4 +45,4 @@ function ViewCourse({ image, description, prototypes }: Props) {
     </>
   )
 }
-export default ViewCourse
+export default ViewQuizz
