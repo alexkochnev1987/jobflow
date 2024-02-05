@@ -149,6 +149,10 @@ model EvaluationFormQuestion {
   step                       Int?                         @db.UnsignedInt
   question                   String?                      @db.VarChar(255)
   type                       String?                      @db.VarChar(255)
+  range_min                  Int?                         @default(0)
+  range_max                  Int?
+  tag_limit                  Int?
+  tags                       Json?
   EvalutionFormStep          EvaluationFormStep?          @relation(fields: [step], references: [id])
   EvaluationFormAnswer       EvaluationFormAnswer[]
   EvaluationFormUserResponse EvaluationFormUserResponse[]
@@ -254,10 +258,10 @@ model QuizzResource {
   date_updated DateTime? @db.Timestamp(0)
   description  String?   @db.Text
   file         String?   @db.Char(36)
-  Quizzes      Quizzes?  @relation(fields: [quizzesId], references: [id])
   quizzesId    Int?      @db.UnsignedInt
+  Quizzes      Quizzes?  @relation(fields: [quizzesId], references: [id])
 
-  @@index(quizzesId)
+  @@index([quizzesId])
   @@index([file], map: "quizzresource_file_foreign")
   @@index([user_created], map: "quizzresource_user_created_foreign")
   @@index([user_updated], map: "quizzresource_user_updated_foreign")
