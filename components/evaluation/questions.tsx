@@ -11,10 +11,21 @@ import { capitalizeFirstLetter, cn, removeHTML } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 import { EvaluationFormAnswer, EvaluationFormQuestion } from "@prisma/client"
 import Button from "../shared/button"
+import {
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+  HStack,
+  Flex,
+  Box,
+} from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
+  console.log("question", question)
   switch (question.type) {
     case QUESTION_TYPES.Range:
       return (
@@ -49,6 +60,15 @@ export function RenderQuestion({ question, inputRef, error }) {
             error={error}
           />
         </motion.div>
+      )
+    case QUESTION_TYPES.Tags:
+      return (
+        <TagQuestion
+          question={question as EvaluationFormQuestion}
+          inputRef={inputRef[question.id]}
+          id={question.id}
+          error={error}
+        />
       )
     case QUESTION_TYPES.Text:
     default:
@@ -139,6 +159,69 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
           ),
         )}
       </div>
+    </div>
+  )
+}
+
+function TagQuestion({ question, id, inputRef, error }) {
+  const store = userStore()
+  const [value, setValue] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    const hasResponse = store.findResponse(id)
+    if (hasResponse) {
+      setValue(hasResponse.response as string[])
+    }
+    setIsLoading(false)
+  }, [store, id])
+
+  function toggleTag(tag: string) {
+    if (value.includes(tag)) {
+      setValue(value.filter((t) => t !== tag))
+    } else {
+      setValue([...value, tag])
+    }
+  }
+
+  if (isLoading) {
+    return <LoadingQuestion />
+  }
+  return (
+    <div className="py-3">
+      <Label
+        htmlFor={id}
+        className={cn(error && "text-destructive")}
+        dangerouslySetInnerHTML={{
+          __html: question.question,
+        }}
+      />
+      <Box gap={5} overflow="auto" mt={2}>
+        {question.tags.map((tag) => (
+          <Tag
+            size="lg"
+            key={tag}
+            borderRadius="full"
+            variant="solid"
+            colorScheme={value.includes(tag) ? "teal" : "gray"}
+            m={2}
+            onClick={(e) => {
+              e.preventDefault()
+              toggleTag(tag)
+            }}
+          >
+            <TagLabel>{tag}</TagLabel>
+          </Tag>
+        ))}
+      </Box>
+      <Button
+        onClick={() => store.save(id, value)}
+        intent="secondary"
+        size="medium"
+      >
+        Save
+      </Button>
     </div>
   )
 }

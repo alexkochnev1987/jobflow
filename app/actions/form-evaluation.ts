@@ -7,6 +7,10 @@ const evaluationFormQuestionSelect = {
   sort: true,
   question: true,
   type: true,
+  range_min: true,
+  range_max: true,
+  tag_limit: true,
+  tags: true,
   EvaluationFormAnswer: {
     select: {
       sort: true,

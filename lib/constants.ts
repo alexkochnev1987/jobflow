@@ -9,6 +9,7 @@ export const QUESTION_CATEGORIES = {
 
 export const QUESTION_TYPES = {
   Text: "text",
+  Tags: "tags",
   Range: "range",
   Checkbox: "checkbox",
   Button: "button",

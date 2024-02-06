@@ -8,6 +8,7 @@ import "./theme-config.css"
 import cx from "classnames"
 import { Theme } from "@radix-ui/themes"
 import l18n from "../i18n/config"
+import { ChakraProvider } from "@chakra-ui/react"
 
 export const metadata = {
   title: l18n.t("SITE_TITLE"),
@@ -29,9 +30,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cx(inter.className)}>
-      <Theme accentColor="red">
-          {children}
-        </Theme>
+        <ChakraProvider>
+          <Theme accentColor="red">{children}</Theme>
+        </ChakraProvider>
       </body>
     </html>
   )
