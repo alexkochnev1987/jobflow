@@ -20,6 +20,11 @@ import {
   HStack,
   Flex,
   Box,
+  RangeSlider,
+  RangeSliderTrack,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  Text,
 } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
@@ -27,15 +32,15 @@ export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
   console.log("question", question)
   switch (question.type) {
-    case QUESTION_TYPES.Range:
-      return (
-        <SliderQuestion
-          question={question as EvaluationFormQuestion}
-          max={5}
-          id={question.id}
-          inputRef={inputRef[question.id]}
-        />
-      )
+    // case QUESTION_TYPES.Range:
+    //   return (
+    //     <SliderQuestion
+    //       question={question as EvaluationFormQuestion}
+    //       max={5}
+    //       id={question.id}
+    //       inputRef={inputRef[question.id]}
+    //     />
+    //   )
     case QUESTION_TYPES.Checkbox:
       return (
         <YesNoQuestion
@@ -64,6 +69,15 @@ export function RenderQuestion({ question, inputRef, error }) {
     case QUESTION_TYPES.Tags:
       return (
         <TagQuestion
+          question={question as EvaluationFormQuestion}
+          inputRef={inputRef[question.id]}
+          id={question.id}
+          error={error}
+        />
+      )
+    case QUESTION_TYPES.Range:
+      return (
+        <RangeQuestion
           question={question as EvaluationFormQuestion}
           inputRef={inputRef[question.id]}
           id={question.id}
@@ -225,6 +239,61 @@ function TagQuestion({ question, id, inputRef, error }) {
     </div>
   )
 }
+function RangeQuestion({ question, id, inputRef, error }) {
+  const store = userStore()
+  const [value, setValue] = useState<number[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    const hasResponse = store.findResponse(id)
+    if (hasResponse) {
+      setValue(hasResponse.response as number[])
+    }
+    setIsLoading(false)
+  }, [store, id])
+
+  if (isLoading) {
+    return <LoadingQuestion />
+  }
+  return (
+    <div className="py-3">
+      <Label
+        htmlFor={id}
+        className={cn(error && "text-destructive")}
+        dangerouslySetInnerHTML={{
+          __html: question.question,
+        }}
+      />
+      <Box gap={5} overflow="auto" my={2}>
+        <Flex direction="row" justify="space-between">
+          <Text>{value[0] ?? question.range_min}</Text>
+          <Text>{value[1] ?? question.range_max}</Text>
+        </Flex>
+        <RangeSlider
+          defaultValue={[question.range_min, question.range_max]}
+          min={question.range_min}
+          max={question.range_max}
+          onChangeEnd={(val) => setValue(val)}
+        >
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack />
+          </RangeSliderTrack>
+          <RangeSliderThumb index={0} />
+          <RangeSliderThumb index={1} />
+        </RangeSlider>
+      </Box>
+      <Button
+        onClick={() => store.save(id, value)}
+        intent="secondary"
+        size="medium"
+      >
+        Save
+      </Button>
+    </div>
+  )
+}
+
 function TextQuestion({ question, id, inputRef, error }) {
   const store = userStore()
   const [value, setValue] = useState("")

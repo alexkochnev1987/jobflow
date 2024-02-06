@@ -3,7 +3,7 @@ import { devtools, persist } from "zustand/middleware"
 
 interface Response {
   question_id: number
-  response: string | number | string[]
+  response: string | number | string[] | number[]
 }
 
 interface UserState {
@@ -14,7 +14,7 @@ interface UserState {
   undoLast: () => void
   setStep: (step: number) => void
   findResponse: (question_id: number) => Response | undefined
-  save: (question_id: number, response: string | number | string[]) => void
+  save: (question_id: number, response: string | number | string[] | number[]) => void
 }
 
 export const userStore = create<UserState>()(
@@ -74,7 +74,7 @@ export const userStore = create<UserState>()(
 function sendQuestionsAndResponses(
   uid: string,
   questionId: number,
-  questionResponse: string | number | string[],
+  questionResponse: string | number | string[] | number[],
 ) {
   if (!uid || uid === "") return
   if (!questionId) return
