@@ -265,8 +265,7 @@ function RangeQuestion({ question, id, inputRef, error }) {
           __html: question.question,
         }}
       />
-      <Box gap={5} overflow="auto" my={2}>
-        <Flex direction="row" justify="space-between">
+     <Flex direction="row" justify="space-between">
           <Text>{value[0] ?? question.range_min}</Text>
           <Text>{value[1] ?? question.range_max}</Text>
         </Flex>
@@ -282,7 +281,6 @@ function RangeQuestion({ question, id, inputRef, error }) {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
-      </Box>
       <Button
         onClick={() => store.save(id, value)}
         intent="secondary"
