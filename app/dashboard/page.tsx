@@ -4,6 +4,7 @@ import { CareerResults } from "./career-results"
 import { getCareers } from "../actions/careers"
 import { isCompanyUser } from "../actions/user"
 import { auth } from "auth"
+import { Card } from "@chakra-ui/react"
 
 export default async function Page() {
   const session = await auth()
@@ -18,8 +19,8 @@ export default async function Page() {
   const careers = await getCareers()
   const careersRes = careers.map((c) => ({ ...c, rating: 30 }))
   return (
-    <div className="w-full justify-center text-left">
+    <Card className="w-full justify-center text-left" p={5}>
       <CareerResults user={session?.user} careers={careersRes} />
-    </div>
+    </Card>
   )
 }

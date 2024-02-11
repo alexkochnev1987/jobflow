@@ -14,6 +14,7 @@ import { Test } from "@/components/shared/test-card"
 import { Course } from "@/components/shared/course-card"
 import l18n from "@/i18n/config"
 import { getCareerFormat, getCareerPace } from "@/lib/utils"
+import { Card } from "@chakra-ui/react"
 
 export default async function Page({
   params,
@@ -34,7 +35,7 @@ export default async function Page({
   const pace = getCareerPace(career)
   const format = getCareerFormat(career)
   return (
-    <div>
+    <Card p={5}>
       <Link href={ROUTES.DashBoard}>
         <h1 className="flex cursor-pointer flex-row items-center text-xl font-bold">
           <BackIcon /> {l18n.t("dashboard.career.back", "Results")}
@@ -48,6 +49,6 @@ export default async function Page({
         <TestsCarousel tests={quizzes} />
         <CourseCarousel courses={courses} />
       </React.Suspense>
-    </div>
+    </Card>
   )
 }

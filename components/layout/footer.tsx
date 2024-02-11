@@ -4,7 +4,7 @@ import l18n from "@/i18n/config"
 import { Flex } from "@radix-ui/themes"
 function FooterComponent() {
   return (
-    <footer className="mx-auto  flex  max-w-6xl flex-col items-stretch border-t border-solid border-t-[color:var(--grey-300,#D0D5DD)] bg-white px-20 py-12 text-gray-500 max-md:px-5">
+    <footer className="mx-auto  flex w-full flex-col items-stretch border-t border-solid border-t-[color:var(--grey-300,#D0D5DD)] bg-white px-20 py-12 text-gray-500 max-md:px-5">
       <Flex className="w-full" direction="row" wrap="wrap">
         <ul className="w-1/2 md:w-1/4 lg:w-1/5">
           <li className="pb-1 text-base font-semibold leading-normal text-black">
@@ -53,8 +53,7 @@ function FooterComponent() {
         <div className="mt-6 flex  justify-start gap-5 max-md:max-w-full max-md:flex-wrap">
           <Logo />
           <div className="my-auto grow self-center whitespace-nowrap text-base leading-6 text-gray-400">
-            © {new Date().getFullYear()}{" "}
-            {l18n.t("footer.copyright")}
+            © {new Date().getFullYear()} {l18n.t("footer.copyright")}
           </div>
         </div>
       </div>
