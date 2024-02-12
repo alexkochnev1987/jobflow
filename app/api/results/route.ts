@@ -178,6 +178,10 @@ export async function POST(request: NextRequest) {
 
       if (fnResponse.careers.some((c) => c.rating <= 1)) {
         console.log("Some careers don't have a rating")
+        traceClient.score({
+          name: "INVALID_RATING",
+          value: 0,
+        });
         throw new Error("Some careers don't have a rating")
       }
 
@@ -188,6 +192,10 @@ export async function POST(request: NextRequest) {
         )
       ) {
         console.log("Some careers don't exist")
+        traceClient.score({
+          name: "INVALID_CAREERS",
+          value: 0,
+        });
         throw new Error("Some careers don't exist")
       }
 
@@ -208,7 +216,10 @@ export async function POST(request: NextRequest) {
             personality: personality.id,
           },
         })
-
+        traceClient.score({
+          name: "GOT_RESULTS",
+          value: 100,
+        });
         traceClient.update({
           output: modelResponse,
           metadata: {

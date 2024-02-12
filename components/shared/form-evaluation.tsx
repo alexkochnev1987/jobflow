@@ -15,14 +15,14 @@ type FormProps = {
   title: string
   description: string
   questions: Partial<EvaluationFormQuestion>[]
-  step: number
+  stepSort: number
 }
 
 export default function Form({
   title,
   description,
   questions,
-  step,
+  stepSort,
 }: FormProps): JSX.Element {
   const [errors, setErrors] = useState({})
   const [showQuestions, setShowQuestions] = useState(false)
@@ -37,7 +37,8 @@ export default function Form({
 
   useEffect(() => {
     setErrors({})
-  }, [step])
+    setShowQuestions(false)
+  }, [stepSort])
 
   useEffect(() => {
     setUnAnsweredQuestions(questions.filter((q) => !store.findResponse(q.id)))
@@ -54,7 +55,7 @@ export default function Form({
   }
 
   const prevStep = () => {
-    const prevStep = Math.max(step - 1, 1)
+    const prevStep = Math.max(stepSort - 1, 1)
     newStep(prevStep)
   }
 
@@ -70,7 +71,7 @@ export default function Form({
     if (hasErrors(localErrors)) {
       return
     }
-    const nextStep = step + 1
+    const nextStep = stepSort + 1
     newStep(nextStep)
   }
 

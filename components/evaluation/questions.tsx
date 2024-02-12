@@ -265,22 +265,22 @@ function RangeQuestion({ question, id, inputRef, error }) {
           __html: question.question,
         }}
       />
-     <Flex direction="row" justify="space-between">
-          <Text>{value[0] ?? question.range_min}</Text>
-          <Text>{value[1] ?? question.range_max}</Text>
-        </Flex>
-        <RangeSlider
-          defaultValue={[question.range_min, question.range_max]}
-          min={question.range_min}
-          max={question.range_max}
-          onChangeEnd={(val) => setValue(val)}
-        >
-          <RangeSliderTrack>
-            <RangeSliderFilledTrack />
-          </RangeSliderTrack>
-          <RangeSliderThumb index={0} />
-          <RangeSliderThumb index={1} />
-        </RangeSlider>
+      <Flex direction="row" justify="space-between">
+        <Text>{value[0] ?? question.range_min}</Text>
+        <Text>{value[1] ?? question.range_max}</Text>
+      </Flex>
+      <RangeSlider
+        defaultValue={[question.range_min, question.range_max]}
+        min={question.range_min}
+        max={question.range_max}
+        onChangeEnd={(val) => setValue(val)}
+      >
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderThumb index={0} />
+        <RangeSliderThumb index={1} />
+      </RangeSlider>
       <Button
         onClick={() => store.save(id, value)}
         intent="secondary"
@@ -311,9 +311,13 @@ function TextQuestion({ question, id, inputRef, error }) {
   }
   return (
     <div className="py-3">
-      <Label htmlFor={id} className={cn(error && "text-destructive")}>
-        {question}
-      </Label>
+      <Label
+        htmlFor={id}
+        className={cn(error && "text-destructive")}
+        dangerouslySetInnerHTML={{
+          __html: capitalizeFirstLetter(question),
+        }}
+      />
       <Textarea
         placeholder={t("Deine Antwort")}
         id={id}
