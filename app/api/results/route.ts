@@ -1,6 +1,6 @@
 import { getCareers } from "@/app/actions/careers"
 import { QUESTION_TYPES } from "@/lib/constants"
-import { completition } from "@/lib/openai"
+import { completition, getLangFuse } from "@/lib/openai"
 import prisma from "@/lib/prisma"
 import { sliderResponseToText } from "@/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
@@ -152,7 +152,22 @@ export async function POST(request: NextRequest) {
     async () => {
       console.log("trying to get results")
 
-      const modelResponse = await completition(prompt)
+      const langfuse = getLangFuse();
+
+      const traceClient = langfuse.trace({
+        name: "/api/results",
+        userId: uid,
+        input: staticPrompt,
+        metadata: {
+          uid,
+          mbti: mbtiResult,
+          userResponsesText,
+          replacementDic,
+        },
+        tags: [process.env.NODE_ENV],
+      });
+
+      const modelResponse = await completition(prompt, traceClient)
 
       const choices =
         modelResponse?.choices?.[0]?.message?.function_call?.arguments || ""
@@ -177,7 +192,7 @@ export async function POST(request: NextRequest) {
       }
 
       try {
-        await prisma.profile.upsert({
+        const profileResult = await prisma.profile.upsert({
           where: {
             uid,
           },
@@ -193,6 +208,13 @@ export async function POST(request: NextRequest) {
             personality: personality.id,
           },
         })
+
+        traceClient.update({
+          output: modelResponse,
+          metadata: {
+            profile: profileResult,
+          },
+        });
       } catch (e) {
         console.log(e)
       }

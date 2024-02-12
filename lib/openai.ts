@@ -1,22 +1,24 @@
 import OpenAI from "openai"
-import { Langfuse } from "langfuse";
+import { Langfuse, LangfuseGenerationClient, LangfuseTraceClient } from "langfuse";
 
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-const langfuse = new Langfuse({
-  secretKey: process.env.LANGFUSE_SECRET,
-  publicKey: process.env.LANGFURE_PUBLIC,
-  baseUrl: process.env.LANGFUSE_URL
-});
+export function getLangFuse() {
+  return new Langfuse({
+    secretKey: process.env.LANGFUSE_SECRET,
+    publicKey: process.env.LANGFURE_PUBLIC,
+    baseUrl: process.env.LANGFUSE_URL
+  });
+}
 
 
 // https://platform.openai.com/docs/guides/gpt/function-calling
 
-export async function completition(prompt: string) {
-  const generation = langfuse.generation({
+export async function completition(prompt: string, traceClient: LangfuseTraceClient) {
+  const generation = traceClient.generation({
     name: "function-call",
     model: process.env.OPENAI_CHAT_MODEL,
     input: prompt,
