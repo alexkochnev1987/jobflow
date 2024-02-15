@@ -25,12 +25,12 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
-        default: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        heading: ["Inter-Bold", "sans-serif"],
+        body: ["Inter-Regular", "sans-serif"],
       },
       fontSize: {
         sm: "0.8rem",
-        base: "1rem",
+        base: "1.3rem",
         xl: "1.5rem",
         "2xl": "1.563rem",
         "3xl": "1.953rem",
@@ -45,6 +45,7 @@ module.exports = {
         foreground: "hsl(240, 2%, 26%)",
         lightBlue: "#F3F6FC",
         lightGreen: "#5DC4BC",
+        magenta: "#FF2C5D",
         primary: {
           DEFAULT: "hsl(175, 47%, 67%)",
           foreground: "hsla(0, 0%, 100%, 1)",

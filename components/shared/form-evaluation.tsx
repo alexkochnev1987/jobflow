@@ -87,7 +87,7 @@ export default function Form({
       )}
     >
       {showQuestions && <Progress value={percentAnswered} />}
-      <div className="z-10 mx-auto px-10 py-10 max-w-screen-md">
+      <div className="z-10 mx-auto max-w-430px">
         {!showQuestions && (
           <>
             <div className="flex-col justify-start gap-8">
@@ -139,7 +139,7 @@ export default function Form({
                 onClick={() => nextStep()}
                 size="4"
                 variant="solid"
-                className="mt-10 w-full"
+                className="mt-10 w-full bg-magenta"
               >
                 {l18n.t("test.result.cta", "Get your results")}
               </Button>
