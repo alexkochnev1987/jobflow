@@ -25,8 +25,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
-        default: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        interBold: ["Inter-Bold", "sans-serif"],
+        interMedium: ["Inter-Medium", "sans-serif"],
+        interRegular: ["Inter-Regular", "sans-serif"],
       },
       fontSize: {
         sm: "0.8rem",
