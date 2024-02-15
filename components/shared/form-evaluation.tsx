@@ -83,7 +83,7 @@ export default function Form({
     <div
       className={cn(
         "min-h-full w-full flex-col justify-center ",
-        !showQuestions && "bg-sky-100",
+        !showQuestions && "bg-lightBlue",
       )}
     >
       {showQuestions && <Progress value={percentAnswered} />}

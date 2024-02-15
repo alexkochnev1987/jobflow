@@ -43,6 +43,7 @@ module.exports = {
         ring: "hsl(175, 47%, 57%)",
         background: "hsl(0, 0%, 100%)",
         foreground: "hsl(240, 2%, 26%)",
+        lightBlue: "#F3F6FC",
         primary: {
           DEFAULT: "hsl(175, 47%, 67%)",
           foreground: "hsla(0, 0%, 100%, 1)",
