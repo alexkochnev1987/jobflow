@@ -31,7 +31,7 @@ export default function Results() {
         <div className="z-10 flex flex-col items-center">
           <Heading
             size="5"
-            className="w-full p-5 text-center text-2xl font-normal leading-7"
+            className="w-full p-5 text-center text-2xl font-heading leading-7"
           >
             {l18n.t("results.title", "Dein Ergebnis wird berechnet")}
           </Heading>
@@ -52,27 +52,27 @@ export default function Results() {
                   "Ihre Antworten wurden von einer K.I. analysiert. Das soeben abgeschlossene Assessment wird von Unternehmen, Universitäten und Karrierecoaches auf der ganzen Welt verlangt.",
                 )}
               </p>
-              <Heading size="7" className="font-normal leading-7">
+              <Heading size="7" className="font-heading leading-7">
                 {l18n.t("results.you-at-work", "Sie bei der Arbeit")}
               </Heading>
               <p>{youArWork}</p>
-              <Heading size="7" className="font-normal leading-7">
+              <Heading size="7" className="font-heading leading-7">
                 {l18n.t("results.strenghts", "Stärken")}
               </Heading>
               <p>{strengths}</p>
-              <Heading size="7" className="font-normal leading-7">
+              <Heading size="7" className="font-heading leading-7">
                 {l18n.t("results.communication", "Kommunikationsfähigkeiten")}
               </Heading>
               <p>{communicationSkills}</p>
-              <Heading size="7" className="font-normal leading-7">
+              <Heading size="7" className="font-heading leading-7">
                 {l18n.t("results.softskills", "Führungsqualitäten")}
               </Heading>
               <p>{leadership}</p>
-              <Heading size="7" className="font-normal leading-7">
+              <Heading size="7" className="font-heading leading-7">
                 {l18n.t("results.teamwork", "Arbeit im Team")}
               </Heading>
               <p>{teamwork}</p>
-              <Heading size="8" className="font-normal leading-7">
+              <Heading size="8" className="font-heading leading-7">
                 {l18n.t("results.careers", "Passende Karrieren")}
               </Heading>
               <div className="relative  w-full">

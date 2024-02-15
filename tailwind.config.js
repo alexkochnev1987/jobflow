@@ -25,9 +25,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        interBold: ["Inter-Bold", "sans-serif"],
-        interMedium: ["Inter-Medium", "sans-serif"],
-        interRegular: ["Inter-Regular", "sans-serif"],
+        heading: ["Inter-Bold", "sans-serif"],
+        body: ["Inter-Regular", "sans-serif"],
       },
       fontSize: {
         sm: "0.8rem",
