@@ -139,7 +139,7 @@ export default function Form({
                 onClick={() => nextStep()}
                 size="4"
                 variant="solid"
-                className="mt-10 w-full"
+                className="mt-10 w-full bg-magenta"
               >
                 {l18n.t("test.result.cta", "Get your results")}
               </Button>
