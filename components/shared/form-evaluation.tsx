@@ -94,7 +94,7 @@ export default function Form({
               <div className="mb-10 flex h-8 w-full flex-row align-middle">
                 <Sparckle />
                 <h1
-                  className="mx-3 my-auto text-sm font-medium uppercase text-sky-500"
+                  className="mx-3 my-auto text-sm font-medium uppercase text-lightGreen"
                   dangerouslySetInnerHTML={{
                     __html: title,
                   }}

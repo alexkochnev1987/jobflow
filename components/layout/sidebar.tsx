@@ -17,7 +17,7 @@ const Sidebar = ({ children, className }: Props): ReactElement => {
 export const SidebarItem = ({
   children,
 }: ButtonHTMLAttributes<HTMLButtonElement>) => (
-  <button className="flex justify-start rounded-sm stroke-slate-700 stroke-[1.5] px-2 py-2 text-base font-medium text-slate-700 hover:bg-sky-100 hover:stroke-sky-500 hover:stroke-2 hover:text-sky-500">
+  <button className="flex justify-start rounded-sm stroke-slate-700 stroke-[1.5] px-2 py-2 text-base font-medium text-slate-700 hover:bg-lightBlue hover:stroke-sky-500 hover:stroke-2 hover:text-sky-500">
     {children}
   </button>
 )
