@@ -32,15 +32,6 @@ export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
   console.log("question", question)
   switch (question.type) {
-    // case QUESTION_TYPES.Range:
-    //   return (
-    //     <SliderQuestion
-    //       question={question as EvaluationFormQuestion}
-    //       max={5}
-    //       id={question.id}
-    //       inputRef={inputRef[question.id]}
-    //     />
-    //   )
     case QUESTION_TYPES.Checkbox:
       return (
         <YesNoQuestion
@@ -49,6 +40,7 @@ export function RenderQuestion({ question, inputRef, error }) {
           error={error}
         />
       )
+    case QUESTION_TYPES.Select:
     case QUESTION_TYPES.Button:
     case QUESTION_TYPES.MBTI:
       return (
