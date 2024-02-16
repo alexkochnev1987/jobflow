@@ -83,18 +83,18 @@ export default function Form({
     <div
       className={cn(
         "min-h-full w-full flex-col justify-center ",
-        !showQuestions && "bg-sky-100",
+        !showQuestions && "bg-lightBlue",
       )}
     >
       {showQuestions && <Progress value={percentAnswered} />}
-      <div className="z-10 mx-auto px-10 py-10 md:w-1/2 lg:w-1/2">
+      <div className="z-10 mx-auto max-w-430px">
         {!showQuestions && (
           <>
             <div className="flex-col justify-start gap-8">
               <div className="mb-10 flex h-8 w-full flex-row align-middle">
                 <Sparckle />
                 <h1
-                  className="mx-3 my-auto text-sm font-medium uppercase text-sky-500"
+                  className="mx-3 my-auto text-sm font-medium uppercase text-lightGreen"
                   dangerouslySetInnerHTML={{
                     __html: title,
                   }}
@@ -139,7 +139,7 @@ export default function Form({
                 onClick={() => nextStep()}
                 size="4"
                 variant="solid"
-                className="mt-10 w-full"
+                className="mt-10 w-full bg-magenta"
               >
                 {l18n.t("test.result.cta", "Get your results")}
               </Button>
