@@ -87,7 +87,7 @@ export default function Form({
       )}
     >
       {showQuestions && <Progress value={percentAnswered} />}
-      <div className="z-10 mx-auto max-w-430px">
+      <div className="z-10 mx-auto max-w-lg pt-24">
         {!showQuestions && (
           <>
             <div className="flex-col justify-start gap-8">
