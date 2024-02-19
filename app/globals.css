@@ -22635,6 +22635,8 @@ p ul {
   } 
 }
 
+/* ########### fonts ############ */
+
 @font-face {
   font-family: 'Inter-Bold';
   src: local('Inter-Bold'), url(./fonts/Inter-Bold.woff2) format('woff2');
@@ -22648,4 +22650,27 @@ p ul {
 @font-face {
   font-family: 'Inter-Regular';
   src: local('Inter-Regular'), url(./fonts/Inter-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: local('Raleway-Bold'), url(./fonts/Raleway-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Raleway-Medium';
+  src: local('Raleway-Medium'), url(./fonts/Raleway-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: local('Raleway-Regular'), url(./fonts/Raleway-Regular.woff2) format('woff2');
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway-Bold';
+}
+
+body {
+  font-family: 'Inter-Regular';
 }
