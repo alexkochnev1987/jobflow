@@ -14,7 +14,7 @@ export default async function LoginPage() {
   return (
     <div className="flex flex-row">
       <LoginBackground />
-      <Flex justify="center" align="center" className="mx-auto">
+      <Flex justify="center" align="center" className="mx-auto max-w-md w-full">
         <LoginForm />
       </Flex>
     </div>

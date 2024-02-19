@@ -62,7 +62,7 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="w-full">
       <h1 className="m-10 text-2xl font-normal leading-7">
         {l18n.t("login.title", "Anmelden")}
       </h1>
