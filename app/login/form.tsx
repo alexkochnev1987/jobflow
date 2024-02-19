@@ -62,21 +62,22 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1 className="m-10 text-2xl font-normal leading-7">
+    <form onSubmit={onSubmit} className="w-full mx-10 flex items-center flex-col justify-center">
+      <h1 className="my-10 text-2xl font-normal leading-7">
         {l18n.t("login.title", "Anmelden")}
       </h1>
 
-      <div className="mb-6 flex flex-col gap-2">
-        <label className="text-base">{l18n.t("login.email", "Email")}</label>
+      <div className="mb-6 flex flex-col gap-2 w-full">
+        <label className="text-sm">{l18n.t("login.email", "Email")}</label>
         <Input
           placeholder={l18n.t("login.email", "Email")}
           id="email"
           name="email"
           value={formValues.email}
           onChange={handleChange}
+          className="bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
         />
-        <label className="text-base">
+        <label className="text-sm">
           {l18n.t("login.password", "Password")}
         </label>
         <Input
@@ -86,6 +87,7 @@ export const LoginForm = () => {
           value={formValues.password}
           onChange={handleChange}
           placeholder={l18n.t("login.password", "Password")}
+          className="bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
         />
       </div>
 
@@ -98,7 +100,7 @@ export const LoginForm = () => {
         type="submit"
         variant="solid"
         size="4"
-        className="mx-auto w-full rounded-full"
+        className="mx-auto w-full rounded-full !bg-magenta"
       >
         {loading ? (
           <LoadingDots color="#ffffff" />

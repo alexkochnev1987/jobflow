@@ -12,9 +12,9 @@ export default async function LoginPage() {
     return redirect(ROUTES.DashBoard)
   }
   return (
-    <div className="flex flex-row">
+    <div className="flex h-screen justify-between flex-col-reverse md:flex-row">
       <LoginBackground />
-      <Flex justify="center" align="center" className="mx-auto">
+      <Flex justify="center" align="center" className="mx-auto max-w-md w-full h-full">
         <LoginForm />
       </Flex>
     </div>

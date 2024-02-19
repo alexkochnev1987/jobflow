@@ -87,7 +87,7 @@ export default function Form({
       )}
     >
       {showQuestions && <Progress value={percentAnswered} />}
-      <div className="z-10 mx-auto max-w-430px">
+      <div className="z-10 mx-auto max-w-lg pt-24">
         {!showQuestions && (
           <>
             <div className="flex-col justify-start gap-8">
@@ -111,7 +111,7 @@ export default function Form({
               onClick={() => setShowQuestions(true)}
               size="4"
               variant="solid"
-              className="mt-10 w-full"
+              className="mt-10 w-full !bg-magenta"
             >
               {l18n.t("test.button.start", "Continue")}
             </Button>
@@ -139,7 +139,7 @@ export default function Form({
                 onClick={() => nextStep()}
                 size="4"
                 variant="solid"
-                className="mt-10 w-full bg-magenta"
+                className="mt-10 w-full !bg-magenta"
               >
                 {l18n.t("test.result.cta", "Get your results")}
               </Button>

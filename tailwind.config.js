@@ -46,6 +46,8 @@ module.exports = {
         lightBlue: "#F3F6FC",
         lightGreen: "#5DC4BC",
         magenta: "#FF2C5D",
+        lightGray: "#F9FAFB",
+        darkGray: "#D0D5DD",
         primary: {
           DEFAULT: "hsl(175, 47%, 67%)",
           foreground: "hsla(0, 0%, 100%, 1)",
