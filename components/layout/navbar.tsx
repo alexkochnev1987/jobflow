@@ -25,7 +25,7 @@ export const NavBar = ({
   return (
     <div
       className={cn(
-        `flex w-full justify-center bg-gradient-to-r  from-lightGreen to-mintGreen px-10 py-1`,
+        `flex w-full justify-center bg-gradient-to-r  from-lightGreen to-mintGreen px-5 py-1`,
         rest.className,
       )}
     >
