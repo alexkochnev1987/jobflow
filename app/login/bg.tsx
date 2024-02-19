@@ -6,7 +6,7 @@ export default function LoginBackground() {
       style={{
         backgroundImage: `url(/login-bg.png)`,
       }}
-      className="hidden min-h-screen w-1/2 bg-cover bg-center md:block"
+      className="min-h-96 md:min-h-screen w-full md:w-1/2 bg-cover bg-center md:block"
     ></div>
   )
 }

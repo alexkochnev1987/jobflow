@@ -62,12 +62,12 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full">
+    <form onSubmit={onSubmit} className="w-full mx-10 flex items-center flex-col justify-center">
       <h1 className="my-10 text-2xl font-normal leading-7">
         {l18n.t("login.title", "Anmelden")}
       </h1>
 
-      <div className="mb-6 flex flex-col gap-2">
+      <div className="mb-6 flex flex-col gap-2 w-full">
         <label className="text-sm">{l18n.t("login.email", "Email")}</label>
         <Input
           placeholder={l18n.t("login.email", "Email")}
