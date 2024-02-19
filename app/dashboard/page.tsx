@@ -19,7 +19,7 @@ export default async function Page() {
   const careers = await getCareers()
   const careersRes = careers.map((c) => ({ ...c, rating: 30 }))
   return (
-    <Card className="w-full justify-center text-left" p={5}>
+    <Card className="w-m-full justify-center text-left !shadow-none py-24 mx-5">
       <CareerResults user={session?.user} careers={careersRes} />
     </Card>
   )

@@ -13,7 +13,7 @@ export default function CareerGrid({ careers, isLoading }: Props) {
   console.log(careers)
   return (
     <>
-      <p className="py-8 text-lg font-normal text-neutral-700">
+      <p className="py-8 text-md font-normal text-neutral-700">
         {isLoading && <Skeleton className="w-1/3" count={1} />}
         {!isLoading && (
           <>
@@ -27,7 +27,7 @@ export default function CareerGrid({ careers, isLoading }: Props) {
           </>
         )}
       </p>
-      <p className="pb-8 text-lg font-normal text-neutral-700">
+      <p className="pb-8 text-md font-normal text-neutral-700">
         {!isLoading && (
           <>
             {l18n.t(
@@ -37,7 +37,7 @@ export default function CareerGrid({ careers, isLoading }: Props) {
           </>
         )}
       </p>
-      <div className="flex flex-row flex-wrap">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {isLoading && <Skeleton count={1} height={300} width={300} />}
         {!isLoading && (
           <>

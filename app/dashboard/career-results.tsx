@@ -19,7 +19,7 @@ export function CareerResults({ user, careers }) {
     .sort((a, b) => b.rating - a.rating)
   console.log("careers merged", merged)
   return (
-    <>
+    <div>
       {isLoading && <Skeleton className="w-1/3" height={30} count={1} />}
       {!isLoading && (
         <h1 className="text-xl font-bold leading-8 text-neutral-700">
@@ -29,6 +29,6 @@ export function CareerResults({ user, careers }) {
         </h1>
       )}
       <CareerGrid careers={merged} isLoading={isLoading} />
-    </>
+    </div>
   )
 }

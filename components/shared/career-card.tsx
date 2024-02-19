@@ -60,10 +60,10 @@ export default function CareerCard({ isLoading, data }: Props) {
   return (
     <Link
       href={`/dashboard/career/${data.id}`}
-      className="w-full flex-col items-start justify-start p-4 hover:cursor-pointer  md:w-1/2 lg:w-1/3"
+      className="w-full flex-col items-start justify-start hover:cursor-pointer"
       onClick={onClick}
     >
-      <div className="min-w-[250px] overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
+      <div className="w-full min-w-[250px] overflow-hidden rounded-2xl border border-gray-300 bg-white shadow">
         <div className="relative h-28 w-full">
           <img
             src={getImageFullUrl(data.image)}
