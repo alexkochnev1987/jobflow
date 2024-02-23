@@ -22,10 +22,10 @@ export default async function DashboardLayout({
   }
 
   return (
-    <Box bgColor="#f3f6fc">
+    <Box>
       <NavBar session={session} isCompany={isCompany} />
       <main className="mx-auto flex min-h-screen w-full max-w-5xl justify-stretch py-5">
-        <div className="w-full px-5 ">{children}</div>
+        <div className="w-full">{children}</div>
       </main>
       <Footer />
     </Box>

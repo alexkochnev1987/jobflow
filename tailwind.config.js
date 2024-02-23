@@ -45,6 +45,7 @@ module.exports = {
         foreground: "hsl(240, 2%, 26%)",
         lightBlue: "#F3F6FC",
         lightGreen: "#5DC4BC",
+        mintGreen: "#AEE1DE",
         magenta: "#FF2C5D",
         lightGray: "#F9FAFB",
         darkGray: "#D0D5DD",
