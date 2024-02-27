@@ -248,26 +248,6 @@ model Profile {
   @@index([avatar], map: "profile_avatar_foreign")
 }
 
-// @deprecated
-model QuizzResource {
-  id           Int       @id @default(autoincrement()) @db.UnsignedInt
-  status       String    @default("draft") @db.VarChar(255)
-  sort         Int?
-  user_created String?   @db.Char(36)
-  date_created DateTime? @db.Timestamp(0)
-  user_updated String?   @db.Char(36)
-  date_updated DateTime? @db.Timestamp(0)
-  description  String?   @db.Text
-  file         String?   @db.Char(36)
-  quizzesId    Int?      @db.UnsignedInt
-  Quizzes      Quizzes?  @relation(fields: [quizzesId], references: [id])
-
-  @@index([quizzesId])
-  @@index([file], map: "quizzresource_file_foreign")
-  @@index([user_created], map: "quizzresource_user_created_foreign")
-  @@index([user_updated], map: "quizzresource_user_updated_foreign")
-}
-
 model Quizzes {
   id               Int               @id @default(autoincrement()) @db.UnsignedInt
   status           String            @default("draft") @db.VarChar(255)
@@ -284,7 +264,6 @@ model Quizzes {
   file_name        String?           @db.VarChar(255)
   file_description String?           @db.VarChar(255)
   Careers_Quizzes  Careers_Quizzes[]
-  Quizz_Resource   QuizzResource[] // @deprecated
 
   @@index([image], map: "quizzes_image_foreign")
   @@index([user_created], map: "quizzes_user_created_foreign")
@@ -1065,10 +1044,8 @@ model Careers_Prototypes {
 }
 
 model Quizzes_QuizzResource {
-  id               Int  @id @default(autoincrement()) @db.UnsignedInt
-  Quizzes_id       Int? @db.UnsignedInt
-  QuizzResource_id Int? @db.UnsignedInt
+  id         Int  @id @default(autoincrement()) @db.UnsignedInt
+  Quizzes_id Int? @db.UnsignedInt
 
   @@index([Quizzes_id], map: "quizzes_quizzresource_quizzes_id_foreign")
-  @@index([QuizzResource_id], map: "quizzes_quizzresource_quizzresource_id_foreign")
 }
