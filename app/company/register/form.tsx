@@ -477,7 +477,7 @@ export const RegisterForm = () => {
           <p className="text-red-700">{errors.password.message}</p>
         )}
         {error && <p className="text-red-700">{error}</p>}
-        <Button intent="primary" className="rt-reset-button rt-reset-a rt-BaseButton rt-Button mx-auto w-full rounded-full !bg-magenta rt-r-size-4 rt-variant-solid">
+        <Button intent="primary" className="rt-reset-button rt-reset-a rt-BaseButton rt-Button mx-auto w-full rounded-full !bg-magenta rt-r-size-4 rt-variant-solid mb-20">
           {loading ? <LoadingDots color="#ffffff" /> : "registrieren"}
         </Button>
       </div>
