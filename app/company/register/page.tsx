@@ -13,7 +13,7 @@ export default async function RegisterPage() {
   }
 
   return (
-    <div className="flex h-screen justify-between flex-col-reverse md:flex-row">
+    <div className="flex min-h-screen max-h-full w-full justify-between flex-col-reverse md:flex-row">
     <RegisterBackground />
     <Flex justify="center" align="center" className="mx-auto max-w-md w-full h-full">
       <RegisterForm />
