@@ -11,7 +11,10 @@ export async function getQuizByID(id: string) {
       id: true,
       name: true,
       image: true,
-      description: true
+      description: true,
+      file: true,
+      file_description: true,
+      file_name: true
     }
   })
 }

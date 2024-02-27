@@ -268,23 +268,27 @@ model QuizzResource {
 }
 
 model Quizzes {
-  id              Int               @id @default(autoincrement()) @db.UnsignedInt
-  status          String            @default("draft") @db.VarChar(255)
-  sort            Int?
-  user_created    String?           @db.Char(36)
-  date_created    DateTime?         @db.Timestamp(0)
-  user_updated    String?           @db.Char(36)
-  date_updated    DateTime?         @db.Timestamp(0)
-  description     String?           @db.Text
-  image           String?           @db.Char(36)
-  duration        DateTime?         @db.Time(0)
-  name            String?           @db.VarChar(255)
-  Careers_Quizzes Careers_Quizzes[]
-  Quizz_Resource  QuizzResource[]
+  id               Int               @id @default(autoincrement()) @db.UnsignedInt
+  status           String            @default("draft") @db.VarChar(255)
+  sort             Int?
+  user_created     String?           @db.Char(36)
+  date_created     DateTime?         @db.Timestamp(0)
+  user_updated     String?           @db.Char(36)
+  date_updated     DateTime?         @db.Timestamp(0)
+  description      String?           @db.Text
+  image            String?           @db.Char(36)
+  duration         DateTime?         @db.Time(0)
+  name             String?           @db.VarChar(255)
+  file             String?           @db.Char(36)
+  file_name        String?           @db.VarChar(255)
+  file_description String?           @db.VarChar(255)
+  Careers_Quizzes  Careers_Quizzes[]
+  Quizz_Resource   QuizzResource[]
 
   @@index([image], map: "quizzes_image_foreign")
   @@index([user_created], map: "quizzes_user_created_foreign")
   @@index([user_updated], map: "quizzes_user_updated_foreign")
+  @@index([file], map: "quizzes_file_foreign")
 }
 
 model Session {

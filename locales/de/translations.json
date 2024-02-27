@@ -101,7 +101,8 @@
   "view-course": {
     "title": "Was Sie von diesem Kurzkurs erwarten können",
     "files": "Files",
-    "download": "Download"
+    "download": "Download",
+    "file": "File"
   },
   "settings": {
     "title": "Einstellungen",
