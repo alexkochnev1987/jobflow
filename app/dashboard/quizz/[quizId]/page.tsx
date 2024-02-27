@@ -1,9 +1,8 @@
 "use server"
 import React from "react"
 import GoBack from "@/components/shared/go-back"
-import { getQuizByID, getQuizzResources } from "@/app/actions/quizzes"
+import { getQuizByID } from "@/app/actions/quizzes"
 import ViewQuizz from "./view-quizz"
-import { Quizzes } from "@prisma/client"
 import { Card } from "@chakra-ui/react"
 
 export default async function Page({ params }: { params: { quizId: string } }) {
@@ -14,9 +13,7 @@ export default async function Page({ params }: { params: { quizId: string } }) {
   return (
     <Card p={5}>
       <GoBack title={quizz.name} />
-      <ViewQuizz
-        quizz={quizz}
-      />
+      <ViewQuizz quizz={quizz} />
     </Card>
   )
 }
