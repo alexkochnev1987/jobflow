@@ -70,7 +70,7 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-full max-w-md">
+    <form onSubmit={handleSubmit(onSubmit)} className="p-4 lg:p-0 mx-auto w-full max-w-md">
       <div className="my-10 text-2xl font-bold leading-7">Registrieren</div>
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
@@ -88,17 +88,17 @@ export const RegisterForm = () => {
             setValue("business", "training")
           }}
           className={cn(
-            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white py-2 text-center align-middle text-gray-500",
-            isTraining && "border-emerald-300 bg-slate-100 text-emerald-300",
+            "flex w-1/2 cursor-pointer max-h-70 flex-col justify-center rounded-md border border-gray-300 bg-white py-2 text-center align-middle text-gray-500",
+            isTraining && "border-lightGreen !bg-lightGray text-lightGreen",
           )}
         >
           <Cap
             className={cn(
               "mx-auto h-10 w-10 stroke-gray-500",
-              isTraining && "stroke-emerald-300",
+              isTraining && "stroke-lightGreen",
             )}
           />
-          <p className="font-bold">Bildungsträger</p>
+          <p className="font-bold text-sm">Bildungsträger</p>
         </div>
         <div
           role="button"
@@ -110,17 +110,17 @@ export const RegisterForm = () => {
             setValue("business", "company")
           }}
           className={cn(
-            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
-            isCompany && "border-emerald-300 bg-slate-100 text-emerald-300",
+            "flex w-1/2 cursor-pointer max-h-70 flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
+            isCompany && "border-lightGreen !bg-lightGray text-lightGreen",
           )}
         >
           <Building
             className={cn(
               "mx-auto h-10 w-10 stroke-gray-500",
-              isCompany && "stroke-emerald-300",
+              isCompany && "stroke-lightGreen",
             )}
           />
-          <p className="font-bold">Ausbildungsbetrieb</p>
+          <p className="font-bold text-sm">Ausbildungsbetrieb</p>
         </div>
       </div>
       {errors.business && (
