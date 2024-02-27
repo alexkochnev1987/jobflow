@@ -55,7 +55,7 @@ export default function CompanyCourses({ courses }) {
       <AlertDialog open={deleteId > 0}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Bist du dir sicher?</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel
@@ -75,7 +75,7 @@ export default function CompanyCourses({ courses }) {
       </AlertDialog>
       <Flex direction="row" justify="between">
         <h1 className="text-xl font-medium leading-8 text-gray-900">
-          Trainings
+          Ausbildungen
         </h1>
 
         <Link href={ROUTES.AddCourse}>
@@ -84,7 +84,7 @@ export default function CompanyCourses({ courses }) {
       </Flex>
 
       {courses.length === 0 && (
-        <h2 className="text-center text-lg">No trainings found.</h2>
+        <div className="text-center text-lg">Es wurden noch keine Ausbildung angelegt</div>
       )}
 
       {courses.map((course) => (

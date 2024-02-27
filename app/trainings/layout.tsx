@@ -23,7 +23,7 @@ export default async function DashboardLayout({
   return (
     <div>
       <NavBar session={session} isCompany={isCompany} />
-      <main className="mx-auto flex min-h-screen w-full max-w-5xl justify-stretch py-5">
+      <main className="mx-auto flex min-h-screen w-full max-w-5xl justify-stretch py-20">
         <div className="w-full px-5 ">{children}</div>
       </main>
       <FooterComponent />
