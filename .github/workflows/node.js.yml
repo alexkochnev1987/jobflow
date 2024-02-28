@@ -20,6 +20,6 @@ jobs:
           node-version: 18.16.1
           cache: "npm"
       - run: npm ci
-      - run: npm run deploy
+      - run: npm run build
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
