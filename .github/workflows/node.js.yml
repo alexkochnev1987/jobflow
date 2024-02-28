@@ -5,7 +5,7 @@ name: Deploy CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["test", "main"]
 
 jobs:
   deploy:
