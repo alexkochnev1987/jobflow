@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 import { Template as ResetPasswordEmail } from "@/emails/forgot-password-email"
 import { hash } from "bcryptjs";
-import { aw } from "@directus/sdk/dist/index-7ec1f729";
+import prisma from "lib/prisma";
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
