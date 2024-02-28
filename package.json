@@ -83,6 +83,7 @@
     "i18next-chained-backend": "^4.6.2",
     "i18next-fs-backend": "^2.3.0",
     "i18next-http-backend": "^2.4.2",
+    "jsonwebtoken": "^9.0.2",
     "jsx-email": "^1.7.1",
     "langfuse": "^3.0.2",
     "lucide-react": "^0.105.0",
