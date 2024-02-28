@@ -9,7 +9,7 @@ import {
   Flex,
   PopoverContent,
   TextArea,
-  TextFieldInput,
+  TextFieldInput
 } from "@radix-ui/themes"
 import { useForm } from "react-hook-form"
 import BackIcon from "@/icons/back.svg"
@@ -91,12 +91,22 @@ export default function CourseForm({ defaultValues = {} }) {
             <BackIcon />
           </Link>
           <h1 className="text-xl font-medium leading-8 text-gray-900">
-            {id ? "Edit course" : "Add course"}
+            {id ? "Ausbildung bearbeiten" : "Ausbildung hinzufügen"}
           </h1>
         </Flex>
-        <TextFieldInput {...register("name")} placeholder="Name" />
+        <TextFieldInput {...register("name")} 
+          placeholder="Name" 
+          id="name"
+          name="name"
+          className="bg-lightGray text-sm border-1 border-darkGray placeholder:text-darkGray"
+        />
         {errors.name && <p className="text-red-700">{errors.name.message}</p>}
-        <TextFieldInput {...register("location")} placeholder="Location" />
+        <TextFieldInput {...register("location")} 
+          placeholder="Ort" 
+          id="location"
+          name="location"
+          className="bg-lightGray text-sm border-1 border-darkGray placeholder:text-darkGray"
+        />
         {errors.location && (
           <p className="text-red-700">{errors.location.message}</p>
         )}

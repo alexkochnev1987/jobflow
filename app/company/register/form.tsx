@@ -70,11 +70,12 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-full max-w-md">
+    <form onSubmit={handleSubmit(onSubmit)} className="p-4 lg:p-0 mx-auto w-full max-w-md">
+      <div className="my-10 text-2xl font-bold leading-7">Registrieren</div>
       {error && (
         <p className="mb-6 rounded bg-red-300 py-4 text-center">{error}</p>
       )}
-      <h1 className="mb-5 text-xl font-bold leading-7">Business</h1>
+      <div className="my-5 text-normal font-bold leading-7">Unternehmenstyp</div>
       <input type="hidden" {...register("business")} />
       <div className="flex w-full flex-row gap-1">
         <div
@@ -87,17 +88,17 @@ export const RegisterForm = () => {
             setValue("business", "training")
           }}
           className={cn(
-            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white py-2 text-center align-middle text-gray-500",
-            isTraining && "border-emerald-300 bg-slate-100 text-emerald-300",
+            "flex w-1/2 cursor-pointer max-h-70 flex-col justify-center rounded-md border border-gray-300 bg-white py-2 text-center align-middle text-gray-500",
+            isTraining && "border-lightGreen !bg-lightGray text-lightGreen",
           )}
         >
           <Cap
             className={cn(
               "mx-auto h-10 w-10 stroke-gray-500",
-              isTraining && "stroke-emerald-300",
+              isTraining && "stroke-lightGreen",
             )}
           />
-          <p className="font-bold">Training Institute</p>
+          <p className="font-bold text-sm">Bildungsträger</p>
         </div>
         <div
           role="button"
@@ -109,46 +110,46 @@ export const RegisterForm = () => {
             setValue("business", "company")
           }}
           className={cn(
-            "flex w-1/2 cursor-pointer flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
-            isCompany && "border-emerald-300 bg-slate-100 text-emerald-300",
+            "flex w-1/2 cursor-pointer max-h-70 flex-col justify-center rounded-md border border-gray-300 bg-white text-center align-middle text-gray-500",
+            isCompany && "border-lightGreen !bg-lightGray text-lightGreen",
           )}
         >
           <Building
             className={cn(
               "mx-auto h-10 w-10 stroke-gray-500",
-              isCompany && "stroke-emerald-300",
+              isCompany && "stroke-lightGreen",
             )}
           />
-          <p className="font-bold">Company</p>
+          <p className="font-bold text-sm">Ausbildungsbetrieb</p>
         </div>
       </div>
       {errors.business && (
         <p className="text-red-700">{errors.business.message}</p>
       )}
-      <h1 className="my-5 text-xl font-bold leading-7">Company</h1>
+      <div className="my-5 text-normal font-bold leading-7">Company</div>
       <div className="mb-6 flex flex-col gap-2">
-        <Input {...register("name", { required: true })} placeholder="Name" />
+        <Input {...register("name", { required: true })} placeholder="Firmenname" />
         {errors.name && <p className="text-red-700">{errors.name.message}</p>}
         <Input
           {...register("vat", { required: true })}
-          placeholder="Tax/VAT number"
+          placeholder="Steuernummer"
         />
         {errors.vat && <p className="text-red-700">{errors.vat.message}</p>}
         <div className="flex flex-row gap-1">
           <Input
             {...register("street", { required: true })}
-            placeholder="Street Address"
+            placeholder="Straße"
           />
           <Input
             {...register("zip", { required: true })}
-            placeholder="Zip / Postal code"
+            placeholder="PLZ"
           />
         </div>
         {errors.street && (
           <p className="text-red-700">{errors.street.message}</p>
         )}
         {errors.zip && <p className="text-red-700">{errors.zip.message}</p>}
-        <Input {...register("city", { required: true })} placeholder="City" />
+        <Input {...register("city", { required: true })} placeholder="Stadt" />
         {errors.city && <p className="text-red-700">{errors.city.message}</p>}
         <Select name="Country" {...register("country")}>
           <option value="Afghanistan">Afghanistan</option>
@@ -425,43 +426,43 @@ export const RegisterForm = () => {
         )}
         <Input
           {...register("email_billing", { required: true })}
-          placeholder="E-mail for billing"
+          placeholder="E-Mail für Rechnungen"
         />
         {errors.email_billing && (
           <p className="text-red-700">{errors.email_billing.message}</p>
         )}
         <PhoneInput
-          placeholder="Phone"
+          placeholder="Mobilnummer"
           value={phone}
           onChange={setPhone}
           defaultCountry="DE"
         />
         {errors.phone && <p className="text-red-700">{errors.phone.message}</p>}
-        <Input {...register("web", { required: true })} placeholder="Web" />
+        <Input {...register("web", { required: true })} placeholder="Webseite" />
         {errors.web && <p className="text-red-700">{errors.web.message}</p>}
-        <h1 className="my-5 text-xl font-bold leading-7">Contact Person</h1>
+        <div className="my-5 text-normal font-bold leading-7">Kontakt</div>
         <Input
           {...register("first_name", { required: true })}
-          placeholder="First name"
+          placeholder="Vorname"
         />
         {errors.first_name && (
           <p className="text-red-700">{errors.first_name.message}</p>
         )}
         <Input
           {...register("last_name", { required: true })}
-          placeholder="Last name"
+          placeholder="Nachname"
         />
         {errors.last_name && (
           <p className="text-red-700">{errors.last_name.message}</p>
         )}
         <Input
           {...register("email_requests", { required: true })}
-          placeholder="E-mail for requests"
+          placeholder="E-mail für Anfragen"
         />
         {errors.email_requests && (
           <p className="text-red-700">{errors.email_requests.message}</p>
         )}
-        <h1 className="my-5 text-xl font-bold leading-7">Account</h1>
+        <div className="my-5 text-normal font-bold leading-7">Anmeldedaten</div>
         <Input
           {...register("email", { required: true })}
           placeholder="E-mail"
@@ -469,15 +470,15 @@ export const RegisterForm = () => {
         {errors.email && <p className="text-red-700">{errors.email.message}</p>}
         <Input
           {...register("password", { required: true })}
-          placeholder="Password"
+          placeholder="Passwort"
           type="password"
         />
         {errors.password && (
           <p className="text-red-700">{errors.password.message}</p>
         )}
         {error && <p className="text-red-700">{error}</p>}
-        <Button intent="primary" className="!bg-rose-500 hover:!bg-rose-400">
-          {loading ? <LoadingDots color="#ffffff" /> : "Register"}
+        <Button intent="primary" className="rt-reset-button rt-reset-a rt-BaseButton rt-Button mx-auto w-full rounded-full !bg-magenta rt-r-size-4 rt-variant-solid mb-20">
+          {loading ? <LoadingDots color="#ffffff" /> : "registrieren"}
         </Button>
       </div>
     </form>
