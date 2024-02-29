@@ -13,16 +13,20 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
+    arrows: true
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
+    arrows: false
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
+    arrows: false
   },
 }
+
 const ButtonGroup = ({ next, previous }) => {
   return (
     <div className="carousel-button-group absolute -top-8 right-1 flex cursor-pointer flex-row gap-3">
@@ -38,12 +42,11 @@ export default function CourseCarousel({ courses }: Props) {
 
   return (
     <>
-      <p className="mb-5 mt-8  text-base font-semibold leading-normal text-slate-700">
+      <p className="mb-5 mt-10 text-md font-semibold leading-normal">
         {l18n.t("course.carousel.title", "Umschulungen")}{" "}
         <span className="font-normal text-gray-400">({courses.length})</span>
       </p>
       <Carousel
-        arrows={false}
         customButtonGroup={
           <ButtonGroup next={undefined} previous={undefined} />
         }

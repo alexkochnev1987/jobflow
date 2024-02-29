@@ -35,9 +35,9 @@ export default async function Page({
   const pace = getCareerPace(career)
   const format = getCareerFormat(career)
   return (
-    <Card p={5}>
+    <Card className="!shadow-none" p={5}>
       <Link href={ROUTES.DashBoard}>
-        <h1 className="flex cursor-pointer flex-row items-center text-xl font-bold">
+        <h1 className="flex cursor-pointer flex-row items-center text-md font-bold">
           <BackIcon /> {l18n.t("dashboard.career.back", "Results")}
         </h1>
       </Link>
