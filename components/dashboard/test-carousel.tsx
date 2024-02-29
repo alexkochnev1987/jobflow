@@ -13,14 +13,20 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
+    arrows: true,
+    swipeable: false
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
+    arrows: false,
+    swipeable: true
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
+    arrows: false,
+    swipeable: true
   },
 }
 
@@ -34,7 +40,6 @@ const ButtonGroup = ({ next, previous }) => {
 }
 
 export default function TestsCarousel({ tests }: Props) {
-  console.log(tests)
 
   if (!tests || tests.length < 1) {
     return <></>
@@ -42,17 +47,15 @@ export default function TestsCarousel({ tests }: Props) {
 
   return (
     <div className="relative">
-      <p className="mb-5 mt-2 text-base font-semibold leading-normal text-slate-700">
+      <p className="mb-5 mt-2 text-md font-semibold leading-normal">
         {l18n.t("test.carousel.title", "Beruf testen")}{" "}
         <span className="font-normal text-gray-400">({tests.length})</span>
       </p>
       <Carousel
-        arrows={false}
         customButtonGroup={
           <ButtonGroup next={undefined} previous={undefined} />
         }
         responsive={responsive}
-        swipeable={true}
         showDots={false}
         ssr={true} // means to render carousel on server-side.
         infinite={true}

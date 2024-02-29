@@ -6,7 +6,7 @@ import Clock from "@/icons/clock.svg"
 import Location from "@/icons/location.svg"
 import Currency from "@/icons/currency.svg"
 
-import { Badge, Flex } from "@radix-ui/themes"
+import { Badge, Grid, Flex } from "@radix-ui/themes"
 import { Info } from "lucide-react"
 import { Career } from "@/components/shared/career-card"
 import { cn, formatArray, getImageFullUrl, salaryFormatter } from "@/lib/utils"
@@ -37,7 +37,7 @@ function JobListing({
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   return (
-    <div className="flex flex-col items-start self-stretch bg-white py-6">
+    <div className="flex flex-col items-start self-stretch bg-white pt-6">
       <div className="w-[423px] max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex w-[48%] flex-col items-stretch max-md:ml-0 max-md:w-full">
@@ -48,7 +48,7 @@ function JobListing({
             />
           </div>
           <div className="ml-5 flex  flex-col items-stretch max-md:ml-0 max-md:w-full">
-            <div className="my-auto flex flex-col px-5 py-0.5 max-md:mt-10">
+            <div className="my-auto flex flex-col px-0 md:px-5 py-0 md:py-0.5 max-md:mt-10">
               <Badge color="green" radius="full" className="w-40">
                 {l18n.t("view-job.match", "{{rating}}% Match", {
                   rating,
@@ -96,7 +96,7 @@ function JobListing({
           </div>
         </div>
       </div>
-      <div className="mt-6 w-full self-stretch text-base leading-6 text-black max-md:max-w-full">
+      <div className="mt-6 w-full self-stretch text-sm leading-6 text-black max-md:max-w-full">
         <p>{description}</p>
       </div>
       <div
@@ -106,49 +106,52 @@ function JobListing({
         onClick={() => setIsCollapsed(!isCollapsed)}
         onKeyDown={() => setIsCollapsed(!isCollapsed)}
       >
-        <div className="my-auto grow whitespace-nowrap text-sm font-medium text-emerald-300">
+        <div className="my-auto grow whitespace-nowrap text-sm font-medium text-black underline">
           {l18n.t("view-job.show-details", "Show details")}
         </div>
-        <ChevronMore className={cn(!isCollapsed && "rotate-180")} />
+        <ChevronMore fill="black" className={cn(isCollapsed && "rotate-180 text-black")} />
       </div>
-      <Collapsible open={isCollapsed} className="w-full">
-        <CollapsibleContent className="w-full">
-          <Flex direction="column" gap="4">
-            <Flex direction="row" align="stretch" className="w-full" gap="2">
-              <Flex className="w-1/3" direction="column">
-                <h1 className="font-bold">
-                  {l18n.t("view-job.what-does", "What does a {{name}} do?", {
-                    name,
-                  })}
-                </h1>
-                <p dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
-              </Flex>
-              <Flex className="w-1/3" direction="column">
-                <h1 className="font-bold">
-                  {l18n.t(
-                    "dashboard.view-job.how-become",
-                    "How do I become a {{name}}?",
-                    {
-                      name,
-                    },
-                  )}
-                </h1>
-                <p dangerouslySetInnerHTML={{ __html: detailsTasks }} />
-              </Flex>
-              <Flex className="w-1/3" direction="column">
-                <h1 className="font-bold">
-                  {l18n.t("view-job.skills", "Skills")}
-                </h1>
-                <p dangerouslySetInnerHTML={{ __html: detailsSkills }} />
-              </Flex>
+      <Collapsible open={isCollapsed} className="w-full my-5">
+        <CollapsibleContent className="w-full my-5">
+          <Grid columns="{{ initial: '1', lg: '2' }}" gap="3" width="auto">
+            <Flex direction="column" gap="1" className="mb-2">
+              <div className="text-sm font-bold">
+                {l18n.t("view-job.what-does", "What does a {{name}} do?", {
+                  name,
+                  'interpolation': {'escapeValue': false}
+                })}
+              </div>
+              <p className="text-sm" dangerouslySetInnerHTML={{ __html: detailsRequirement }} />
             </Flex>
-            <h1 className="font-bold">
-              {l18n.t("view-job.future", "Future perspective of {{name}}", {
-                name,
-              })}
-            </h1>
-            <p dangerouslySetInnerHTML={{ __html: detailsFuture }} />
-          </Flex>
+            <Flex direction="column" gap="1" className="mb-2">
+              <div className="text-sm font-bold">
+                {l18n.t(
+                  "dashboard.view-job.how-become",
+                  "How do I become a {{name}}?",
+                  {
+                    name,
+                    'interpolation': {'escapeValue': false}
+                  },
+                )}
+              </div>
+              <p className="text-sm" dangerouslySetInnerHTML={{ __html: detailsTasks }} />
+            </Flex>
+            <Flex direction="column" gap="1" className="mb-2">
+              <div className="text-sm font-bold">
+                {l18n.t("view-job.skills", "Skills")}
+              </div>
+              <p className="text-sm" dangerouslySetInnerHTML={{ __html: detailsSkills }} />
+            </Flex>
+            <Flex direction="column" gap="1" className="mb-2">
+              <div className="text-sm font-bold">
+                {l18n.t("view-job.future", "Future perspective of {{name}}", {
+                  name,
+                  'interpolation': {'escapeValue': false}
+                })}
+              </div>
+              <p className="text-sm" dangerouslySetInnerHTML={{ __html: detailsFuture }} />
+            </Flex>
+          </Grid>
         </CollapsibleContent>
       </Collapsible>
     </div>
