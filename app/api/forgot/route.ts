@@ -53,37 +53,23 @@ export async function POST(req: NextRequest) {
   }));
 }
 
-function verifyToken(token: string, email: string): Promise<boolean> {
+function verifyToken(token: string): Promise<string> {
   return new Promise((resolve, reject) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         return reject(err);
       }
-
-      if (decoded.email !== email) {
-        return reject(err);
-      }
-
-      return resolve(true);
+      return resolve(decoded.email);
     });
   })
 }
 
 export async function PUT(req: NextRequest) {
-  const { email, token, password } = await req.json();
+  const { token, password } = await req.json();
 
   console.log("Token", token);
 
-  try {
-    await verifyToken(token, email);
-  } catch (err) {
-    return new NextResponse(JSON.stringify({
-      status: 400,
-      body: {
-        message: 'Invalid token',
-      },
-    }));
-  }
+  const email = await verifyToken(token);
 
   const hashed_password = await hash(password, 12)
 
