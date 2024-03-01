@@ -1,5 +1,5 @@
 # JobFlow
-
+[![Deploy CI](https://github.com/guluarte/jobflow/actions/workflows/deploy.js.yml/badge.svg?branch=test)](https://github.com/guluarte/jobflow/actions/workflows/deploy.js.yml)
 
 [![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
