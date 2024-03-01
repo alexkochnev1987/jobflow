@@ -279,6 +279,8 @@ model Quizzes {
   image           String?           @db.Char(36)
   name            String?           @db.VarChar(255)
   duration        Int?
+  content         String?           @db.Text
+  type            String?           @db.VarChar(255)
   Careers_Quizzes Careers_Quizzes[]
   Quizz_Resource  QuizzResource[]
 
