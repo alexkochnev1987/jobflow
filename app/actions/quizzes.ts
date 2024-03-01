@@ -11,7 +11,8 @@ export async function getQuizByID(id: string) {
       id: true,
       name: true,
       image: true,
-      description: true
+      content: true,
+      type: true
     }
   })
 }

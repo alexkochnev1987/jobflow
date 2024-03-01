@@ -11,22 +11,17 @@ type Props = Partial<Quizzes> &
     prototypes?: Partial<QuizzResource>[]
   }
 
-function ViewQuizz({ image, description, prototypes }: Props) {
+function ViewQuizz({ image, content, type, prototypes }: Props) {
   return (
     <>
-      <Grid columns="2" gap="4" width="auto" className="my-5">
+      <Grid gap="4" width="auto" className="my-5 grid-cols-1 md:grid-cols-2">
         <img
           src={getImageFullUrl(image)}
           className="h-full w-full rounded-2xl object-cover"
           alt=""
         />
         <Flex direction="column" gap="4">
-          <h2 className="text-lg font-bold leading-7">
-            {l18n.t("view-course.title", "What you’ll get from this short course")}
-          </h2>
-          <p className="text-base font-normal leading-normal">
-            {description}
-          </p>
+          <div className="text-sm font-normal leading-normal" dangerouslySetInnerHTML={{__html: content}} />
         </Flex>
       </Grid>
       {prototypes?.length > 0 && (

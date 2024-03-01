@@ -15,11 +15,12 @@ export default async function Page({ params }: { params: { quizId: string } }) {
   console.log("resources", resources)
 
   return (
-    <Card p={5}>
+    <Card className="!shadow-none" p={5}>
       <GoBack title={quizz.name} />
       <ViewQuizz
         image={quizz.image}
-        description={quizz.description}
+        content={quizz.content}
+        type={quizz.type}
         prototypes={resources}
       />
     </Card>
