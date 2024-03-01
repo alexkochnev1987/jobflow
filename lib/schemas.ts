@@ -54,3 +54,9 @@ export const schemaNewCourse = yup
     apprenticenship: yup.string(),
   })
   .required()
+
+export const schemaRequestResetPassword = yup
+  .object({
+    email: yup.string().email().required(l18n.t("schemaResetPassword.email.required")),
+  })
+  .required()

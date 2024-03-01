@@ -4,11 +4,12 @@
 import { Google, LoadingDots } from "@/components/shared/icons"
 import { Input } from "@/components/shared/input"
 import { ROUTES } from "@/lib/constants"
-import { Button } from "@radix-ui/themes"
+import { Button, Flex } from "@radix-ui/themes"
 import { signIn } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChangeEvent, useState } from "react"
 import l18n from "@/i18n/config"
+import Link from "next/link"
 
 export const LoginForm = () => {
   const router = useRouter()
@@ -62,12 +63,15 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full mx-10 flex items-center flex-col justify-center">
+    <form
+      onSubmit={onSubmit}
+      className="mx-10 flex w-full flex-col items-center justify-center"
+    >
       <h1 className="my-10 text-2xl font-normal leading-7">
         {l18n.t("login.title", "Anmelden")}
       </h1>
 
-      <div className="mb-6 flex flex-col gap-2 w-full">
+      <div className=" flex w-full flex-col gap-2">
         <label className="text-sm">{l18n.t("login.email", "Email")}</label>
         <Input
           placeholder={l18n.t("login.email", "Email")}
@@ -75,7 +79,7 @@ export const LoginForm = () => {
           name="email"
           value={formValues.email}
           onChange={handleChange}
-          className="bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
+          className="border-1 border-darkGray bg-lightGray placeholder:text-darkGray"
         />
         <label className="text-sm">
           {l18n.t("login.password", "Password")}
@@ -87,7 +91,7 @@ export const LoginForm = () => {
           value={formValues.password}
           onChange={handleChange}
           placeholder={l18n.t("login.password", "Password")}
-          className="bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
+          className="border-1 border-darkGray bg-lightGray placeholder:text-darkGray"
         />
       </div>
 
@@ -96,11 +100,16 @@ export const LoginForm = () => {
           {getFriendlyErrorMessage(error)}
         </p>
       )}
+      <Flex justify="start" align="start" width="100%">
+        <Link href="/login/reset-password" className="text-left">
+          Reset password
+        </Link>
+      </Flex>
       <Button
         type="submit"
         variant="solid"
         size="4"
-        className="mx-auto w-full rounded-full !bg-magenta"
+        className="mx-auto mt-2 w-full rounded-full !bg-magenta"
       >
         {loading ? (
           <LoadingDots color="#ffffff" />

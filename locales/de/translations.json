@@ -244,5 +244,17 @@
     "name": {
       "required": "Name ist erforderlich"
     }
+  },
+  "schemaResetPassword": {
+    "token": {
+      "required": "schemaResetPassword.token.required"
+    },
+    "email": {
+      "required": "schemaResetPassword.email.required"
+    },
+    "password": {
+      "min": "schemaResetPassword.password.min",
+      "max": "schemaResetPassword.password.max"
+    }
   }
 }
