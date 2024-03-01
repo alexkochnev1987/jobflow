@@ -32,7 +32,7 @@
     "blog": "Blog",
     "FAQ": "FAQ",
     "About": "Über",
-    "out-team": "unser Team",
+    "out-team": "Unser Team",
     "companies": "Unternehmen",
     "philosophy": "Philosophie",
     "social": "Sozial",
@@ -244,6 +244,18 @@
     },
     "name": {
       "required": "Name ist erforderlich"
+    }
+  },
+  "schemaResetPassword": {
+    "token": {
+      "required": "schemaResetPassword.token.required"
+    },
+    "email": {
+      "required": "schemaResetPassword.email.required"
+    },
+    "password": {
+      "min": "schemaResetPassword.password.min",
+      "max": "schemaResetPassword.password.max"
     }
   }
 }

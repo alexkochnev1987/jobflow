@@ -9,7 +9,7 @@ import {
   Flex,
   PopoverContent,
   TextArea,
-  TextFieldInput,
+  TextFieldInput
 } from "@radix-ui/themes"
 import { useForm } from "react-hook-form"
 import BackIcon from "@/icons/back.svg"
@@ -91,46 +91,53 @@ export default function CourseForm({ defaultValues = {} }) {
             <BackIcon />
           </Link>
           <h1 className="text-xl font-medium leading-8 text-gray-900">
-            {id ? "Edit course" : "Add course"}
+            {id ? "Ausbildung bearbeiten" : "Ausbildung hinzufügen"}
           </h1>
         </Flex>
-        <TextFieldInput {...register("name")} placeholder="Name" />
-        {errors.name && <p className="text-red-700">{errors.name.message}</p>}
-        <TextFieldInput {...register("location")} placeholder="Location" />
-        {errors.location && (
-          <p className="text-red-700">{errors.location.message}</p>
-        )}
-        <TextFieldInput
-          {...register("price")}
-          placeholder="Price"
-          type="number"
-        />
-        {errors.price && <p className="text-red-700">{errors.price.message}</p>}
-        <TextArea
-          {...register("description")}
-          className="h-20"
-          placeholder="Description"
-          rows={3}
-        />
-        {errors.description && (
-          <p className="text-red-700">{errors.description.message}</p>
-        )}
-
-        <Flex direction="row" gap="1" justify="between">
-          <Flex>
+        <Flex className="form-group mt-5 flex flex-col gap-2">
+          <h2 className="text-sm font-bold">Allgemein</h2>
+          <TextFieldInput {...register("name")} 
+            placeholder="Name" 
+            id="name"
+            name="name"
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-base py-2 px-4 bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
+          />
+          {errors.name && <p className="text-red-700">{errors.name.message}</p>}
+          <TextArea
+            {...register("description")}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 !text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-base !py-2 !px-4 !bg-lightGray !border-1 border-darkGray placeholder:text-darkGray"
+            placeholder="Beschreibung"
+            rows={5}
+          />
+          {errors.description && (
+            <p className="text-red-700">{errors.description.message}</p>
+          )}
+          <TextFieldInput {...register("location")} 
+            placeholder="Ort" 
+            id="location"
+            name="location"
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-base py-2 px-4 bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
+          />
+          {errors.location && (
+            <p className="text-red-700">{errors.location.message}</p>
+          )}
+        </Flex>
+        <Flex className="form-group mt-5 flex-col gap-2">
+          <h2 className="text-sm font-bold">Datum & Preis</h2>
+          <div className="flex flex-row gap-10">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant={"soft"}
                   className={cn(
-                    "w-[240px] pl-3 text-left font-normal",
+                    "w-[240px] pl-3 text-left font-normal !bg-lightGray !text-black",
                     !start_date && "text-muted-foreground",
                   )}
                 >
                   {start_date ? (
                     format(start_date, "PPP")
                   ) : (
-                    <span>Pick a date</span>
+                    <span>Startdatum</span>
                   )}
                   <CalendarDays className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
@@ -144,7 +151,18 @@ export default function CourseForm({ defaultValues = {} }) {
                 />
               </PopoverContent>
             </Popover>
-          </Flex>
+            <TextFieldInput
+              {...register("price")}
+              placeholder="Preis in €"
+              type="number"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-base py-2 px-4 bg-lightGray border-1 border-darkGray placeholder:text-darkGray"
+            />
+          </div>
+          {errors.price && <p className="text-red-700">{errors.price.message}</p>}
+        </Flex>
+        <Flex direction="row" gap="1" justify="between" className="form-group mt-5 flex-col gap-2">
+          <h2 className="text-sm font-bold">Medien</h2>
+          <p className="text-sm">Erregen Sie durch ein ansprechendes Bild ihre Aufmerksamkeit</p>
           <Flex>
             <ImageUploading
               value={images}
@@ -170,11 +188,11 @@ export default function CourseForm({ defaultValues = {} }) {
                   )}
                   {imageList.length === 0 && (
                     <Button
-                      className="h-10"
+                      className="h-10 !bg-lightGreen"
                       onClick={onImageUpload}
                       {...dragProps}
                     >
-                      Upload image
+                      Bild hochladen
                     </Button>
                   )}
                   {imageList.map((image, index) => (
@@ -182,10 +200,10 @@ export default function CourseForm({ defaultValues = {} }) {
                       <img src={image["data_url"]} alt="" width="100" />
                       <Flex gap="1">
                         <button onClick={() => onImageUpdate(index)}>
-                          Update
+                          Aktualisieren
                         </button>
                         <button onClick={() => onImageRemove(index)}>
-                          Remove
+                          Entfernen
                         </button>
                       </Flex>
                     </div>
@@ -216,42 +234,50 @@ export default function CourseForm({ defaultValues = {} }) {
 
         {errors.price && <p className="text-red-700">{errors.price.message}</p>}
 
-        <Flex direction="row" wrap="wrap" gap="2">
-          <Flex direction="column">
-            <label htmlFor="part_time" className="font-medium">
-              Pace
+        <Flex direction="row" wrap="wrap" className="form-group mt-5 flex-col gap-2">
+          <h2 className="text-sm font-bold">Zusätzliche Information</h2>
+          <Flex direction="row" gap="5">
+            <label htmlFor="part_time" className="text-sm font-medium w-32">
+              Angebot
             </label>
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("part_time")} /> <label htmlFor="part_time" >Part-time</label>
-            </Flex>
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("full_time")} /> <label htmlFor="full_time" >Full-time</label>
+            <Flex direction="column">
+              <Flex direction="row" align="center" gap="1">
+                <Checkbox {...register("part_time")} /> <label htmlFor="part_time" className="text-sm">Vollzeit</label>
+              </Flex>
+              <Flex direction="row" align="center" gap="1">
+                <Checkbox {...register("full_time")} /> <label htmlFor="full_time" className="text-sm">Teilzeit</label>
+              </Flex>
             </Flex>
           </Flex>
-          <Flex direction="column">
-            <label htmlFor="training" className="font-medium">
-              Type
+          <Flex direction="row" gap="5">
+            <label htmlFor="training" className="text-sm font-medium w-32">
+              Typ
             </label>
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("training")} /> <label htmlFor="training">Training</label>
-            </Flex>
-            <Flex direction="row" align="center" gap="1">
-              <Checkbox {...register("apprenticenship")} value="on" />
-              <label htmlFor="apprenticenship">Apprenticenship</label>
+            <Flex direction="column">
+              <Flex direction="row" align="center" gap="1">
+                <Checkbox {...register("training")} /> <label htmlFor="training" className="text-sm">Ausbildung / Umschulung</label>
+              </Flex>
+              <Flex direction="row" align="center" gap="1">
+                <Checkbox {...register("apprenticenship")} value="on" />
+                <label htmlFor="apprenticenship" className="text-sm">Praktikum</label>
+              </Flex>
             </Flex>
           </Flex>
         </Flex>
-        <Flex direction="row" align="center" gap="1">
-          <Checkbox {...register("sponsonrship")} />
-          <label htmlFor="sponsonrship">Sponsorship</label>
+        <Flex direction="row" align="center" gap="5">
+          <div className="text-sm w-32">Förderungsfähig nach <a className="text-lightGreen underline" rel="noreferrer" target="_blank" href="https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein">AZAV</a>?</div>
+          <Flex direction="row" align="center" gap="1">
+            <Checkbox {...register("sponsonrship")} />
+            <label htmlFor="sponsonrship" className="text-sm">Ja</label>
+          </Flex>
         </Flex>
         {error && <p className="text-red-700">{error}</p>}
         <Button
           type="submit"
-          className="!bg-rose-500 hover:!bg-rose-400"
+          className="h-10 !bg-rose-500 hover:!bg-rose-400"
           disabled={loading}
         >
-          {loading ? <LoadingDots color="#ffffff" /> : "Save course"}
+          {loading ? <LoadingDots color="#ffffff" /> : "jetzt veröffentlichen"}
         </Button>
       </Flex>
     </form>

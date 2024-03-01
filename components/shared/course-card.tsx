@@ -16,7 +16,7 @@ import {
   salaryFormatter,
 } from "@/lib/utils"
 import l18n from "@/i18n/config"
-import { Button } from "@radix-ui/themes"
+import { Button, Flex, Grid } from "@radix-ui/themes"
 import { useRouter } from "next/navigation"
 import { ROUTES } from "@/lib/constants"
 import ContactModal from "../courses/contact-modal"
@@ -74,74 +74,80 @@ export default function CourseCard({
 
 
   return (
-    <div className="min-h-full min-w-[300px] self-stretch px-1 md:w-1/2 lg:w-1/3">
-      <div className="border-grey-300 flex h-full  min-h-[200px]  flex-col rounded-2xl border border-solid bg-white p-2 shadow-md ">
-        <img
-          height={120}
-          width={120}
-          src={getImageFullUrl(image)}
-          placeholder="empty"
-          alt=""
-          className="rounded-xl object-cover"
-        />
-        <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
-          {l18n.t("course.card.title", "COURSE")}
-        </div>
-        <div className="mt-1 h-16 self-stretch text-xl font-bold leading-8 text-black max-md:max-w-full">
-          {name}
-        </div>
-        <div className="mt-1 flex items-center gap-2 self-start px-px">
-          <Calendar />
-          <div className="text-sm font-medium leading-5 text-slate-700">
-            <span className="font-semibold">
-              {l18n.t("course.card.start", "Start date:")}
-            </span>
-            <span className="capitalize"> {formatDateString(start_date)}</span>
+    <div className="min-h-full self-stretch px-1 mr-5">
+      <div className="border-grey-300 flex h-full p-6 w-full flex-col rounded-2xl border border-solid bg-white p-2 shadow-md ">
+        <Flex className="mb-5 md:flex-row flex-col gap-0 md:gap-5">
+          <img
+            height={120}
+            width={120}
+            src={getImageFullUrl(image)}
+            placeholder="empty"
+            alt=""
+            className="rounded-xl object-cover"
+          />
+          <Flex direction="column">
+            <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
+              {l18n.t("course.card.title", "COURSE")}
+            </div>
+            <div className="mt-1 self-stretch text-md font-bold leading-8 text-black max-md:max-w-full">
+              {name}
+            </div>
+          </Flex>
+        </Flex>
+        <Grid className="mt-5 grid-col-1 md:grid-col-2" gap="1" width="auto">
+          <div className="mt-1 flex items-center gap-2 self-start px-px">
+            <Calendar />
+            <div className="text-sm font-medium leading-5 text-slate-700">
+              <span className="font-semibold">
+                {l18n.t("course.card.start", "Start date:")}
+              </span>
+              <span className="capitalize"> {formatDateString(start_date)}</span>
+            </div>
           </div>
-        </div>
-        <div className="mt-1.5 flex items-center gap-2 self-start">
-          <Clock className="fill-slate-700" />
-          <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">
-              {l18n.t("course.card.pace", "Pace:")}
-            </span>
-            <span className=""> {formatArray(pace)}</span>
+          <div className="mt-1.5 flex items-center gap-2 self-start">
+            <Clock className="fill-slate-700" />
+            <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
+              <span className="font-semibold">
+                {l18n.t("course.card.pace", "Pace:")}
+              </span>
+              <span className=""> {formatArray(pace)}</span>
+            </div>
           </div>
-        </div>
-        <div className="mt-1.5 flex items-center gap-2 self-start pr-14 max-md:pr-5">
-          <Location />
-          <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">
-              {l18n.t("course.card.location", "Location:")}
-            </span>
-            <span className=""> {l18n.t(location)}</span>
+          <div className="mt-1.5 flex items-center gap-2 self-start pr-14 max-md:pr-5">
+            <Location />
+            <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
+              <span className="font-semibold">
+                {l18n.t("course.card.location", "Location:")}
+              </span>
+              <span className=""> {l18n.t(location)}</span>
+            </div>
           </div>
-        </div>
-        <div className="mt-1.5 flex items-center gap-2 self-start">
-          <Tag />
-          <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">
-              {l18n.t("course.card.price", "Price:")}{" "}
-            </span>
-            <span className=""> {salaryFormatter(price)} €</span>
+          <div className="mt-1.5 flex items-center gap-2 self-start">
+            <Tag />
+            <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
+              <span className="font-semibold">
+                {l18n.t("course.card.price", "Price:")}{" "}
+              </span>
+              <span className=""> {salaryFormatter(price)} €</span>
+            </div>
           </div>
-        </div>
-        <div className="ml-5 mt-1 cursor-pointer self-start whitespace-nowrap text-sm leading-6 text-sky-500 max-md:ml-2.5">
-          {l18n.t("contact.modal.link", "Want it for free?")}
-        </div>
-        <div className="mt-1.5 flex items-center gap-2 self-start pr-7 max-md:pr-5">
-          <Bag />
-          <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
-            <span className="font-semibold">{l18n.t("Sponsorship:")}</span>
-            <span className="">
-              {" "}
-              {sponsorship
-                ? l18n.t("course.card.sponsorship.yes", "Yes")
-                : l18n.t("course.card.sponsorship.no", "No")}
-            </span>
+          <div className="mt-1.5 flex items-center gap-2 self-start pr-7 max-md:pr-5">
+            <Bag />
+            <div className="grow self-stretch whitespace-nowrap text-sm leading-6 text-slate-700">
+              <span className="font-semibold">{l18n.t("Sponsorship:")}</span>
+              <span className="">
+                {" "}
+                {sponsorship
+                  ? l18n.t("course.card.sponsorship.yes", "Yes")
+                  : l18n.t("course.card.sponsorship.no", "No")}
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="mt-4 h-28 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
+          <div className="cursor-pointer self-start whitespace-nowrap text-sm leading-6 text-sky-500">
+              {l18n.t("contact.modal.link", "Want it for free?")}
+            </div>
+        </Grid>
+        <div className="mt-4 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
           {description}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
