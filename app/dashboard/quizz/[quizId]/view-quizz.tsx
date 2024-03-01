@@ -17,7 +17,7 @@ function ViewQuizz({ image, content, type, prototypes }: Props) {
       <Grid gap="4" width="auto" className="my-5 grid-cols-1 md:grid-cols-2">
         <img
           src={getImageFullUrl(image)}
-          className="h-full w-full rounded-2xl object-cover"
+          className="min-h-80 h-full w-full rounded-2xl object-cover"
           alt=""
         />
         <Flex direction="column" gap="4">

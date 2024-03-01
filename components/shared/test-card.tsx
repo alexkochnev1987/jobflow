@@ -6,12 +6,14 @@ import Clock from "@/icons/clock.svg"
 import { convertMinsToHrsMins } from "@/lib/utils"
 import l18n from "@/i18n/config"
 import Link from "next/link"
+import { Badge } from "@radix-ui/themes"
 import { ROUTES } from "@/lib/constants"
 
 export type Test = {
   name: string
   duration: Date | number
   description: string
+  type: string
 }
 
 type Props = React.ComponentPropsWithoutRef<"div"> &
@@ -24,6 +26,7 @@ export default function TestCard({
   name,
   duration,
   description,
+  type,
   isLoading,
 }: Props) {
   if (isLoading) {
@@ -37,6 +40,11 @@ export default function TestCard({
         <div className="border-grey-300 flex min-h-full flex-col items-end rounded-2xl border border-solid bg-white p-6 shadow-sm">
           <div className="mt-1 h-16 self-stretch text-md font-bold leading-8 text-black  max-md:max-w-full">
             {name}
+          </div>
+          <div className="mt-1.5 flex items-center gap-2 self-start">
+            <Badge color="green" radius="full" className="w-40"> 
+              {type}  
+            </Badge>
           </div>
           <div className="mt-1.5 flex items-center gap-2 self-start">
             <Clock className="fill-slate-700" />
