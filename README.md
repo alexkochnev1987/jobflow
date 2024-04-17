@@ -109,8 +109,3 @@ Deploys the project to the specified stage (prod in this case) using Serverless 
 
 To seed the database, you can run the following command:
 
-### `npm run prisma:seed`
-
-This command uses ts-node with specified compiler options to run the Prisma seed script located in `prisma/seed.ts`.
-
-Please ensure you have the required dependencies and configurations set up before running these scripts. For any additional information or specific requirements, refer to the project documentation or reach out to the project maintainers.
