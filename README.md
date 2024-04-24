@@ -34,6 +34,8 @@ Node 18.16.1
 
 NVM
 
+Docker
+
 ## Tech Stack
 
 Programming Languages:
@@ -50,62 +52,52 @@ Backend Frameworks:
 Database:
   - MySQL
 
-Hosting and Infrastructure:
-  - Amazon Web Services (AWS)
-
 External APIs:
   - OpenAI
-
-Performance Monitoring:
-  - AWS CloudWatch
-
-Others:
-  - Serverless framework
-  - SST
 
 Secret Managment:
   - Doppler
 
 Content Managment System:
-  - Wordpress
+  - Directus
 
 Design Systems:
   - Radix
 
+**Setup Ubuntu VPS with Docker Compose, Doppler, Nginx, and MySQL**
 
-## Available Scripts
+**Step 1: Install Docker and Docker Compose**
 
-In the project directory, you can run the following scripts using npm or yarn:
+1. Connect to your Ubuntu VPS via SSH.
+2. Install Docker: `sudo apt-get update && sudo apt-get install docker.io -y`
+3. Install Docker Compose: `sudo apt-get install docker-compose -y`
 
-### `npm run dev`
+**Step 2: Configure Doppler**
 
-Starts the development server using Next.js and binds it to the necessary resources using Doppler.
+1. Install Doppler: `sudo apt-get install doppler -y`
+2. Add the `www` user: `sudo useradd -m -s /bin/false www`
+3. Configure Doppler to use the `www` user: `sudo doppler configure --user www`
 
-### `npm run build`
+**Step 3: Configure Nginx**
 
-Builds the project by generating Prisma models, pushing the database schema, and building the Next.js application. Doppler is used to manage environment variables.
+1. Copy the `nginx.conf` file from the project repository to the `/etc/nginx/sites-available/` directory: `sudo cp nginx/nginx.conf /etc/nginx/sites-available/default`
+2. Create a symbolic link to enable the Nginx configuration: `sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/`
 
-### `npm run format:write`
+**Step 5: Start Docker Compose**
 
-Formats the code using Prettier and writes the changes to the specified file types: css, js, json, jsx, ts, tsx.
+1. Navigate to the project repository directory: `cd <repository-directory>`
+2. Start Docker Compose: `sudo docker-compose up -d`
 
-### `npm run format`
+**Step 6: Restore MySQL dump**
 
-Formats the code using Prettier without writing changes.
+1. Create a MySQL container: `sudo docker-compose exec mysql mysql -uroot -p<password> <database_name> < /prisma/seed/dump-jobflow-202311231201.sql`
 
-### `npm start`
+**Step 7: Open ports**
 
-Starts the production server using Next.js. Doppler is used to manage environment variables.
+1. ufw allow 443, ufw allow 80, ufw allow 3306
 
-### `npm run lint`
+**Step 7: Verify the setup**
 
-Lints the project using Next.js linting tools.
-
-### `npm run deploy`
-
-Deploys the project to the specified stage (prod in this case) using Serverless Toolkit (SST) and Doppler for environment variable management.
-
-## Prisma Seed
-
-To seed the database, you can run the following command:
-
+1. Verify that Docker Compose is running: `sudo docker-compose ps`
+2. Verify that Nginx is running: `sudo service nginx status`
+3. Verify that the MySQL dump has been restored: `sudo docker-compose exec mysql mysql -uroot -p<password> <database_name> -e "SELECT * FROM <table_name>;"`
