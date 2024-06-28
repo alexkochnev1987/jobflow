@@ -1,4 +1,3 @@
-import { Quizzes } from '@prisma/client'
 import 'server-only'
 
 export async function getQuizByID(id: string) {
@@ -12,21 +11,11 @@ export async function getQuizByID(id: string) {
       name: true,
       image: true,
       content: true,
-      type: true
-    }
-  })
-}
-
-export async function getQuizzResources(quizId: number) {
-  return prisma?.quizzResource.findMany({
-    where: {
-      quizzesId: quizId,
-      status: "published",
-    },
-    select: {
-      id: true,
+      type: true,
+      description: true,
       file: true,
-      description: true
+      file_description: true,
+      file_name: true
     }
   })
 }

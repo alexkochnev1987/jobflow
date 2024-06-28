@@ -32,6 +32,7 @@ export const ROUTES = {
   ViewTest: (id: string) => "/dashboard/quizz/" + id,
   ViewCareer: (id: string) => "/dashboard/career/" + id,
   EditCourse: "/trainings/courses/edit",
+  ResetPassword: (token: string) => `/login/reset-password?token=${token}`,
 }
 
 export const DEPLOY_URL = `https://app.shiftyourcareer.de/`

@@ -101,7 +101,8 @@
   "view-course": {
     "title": "Was Sie von diesem Kurzkurs erwarten können",
     "files": "Files",
-    "download": "Download"
+    "download": "Download",
+    "file": "File"
   },
   "settings": {
     "title": "Einstellungen",
@@ -243,6 +244,18 @@
     },
     "name": {
       "required": "Name ist erforderlich"
+    }
+  },
+  "schemaResetPassword": {
+    "token": {
+      "required": "schemaResetPassword.token.required"
+    },
+    "email": {
+      "required": "schemaResetPassword.email.required"
+    },
+    "password": {
+      "min": "schemaResetPassword.password.min",
+      "max": "schemaResetPassword.password.max"
     }
   }
 }
