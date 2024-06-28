@@ -16,13 +16,14 @@ function ViewQuizz({
 }: Props) {
   return (
     <>
-      <Grid columns="2" gap="4" width="auto" className="my-5">
+      <Grid gap="4" width="auto" className="my-5 grid-cols-1 md:grid-cols-2">
         <img
           src={getImageFullUrl(image)}
-          className="h-full w-full rounded-2xl object-cover"
+          className="min-h-80 h-full w-full rounded-2xl object-cover"
           alt=""
         />
         <Flex direction="column" gap="4">
+          <div className="text-sm font-normal leading-normal" dangerouslySetInnerHTML={{__html: description}} />
           <h2 className="text-lg font-bold leading-7">
             {l18n.t(
               "view-course.title",

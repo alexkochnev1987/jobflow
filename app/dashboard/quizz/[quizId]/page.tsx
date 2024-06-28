@@ -11,8 +11,9 @@ export default async function Page({ params }: { params: { quizId: string } }) {
   console.log("quizz", quizz)
 
   return (
-    <Card p={5}>
+    <Card className="!shadow-none" p={5}>
       <GoBack title={quizz.name} />
+      <ViewQuizz quizz={quizz} />
       <ViewQuizz quizz={quizz} />
     </Card>
   )
