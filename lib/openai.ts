@@ -1,10 +1,16 @@
-import OpenAI from "openai"
-import { Langfuse, LangfuseGenerationClient, LangfuseTraceClient } from "langfuse";
+import OpenAI, { ClientOptions } from "openai"
+import { Langfuse, LangfuseTraceClient } from "langfuse";
 
-
-const openai = new OpenAI({
+const clientOptions: ClientOptions = {
   apiKey: process.env.OPENAI_API_KEY,
-})
+}
+
+if (process.env.OPENAI_API_BASE_URL) {
+  console.debug('Using custom OPENAI API BASE URL', process.env.OPENAI_API_BASE_URL)
+  clientOptions.baseURL = process.env.OPENAI_API_BASE_URL
+}
+
+const openai = new OpenAI(clientOptions)
 
 export function getLangFuse() {
   return new Langfuse({
@@ -24,8 +30,12 @@ export async function completition(prompt: string, traceClient: LangfuseTraceCli
     input: prompt,
   });
   const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: prompt }],
+    messages: [{
+      role: "system",
+      content: prompt,
+    }],
     model: process.env.OPENAI_CHAT_MODEL,
+
     functions: [
       {
         name: "getMatchingCareers",
