@@ -22685,3 +22685,8 @@ html, body {
   padding: 0; 
   overflow-x: hidden;
 }
+
+p > a {
+  color: theme('colors.lightGreen');
+  text-decoration: underline;
+}

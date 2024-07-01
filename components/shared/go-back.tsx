@@ -7,7 +7,7 @@ export default function GoBack({ title }) {
   const router = useRouter()
   return (
     <button
-      className="flex cursor-pointer flex-row items-center text-xl font-bold"
+      className="flex cursor-pointer flex-row items-center text-md font-bold"
       onClick={() => router.back()}
     >
       <BackIcon /> {title}

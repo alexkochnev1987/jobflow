@@ -10,6 +10,8 @@ export async function getQuizByID(id: string) {
       id: true,
       name: true,
       image: true,
+      content: true,
+      type: true,
       description: true,
       file: true,
       file_description: true,
