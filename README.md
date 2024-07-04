@@ -1,7 +1,7 @@
 # JobFlow
-[![Deploy CI](https://github.com/guluarte/jobflow/actions/workflows/deploy.js.yml/badge.svg?branch=test)](https://github.com/guluarte/jobflow/actions/workflows/deploy.js.yml)
+[![Build Status](https://drone.local.guluarte.com/api/badges/guluarte/jobflow/status.svg)](https://drone.local.guluarte.com/guluarte/jobflow)
 
-[![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+[![DigitalOcean](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
 ## Testing 
 ### Company users
