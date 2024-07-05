@@ -1,12 +1,4 @@
 services:
-  web:
-    container_name: jobflow
-    restart: on-failure
-    build: .
-    env_file: ".env"
-    hostname: web
-    ports:
-      - '14279:3000'
   directus:
     restart: unless-stopped
     image: directus/directus:10.7.2
