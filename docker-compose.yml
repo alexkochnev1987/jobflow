@@ -1,25 +1,12 @@
-version: "3.8"
-
 services:
-  wordpress:
-    image: wordpress:latest
-    restart: unless-stopped
+  web:
+    container_name: jobflow
+    restart: on-failure
+    build: .
+    env_file: ".env"
+    hostname: web
     ports:
-      - "8080:80"
-    depends_on:
-      - mysql
-    volumes:
-      - ./wp-data:/var/www/html
-      - ./wordpres.ini:/usr/local/etc/php/conf.d/uploads.ini
-    environment:
-      WORDPRESS_DEBUG: 0
-      WORDPRESS_DB_HOST: "mysql:3306"
-      WORDPRESS_DB_USER: "${DB_USERNAME}"
-      WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
-      WORDPRESS_DB_NAME: "${DB_DATABASE}"
-    networks:
-      - jobflow
-
+      - '14279:3000'
   directus:
     restart: unless-stopped
     image: directus/directus:10.7.2
@@ -47,7 +34,6 @@ services:
       - redis
     networks:
       - jobflow
-
   mysql:
     image: mysql:5.7
     restart: unless-stopped
