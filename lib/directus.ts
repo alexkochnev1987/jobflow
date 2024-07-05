@@ -1,6 +1,6 @@
 import { authentication, createDirectus, graphql, readAssetRaw, rest } from "@directus/sdk"
 
-const directus = createDirectus("https://directus.shiftyourcareer.de")
+const directus = createDirectus(`https://${process.env.DIRECTUS_SERVER}`)
   .with(graphql())
   .with(rest())
   .with(authentication())

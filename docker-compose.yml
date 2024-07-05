@@ -1,7 +1,15 @@
 services:
-  directus:
+  app:
     restart: unless-stopped
+    image: git.local.guluarte.com/guluarte/jobflow-app:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql
+      - directus
+  directus:
     image: directus/directus:10.7.2
+    restart: unless-stopped
     ports:
       - 8055:8055
     volumes:
@@ -44,10 +52,11 @@ services:
       - ./database/mysql:/var/lib/mysql
     networks:
       - jobflow
-
   redis:
     restart: unless-stopped
     image: redis:latest
+    expose:
+      - 6379
     ports:
       - "6379:6379"
     networks:
