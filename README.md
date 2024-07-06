@@ -18,14 +18,6 @@ Test cards for billing see [Stripe docs](https://stripe.com/docs/testing?testing
 
 4242 4242 4242 4242
 
-## [Requeriments](./docs/requeriments.md)
-
-## [Architecture](./docs/architecrure.drawio)
-
-## [High Level Design](./docs/high-level-design.md)
-
-## [Schema](./prisma/schema.prisma)
-
 ## Prerequisites
 
 Doppler https://docs.doppler.com/docs/cli
