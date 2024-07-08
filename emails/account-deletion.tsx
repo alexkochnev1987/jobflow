@@ -37,7 +37,7 @@ export const Template = () => (
           </Text>
           <Text style={paragraph}>
             Bei Feedback oder Fragen wende{" "}
-            <Link href={`https://app.shiftyourcareer.de${ROUTES.Contact}`} style={anchor}>
+            <Link href={`https://app.quereinstieg.com${ROUTES.Contact}`} style={anchor}>
               dich gerne an unseren Support.
             </Link>
           </Text>

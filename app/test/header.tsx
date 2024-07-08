@@ -21,7 +21,7 @@ export default function Header() {
             />
           )}
         </div>
-        <Link href="https://shiftyourcareer.de/" className="flex items-center font-display text-xl">
+        <Link href="https://quereinstieg.com/" className="flex items-center font-display text-xl">
           <Logo />
         </Link>
         <Text>

@@ -1,7 +1,7 @@
 services:
   app:
     restart: unless-stopped
-    image: git.local.guluarte.com/guluarte/jobflow-app:latest
+    image: git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest
     ports:
       - 3000:3000
     depends_on:

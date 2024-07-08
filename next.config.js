@@ -19,15 +19,15 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "directus.shiftyourcareer.de",
+        hostname: "directus.quereinstieg.com",
         pathname: "/**",
       },
     ],
     domains: [
       "localhost",
       "placehold.co",
-      "app.shiftyourcareer.de",
-      "directus.shiftyourcareer.de",
+      "app.quereinstieg.com",
+      "directus.quereinstieg.com",
     ],
   },
   i18n: {

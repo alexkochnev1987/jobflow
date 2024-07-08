@@ -35,4 +35,4 @@ export const ROUTES = {
   ResetPassword: (token: string) => `/login/reset-password?token=${token}`,
 }
 
-export const DEPLOY_URL = `https://app.shiftyourcareer.de/`
+export const DEPLOY_URL = `https://app.quereinstieg.com/`

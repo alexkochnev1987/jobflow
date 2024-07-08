@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
       metadata: {
         uid,
       },
-      success_url: `https://app.shiftyourcareer.de${ROUTES.Payment}?success=true`,
-      cancel_url: `https://app.shiftyourcareer.de/${ROUTES.EvaluationResults}?canceled=true`,
+      success_url: `https://app.quereinstieg.com${ROUTES.Payment}?success=true`,
+      cancel_url: `https://app.quereinstieg.com/${ROUTES.EvaluationResults}?canceled=true`,
     })
 
     // redirect to checkout
