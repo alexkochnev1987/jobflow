@@ -5,6 +5,9 @@ type: docker
 steps:
 - name: docker
   image: plugins/docker
+  environment:
+    DOPPLER_TOKEN:
+      from_secret: doppler_token
   settings:
     username:
       from_secret: username
@@ -14,6 +17,3 @@ steps:
     repo: git.local.guluarte.com/guluarte/jobflow/jobflow-app
     tags:
     - latest
-    environment:
-      DOPPLER_TOKEN:
-        from_secret: doppler_token

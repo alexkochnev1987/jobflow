@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
     apt-get update && \
     apt-get -y install doppler
 
+# ENV DOPPLER_TOKEN $DOPPLER_TOKEN
 WORKDIR /usr/src/app
 RUN doppler secrets download --no-file --format env > .env
 
