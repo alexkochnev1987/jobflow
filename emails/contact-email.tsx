@@ -60,7 +60,7 @@ export const Template = ({ name, email, message }: TemplateProps) => (
             Um deine Ergebnisse einzusehen, melde Dich bitte unter folgendem
             Link an:{" "}
             <Link href={ROUTES.Login} style={anchor}>
-              app.shiftyourcareer.de/login
+              app.quereinstieg.com/login
             </Link>{" "}
             Nutzen Sie dazu die oben genannten Anmeldeinformationen.:
           </Text>

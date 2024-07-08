@@ -54,14 +54,14 @@ export const Template = ({ email, password }: TemplateProps) => (
           <Text style={paragraph}>
             Um deine Ergebnisse einzusehen, melde Dich bitte unter folgendem
             Link an:{" "}
-            <Link href={`https://app.shiftyourcareer.de${ROUTES.Login}`} style={anchor}>
-              app.shiftyourcareer.de/login
+            <Link href={`https://app.quereinstieg.com${ROUTES.Login}`} style={anchor}>
+              app.quereinstieg.com/login
             </Link>{" "}
             Nutzen Sie dazu die oben genannten Anmeldeinformationen.:
           </Text>
           <Text style={paragraph}>
             Bei Fragen oder Problemen{" "}
-            <Link href={`https://app.shiftyourcareer.de${ROUTES.Contact}`} style={anchor}>
+            <Link href={`https://app.quereinstieg.com${ROUTES.Contact}`} style={anchor}>
               kontaktiere bitte den Support
             </Link>
             .

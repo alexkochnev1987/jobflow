@@ -1,6 +1,4 @@
 # JobFlow
-[![Build Status](https://drone.local.guluarte.com/api/badges/guluarte/jobflow/status.svg)](https://drone.local.guluarte.com/guluarte/jobflow)
-
 [![DigitalOcean](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
 ## Testing 
@@ -12,7 +10,7 @@ casdsfdsf@guluarte.com ^1234567890$
 
 ## Billing
 
-Open a new browser window in incognito mode and go to https://app.shiftyourcareer.de/
+Open a new browser window in incognito mode and go to https://app.quereinstieg.com/
 
 Test cards for billing see [Stripe docs](https://stripe.com/docs/testing?testing-method=card-numbers#visa )
 

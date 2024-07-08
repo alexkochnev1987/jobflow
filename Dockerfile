@@ -9,6 +9,8 @@ COPY . .
 
 EXPOSE 3000
 
+RUN rm .env.*
+
 RUN npm run build
 
 CMD ["npm", "start"]

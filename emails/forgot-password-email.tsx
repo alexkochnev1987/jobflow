@@ -37,12 +37,12 @@ export const Template = ({ token }: TemplateProps) => (
 
           <Text style={paragraph}>
             <Link
-              href={`https://app.shiftyourcareer.de${ROUTES.ResetPassword(
+              href={`https://app.quereinstieg.com${ROUTES.ResetPassword(
                 token,
               )}`}
               style={anchor}
             >
-              {`https://app.shiftyourcareer.de${ROUTES.ResetPassword(
+              {`https://app.quereinstieg.com${ROUTES.ResetPassword(
                 token,
               )}`}
             </Link>{" "}
@@ -50,7 +50,7 @@ export const Template = ({ token }: TemplateProps) => (
           <Text style={paragraph}>
             Bei Fragen oder Problemen{" "}
             <Link
-              href={`https://app.shiftyourcareer.de${ROUTES.Contact}`}
+              href={`https://app.quereinstieg.com${ROUTES.Contact}`}
               style={anchor}
             >
               kontaktiere bitte den Support
