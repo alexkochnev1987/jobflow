@@ -7,13 +7,13 @@ steps:
   image: plugins/docker
   settings:
     username:
-      from_secret: USERNAME
+      from_secret: username
     password:
-      from_secret: PASSWORD
+      from_secret: password
     registry: git.local.guluarte.com
     repo: git.local.guluarte.com/guluarte/jobflow/jobflow-app
     tags:
     - latest
     environment:
       DOPPLER_TOKEN:
-        from_secret: DOPPLER_TOKEN
+        from_secret: doppler_token
