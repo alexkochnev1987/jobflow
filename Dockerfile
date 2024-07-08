@@ -1,6 +1,7 @@
 FROM node:20.15.0
 WORKDIR /usr/src/app
 ENV CI=true
+ENV NODE_ENV=production
 
 COPY package.json package-lock.json ./
 RUN npm ci
