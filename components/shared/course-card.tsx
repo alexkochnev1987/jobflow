@@ -64,19 +64,16 @@ export default function CourseCard({
   isLoading,
   Company,
 }: Props) {
-
-
   if (isLoading) {
     return (
       <Skeleton className="h-23 w-full" height={50} width={300} count={1} />
     )
   }
 
-
   return (
-    <div className="min-h-full self-stretch px-1 mr-5">
-      <div className="border-grey-300 flex h-full p-6 w-full flex-col rounded-2xl border border-solid bg-white p-2 shadow-md ">
-        <Flex className="mb-5 md:flex-row flex-col gap-0 md:gap-5">
+    <div className="mr-5 min-h-full self-stretch px-1">
+      <div className="border-grey-300 flex h-full w-full flex-col rounded-2xl border border-solid bg-white p-2 shadow-md ">
+        <Flex className="mb-5 flex-col gap-0 md:flex-row md:gap-5">
           <img
             height={120}
             width={120}
@@ -89,19 +86,22 @@ export default function CourseCard({
             <div className="mt-3 self-stretch whitespace-nowrap text-left text-xs font-medium leading-5 text-gray-500 max-md:max-w-full">
               {l18n.t("course.card.title", "COURSE")}
             </div>
-            <div className="mt-1 self-stretch text-md font-bold leading-8 text-black max-md:max-w-full">
+            <div className="text-md mt-1 self-stretch font-bold leading-8 text-black max-md:max-w-full">
               {name}
             </div>
           </Flex>
         </Flex>
-        <Grid className="mt-5 grid-col-1 md:grid-col-2" gap="1" width="auto">
+        <Grid className="grid-col-1 md:grid-col-2 mt-5" gap="1" width="auto">
           <div className="mt-1 flex items-center gap-2 self-start px-px">
             <Calendar />
             <div className="text-sm font-medium leading-5 text-slate-700">
               <span className="font-semibold">
                 {l18n.t("course.card.start", "Start date:")}
               </span>
-              <span className="capitalize"> {formatDateString(start_date)}</span>
+              <span className="capitalize">
+                {" "}
+                {formatDateString(start_date)}
+              </span>
             </div>
           </div>
           <div className="mt-1.5 flex items-center gap-2 self-start">
@@ -144,14 +144,13 @@ export default function CourseCard({
             </div>
           </div>
           <div className="cursor-pointer self-start whitespace-nowrap text-sm leading-6 text-sky-500">
-              {l18n.t("contact.modal.link", "Want it for free?")}
-            </div>
+            {l18n.t("contact.modal.link", "Want it for free?")}
+          </div>
         </Grid>
         <div className="mt-4 self-stretch text-sm leading-6 text-slate-700 max-md:max-w-full">
           {description}
         </div>
         <div className="flex flex-row items-end justify-between gap-1 self-stretch">
-          
           <ContactModal company={Company} />
         </div>
       </div>

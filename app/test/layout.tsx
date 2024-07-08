@@ -1,6 +1,8 @@
 "use server"
 
-import Header from "./header"
+import dynamic from 'next/dynamic'
+ 
+const Header = dynamic(() => import('./header'), { ssr: false })
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
@@ -10,7 +12,7 @@ export default async function DashboardLayout({
   return (
     <div>
       <Header />
-      <main className="flex min-h-screen w-full">{children}</main>
+      <main className="flex min-h-screen w-full mb-4">{children}</main>
     </div>
   )
 }
