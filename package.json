@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "env:pull:dev": "doppler secrets download --no-file --format env > .env",
-    "docker:build": "npm run env:pull:dev && npm run build && docker build -t git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest .",
+    "docker:build": "docker build -t git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest .",
     "docker:push": "docker push git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest",
     "docker:deploy": "npm run docker:build && npm run docker:push",
     "docker:services": "docker compose up",
