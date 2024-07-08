@@ -17,3 +17,5 @@ steps:
     repo: git.local.guluarte.com/guluarte/jobflow/jobflow-app
     tags:
     - latest
+    build_args_from_env:
+      - DOPPLER_TOKEN
