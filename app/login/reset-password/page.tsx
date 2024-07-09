@@ -1,7 +1,7 @@
 "use client"
 import { schemaChangePasswrd, schemaRequestResetPassword } from "@/lib/schemas"
 import { redirect, useRouter, useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "@/components/shared/input"
 import Button from "@/components/shared/button"
@@ -11,7 +11,6 @@ import l18n from "@/i18n/config"
 import { LoadingDots } from "@/components/shared/icons"
 
 import { useToast } from "@chakra-ui/react"
-import { TextFieldInput } from "@radix-ui/themes"
 
 export function RequestResetPassword() {
   const toast = useToast()
@@ -162,12 +161,20 @@ export function ChangePassword({ token }) {
   )
 }
 
-export default function ResetPassword() {
+function ResetPasswordContainer() {
   const searchParams = useSearchParams()
 
   const token = searchParams.get("token") || ""
-  console.log("token", token)
+
   return (
     <>{token ? <ChangePassword token={token} /> : <RequestResetPassword />}</>
+  )
+}
+
+export default function ResetPassword() {
+  return (
+    <Suspense>
+      <ResetPasswordContainer />
+    </Suspense>
   )
 }

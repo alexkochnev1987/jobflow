@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
     apt-get update && \
     apt-get -y install doppler
 
+ARG DOPPLER_TOKEN
+ENV DOPPLER_TOKEN $DOPPLER_TOKEN
 WORKDIR /usr/src/app
 RUN doppler secrets download --no-file --format env > .env
 
@@ -20,8 +22,6 @@ RUN npm ci
 COPY . .
 
 EXPOSE 3000
-
-RUN rm .env.*
 
 RUN npm run build
 
