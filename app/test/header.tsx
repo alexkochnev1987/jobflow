@@ -12,8 +12,6 @@ export default function Header() {
   const answered = store.responses.length + 1
   const totalQuestions = store.totalQuestions + 1
 
-  console.log('isMobile', isMobile)
-
   return (
     <div className={`flex w-full justify-center bg-white/0`}>
       <div className="mx-5 flex h-16 w-full max-w-screen-xl items-center justify-between">
