@@ -4,9 +4,6 @@ services:
     image: git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest
     ports:
       - 3000:3000
-    depends_on:
-      - mysql
-      - directus
   directus:
     image: directus/directus:10.7.2
     restart: unless-stopped
