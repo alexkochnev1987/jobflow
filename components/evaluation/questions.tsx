@@ -40,7 +40,6 @@ export function RenderQuestion({ question, inputRef, error }) {
           error={error}
         />
       )
-    case QUESTION_TYPES.Select:
     case QUESTION_TYPES.Button:
     case QUESTION_TYPES.MBTI:
       return (
@@ -58,6 +57,7 @@ export function RenderQuestion({ question, inputRef, error }) {
           />
         </motion.div>
       )
+    case QUESTION_TYPES.Select:
     case QUESTION_TYPES.Tags:
       return (
         <TagQuestion

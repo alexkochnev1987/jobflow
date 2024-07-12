@@ -83,11 +83,11 @@ export default function Form({
     <div
       className={cn(
         "min-h-full w-full flex-col justify-center ",
-        !showQuestions && "bg-lightBlue",
+        !showQuestions && "bg-lightBlue pb-4",
       )}
     >
       {showQuestions && <Progress value={percentAnswered} />}
-      <div className="z-10 mx-auto max-w-lg pt-12 px-2">
+      <div className="z-10 mx-auto max-w-lg px-2 pt-12">
         {!showQuestions && (
           <>
             <div className="flex-col justify-start gap-8">
