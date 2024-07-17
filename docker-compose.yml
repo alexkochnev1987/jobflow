@@ -1,16 +1,11 @@
 services:
-  app:
-    restart: unless-stopped
-    image: git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest
-    ports:
-      - 3000:3000
   directus:
     image: directus/directus:10.7.2
     restart: unless-stopped
     ports:
       - 8055:8055
     volumes:
-      - ./uploads:/directus/uploads
+      - directus-uploads:/directus/uploads
     environment:
       KEY: "5z1DSfIXyyOW5cEu5LlYiaA9e7uzFHUpFj+vJMfmr14="
       SECRET: "HLhncn/EciE/hlAn3XSKBCUurmhsQc7i4On04OSLQvc="
@@ -46,7 +41,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./database/mysql:/var/lib/mysql
+      - mysql-db:/var/lib/mysql
     networks:
       - jobflow
   redis:
@@ -59,8 +54,16 @@ services:
     networks:
       - jobflow
     volumes:
-      - ./database/redis:/data
+      - redis-db:/data
 
 networks:
   jobflow:
     driver: bridge
+
+volumes:
+  directus-uploads:
+    external: false
+  mysql-db:
+    external: false
+  redis-db:
+    external: false
