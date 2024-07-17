@@ -22,8 +22,10 @@ services:
       CACHE_STORE: "redis"
       REDIS: "redis://redis:6379"
     depends_on:
-      - mysql
-      - redis
+        mysql:
+          condition: service_healthy
+        redis:
+          condition: service_healthy
     networks:
       - jobflow
   mysql:
@@ -40,8 +42,13 @@ services:
       - 3306
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     volumes:
       - mysql-db:/var/lib/mysql
+      - ./prisma/seed:/docker-entrypoint-initdb.d
     networks:
       - jobflow
   redis:
@@ -51,6 +58,8 @@ services:
       - 6379
     ports:
       - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
     networks:
       - jobflow
     volumes:

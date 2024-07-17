@@ -7,9 +7,6 @@ async function setupContainers() {
     .withEnvironmentFile(".env")
     .up();
 
-
-    // TODO: Seed data into the MySQL container
-
   return environment;
 }
 
