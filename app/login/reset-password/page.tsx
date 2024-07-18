@@ -24,10 +24,6 @@ export function RequestResetPassword() {
   })
 
   const onSubmit = async (data) => {
-    console.log(data)
-
-    console.log(data)
-
     try {
       const res = await fetch("/api/forgot", {
         method: "POST",

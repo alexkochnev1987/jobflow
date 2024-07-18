@@ -1,2 +1,1 @@
 docker run -d -p 3000:3000 --pull=always -it --name jobflow-app git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest
-docker run -d -p 3000:3000 --pull=always -it --name jobflow-app git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest
