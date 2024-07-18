@@ -12,9 +12,10 @@ mindmap
           Fix wrong percentages by narrowing down the prompt to sorting careers
           Generate random match numbers between 95% and 5%.
       User Quiz
-        ["`Smoothly jump between question groups [Figma](https://www.figma.com/file/EiNlngQpPq77fnezkl7uf9/Laborflow?type=design&node-id=1326-7019&mode=design&t=y4XwfZuqhp4TRIbv-0)`"]
+        x - Smoothly jump between question groups
+          https://www.figma.com/file/EiNlngQpPq77fnezkl7uf9/Laborflow?type=design&node-id=1326-7019&mode=design&t=y4XwfZuqhp4TRIbv-0
         No arrows for slider on mobile
-          ~Limit arrows to desktop view only~
+          x - Limit arrows to desktop view only
         fix error accessing the window object
         Improve user flow?
       Login Page
@@ -22,10 +23,10 @@ mindmap
 
       Development
         Testing
-          ~Setup testcontainers~
-            ~Fix js-dom~
-            ~Seed initial data~
-            ~Configure jest~
+          x - Setup testcontainers
+            x - Fix js-dom
+            x - Seed initial data
+            x - Configure jest
 ```
 
 ## Testing 
