@@ -16,7 +16,7 @@ mindmap
         Require full payment for subpages https://github.com/guluarte/jobflow/issues/42
       User Quiz
         Smoothly jump between question groups https://github.com/guluarte/jobflow/issues/38
-        No arrows for slider on mobile
+        x - No arrows for slider on mobile
           x - Limit arrows to desktop view only https://github.com/guluarte/jobflow/issues/31
         fix error accessing the window object https://github.com/guluarte/jobflow/issues/44
       Login Page
