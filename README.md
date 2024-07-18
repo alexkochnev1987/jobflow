@@ -8,16 +8,20 @@
 mindmap
     JobFlow
       Result page
-        Result calculation
-          Fix wrong percentages by narrowing down the prompt to sorting careers
-          Generate random match numbers between 95% and 5%.
+        Result calculation https://github.com/guluarte/jobflow/issues/35
+          Fix wrong percentages by narrowing down the prompt to sorting careers https://github.com/guluarte/jobflow/issues/35
+          Generate random match numbers between 95% and 5% https://github.com/guluarte/jobflow/issues/41
+          Adapt results page to show the first 5 careers for free https://github.com/guluarte/jobflow/issues/34
+      Billing
+        Require full payment for subpages https://github.com/guluarte/jobflow/issues/42
       User Quiz
-        Smoothly jump between question groups https://www.figma.com/file/EiNlngQpPq77fnezkl7uf9/Laborflow?type=design&node-id=1326-7019&mode=design&t=y4XwfZuqhp4TRIbv-0
+        Smoothly jump between question groups https://github.com/guluarte/jobflow/issues/38
         No arrows for slider on mobile
-          x - Limit arrows to desktop view only
-        fix error accessing the window object
+          x - Limit arrows to desktop view only https://github.com/guluarte/jobflow/issues/31
+        fix error accessing the window object https://github.com/guluarte/jobflow/issues/44
       Login Page
-        Reset password link
+        Reset password link https://github.com/guluarte/jobflow/issues/32
+        Improve user flow https://github.com/guluarte/jobflow/issues/43
       Development
         Testing
           x - Setup testcontainers
