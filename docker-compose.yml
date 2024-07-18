@@ -1,16 +1,11 @@
 services:
-  app:
-    restart: unless-stopped
-    image: git.local.guluarte.com/guluarte/jobflow/jobflow-app:latest
-    ports:
-      - 3000:3000
   directus:
     image: directus/directus:10.7.2
     restart: unless-stopped
     ports:
       - 8055:8055
     volumes:
-      - ./uploads:/directus/uploads
+      - directus-uploads:/directus/uploads
     environment:
       KEY: "5z1DSfIXyyOW5cEu5LlYiaA9e7uzFHUpFj+vJMfmr14="
       SECRET: "HLhncn/EciE/hlAn3XSKBCUurmhsQc7i4On04OSLQvc="
@@ -27,8 +22,10 @@ services:
       CACHE_STORE: "redis"
       REDIS: "redis://redis:6379"
     depends_on:
-      - mysql
-      - redis
+        mysql:
+          condition: service_healthy
+        redis:
+          condition: service_healthy
     networks:
       - jobflow
   mysql:
@@ -45,8 +42,13 @@ services:
       - 3306
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     volumes:
-      - ./database/mysql:/var/lib/mysql
+      - mysql-db:/var/lib/mysql
+      - ./prisma/seed:/docker-entrypoint-initdb.d
     networks:
       - jobflow
   redis:
@@ -56,11 +58,21 @@ services:
       - 6379
     ports:
       - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
     networks:
       - jobflow
     volumes:
-      - ./database/redis:/data
+      - redis-db:/data
 
 networks:
   jobflow:
     driver: bridge
+
+volumes:
+  directus-uploads:
+    external: false
+  mysql-db:
+    external: false
+  redis-db:
+    external: false

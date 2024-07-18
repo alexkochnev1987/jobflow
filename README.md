@@ -1,6 +1,31 @@
 # JobFlow
 [![DigitalOcean](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=038b4c02978c&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
+
+## Current Tasks
+
+```mermaid
+mindmap
+    JobFlow
+      Result page
+        Result calculation
+          Fix wrong percentages by narrowing down the prompt to sorting careers
+          Generate random match numbers between 95% and 5%.
+      User Quiz
+        Smoothly jump between question groups https://www.figma.com/file/EiNlngQpPq77fnezkl7uf9/Laborflow?type=design&node-id=1326-7019&mode=design&t=y4XwfZuqhp4TRIbv-0
+        No arrows for slider on mobile
+          x - Limit arrows to desktop view only
+        fix error accessing the window object
+      Login Page
+        Reset password link
+      Development
+        Testing
+          x - Setup testcontainers
+            x - Fix js-dom
+            x - Seed initial data
+            x - Configure jest
+```
+
 ## Testing 
 ### Company users
 user@example.com ^1234567890$
@@ -30,14 +55,12 @@ Docker
 
 Programming Languages:
   - TypeScript
-  - JavaScript
 
 Frontend Frameworks:
   - React
 
 Backend Frameworks:
   - Next.js
-  - Node.js
   
 Database:
   - MySQL
@@ -54,9 +77,9 @@ Content Managment System:
 Design Systems:
   - Radix
 
-**Setup Ubuntu VPS with Docker Compose, Doppler, Nginx, and MySQL**
+**Setup Ubuntu VPS with Docker Compose**
 
-**Step 1: Install Docker and Docker Compose**
+**Step 1: Install Docker and Docker Compose and NGIX**
 
 1. Connect to your Ubuntu VPS via SSH.
 2. Install Docker: `sudo apt-get update && sudo apt-get install docker.io -y`
@@ -78,9 +101,9 @@ Design Systems:
 1. Navigate to the project repository directory: `cd <repository-directory>`
 2. Start Docker Compose: `sudo docker-compose up -d`
 
-**Step 6: Restore MySQL dump**
+**Step 6: Pull app image**
 
-1. Create a MySQL container: `sudo docker-compose exec mysql mysql -uroot -p<password> <database_name> < /prisma/seed/dump-jobflow-202311231201.sql`
+1. Pull the app image `./start.sh`
 
 **Step 7: Open ports**
 
@@ -90,4 +113,4 @@ Design Systems:
 
 1. Verify that Docker Compose is running: `sudo docker-compose ps`
 2. Verify that Nginx is running: `sudo service nginx status`
-3. Verify that the MySQL dump has been restored: `sudo docker-compose exec mysql mysql -uroot -p<password> <database_name> -e "SELECT * FROM <table_name>;"`
+
