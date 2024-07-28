@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { InferType } from "yup"
 import { schemaNewCourse } from "@/lib/schemas"
 import { uploadFiles } from "@directus/sdk"
-import directus from "@/lib/directus"
+import directus, { uploadFormData } from "@/lib/directus"
 import { getUserCompanyById } from "@/app/actions/user"
 import { auth } from "auth"
 
@@ -46,7 +46,11 @@ export async function POST(req: NextRequest) {
       },
     })
 
+    if (!user) throw new Error("User not found")
+
     const company = await getUserCompanyById(user.id)
+
+    if (!company) throw new Error("Company not found")
 
     const data: InferType<typeof schemaNewCourse> =
       await schemaNewCourse.validate(json)
@@ -89,22 +93,23 @@ export async function POST(req: NextRequest) {
       formData.append("title", data.name)
       formData.append("image", blob, data.name.replace(/\.[^/.]+$/, ""))
 
-      const directusImage = await directus.request(uploadFiles(formData))
+      const directusImage = await uploadFormData(formData)
 
+      // @ts-ignore
       payload.image = directusImage.id
     }
 
     const course = data.id
       ? await prisma.courses.upsert({
-          where: {
-            id: data.id,
-          },
-          update: payload,
-          create: payload,
-        })
+        where: {
+          id: data.id,
+        },
+        update: payload,
+        create: payload,
+      })
       : await prisma.courses.create({
-          data: payload,
-        })
+        data: payload,
+      })
 
     return NextResponse.json({
       ...course,

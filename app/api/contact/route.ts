@@ -10,7 +10,7 @@ import { Template as ContactCourseEmail } from "@/emails/contact-email"
 export async function POST(req: NextRequest) {
   try {
     const json = await req.json()
-    
+
 
     const data: InferType<typeof schemaContactModal> =
       await schemaContactModal.validate(json)
@@ -21,6 +21,13 @@ export async function POST(req: NextRequest) {
       },
     })
 
+    if (!contact) {
+      throw new Error("Contact not found!")
+    }
+
+    if (!contact.email) {
+      throw new Error("Contact has not an email!")
+    }
 
     await sendEmail({
       to: contact.email,

@@ -13,7 +13,7 @@ import {
 import { auth } from "auth"
 import { getProfile, getUserByEmail } from "@/app/actions/user"
 
-async function mapCareers(evaluationResponse: any) {
+async function mapCareers(evaluationResponse) {
   const jsonRes = JSON.parse(evaluationResponse)
 
   const careers = await getCareers()
@@ -33,8 +33,16 @@ async function mapCareers(evaluationResponse: any) {
 export async function POST(request: NextRequest) {
   const session = await auth()
 
+  if (!session || !session.user?.email) {
+    return new Response('Unauthorized', { status: 401 })
+  }
+
   if (session) {
     const user = await getUserByEmail(session.user.email)
+
+    if (!user) {
+      return new Response('User not found', { status: 404 })
+    }
     const profilefull = await getProfile({ userId: user.id })
 
     console.log("Returning user profile")

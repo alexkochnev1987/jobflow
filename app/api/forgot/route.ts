@@ -6,11 +6,16 @@ import { Template as ResetPasswordEmail } from "@/emails/forgot-password-email"
 import { hash } from "bcryptjs";
 import prisma from "lib/prisma";
 
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET is not defined');
+}
+
+const secret = process.env.JWT_SECRET;
+
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
 
   console.log("Email", email);
-  const secret = process.env.JWT_SECRET;
 
   const user = await prisma.user.findUnique({
     where: {
@@ -55,10 +60,14 @@ export async function POST(req: NextRequest) {
 
 function verifyToken(token: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, secret, (err, decoded) => {
       if (err) {
         return reject(err);
       }
+      if (!decoded) {
+        return reject(new Error('Invalid token'));
+      }
+      // @ts-ignore
       return resolve(decoded.email);
     });
   })

@@ -52,11 +52,11 @@ export async function getProfile({
   const query =
     userId === undefined
       ? {
-          uid,
-        }
+        uid,
+      }
       : {
-          userId,
-        }
+        userId,
+      }
   console.log(query)
 
   return prisma?.profile?.findFirstOrThrow({
@@ -85,6 +85,9 @@ export async function linkProfile(uid: string, email: string) {
       email,
     },
   })
+  if (!user) {
+    throw new Error("User not found")
+  }
   const profile = await getProfile({ uid })
 
   await prisma?.user.update({
@@ -199,15 +202,23 @@ export async function getUserContactById(userId: string) {
 
 export async function getUserCompanyById(userId: string) {
   const contact = await getUserContactById(userId)
+
+  if (!contact) {
+    throw new Error("No company found for this user")
+  }
   return prisma?.companies.findUnique({
     where: {
-      id: contact?.company_id,
+      id: contact?.company_id!,
     },
   })
 }
 
 export async function isCompanyUser(email: string) {
   const user = await getUserByEmail(email)
+
+  if (!user) {
+    throw new Error("User not found")
+  }
   const contact = await getUserContactById(user.id)
   if (!contact) {
     return false
@@ -218,6 +229,8 @@ export async function isCompanyUser(email: string) {
 export async function updatePassword(password: string) {
   const session = await auth()
   const hashed_password = await hash(password, 12)
+
+  if (!session?.user?.email) throw new Error("No user found")
 
   return prisma?.user.update({
     where: {
@@ -231,6 +244,9 @@ export async function updatePassword(password: string) {
 
 export async function deleteUser() {
   const session = await auth()
+
+  if (!session?.user?.email) throw new Error("No user found")
+
   console.log(session)
 
   const user = await getUserByEmail(session.user.email)

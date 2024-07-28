@@ -6,6 +6,9 @@ export async function GET(req: NextRequest) {
   // get id from pathname
   const id = pathname.split("/").pop()
   console.log(id)
+  if (!id) {
+    return new Response("Not found", { status: 404 })
+  }
   const result = await getImage(id)
 
   console.log(result)

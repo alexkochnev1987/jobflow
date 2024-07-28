@@ -61,7 +61,22 @@ export async function getUserPersonalityById(id: string) {
   })
 }
 
-export async function getUserPersonalityResponsesByUID(uid: string) {
+type EvaluationFormQuestionWithAnswers = {
+  EvaluationFormQuestion: {
+      EvaluationFormAnswer: {
+          id: number;
+          value: string | null;
+          label: string | null;
+          letter: string | null;
+      }[];
+      id: number;
+      question: string | null;
+      sort: number | null;
+  } | null;
+  id: number;
+  answer: string | null;
+};
+export async function getUserPersonalityResponsesByUID(uid: string): Promise<EvaluationFormQuestionWithAnswers[]> {
   return prisma?.evaluationFormUserResponse.findMany({
     where: {
       AND: [
@@ -112,16 +127,16 @@ export async function getUserPersonalityResponsesByUID(uid: string) {
  * @returns 
  */
 function getMBTIAnswer(
-  mbtiUserResponse: EvaluationFormUserResponse & {
-    EvaluationFormQuestion: EvaluationFormQuestion & {
-      EvaluationFormAnswer: EvaluationFormAnswer[]
-    }
-  },
-): EvaluationFormAnswer | undefined {
+  mbtiUserResponse: EvaluationFormQuestionWithAnswers,
+): Partial<EvaluationFormAnswer> | undefined {
   const mbtiQuestion = mbtiUserResponse.EvaluationFormQuestion
+
+  if(!mbtiQuestion) {
+    return undefined;
+  }
   const mbtiAnswer = mbtiQuestion.EvaluationFormAnswer.find(
     (answer) =>
-      answer.value.toLowerCase() === mbtiUserResponse.answer?.toLowerCase(),
+      answer?.value?.toLowerCase() === mbtiUserResponse.answer?.toLowerCase(),
   )
   return mbtiAnswer
 }
@@ -133,12 +148,13 @@ function getMBTIAnswer(
  */
 export async function calculateMBTI(uid: string) {
   const userResponses = await getUserPersonalityResponsesByUID(uid)
-  const answers = userResponses.map(getMBTIAnswer)
+  const answers = userResponses.map(x => getMBTIAnswer(x))
 
   // each answer has a letter, so we need to group them by letter
   const groupedAnswers = answers.reduce((acc, answer) => {
     if (!answer) return acc
     const { letter } = answer
+    if (!letter) return acc
     if (!acc[letter]) acc[letter] = 0
     acc[letter] += 1
     return acc
