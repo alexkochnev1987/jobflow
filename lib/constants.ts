@@ -15,6 +15,7 @@ export const QUESTION_TYPES = {
   Button: "button",
   Select: "select",
   MBTI: "mbti",
+  ButtonInput: "button_input",
 }
 
 export const ROUTES = {

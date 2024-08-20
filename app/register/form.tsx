@@ -29,7 +29,7 @@ export const RegisterForm = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
 
-  console.log(watch("name"))
+  // console.log(watch("name"))
 
   const onSubmit = async (data) => {
     console.log(data)

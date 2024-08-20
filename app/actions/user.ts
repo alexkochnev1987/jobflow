@@ -52,12 +52,14 @@ export async function getProfile({
   const query =
     userId === undefined
       ? {
-        uid,
-      }
+          uid,
+        }
       : {
-        userId,
-      }
+          userId,
+        }
   console.log(query)
+  const profiles = await prisma?.profile.findMany()
+  console.log(profiles)
 
   return prisma?.profile?.findFirstOrThrow({
     where: query,
@@ -85,9 +87,11 @@ export async function linkProfile(uid: string, email: string) {
       email,
     },
   })
+  console.log("Linking profile", uid, email, user)
   if (!user) {
     throw new Error("User not found")
   }
+
   const profile = await getProfile({ uid })
 
   await prisma?.user.update({
@@ -167,6 +171,7 @@ export async function getUserByEmail(email: string) {
 }
 
 export async function hasCompletedEvaluation(email: string) {
+  debugger
   const res = await prisma?.user.findFirst({
     where: {
       email,

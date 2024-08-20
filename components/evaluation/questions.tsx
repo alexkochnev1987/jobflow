@@ -30,7 +30,7 @@ import { motion } from "framer-motion"
 
 export function RenderQuestion({ question, inputRef, error }) {
   inputRef[question.id] = useRef()
-  console.log("question", question)
+
   switch (question.type) {
     case QUESTION_TYPES.Checkbox:
       return (
@@ -40,6 +40,7 @@ export function RenderQuestion({ question, inputRef, error }) {
           error={error}
         />
       )
+
     case QUESTION_TYPES.Button:
     case QUESTION_TYPES.MBTI:
       return (
@@ -57,6 +58,7 @@ export function RenderQuestion({ question, inputRef, error }) {
           />
         </motion.div>
       )
+    case QUESTION_TYPES.ButtonInput:
     case QUESTION_TYPES.Select:
     case QUESTION_TYPES.Tags:
       return (
@@ -121,8 +123,6 @@ function ButtonQuestion({ question, anwsers, id, inputRef, error }) {
   if (isLoading) {
     return <LoadingQuestion />
   }
-
-  console.log(anwsers)
 
   return (
     <div className="fade-down  w-full transition duration-300">
@@ -210,7 +210,7 @@ function TagQuestion({ question, id, inputRef, error }) {
             key={tag}
             borderRadius="full"
             variant="solid"
-            colorScheme={value.includes(tag) ? "teal" : "gray"}
+            colorScheme={value.includes(tag) ? "teal" : "blackAlpha"}
             m={2}
             onClick={(e) => {
               e.preventDefault()
@@ -222,7 +222,12 @@ function TagQuestion({ question, id, inputRef, error }) {
         ))}
       </Box>
       <Button
-        onClick={() => store.save(id, value)}
+        onClick={() => {
+          inputRef.current = {
+            value: value,
+          }
+          store.save(id, value)
+        }}
         intent="secondary"
         size="medium"
       >
@@ -315,7 +320,12 @@ function TextQuestion({ question, id, inputRef, error }) {
         id={id}
         value={value}
         onChange={(e) => setValue(e?.target?.value || "")}
-        onBlur={() => store.save(id, value)}
+        onBlur={() => {
+          inputRef.current = {
+            value: value,
+          }
+          store.save(id, value)
+        }}
         ref={inputRef}
       />
     </div>

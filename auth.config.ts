@@ -26,6 +26,8 @@ export const config = {
           },
         })
 
+        const users = await prisma.user.findMany()
+
         if (
           !user ||
           !(await compare(credentials.password as string, user.password))

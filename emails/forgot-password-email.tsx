@@ -7,7 +7,7 @@ import {
   Preview,
   Section,
   Text,
-} from "jsx-email"
+} from "@react-email/components"
 // Note: Superstruct is a fantastic validation package. It's smaller and faster than alternatives
 // and uses a delightful API without chaining. docs.superstructjs.org
 //
@@ -42,9 +42,7 @@ export const Template = ({ token }: TemplateProps) => (
               )}`}
               style={anchor}
             >
-              {`https://app.quereinstieg.com${ROUTES.ResetPassword(
-                token,
-              )}`}
+              {`https://app.quereinstieg.com${ROUTES.ResetPassword(token)}`}
             </Link>{" "}
           </Text>
           <Text style={paragraph}>

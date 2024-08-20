@@ -27,16 +27,15 @@ export const LoginForm = () => {
     e.preventDefault()
     try {
       setLoading(true)
-      setFormValues({ email: "", password: "" })
 
-      console.log("callbackUrl", callbackUrl)
       await signIn("credentials", {
         email: formValues.email,
         password: formValues.password,
         callbackUrl,
       })
+      setFormValues({ email: "", password: "" })
 
-      router.push(callbackUrl)
+      // router.push(callbackUrl)
       setLoading(false)
     } catch (error: any) {
       console.log(error)

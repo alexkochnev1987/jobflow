@@ -8,6 +8,8 @@ import { Card } from "@chakra-ui/react"
 
 export default async function Page() {
   const session = await auth()
+  console.log(session, "session")
+
   if (!session?.user) {
     return redirect(ROUTES.Login)
   }
@@ -19,7 +21,7 @@ export default async function Page() {
   const careers = await getCareers()
   const careersRes = careers.map((c) => ({ ...c, rating: 30 }))
   return (
-    <Card className="w-m-full justify-center text-left !shadow-none py-24 mx-5">
+    <Card className="w-m-full mx-5 justify-center py-24 text-left !shadow-none">
       <CareerResults user={session?.user} careers={careersRes} />
     </Card>
   )

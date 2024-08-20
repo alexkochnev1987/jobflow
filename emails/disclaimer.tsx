@@ -9,10 +9,9 @@ import {
   Preview,
   Section,
   Text,
-} from "jsx-email"
+} from "@react-email/components"
 import * as React from "react"
 import { disclaimer } from "./styles"
-
 
 export default function Disclaimer() {
   return (
@@ -27,11 +26,10 @@ export default function Disclaimer() {
       </Text>
       <Text style={disclaimer}>
         Shift Your Career | Hasenhöhe 5 | 22587 Hamburg | 01575 485 9337 |
-        marcel@quereinstieg.com | Vertretungsberechtigte Person: Marcel
-        Reperich | Haftungshinweis: Trotz sorgfältiger inhaltlicher Kontrolle
-        übernehmen wir keine Haftung für die Inhalte externer Links. Für den
-        Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber
-        verantwortlich.
+        marcel@quereinstieg.com | Vertretungsberechtigte Person: Marcel Reperich
+        | Haftungshinweis: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen
+        wir keine Haftung für die Inhalte externer Links. Für den Inhalt der
+        verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
       </Text>
     </>
   )

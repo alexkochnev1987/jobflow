@@ -17,10 +17,9 @@ const endpointSecret =
 
 export async function POST(req: NextRequest) {
   const body = await req.text()
+
   const sig = req.headers.get("stripe-signature") as string | string[]
-
   let event
-
   try {
     event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
   } catch (err) {
@@ -33,6 +32,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
+  console.log("Event type", event.type, event)
   // Handle the checkout.session.completed event
   switch (event.type) {
     case "checkout.session.completed": {
@@ -45,11 +45,17 @@ export async function POST(req: NextRequest) {
 
       const { name, email } = customer_details
 
+      console.log(customer_details)
+
       const password = Math.random().toString(36).slice(-14)
 
       console.log("Creating user")
       await createUser(name, email, password)
-      await linkProfile(metadata.uid, customer_details.email)
+
+      console.log("Linking profile")
+      // await linkProfile(metadata.uid, customer_details.email)
+
+      console.log("Upgrading user")
       await upgradeUser(email)
 
       console.log("Sending email")

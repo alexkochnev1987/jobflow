@@ -1,0 +1,50 @@
+### Create user
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "email": "eys@core3.ru",
+    "password": "123456"
+}
+
+### Sign in
+POST http://localhost:3003/users/signin
+Content-Type: application/json
+
+{
+    "email": "eys@core3.ru",
+    "password": "123456"
+}
+
+### Get user
+POST  http://localhost:3000/stripe
+Content-Type: application/json
+
+{
+    "email": "{{$datetime + 1}}",
+    "password": "123456"
+
+
+}
+
+
+###Get all users with a given email
+GET http://localhost:3003/users?email=eys@core.ru
+
+### Delete user by id
+DELETE http://localhost:3003/users/11
+
+### Update user by id
+PATCH   http://localhost:3003/users/2
+Content-Type: application/json
+
+{
+    "email": "aaa@core.ru",
+    "password": "1234"
+}
+
+### Get whoami colors
+GET http://localhost:3003/users/whoami
+
+### Sign out
+POST http://localhost:3003/users/signout

@@ -1,7 +1,7 @@
 "use client"
 import { Progress } from "../ui/progress"
 import { userStore } from "@/app/client/store"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { EvaluationFormQuestion } from "@prisma/client"
 import { RenderQuestion } from "../evaluation/questions"
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 import { ROUTES } from "@/lib/constants"
 import { Button } from "@radix-ui/themes"
 import l18n from "../../i18n/config"
+import { Skeleton } from "../ui/skeleton"
 
 type FormProps = {
   title: string
@@ -17,6 +18,8 @@ type FormProps = {
   questions: Partial<EvaluationFormQuestion>[]
   stepSort: number
 }
+
+const hasErrors = (errors) => Object.keys(errors).length > 0
 
 export default function Form({
   title,
@@ -26,10 +29,9 @@ export default function Form({
 }: FormProps): JSX.Element {
   const [errors, setErrors] = useState({})
   const [showQuestions, setShowQuestions] = useState(false)
-  const [unAnsweredQuestions, setUnAnsweredQuestions] = useState([])
   const store = userStore()
   const router = useRouter()
-  const elRefs = {}
+  const elRefs = useMemo(() => ({}), [])
 
   useEffect(() => {
     store.totalQuestions = questions.length
@@ -40,14 +42,13 @@ export default function Form({
     setShowQuestions(false)
   }, [stepSort])
 
-  useEffect(() => {
-    setUnAnsweredQuestions(questions.filter((q) => !store.findResponse(q.id)))
-  }, [questions, store])
-
   const percentAnswered =
-    ((questions.length - unAnsweredQuestions.length) / questions.length) * 100
-
-  console.log(percentAnswered, unAnsweredQuestions.length, questions.length)
+    (questions.reduce((acc, q) => {
+      const response = store.findResponse(q.id)
+      return response ? acc + 1 : acc
+    }, 0) *
+      100) /
+    questions.length
 
   const newStep = (newStep) => {
     store.setStep(newStep)
@@ -75,9 +76,13 @@ export default function Form({
     newStep(nextStep)
   }
 
-  const hasErrors = (errors) => Object.keys(errors).length > 0
+  const question = questions.find((q) => !store.findResponse(q.id))
 
-  const question = unAnsweredQuestions[0]
+  useEffect(() => {
+    if (percentAnswered === 100) {
+      nextStep()
+    }
+  }, [percentAnswered])
 
   return (
     <div
@@ -115,35 +120,31 @@ export default function Form({
             >
               {l18n.t("test.button.start", "Continue")}
             </Button>
-            {/* <button
-              className="!my-10 w-full rounded-lg bg-sky-500 py-3 text-center text-lg font-normal normal-case leading-7 text-white "
-              color="indigo"
-              onClick={() => setShowQuestions(true)}
-            >
-              {t("Continue")}
-            </button> */}
           </>
         )}
 
         {showQuestions && (
           <>
-            {question ? (
-              <RenderQuestion
-                key={question.id}
-                question={question}
-                inputRef={elRefs}
-                error={errors[question.id]}
-              />
-            ) : (
-              <Button
-                onClick={() => nextStep()}
-                size="4"
-                variant="solid"
-                className="mt-10 w-full !bg-magenta"
-              >
-                {l18n.t("test.result.cta", "Get your results")}
-              </Button>
-            )}
+            {
+              question ? (
+                <RenderQuestion
+                  key={question.id}
+                  question={question}
+                  inputRef={elRefs}
+                  error={errors[question.id]}
+                />
+              ) : (
+                <Skeleton className="h-[20px] w-full rounded-full" />
+              )
+              // <Button
+              //   onClick={() => nextStep()}
+              //   size="4"
+              //   variant="solid"
+              //   className="mt-10 w-full !bg-magenta"
+              // >
+              //   {l18n.t("test.result.cta", "Get your results")}
+              // </Button>
+            }
           </>
         )}
 

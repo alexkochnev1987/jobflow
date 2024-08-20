@@ -27,7 +27,6 @@ export default async function Home({
   const stepSort = parseInt(searchParams.step?.toString()) || 1
 
   const steps = await getEvaluationFormSteps()
-
   const step = stepSort ? steps.find((s) => s.sort === stepSort) : steps[0]
 
   if (stepSort > 1 && !step) {
@@ -35,11 +34,6 @@ export default async function Home({
   }
 
   const questions = await getEvaluationFormQuestions(step.id)
-
-  console.log({
-    step,
-    stepSort,
-  })
 
   return (
     <Form

@@ -9,7 +9,7 @@ import {
   Preview,
   Section,
   Text,
-} from "jsx-email"
+} from "@react-email/components"
 // Note: Superstruct is a fantastic validation package. It's smaller and faster than alternatives
 // and uses a delightful API without chaining. docs.superstructjs.org
 //

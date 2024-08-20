@@ -24,7 +24,7 @@ export default async function DashboardLayout({
   return (
     <Box>
       <NavBar session={session} isCompany={isCompany} />
-      <main className="mx-auto flex min-h-screen w-full max-w-5xl justify-stretch pt-10 pb-20">
+      <main className="mx-auto flex min-h-screen w-full max-w-5xl justify-stretch pb-20 pt-10">
         <div className="w-full">{children}</div>
       </main>
       <Footer />

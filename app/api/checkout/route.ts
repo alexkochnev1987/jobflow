@@ -26,9 +26,12 @@ export async function POST(req: NextRequest) {
       metadata: {
         uid,
       },
-      success_url: `https://app.quereinstieg.com${ROUTES.Payment}?success=true`,
-      cancel_url: `https://app.quereinstieg.com/${ROUTES.EvaluationResults}?canceled=true`,
+      // success_url: `https://app.quereinstieg.com${ROUTES.Payment}?success=true`,
+      // cancel_url: `https://app.quereinstieg.com/${ROUTES.EvaluationResults}?canceled=true`,
+      success_url: `${process.env.NEXTAUTH_URL}${ROUTES.Payment}?success=true`,
+      cancel_url: `${process.env.NEXTAUTH_URL}${ROUTES.EvaluationResults}?canceled=true`,
     })
+    console.log("Session", session.url)
 
     if (!session?.url) throw new Error("No session url")
     // redirect to checkout
