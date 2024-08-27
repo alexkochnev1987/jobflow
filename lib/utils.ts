@@ -16,7 +16,7 @@ export function capitalizeFirstLetter(text: string) {
 }
 
 export function removeHTML(text: string) {
-  return text.replace(/<[^>]*>?/gm, '');
+  return text.replace(/<[^>]*>?/gm, "")
 }
 
 export function cn(...inputs: ClassValue[]) {
@@ -25,8 +25,9 @@ export function cn(...inputs: ClassValue[]) {
 
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
   if (!timestamp) return l18n.t("never")
-  return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? "" : " ago"
-    }`
+  return `${ms(Date.now() - new Date(timestamp).getTime())}${
+    timeOnly ? "" : " ago"
+  }`
 }
 
 export async function fetcher<JSON = any>(
@@ -128,8 +129,6 @@ export function getImageFullUrl(id: string) {
   return `/api/files/${id}`
 }
 
-
-
 export function formatArray(arr: string[]): string {
   if (!arr || !arr.length) return ""
   if (!Array.isArray(arr)) return arr
@@ -142,7 +141,6 @@ export function formatDateString(d: Date): string {
   if (!d) return ""
   return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
 }
-
 
 export function getCareerPace(data: Career) {
   return [

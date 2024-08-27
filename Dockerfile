@@ -1,5 +1,5 @@
 
-FROM node:20.15.0
+FROM node:20.14.0
 
 # Install Doppler CLI
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl gnupg && \
