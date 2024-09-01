@@ -38,7 +38,7 @@ export const Template = () => (
           <Text style={paragraph}>
             Bei Feedback oder Fragen wende{" "}
             <Link
-              href={`https://app.quereinstieg.com${ROUTES.Contact}`}
+              href={`${process.env.NEXTAUTH_URL}${ROUTES.Contact}`}
               style={anchor}
             >
               dich gerne an unseren Support.

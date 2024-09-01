@@ -37,18 +37,16 @@ export const Template = ({ token }: TemplateProps) => (
 
           <Text style={paragraph}>
             <Link
-              href={`https://app.quereinstieg.com${ROUTES.ResetPassword(
-                token,
-              )}`}
+              href={`${process.env.NEXTAUTH_URL}${ROUTES.ResetPassword(token)}`}
               style={anchor}
             >
-              {`https://app.quereinstieg.com${ROUTES.ResetPassword(token)}`}
+              {`${process.env.NEXTAUTH_URL}${ROUTES.ResetPassword(token)}`}
             </Link>{" "}
           </Text>
           <Text style={paragraph}>
             Bei Fragen oder Problemen{" "}
             <Link
-              href={`https://app.quereinstieg.com${ROUTES.Contact}`}
+              href={`${process.env.NEXTAUTH_URL}${ROUTES.Contact}`}
               style={anchor}
             >
               kontaktiere bitte den Support

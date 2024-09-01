@@ -36,4 +36,4 @@ export const ROUTES = {
   ResetPassword: (token: string) => `/login/reset-password?token=${token}`,
 }
 
-export const DEPLOY_URL = `https://app.quereinstieg.com/`
+export const DEPLOY_URL = `${process.env.NEXTAUTH_URL}/`

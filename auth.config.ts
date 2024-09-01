@@ -2,6 +2,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import type { NextAuthConfig } from "next-auth"
 
 import { compare } from "bcryptjs"
+import { co } from "@directus/sdk/dist/index-7ec1f729"
 
 export const config = {
   providers: [
@@ -25,8 +26,6 @@ export const config = {
             email: credentials.email as string,
           },
         })
-
-        const users = await prisma.user.findMany()
 
         if (
           !user ||

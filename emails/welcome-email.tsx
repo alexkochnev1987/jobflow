@@ -55,7 +55,7 @@ export const Template = ({ email, password }: TemplateProps) => (
             Um deine Ergebnisse einzusehen, melde Dich bitte unter folgendem
             Link an:{" "}
             <Link
-              href={`https://app.quereinstieg.com${ROUTES.Login}`}
+              href={`${process.env.NEXTAUTH_URL}${ROUTES.Login}`}
               style={anchor}
             >
               app.quereinstieg.com/login
@@ -65,7 +65,7 @@ export const Template = ({ email, password }: TemplateProps) => (
           <Text style={paragraph}>
             Bei Fragen oder Problemen{" "}
             <Link
-              href={`https://app.quereinstieg.com${ROUTES.Contact}`}
+              href={`${process.env.NEXTAUTH_URL}${ROUTES.Contact}`}
               style={anchor}
             >
               kontaktiere bitte den Support
