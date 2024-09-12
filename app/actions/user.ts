@@ -57,9 +57,6 @@ export async function getProfile({
       : {
           userId,
         }
-  console.log(query)
-  const profiles = await prisma?.profile.findMany()
-  console.log(profiles)
 
   return prisma?.profile?.findFirstOrThrow({
     where: query,
@@ -171,7 +168,6 @@ export async function getUserByEmail(email: string) {
 }
 
 export async function hasCompletedEvaluation(email: string) {
-  debugger
   const res = await prisma?.user.findFirst({
     where: {
       email,

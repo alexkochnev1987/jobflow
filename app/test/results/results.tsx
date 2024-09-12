@@ -12,8 +12,6 @@ import Image from "next/image"
 import LoadingAnimation from "./loading-animation"
 export default function Results() {
   const { isLoading, results } = useResults()
-
-  console.log("results", results)
   const youArWork = results?.personality?.you_at_work || ""
   const strengths = results?.personality?.strengths_summary || ""
   const communicationSkills = results?.personality?.communications_skills || ""
@@ -31,7 +29,7 @@ export default function Results() {
         <div className="z-10 flex flex-col items-center">
           <Heading
             size="5"
-            className="w-full p-5 text-center text-2xl font-heading leading-7"
+            className="w-full p-5 text-center font-heading text-2xl leading-7"
           >
             {l18n.t("results.title", "Dein Ergebnis wird berechnet")}
           </Heading>

@@ -14,7 +14,10 @@ interface UserState {
   undoLast: () => void
   setStep: (step: number) => void
   findResponse: (question_id: number) => Response | undefined
-  save: (question_id: number, response: string | number | string[] | number[]) => void
+  save: (
+    question_id: number,
+    response: string | number | string[] | number[],
+  ) => void
 }
 
 export const userStore = create<UserState>()(

@@ -24,12 +24,13 @@ export default async function Home({
     return redirect(ROUTES.DashBoard)
   }
 
-  const stepSort = parseInt(searchParams.step?.toString()) || 1
+  const stepNumber = parseInt(searchParams.step?.toString()) || 1
 
   const steps = await getEvaluationFormSteps()
-  const step = stepSort ? steps.find((s) => s.sort === stepSort) : steps[0]
 
-  if (stepSort > 1 && !step) {
+  const step = stepNumber ? steps.find((s) => s.sort === stepNumber) : steps[0]
+
+  if (stepNumber > 1 && !step) {
     return redirect(ROUTES.EvaluationResults)
   }
 

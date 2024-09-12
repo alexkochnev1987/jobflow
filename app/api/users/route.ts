@@ -4,8 +4,6 @@ export async function GET(request: Request) {}
 export async function POST(request: NextRequest) {
   const { questionResponse, questionId, uid } = await request.json()
 
-  console.log({ questionResponse, questionId, uid })
-
   const savedResponse = await prisma?.evaluationFormUserResponse.findFirst({
     where: {
       AND: [
@@ -19,11 +17,10 @@ export async function POST(request: NextRequest) {
     },
     select: {
       id: true,
-    }
+    },
   })
 
   if (savedResponse) {
-    console.log("update", savedResponse.id)
     const updateResponse = await prisma?.evaluationFormUserResponse.update({
       where: {
         id: savedResponse.id,
@@ -34,14 +31,15 @@ export async function POST(request: NextRequest) {
     })
     return NextResponse.json({ updateResponse })
   }
+
   // save QuestionResponse
-  console.log("create", { uid })
-  const saveResponse = await prisma?.evaluationFormUserResponse.create({
+  const response = await prisma?.evaluationFormUserResponse.create({
     data: {
       answer: questionResponse,
       question: questionId,
       uid,
     },
   })
-  return NextResponse.json({ saveResponse })
+
+  return NextResponse.json({ response })
 }

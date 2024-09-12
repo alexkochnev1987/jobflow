@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       await createUser(name, email, password)
 
       console.log("Linking profile")
-      // await linkProfile(metadata.uid, customer_details.email)
+      await linkProfile(metadata.uid, customer_details.email)
 
       console.log("Upgrading user")
       await upgradeUser(email)

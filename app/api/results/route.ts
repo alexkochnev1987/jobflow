@@ -8,6 +8,7 @@ import { retry } from "radash"
 import { v4 as uuid } from "uuid"
 import {
   calculateMBTI,
+  getUserPersonalities,
   getUserPersonalityByName,
 } from "@/app/actions/user-personality"
 import { auth } from "auth"
@@ -33,15 +34,15 @@ async function mapCareers(evaluationResponse) {
 export async function POST(request: NextRequest) {
   const session = await auth()
 
-  if (!session || !session.user?.email) {
-    return new Response('Unauthorized', { status: 401 })
-  }
+  // if (!session || !session.user?.email) {
+  //   return new Response("Unauthorized", { status: 401 })
+  // }
 
   if (session) {
     const user = await getUserByEmail(session.user.email)
 
     if (!user) {
-      return new Response('User not found', { status: 404 })
+      return new Response("User not found", { status: 404 })
     }
     const profilefull = await getProfile({ userId: user.id })
 
@@ -53,8 +54,6 @@ export async function POST(request: NextRequest) {
   }
 
   const { uid } = await request.json()
-
-  console.log(uid)
 
   try {
     const profile = await getProfile({ uid })
@@ -122,16 +121,14 @@ export async function POST(request: NextRequest) {
     .join("\n")
 
   const mbtiResult = await calculateMBTI(uid)
-  console.log(mbtiResult)
 
+  const personalities = await getUserPersonalities()
   const personality = await getUserPersonalityByName(mbtiResult)
 
-  console.log(personality)
-
-  const staticPrompt = process.env.PROMPT;
+  const staticPrompt = process.env.PROMPT
 
   if (!staticPrompt) {
-    throw new Error("No prompt found");
+    throw new Error("No prompt found")
   }
 
   const replacementDic = {
@@ -143,12 +140,12 @@ export async function POST(request: NextRequest) {
     "{personality.communications_skills}": personality.communications_skills,
     "{personality.leadership}": personality.leadership,
     "{careersText}": careersText,
-  };
+  }
 
   const prompt = Object.entries(replacementDic).reduce(
     (acc, [key, value]) => acc.replace(key, value),
     staticPrompt,
-  );
+  )
 
   console.log(prompt)
 
@@ -160,7 +157,7 @@ export async function POST(request: NextRequest) {
     async () => {
       console.log("trying to get results")
 
-      const langfuse = getLangFuse();
+      const langfuse = getLangFuse()
 
       const traceClient = langfuse.trace({
         name: "/api/results",
@@ -173,7 +170,7 @@ export async function POST(request: NextRequest) {
           replacementDic,
         },
         tags: [process.env.NODE_ENV],
-      });
+      })
 
       const modelResponse = await completition(prompt, traceClient)
 
@@ -189,7 +186,7 @@ export async function POST(request: NextRequest) {
         traceClient.score({
           name: "INVALID_RATING",
           value: 0,
-        });
+        })
         throw new Error("Some careers don't have a rating")
       }
 
@@ -203,7 +200,7 @@ export async function POST(request: NextRequest) {
         traceClient.score({
           name: "INVALID_CAREERS",
           value: 0,
-        });
+        })
         throw new Error("Some careers don't exist")
       }
 
@@ -227,13 +224,13 @@ export async function POST(request: NextRequest) {
         traceClient.score({
           name: "GOT_RESULTS",
           value: 100,
-        });
+        })
         traceClient.update({
           output: modelResponse,
           metadata: {
             profile: profileResult,
           },
-        });
+        })
       } catch (e) {
         console.log(e)
       }
